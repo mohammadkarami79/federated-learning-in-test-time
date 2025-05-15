@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
-
+import torch
 import torchvision.models as models
 
 
@@ -170,3 +170,96 @@ def get_resnet34(n_classes):
     model.fc = nn.Linear(model.fc.in_features, n_classes)
 
     return model
+
+
+class pFedDefModel(nn.Module):
+    """pFedDef model with multiple learners and attention mechanism"""
+    def __init__(self, name='resnet18', n_learners=2, num_classes=10, weights=None):
+        super(pFedDefModel, self).__init__()
+        self.n_learners = n_learners
+        self.num_classes = num_classes
+        
+        # Create base model
+        if name == 'resnet18':
+            self.base_model = models.resnet18(weights=weights)
+            self.feature_dim = self.base_model.fc.in_features
+            self.base_model.fc = nn.Identity()
+        else:
+            raise ValueError(f"Unsupported model name: {name}")
+        
+        # Create learners with consistent architecture
+        self.learners = nn.ModuleList([
+            nn.Sequential(
+                nn.Linear(self.feature_dim, 256),
+                nn.ReLU(),
+                nn.Dropout(0.3),
+                nn.Linear(256, num_classes)
+            ) for _ in range(n_learners)
+        ])
+        
+        # Create attention mechanisms with consistent architecture
+        self.attention = nn.ModuleList([
+            nn.Sequential(
+                nn.Linear(self.feature_dim, 256),
+                nn.ReLU(),
+                nn.Dropout(0.2),
+                nn.Linear(256, 1)
+            ) for _ in range(n_learners)
+        ])
+        
+        # Initialize mixture weights
+        self.mixture_weights = nn.Parameter(torch.ones(n_learners) / n_learners)
+    
+    def get_params(self):
+        """Get model parameters for initialization"""
+        return {
+            'n_learners': self.n_learners,
+            'num_classes': self.num_classes
+        }
+    
+    def forward(self, x, is_training=False, client_id=None):
+        """
+        Forward pass
+        
+        Args:
+            x: Input tensor
+            is_training: Whether in training mode
+            client_id: Specific learner ID to use (if None, use mixture)
+            
+        Returns:
+            torch.Tensor: Model output
+        """
+        # Get features from base model
+        features = self.base_model(x)  # [B, feature_dim]
+        
+        if client_id is not None:
+            # Use specific learner
+            output = self.learners[client_id](features)  # [B, num_classes]
+            attention = torch.sigmoid(self.attention[client_id](features))  # [B, 1]
+            return output * attention
+        
+        # Get predictions from all learners
+        outputs = []
+        attentions = []
+        
+        for i in range(self.n_learners):
+            output = self.learners[i](features)  # [B, num_classes]
+            attention = torch.sigmoid(self.attention[i](features))  # [B, 1]
+            outputs.append(output)
+            attentions.append(attention)
+        
+        # Stack outputs and attentions
+        outputs = torch.stack(outputs, dim=0)  # [n_learners, B, num_classes]
+        attentions = torch.stack(attentions, dim=0)  # [n_learners, B, 1]
+        
+        # Compute weighted output
+        if is_training:
+            # During training, use mixture weights
+            weights = F.softmax(self.mixture_weights, dim=0)  # [n_learners]
+            weighted_output = (outputs * weights.view(-1, 1, 1)).sum(dim=0)  # [B, num_classes]
+        else:
+            # During inference, use attention weights
+            weights = F.softmax(attentions.squeeze(-1), dim=0)  # [n_learners, B]
+            weighted_output = (outputs * weights.unsqueeze(-1)).sum(dim=0)  # [B, num_classes]
+        
+        return weighted_output

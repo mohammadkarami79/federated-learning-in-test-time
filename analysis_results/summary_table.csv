@@ -1,0 +1,4 @@
+dataset,target_model,transfer_model,attack,defense,clean_accuracy,adversarial_accuracy,defense_accuracy,accuracy_improvement
+cifar10,resnet18,vgg16,fgsm,diffpure,6.0,5.0,12.0,7.0
+cifar10,resnet18,vgg16,pgd,diffpure,6.0,6.0,10.0,4.0
+cifar10,resnet18,vgg16,pgd,ensemble_diffpure,6.0,6.0,6.0,0.0

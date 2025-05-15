@@ -1,29 +1,23 @@
+"""
+Unnormalize module for transfer attacks
+"""
+
 import torch
-from torchvision.transforms import Normalize
 
-# CIFAR10 dataset unnormalize as it comes out of the iter
-def unnormalize_cifar10(normed):
-
-    mean = torch.tensor([0.4914, 0.4822, 0.4465])
-    std = torch.tensor([0.2023, 0.1994, 0.201])
-
-    unnormalize = Normalize((-mean / std).tolist(), (1.0 / std).tolist())
-    a = unnormalize(normed)
-    a = a.transpose(0,1)
-    a = a.transpose(1,2)
-    a = a * 255
-    b = a.clone().detach().requires_grad_(True).type(torch.uint8)
+def unnormalize(tensor, mean, std):
+    """
+    Unnormalize a tensor that was normalized with the given mean and std
     
-    
-    
-    return b
+    Args:
+        tensor: Normalized tensor
+        mean: Mean used for normalization
+        std: Standard deviation used for normalization
+        
+    Returns:
+        Unnormalized tensor
+    """
+    for t, m, s in zip(tensor, mean, std):
+        t.mul_(s).add_(m)
+    return tensor
 
-
-def unnormalize_femnist(normed):
-    mean = torch.tensor([0.1307])
-    std = torch.tensor([0.3081])
-    
-    unnormalize = Normalize((-mean / std).tolist(), (1.0 / std).tolist())
-    a = unnormalize(normed)
-    b = a.clone().detach().requires_grad_(True)
-    return b
+# Add any other necessary functions that might be imported from this module 

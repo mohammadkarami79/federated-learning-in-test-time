@@ -1,0 +1,15 @@
+name: sanity_ci
+on: [push, pull_request]
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: {preset: [debug]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - run: pip install -r requirements.txt
+      - run: python scripts/sanity_suite.py --preset ${{ matrix.preset }}
+      - run: python scripts/train_mae_detector.py --preset debug
+      - run: pytest tests/test_mae_detector.py 

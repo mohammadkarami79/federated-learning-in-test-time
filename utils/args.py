@@ -193,3 +193,39 @@ def parse_args(args_list=None):
         args = parser.parse_args()
 
     return args
+
+# Simple class for aggregating arguments used by run_cifar10_diffpure.py
+class Args:
+    """Simple class for storing experiment arguments as attributes."""
+    def __init__(self):
+        self.experiment = None
+        self.method = None
+        self.decentralized = False
+        self.sampling_rate = 1.0
+        self.input_dimension = None
+        self.output_dimension = None
+        self.n_learners = 1
+        self.n_rounds = 1
+        self.bz = 128
+        self.local_steps = 1
+        self.log_freq = 10
+        self.device = 'cpu'
+        self.optimizer = 'sgd'
+        self.lr = 0.01
+        self.lr_lambda = 0.0
+        self.lr_scheduler = 'constant'
+        self.mu = 0.0
+        self.communication_probability = 0.1
+        self.q = 1.0
+        self.locally_tune_clients = False
+        self.validation = False
+        self.verbose = 0
+        self.seed = 1234
+        self.save_freq = 10
+        self.save_path = None
+        self.n_clients = 5
+        # DiffPure specific
+        self.train_diffusion = True
+        self.diffusion_epochs = 10
+        self.t_star = 0.1
+        self.n_steps = 100

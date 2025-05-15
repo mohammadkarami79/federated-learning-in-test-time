@@ -1,10 +1,13 @@
 import time
+import os
+import config
 
 from models import *
 from datasets import *
 from learners.learner import *
 from learners.learners_ensemble import *
 from client import *
+from diffpure_client import DiffPureClient, DiffPureMixtureClient
 from aggregator import *
 
 from .optim import *
@@ -23,7 +26,7 @@ def get_data_dir(experiment_name):
     :param experiment_name: name of the experiment
     :return: str
     """
-    data_dir = os.path.join("pFedDef_v1/data", experiment_name, "all_data")
+    data_dir = os.path.join("data", experiment_name, "all_data")
 
     return data_dir
 
@@ -318,6 +321,13 @@ def get_client(
         logger,
         local_steps,
         tune_locally,
+        diffusion_model_path=None,
+        t_star=0.1,
+        n_steps=100,
+        client_id=None,
+        train_diffusion=True,
+        diffusion_epochs=10,
+        save_path="weights/cifar10/diffpure"
 ):
     """
 
@@ -329,7 +339,14 @@ def get_client(
     :param test_iterator:
     :param logger:
     :param local_steps:
-    :param tune_locally
+    :param tune_locally:
+    :param diffusion_model_path: path to pre-trained diffusion model
+    :param t_star: diffusion timestep
+    :param n_steps: number of reverse diffusion steps
+    :param client_id: unique identifier for the client
+    :param train_diffusion: whether to train the diffusion model if no model exists
+    :param diffusion_epochs: number of epochs for training diffusion models
+    :param save_path: base path for saving models
 
     :return:
     """
@@ -393,6 +410,40 @@ def get_client(
             logger=logger,
             local_steps=local_steps,
             tune_locally=tune_locally
+        )
+    elif client_type == "diffpure":
+        return DiffPureClient(
+            learners_ensemble=learners_ensemble,
+            train_iterator=train_iterator,
+            val_iterator=val_iterator,
+            test_iterator=test_iterator,
+            logger=logger,
+            local_steps=local_steps,
+            tune_locally=tune_locally,
+            client_id=client_id,
+            diffusion_model_path=diffusion_model_path,
+            t_star=t_star,
+            n_steps=n_steps,
+            train_diffusion=train_diffusion,
+            diffusion_epochs=diffusion_epochs,
+            save_path=save_path
+        )
+    elif client_type == "diffpure_mixture":
+        return DiffPureMixtureClient(
+            learners_ensemble=learners_ensemble,
+            train_iterator=train_iterator,
+            val_iterator=val_iterator,
+            test_iterator=test_iterator,
+            logger=logger,
+            local_steps=local_steps,
+            tune_locally=tune_locally,
+            client_id=client_id,
+            diffusion_model_path=diffusion_model_path,
+            t_star=t_star,
+            n_steps=n_steps,
+            train_diffusion=train_diffusion,
+            diffusion_epochs=diffusion_epochs,
+            save_path=save_path
         )
     else:
         return Client(

@@ -1,0 +1,23 @@
+{
+    "dataset": "cifar10",
+    "target_model": "resnet18",
+    "transfer_model": "vgg16",
+    "attack": "pgd",
+    "epsilon": 0.03137254901960784,
+    "steps": 10,
+    "alpha": 0.00784313725490196,
+    "defense": "ensemble_diffpure",
+    "client_ids": [
+        0,
+        1,
+        2
+    ],
+    "sigma": 0.1,
+    "diffusion_steps": 10,
+    "num_samples": 100,
+    "clean_accuracy": 6.0,
+    "adversarial_accuracy": 6.0,
+    "defense_accuracy": 6.0,
+    "accuracy_improvement": 0.0,
+    "timestamp": "2025-04-24 15:47:22"
+}

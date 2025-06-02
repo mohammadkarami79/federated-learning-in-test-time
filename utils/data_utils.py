@@ -8,7 +8,8 @@ import torchvision
 import torchvision.transforms as transforms
 import numpy as np
 from typing import Tuple, List, Optional
-from config import DATA_DIR
+from pathlib import Path
+import torch.utils.data as data_utils
 
 def get_dataloader(cfg, split="train"):
     """
@@ -105,6 +106,13 @@ def get_dataset(
             test_dataset = torchvision.datasets.CIFAR10(
                 root=data_path, train=False, download=True, transform=test_transform
             )
+        elif dataset_name == 'cifar100':
+            train_dataset = torchvision.datasets.CIFAR100(
+                root=data_path, train=True, download=True, transform=train_transform
+            )
+            test_dataset = torchvision.datasets.CIFAR100(
+                root=data_path, train=False, download=True, transform=test_transform
+            )
         elif dataset_name == 'mnist':
             train_dataset = torchvision.datasets.MNIST(
                 root=data_path, train=True, download=True, transform=train_transform
@@ -128,6 +136,10 @@ def get_dataset(
         
         if dataset_name == 'cifar10':
             dataset = torchvision.datasets.CIFAR10(
+                root='./data', train=train, download=True, transform=transform
+            )
+        elif dataset_name == 'cifar100':
+            dataset = torchvision.datasets.CIFAR100(
                 root='./data', train=train, download=True, transform=transform
             )
         elif dataset_name == 'mnist':
@@ -208,6 +220,14 @@ def get_data_info(dataset_name: str) -> dict:
             'mean': (0.4914, 0.4822, 0.4465),
             'std': (0.2023, 0.1994, 0.2010)
         }
+    elif dataset_name == 'cifar100':
+        return {
+            'num_classes': 100,
+            'input_channels': 3,
+            'input_size': 32,
+            'mean': (0.5071, 0.4867, 0.4408),
+            'std': (0.2675, 0.2565, 0.2761)
+        }
     elif dataset_name == 'mnist':
         return {
             'num_classes': 10,
@@ -243,6 +263,19 @@ def get_data_transforms(dataset_name: str, train: bool = True) -> transforms.Com
                 transforms.ToTensor(),
                 transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
             ])
+    elif dataset_name == 'cifar100':
+        if train:
+            return transforms.Compose([
+                transforms.RandomCrop(32, padding=4),
+                transforms.RandomHorizontalFlip(),
+                transforms.ToTensor(),
+                transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
+            ])
+        else:
+            return transforms.Compose([
+                transforms.ToTensor(),
+                transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
+            ])
     elif dataset_name == 'mnist':
         return transforms.Compose([
             transforms.ToTensor(),
@@ -277,7 +310,7 @@ def get_cifar10_data(batch_size=64, num_workers=2):
     
     # Load training data
     train_dataset = torchvision.datasets.CIFAR10(
-        root=str(DATA_DIR),
+        root='./data',
         train=True,
         download=True,
         transform=train_transform
@@ -285,7 +318,7 @@ def get_cifar10_data(batch_size=64, num_workers=2):
     
     # Load test data
     test_dataset = torchvision.datasets.CIFAR10(
-        root=str(DATA_DIR),
+        root='./data',
         train=False,
         download=True,
         transform=test_transform

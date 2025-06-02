@@ -11,7 +11,7 @@ import psutil
 from typing import List, Dict, Optional
 from pathlib import Path
 
-from config import Config, DEVICE
+from config_fixed import get_debug_config
 from .client import Client
 from metrics.logger import MetricsLogger
 from models.pfeddef_model import pFedDefModel
@@ -76,10 +76,12 @@ class FedServer:
         return clone.to(DEVICE)
 
 class Server:
-    def __init__(self, cfg: Config):
+    def __init__(self, cfg):
         self.cfg = cfg
-        self.global_models = None
+        self.global_models = None  # Will be set during init_round
         self.client_updates = defaultdict(list)
+        # Get device from cfg or use cuda if available
+        self.device = getattr(cfg, 'DEVICE', torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
         
     def init_models(self, client_model: nn.Module):
         """Initialize global models using a client's model as template."""
@@ -97,32 +99,46 @@ class Server:
         self.client_updates[client_id] = local_models
         
     def aggregate(self) -> List[nn.Module]:
-        """Perform FedEM aggregation - average each learner separately."""
+        """Perform simple averaging aggregation."""
         n_clients = len(self.client_updates)
-        assert n_clients > 0, "No updates received"
+        if n_clients == 0:
+            return []
         
-        # For each learner index
-        for learner_idx in range(self.cfg.N_LEARNERS):
-            # Get all client models for this learner
-            client_models = [
-                updates[learner_idx].state_dict() 
-                for updates in self.client_updates.values()
-            ]
+        # Get first client's models as template
+        first_client_models = list(self.client_updates.values())[0]
+        
+        # Initialize aggregated models
+        aggregated_models = []
+        for model in first_client_models:
+            # Create a copy of the model
+            aggregated_model = type(model)()
+            aggregated_model.load_state_dict(model.state_dict())
             
-            # Average the parameters (skip BatchNorm)
-            avg_state = self.global_models[learner_idx].state_dict()
-            for key in avg_state:
-                if 'bn' not in key.lower():  # Skip BN layers
-                    avg_state[key] = torch.stack([
-                        client_state[key] for client_state in client_models
-                    ]).mean(dim=0)
-                    
-            # Load averaged weights back
-            self.global_models[learner_idx].load_state_dict(avg_state)
+            # Average parameters across all clients
+            avg_state = {}
+            for name, param in model.named_parameters():
+                # Collect parameters from all clients
+                client_params = []
+                for client_models in self.client_updates.values():
+                    for client_model in client_models:
+                        if name in dict(client_model.named_parameters()):
+                            client_params.append(dict(client_model.named_parameters())[name].data)
+                
+                if client_params:
+                    avg_state[name] = torch.stack(client_params).mean(dim=0)
+                else:
+                    avg_state[name] = param.data
             
-        # Clear updates and return new global models
+            # Load averaged parameters
+            for name, param in aggregated_model.named_parameters():
+                if name in avg_state:
+                    param.data.copy_(avg_state[name])
+            
+            aggregated_models.append(aggregated_model)
+        
+        # Clear updates
         self.client_updates.clear()
-        return self.global_models
+        return aggregated_models
         
     @staticmethod
     def _clone_model(model: nn.Module) -> nn.Module:

@@ -5,50 +5,61 @@ Federated client implementation with local training
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Subset
 from typing import List, Optional, Tuple
-import torchvision
-import torchvision.transforms as transforms
-import torch.nn.functional as F
-import gc
+import numpy as np
+from pathlib import Path
 
-from config import Config, DEVICE
-from defense.combined_defense import CombinedClassifier
-from models.pfeddef_model import pFedDefModel
+# Import after other modules to avoid circular imports
+from models import get_model
+from utils.data_utils import get_dataset
 from attacks.pgd import PGDAttack
-from utils.data_utils import get_dataloader
+from defense.mae_detector import MAEDetector
+from config_fixed import get_debug_config
+from defense.combined_defense import CombinedClassifier
 
 class Client:
-    def __init__(self, client_id: int, cfg: Config, diffuser: Optional[nn.Module] = None):
+    def __init__(self, client_id: int, cfg, diffuser: Optional[nn.Module] = None):
         self.client_id = client_id
         self.cfg = cfg
         self.diffuser = diffuser
+        
+        # Get device from cfg or use cuda if available
+        self.device = getattr(cfg, 'DEVICE', torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
         
         # Initialize models
         self.model = self._create_model()
         self.classifier = None  # Will be set during training
         
-        # Get data loaders using unified function
-        self.train_loader = get_dataloader(cfg, split="train")
-        self.test_loader = get_dataloader(cfg, split="test")
+        # Get data using new dataset function
+        train_dataset, test_dataset = get_dataset(cfg)
+        self.train_loader = DataLoader(
+            train_dataset,
+            batch_size=cfg.BATCH_SIZE,
+            shuffle=True
+        )
+        self.test_loader = DataLoader(
+            test_dataset,
+            batch_size=cfg.BATCH_SIZE,
+            shuffle=False
+        )
         
     def _create_model(self) -> nn.Module:
         """Create local model."""
-        return pFedDefModel(self.cfg).to(DEVICE)
+        try:
+            from models.pfeddef_model import pFedDefModel
+            return pFedDefModel(self.cfg).to(self.device)
+        except:
+            # Fallback to basic model
+            model = get_model(self.cfg)
+            return model.to(self.device)
         
     def train(self, epochs: int = 1):
-        """Train local model with purification and adversarial training.
+        """Train local model with basic training.
         
         Args:
             epochs: Number of local epochs
-        """
-        # Create combined classifier
-        self.classifier = CombinedClassifier(
-            diffuser=self.diffuser,
-            pfeddef_model=self.model,
-            cfg=self.cfg
-        ).to(DEVICE)
-        
+        """        
         # Setup training
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(
@@ -57,86 +68,24 @@ class Client:
             momentum=0.9
         )
         
-        # Initialize PGD attack
-        pgd_attack = PGDAttack(
-            epsilon=8/255,
-            steps=self.cfg.PGD_STEPS,
-            step_size=2/255
-        )
-        
         # Training loop
-        self.classifier.train()
+        self.model.train()
         for epoch in range(epochs):
             running_loss = 0.0
             batch_count = 0
             
-            # Iterate over the entire DataLoader
+            # Iterate over the training data
             for batch_idx, (data, target) in enumerate(self.train_loader):
                 # Check if we've reached the maximum steps per epoch
                 if batch_count >= self.cfg.LOCAL_STEPS_PER_EPOCH:
                     break
                     
                 # Move data to device
-                data, target = data.to(DEVICE), target.to(DEVICE)
+                data, target = data.to(self.device), target.to(self.device)
                 
-                # Use mixed precision if enabled
-                with torch.amp.autocast('cuda', enabled=getattr(self.cfg, 'USE_AMP', False)):
-                    # Purify clean inputs and detach to break gradient flow
-                    with torch.no_grad():
-                        x_clean_pur = self.diffuser.purify(
-                            data,
-                            steps=self.cfg.DIFFUSER_STEPS,
-                            sigma=self.cfg.DIFFUSER_SIGMA
-                        ).detach()
-                    
-                    # Re-enable gradients for the purified inputs
-                    x_clean_pur.requires_grad_(True)
-                    
-                    # Generate adversarial examples on purified inputs
-                    x_adv_raw = pgd_attack.perturb(
-                        self.model,
-                        x_clean_pur,
-                        target
-                    )
-                    
-                    # Purify adversarial examples and detach
-                    with torch.no_grad():
-                        x_adv_pur = self.diffuser.purify(
-                            x_adv_raw,
-                            steps=self.cfg.DIFFUSER_STEPS,
-                            sigma=self.cfg.DIFFUSER_SIGMA
-                        ).detach()
-                    
-                    # Re-enable gradients for adversarial purified inputs
-                    x_adv_pur.requires_grad_(True)
-                    
-                    # Forward passes
-                    clean_output = self.model(x_clean_pur)
-                    adv_output = self.model(x_adv_pur)
-                    
-                    # Compute losses
-                    clean_loss = criterion(clean_output, target)
-                    adv_loss = criterion(adv_output, target)
-                    
-                    # Compute KL divergence between learners
-                    kl_loss = 0
-                    if self.cfg.N_LEARNERS > 1:
-                        logits_list = []
-                        for learner in self.model.learners:
-                            logits = learner(x_clean_pur)
-                            logits_list.append(F.log_softmax(logits, dim=1))
-                        
-                        # Compute pairwise KL divergence
-                        for i in range(len(logits_list)):
-                            for j in range(i+1, len(logits_list)):
-                                kl_loss += F.kl_div(
-                                    logits_list[i],
-                                    logits_list[j],
-                                    reduction='batchmean'
-                                )
-                    
-                    # Combined loss
-                    loss = 0.5 * (clean_loss + adv_loss) + self.cfg.LAMBDA_KL * kl_loss
+                # Forward pass
+                output = self.model(data)
+                loss = criterion(output, target)
                 
                 # Backward and optimize
                 optimizer.zero_grad()
@@ -148,9 +97,7 @@ class Client:
                 batch_count += 1
                 
                 # Free memory
-                del x_clean_pur, x_adv_raw, x_adv_pur, clean_output, adv_output
                 torch.cuda.empty_cache()
-                gc.collect()
                     
     def evaluate(self) -> Tuple[float, float]:
         """Evaluate model on test data.
@@ -158,7 +105,7 @@ class Client:
         Returns:
             Tuple of (loss, accuracy)
         """
-        self.classifier.eval()
+        self.model.eval()
         test_loss = 0
         correct = 0
         total = 0
@@ -166,8 +113,8 @@ class Client:
         
         with torch.no_grad():
             for data, target in self.test_loader:
-                data, target = data.to(DEVICE), target.to(DEVICE)
-                output = self.classifier(data, self.client_id)
+                data, target = data.to(self.device), target.to(self.device)
+                output = self.model(data)
                 test_loss += criterion(output, target).item()
                 pred = output.argmax(dim=1, keepdim=True)
                 correct += pred.eq(target.view_as(pred)).sum().item()

@@ -1,11 +1,11 @@
 """
-Defense utilities for implementing different defense mechanisms
+Defense utilities for combining different defense strategies
 """
 
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from config import CONFIG, DEVICE
+from config_fixed import get_debug_config
 from transfer_attacks.attacks import PGD, FGSM
 
 class CombinedDefense:
@@ -16,7 +16,7 @@ class CombinedDefense:
         self.diffusion_config = diffusion_config
         self.pfeddef_config = pfeddef_config
         self.combined_config = combined_config
-        self.device = DEVICE
+        self.device = get_debug_config()['device']
         self.target_model = None  # Will be set during evaluation
         
     def evaluate_defense(self, test_loader, attack_type='pgd'):
@@ -34,35 +34,35 @@ class CombinedDefense:
         from utils.model_utils import get_target_model, get_diffusion_model, get_pfeddef_model
         
         self.target_model = get_target_model(
-            name=CONFIG['model']['target']['name'],
+            name=get_debug_config()['model']['target']['name'],
             pretrained=False
         )
-        self.target_model.load_state_dict(torch.load(CONFIG['model']['target']['checkpoint_path']))
+        self.target_model.load_state_dict(torch.load(get_debug_config()['model']['target']['checkpoint_path']))
         self.target_model.to(self.device)
         
         # Initialize attack with target model
         attack = PGD(
             model=self.target_model,
-            epsilon=CONFIG['attack']['epsilon'],
-            alpha=CONFIG['attack']['alpha'],
-            steps=CONFIG['attack']['steps'],
-            random_start=CONFIG['attack']['random_start']
+            epsilon=get_debug_config()['attack']['epsilon'],
+            alpha=get_debug_config()['attack']['alpha'],
+            steps=get_debug_config()['attack']['steps'],
+            random_start=get_debug_config()['attack']['random_start']
         )
         
         diffusion_model = get_diffusion_model(
-            in_channels=CONFIG['dataset']['input_shape'][0],
-            hidden_channels=CONFIG['model']['diffusion']['hidden_channels'],
-            num_blocks=CONFIG['model']['diffusion']['num_blocks']
+            in_channels=get_debug_config()['dataset']['input_shape'][0],
+            hidden_channels=get_debug_config()['model']['diffusion']['hidden_channels'],
+            num_blocks=get_debug_config()['model']['diffusion']['num_blocks']
         )
-        diffusion_model.load_state_dict(torch.load(CONFIG['model']['diffusion']['checkpoint_path']))
+        diffusion_model.load_state_dict(torch.load(get_debug_config()['model']['diffusion']['checkpoint_path']))
         diffusion_model.to(self.device)
         
         pfeddef_model = get_pfeddef_model(
-            name=CONFIG['model']['pfeddef']['name'],
+            name=get_debug_config()['model']['pfeddef']['name'],
             target_model=self.target_model,
             diffusion_model=diffusion_model
         )
-        pfeddef_model.load_state_dict(torch.load(CONFIG['model']['pfeddef']['checkpoint_path']))
+        pfeddef_model.load_state_dict(torch.load(get_debug_config()['model']['pfeddef']['checkpoint_path']))
         pfeddef_model.to(self.device)
         
         # Set models to eval mode

@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
 """
 Train DiffPure model for input purification
+Updated to support different datasets with new config system
 """
 
 import torch
@@ -7,13 +9,57 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.transforms as transforms
+import argparse
 from pathlib import Path
 import time
 from tqdm import tqdm
+import logging
 
-from config import get_config, DEVICE, parse_args
 from diffusion.diffuser import UNet
-from utils.data_utils import get_dataloader
+from utils.data_utils import get_dataset
+import torch.utils.data as data_utils
+
+def setup_logging():
+    """Setup logging"""
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    return logging.getLogger(__name__)
+
+def parse_args():
+    """Parse command line arguments"""
+    parser = argparse.ArgumentParser(description='Train DiffPure Model')
+    parser.add_argument('--dataset', type=str, default='cifar10', 
+                       choices=['cifar10', 'cifar100', 'mnist'])
+    parser.add_argument('--epochs', type=int, default=25)
+    parser.add_argument('--batch-size', type=int, default=32)
+    parser.add_argument('--lr', type=float, default=1e-4)
+    parser.add_argument('--sigma', type=float, default=0.04)
+    return parser.parse_args()
+
+def get_config_for_dataset(dataset):
+    """Get configuration for dataset"""
+    from config_fixed import get_debug_config
+    cfg = get_debug_config()
+    
+    if dataset == 'mnist':
+        cfg.IMG_CHANNELS = 1
+        cfg.IMG_SIZE = 28
+        cfg.N_CLASSES = 10
+    elif dataset == 'cifar100':
+        cfg.N_CLASSES = 100
+        cfg.IMG_CHANNELS = 3
+        cfg.IMG_SIZE = 32
+    else:  # cifar10
+        cfg.N_CLASSES = 10
+        cfg.IMG_CHANNELS = 3
+        cfg.IMG_SIZE = 32
+    
+    cfg.DATASET = dataset
+    cfg.DATASET_NAME = dataset.upper()
+    
+    return cfg
 
 def train_epoch(model, train_loader, optimizer, device, sigma):
     """Train one epoch"""
@@ -70,23 +116,38 @@ def evaluate(model, test_loader, device, sigma):
     return total_loss / len(test_loader)
 
 def main():
-    # Parse arguments and get configuration
+    """Main training function"""
+    logger = setup_logging()
     args = parse_args()
-    cfg = get_config(args.preset or 'debug')
+    cfg = get_config_for_dataset(args.dataset)
+    
+    logger.info(f"🌊 Training DiffPure model for {cfg.DATASET_NAME}")
+    logger.info(f"⚙️ Settings: {args.epochs} epochs, batch size {args.batch_size}, lr {args.lr}, sigma {args.sigma}")
     
     # Create directories
     checkpoints_dir = Path('checkpoints')
     checkpoints_dir.mkdir(exist_ok=True)
     
-    # Setup data using unified dataloader
-    train_loader = get_dataloader(cfg, split="train")
-    test_loader = get_dataloader(cfg, split="test")
+    # Setup data using new dataset loading
+    train_dataset, test_dataset = get_dataset(cfg)
+    train_loader = data_utils.DataLoader(
+        train_dataset, 
+        batch_size=args.batch_size, 
+        shuffle=True
+    )
+    test_loader = data_utils.DataLoader(
+        test_dataset, 
+        batch_size=args.batch_size, 
+        shuffle=False
+    )
     
-    # Create model
-    model = UNet(in_channels=3, hidden_channels=64).to(DEVICE)
+    # Create model with proper channels for dataset
+    model = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=64)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = model.to(device)
     
     # Setup training
-    optimizer = optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = optim.Adam(model.parameters(), lr=args.lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(
         optimizer,
         mode='min',
@@ -96,39 +157,39 @@ def main():
     )
     
     # Training parameters
-    n_epochs = 50  # Adjust based on convergence
-    sigma = cfg.DIFFUSER_SIGMA
+    n_epochs = args.epochs
+    sigma = args.sigma
     best_loss = float('inf')
     
-    print(f"Training DiffPure model with sigma={sigma}")
-    print(f"Dataset: {cfg.DATASET_NAME}")
-    print(f"Device: {DEVICE}")
+    logger.info(f"📊 Dataset: {cfg.DATASET_NAME}, Device: {device}")
+    logger.info(f"🏗️ Model: UNet with {cfg.IMG_CHANNELS} input channels")
     
     # Training loop
     for epoch in range(n_epochs):
-        print(f"\nEpoch {epoch + 1}/{n_epochs}")
+        logger.info(f"📈 Epoch {epoch + 1}/{n_epochs}")
         
         # Train
-        train_loss = train_epoch(model, train_loader, optimizer, DEVICE, sigma)
-        print(f"Training Loss: {train_loss:.6f}")
+        train_loss = train_epoch(model, train_loader, optimizer, device, sigma)
+        logger.info(f"🏋️ Training Loss: {train_loss:.6f}")
         
         # Evaluate
-        val_loss = evaluate(model, test_loader, DEVICE, sigma)
-        print(f"Validation Loss: {val_loss:.6f}")
+        val_loss = evaluate(model, test_loader, device, sigma)
+        logger.info(f"📊 Validation Loss: {val_loss:.6f}")
         
         # Update learning rate
         scheduler.step(val_loss)
         
-        # Save best model
+        # Save best model with dataset-specific name
         if val_loss < best_loss:
             best_loss = val_loss
-            checkpoint_path = checkpoints_dir / 'diffuser.pt'
+            checkpoint_path = checkpoints_dir / f'diffuser_{cfg.DATASET.lower()}.pt'
             torch.save(model.state_dict(), checkpoint_path)
-            print(f"Saved best model with loss: {best_loss:.6f}")
+            logger.info(f"💾 Saved best model with loss: {best_loss:.6f} to {checkpoint_path}")
     
-    print("\nTraining complete!")
-    print(f"Best validation loss: {best_loss:.6f}")
-    print(f"Model saved to: {checkpoints_dir / 'diffuser.pt'}")
+    logger.info("🎉 Training complete!")
+    logger.info(f"🏆 Best validation loss: {best_loss:.6f}")
+    
+    return 0
 
 if __name__ == '__main__':
-    main() 
+    exit(main()) 

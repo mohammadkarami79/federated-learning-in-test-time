@@ -12,7 +12,7 @@ import logging
 from torchvision import transforms
 from typing import Dict, Any, Optional
 import torchvision.models as models
-from config import DEVICE, CONFIG
+from config_fixed import get_debug_config
 import copy
 import torch.nn.functional as F
 import numpy as np
@@ -36,6 +36,8 @@ def create_model(
     Returns:
         nn.Module: Created model
     """
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
     if model_name == 'resnet18':
         model = models.resnet18(pretrained=pretrained)
         if num_classes is not None:
@@ -45,101 +47,12 @@ def create_model(
     else:
         raise ValueError(f"Unknown model: {model_name}")
     
-    return model.to(DEVICE)
+    return model.to(device)
 
-def create_diffusion_model(
-    sigma: float = 0.1,
-    steps: int = 100,
-    input_channels: int = 3,
-    hidden_channels: int = 128,
-    **kwargs
-) -> nn.Module:
-    """
-    Create a diffusion model
-    
-    Args:
-        sigma: Noise level
-        steps: Number of diffusion steps
-        input_channels: Number of input channels
-        hidden_channels: Number of hidden channels
-        **kwargs: Additional arguments
-        
-    Returns:
-        nn.Module: Diffusion model
-    """
-    class DiffusionModel(nn.Module):
-        def __init__(self):
-            super().__init__()
-            self.sigma = sigma
-            self.steps = steps
-            
-            # U-Net architecture
-            self.encoder = nn.Sequential(
-                nn.Conv2d(input_channels, hidden_channels, 3, padding=1),
-                nn.ReLU(),
-                nn.Conv2d(hidden_channels, hidden_channels, 3, padding=1),
-                nn.ReLU(),
-                nn.MaxPool2d(2)
-            )
-            
-            self.middle = nn.Sequential(
-                nn.Conv2d(hidden_channels, hidden_channels * 2, 3, padding=1),
-                nn.ReLU(),
-                nn.Conv2d(hidden_channels * 2, hidden_channels, 3, padding=1),
-                nn.ReLU()
-            )
-            
-            self.decoder = nn.Sequential(
-                nn.Upsample(scale_factor=2),
-                nn.Conv2d(hidden_channels, hidden_channels, 3, padding=1),
-                nn.ReLU(),
-                nn.Conv2d(hidden_channels, input_channels, 3, padding=1)
-            )
-        
-        def forward(self, x: torch.Tensor) -> torch.Tensor:
-            """Forward pass"""
-            # Add noise
-            noise = torch.randn_like(x) * self.sigma
-            noisy_x = x + noise
-            
-            # Encode
-            h = self.encoder(noisy_x)
-            
-            # Middle
-            h = self.middle(h)
-            
-            # Decode
-            output = self.decoder(h)
-            
-            return output
-        
-        def purify(self, x: torch.Tensor, steps: Optional[int] = None, sigma: Optional[float] = None) -> torch.Tensor:
-            """
-            Purify input images
-            
-            Args:
-                x: Input images
-                steps: Number of steps (optional)
-                sigma: Noise level (optional)
-                
-            Returns:
-                torch.Tensor: Purified images
-            """
-            steps = steps or self.steps
-            sigma = sigma or self.sigma
-            
-            x = x.clone()
-            for _ in range(steps):
-                # Add noise
-                noise = torch.randn_like(x) * sigma
-                noisy_x = x + noise
-                
-                # Denoise
-                x = self.forward(noisy_x)
-            
-            return x
-    
-    return DiffusionModel()
+def create_diffusion_model(**kwargs):
+    """Create a diffusion model"""
+    from diffusion.diffuser import UNet
+    return UNet(in_channels=kwargs.get('in_channels', 3), hidden_channels=64)
 
 def load_model(path: str, model: Optional[nn.Module] = None) -> nn.Module:
     """

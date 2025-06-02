@@ -66,6 +66,85 @@ def get_dataloader(cfg, split="train"):
     )
 
 def get_dataset(
+    cfg_or_name,
+    train: bool = True,
+    batch_size: int = None,
+    num_workers: int = None,
+    transform: Optional[transforms.Compose] = None
+):
+    """
+    Get dataset - accepts either config object or dataset name string
+    
+    Args:
+        cfg_or_name: Either configuration object or dataset name string
+        train: Whether to get training set
+        batch_size: Batch size for data loading (optional)
+        num_workers: Number of workers for data loading (optional)
+        transform: Optional transform to apply to the data
+        
+    Returns:
+        Tuple or DataLoader: Either (train_dataset, test_dataset) or single DataLoader
+    """
+    # Handle config object vs string
+    if hasattr(cfg_or_name, 'DATASET'):
+        # Config object passed
+        cfg = cfg_or_name
+        dataset_name = cfg.DATASET.lower()
+        batch_size = batch_size or getattr(cfg, 'BATCH_SIZE', 32)
+        num_workers = num_workers or getattr(cfg, 'NUM_WORKERS', 2)
+        data_path = getattr(cfg, 'DATA_PATH', './data')
+        
+        # Get both train and test datasets for config object
+        train_transform = get_data_transforms(dataset_name, train=True)
+        test_transform = get_data_transforms(dataset_name, train=False)
+        
+        if dataset_name == 'cifar10':
+            train_dataset = torchvision.datasets.CIFAR10(
+                root=data_path, train=True, download=True, transform=train_transform
+            )
+            test_dataset = torchvision.datasets.CIFAR10(
+                root=data_path, train=False, download=True, transform=test_transform
+            )
+        elif dataset_name == 'mnist':
+            train_dataset = torchvision.datasets.MNIST(
+                root=data_path, train=True, download=True, transform=train_transform
+            )
+            test_dataset = torchvision.datasets.MNIST(
+                root=data_path, train=False, download=True, transform=test_transform
+            )
+        else:
+            raise ValueError(f"Unknown dataset: {dataset_name}")
+        
+        return train_dataset, test_dataset
+        
+    else:
+        # String name passed - use original function logic
+        dataset_name = cfg_or_name.lower()
+        batch_size = batch_size or 32
+        num_workers = num_workers or 2
+        
+        if transform is None:
+            transform = get_data_transforms(dataset_name, train=train)
+        
+        if dataset_name == 'cifar10':
+            dataset = torchvision.datasets.CIFAR10(
+                root='./data', train=train, download=True, transform=transform
+            )
+        elif dataset_name == 'mnist':
+            dataset = torchvision.datasets.MNIST(
+                root='./data', train=train, download=True, transform=transform
+            )
+        else:
+            raise ValueError(f"Unknown dataset: {dataset_name}")
+        
+        loader = DataLoader(
+            dataset, batch_size=batch_size, shuffle=train, 
+            num_workers=num_workers, pin_memory=True
+        )
+        
+        return loader
+
+def get_dataset_original(
     dataset_name: str,
     train: bool = True,
     batch_size: int = 32,
@@ -73,60 +152,9 @@ def get_dataset(
     transform: Optional[transforms.Compose] = None
 ) -> DataLoader:
     """
-    Get dataset loader
-    
-    Args:
-        dataset_name: Name of the dataset ('cifar10', 'mnist', etc.)
-        train: Whether to get training set
-        batch_size: Batch size for data loading
-        num_workers: Number of workers for data loading
-        transform: Optional transform to apply to the data
-        
-    Returns:
-        DataLoader: Dataset loader
+    Original get_dataset function - now aliased for backward compatibility
     """
-    if transform is None:
-        if dataset_name == 'cifar10':
-            transform = transforms.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
-            ])
-        elif dataset_name == 'mnist':
-            transform = transforms.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize((0.1307,), (0.3081,))
-            ])
-        else:
-            raise ValueError(f"Unknown dataset: {dataset_name}")
-    
-    # Get dataset
-    if dataset_name == 'cifar10':
-        dataset = torchvision.datasets.CIFAR10(
-            root=str(DATA_DIR),
-            train=train,
-            download=True,
-            transform=transform
-        )
-    elif dataset_name == 'mnist':
-        dataset = torchvision.datasets.MNIST(
-            root='./data',
-            train=train,
-            download=True,
-            transform=transform
-        )
-    else:
-        raise ValueError(f"Unknown dataset: {dataset_name}")
-    
-    # Create data loader
-    loader = DataLoader(
-        dataset,
-        batch_size=batch_size,
-        shuffle=train,
-        num_workers=num_workers,
-        pin_memory=True
-    )
-    
-    return loader
+    return get_dataset(dataset_name, train, batch_size, num_workers, transform)
 
 def split_dataset(
     dataset: Dataset,

@@ -165,7 +165,7 @@ def get_full_config():
     cfg = get_debug_config()  # Start with debug config
     
     # Full parameters for research-quality results
-    cfg.N_ROUNDS = 10
+    cfg.N_ROUNDS = 50
     cfg.LOCAL_STEPS_PER_EPOCH = 10  # 5 → 10 for full convergence
     cfg.PGD_STEPS = 5               # 2 → 5 for research-quality attacks
     cfg.DIFFUSION_STEPS = 2         # 1 → 2 for better purification

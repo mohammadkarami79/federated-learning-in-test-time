@@ -460,7 +460,7 @@ def test_system_integration(results):
         # Test client can process data
         client = clients[0]
         with torch.no_grad():
-            output = client.model(images)
+            output = client.model(images.to(client.device))
         
         results.add_pass("System integration - data flow")
         

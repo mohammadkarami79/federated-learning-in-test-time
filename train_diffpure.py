@@ -120,7 +120,6 @@ def main():
     logger = setup_logging()
     args = parse_args()
     cfg = get_config_for_dataset(args.dataset)
-    
     logger.info(f"🌊 Training DiffPure model for {cfg.DATASET_NAME}")
     logger.info(f"⚙️ Settings: {args.epochs} epochs, batch size {args.batch_size}, lr {args.lr}, sigma {args.sigma}")
     
@@ -152,8 +151,7 @@ def main():
         optimizer,
         mode='min',
         factor=0.5,
-        patience=5,
-        verbose=True
+        patience=5
     )
     
     # Training parameters

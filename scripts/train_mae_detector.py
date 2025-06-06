@@ -2,6 +2,8 @@
 """
 Train MAE Detector for Different Datasets
 """
+import sys
+sys.path.append('/teamspace/studios/this_studio/federated-learning-in-test-time')
 
 import torch
 import torch.nn as nn

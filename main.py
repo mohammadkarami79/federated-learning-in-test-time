@@ -69,8 +69,8 @@ def train_diffusion_model(cfg):
         result = subprocess.run([
             'python', 'train_diffpure.py', 
             '--dataset', cfg.DATASET.lower(),
-            '--epochs', '25'  # Reasonable training time
-        ], capture_output=True, text=True)
+            '--epochs', '3'  # Reasonable training time
+        ], text=True)
         
         if result.returncode == 0:
             logger.info("✅ Diffusion model training completed")
@@ -105,7 +105,7 @@ def train_mae_detector(cfg):
                 'python', str(mae_script),
                 '--dataset', cfg.DATASET.lower(),
                 '--epochs', '5'  # Quick training
-            ], capture_output=True, text=True)
+            ], text=True)
             
             if result.returncode == 0:
                 logger.info("✅ MAE detector training completed")

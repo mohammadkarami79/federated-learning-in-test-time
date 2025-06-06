@@ -25,31 +25,59 @@ class pFedDefModel(nn.Module):
             torch.ones(self.n_learners) / self.n_learners
         )
         
+    # def _create_learner(self) -> nn.Module:
+    #     """Create a single learner model with configurable width."""
+    #     # Scale channel dimensions by width multiplier
+    #     base_channels = int(64 * self.width_multiplier)
+    #     mid_channels = int(128 * self.width_multiplier)
+    #     hidden_dim = int(512 * self.width_multiplier)
+        
+    #     # Ensure minimum channel counts
+    #     base_channels = max(16, base_channels)
+    #     mid_channels = max(32, mid_channels)
+    #     hidden_dim = max(64, hidden_dim)
+        
+    #     return nn.Sequential(
+    #         nn.Conv2d(self.cfg.IMG_CHANNELS, base_channels, kernel_size=3, padding=1),
+    #         nn.ReLU(),
+    #         nn.MaxPool2d(2),
+    #         nn.Conv2d(base_channels, mid_channels, kernel_size=3, padding=1),
+    #         nn.ReLU(),
+    #         nn.MaxPool2d(2),
+    #         nn.Flatten(),
+    #         nn.Linear(mid_channels * 8 * 8, hidden_dim),
+    #         nn.ReLU(),
+    #         nn.Linear(hidden_dim, 10)
+    #     )
     def _create_learner(self) -> nn.Module:
-        """Create a single learner model with configurable width."""
-        # Scale channel dimensions by width multiplier
-        base_channels = int(64 * self.width_multiplier)
-        mid_channels = int(128 * self.width_multiplier)
-        hidden_dim = int(512 * self.width_multiplier)
-        
-        # Ensure minimum channel counts
-        base_channels = max(16, base_channels)
-        mid_channels = max(32, mid_channels)
-        hidden_dim = max(64, hidden_dim)
-        
-        return nn.Sequential(
-            nn.Conv2d(3, base_channels, kernel_size=3, padding=1),
+        base_channels = max(16, int(64 * self.width_multiplier))
+        mid_channels = max(32, int(128 * self.width_multiplier))
+        hidden_dim = max(64, int(512 * self.width_multiplier))
+
+        # Temporary model to infer feature map size
+        conv_part = nn.Sequential(
+            nn.Conv2d(self.cfg.IMG_CHANNELS, base_channels, kernel_size=3, padding=1),
             nn.ReLU(),
             nn.MaxPool2d(2),
             nn.Conv2d(base_channels, mid_channels, kernel_size=3, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Flatten(),
-            nn.Linear(mid_channels * 8 * 8, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, 10)
+            nn.MaxPool2d(2)
         )
-        
+
+        # Infer output shape using dummy input
+        with torch.no_grad():
+            dummy_input = torch.zeros(1, self.cfg.IMG_CHANNELS, self.cfg.IMG_SIZE, self.cfg.IMG_SIZE)
+            conv_output = conv_part(dummy_input)
+            flatten_dim = conv_output.view(1, -1).shape[1]
+
+        return nn.Sequential(
+            conv_part,
+            nn.Flatten(),
+            nn.Linear(flatten_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, self.cfg.N_CLASSES)
+        )
+
     def forward(self, x: torch.Tensor, client_id: Optional[int] = None) -> torch.Tensor:
         """Forward pass through ensemble.
         

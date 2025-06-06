@@ -82,7 +82,11 @@ class Client:
                     
                 # Move data to device
                 data, target = data.to(self.device), target.to(self.device)
-                
+                num_classes = self.cfg.N_CLASSES
+
+                if target.min() < 0 or target.max() >= num_classes:
+                    print(f"Skipping batch {batch_idx} due to {num_classes} invalid labels.", target.min(), target.max())
+                    continue
                 # Forward pass
                 output = self.model(data)
                 loss = criterion(output, target)

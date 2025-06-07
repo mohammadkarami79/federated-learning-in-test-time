@@ -31,7 +31,7 @@ def parse_args():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='Train DiffPure Model')
     parser.add_argument('--dataset', type=str, default='cifar10', 
-                       choices=['cifar10', 'cifar100', 'mnist'])
+                       choices=['cifar10', 'cifar100', 'mnist', 'br35h'])
     parser.add_argument('--epochs', type=int, default=25)
     parser.add_argument('--batch-size', type=int, default=32)
     parser.add_argument('--lr', type=float, default=1e-4)
@@ -51,6 +51,10 @@ def get_config_for_dataset(dataset):
         cfg.N_CLASSES = 100
         cfg.IMG_CHANNELS = 3
         cfg.IMG_SIZE = 32
+    elif dataset == 'br35h':
+        cfg.IMG_SIZE = 224
+        cfg.IMG_CHANNELS = 3
+        cfg.N_CLASSES = 2
     else:  # cifar10
         cfg.N_CLASSES = 10
         cfg.IMG_CHANNELS = 3

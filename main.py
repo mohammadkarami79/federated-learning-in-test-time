@@ -24,7 +24,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Complete pFedDef + DiffPure Training Pipeline')
     parser.add_argument('--mode', type=str, choices=['debug', 'test', 'full'], default='debug',
                        help='Training mode: debug (2-5 min), test (10-20 min), full (20-60 min)')
-    parser.add_argument('--dataset', type=str, default='cifar10', choices=['cifar10', 'cifar100', 'mnist'],
+    parser.add_argument('--dataset', type=str, default='cifar10', choices=['cifar10', 'cifar100', 'mnist', 'br35h'],
                        help='Dataset to use')
     parser.add_argument('--train-diffusion', action='store_true',
                        help='Train diffusion model before main training (required for new datasets)')
@@ -238,6 +238,10 @@ def main():
             cfg.IMG_SIZE = 28
         elif args.dataset == 'cifar100':
             cfg.N_CLASSES = 100
+        elif args.dataset == 'br35h':
+            cfg.IMG_SIZE = 224
+            cfg.IMG_CHANNELS = 3
+            cfg.N_CLASSES = 2
     
     logger.info(f"📋 Configuration: {args.mode} mode, {cfg.DATASET_NAME} dataset")
     logger.info(f"⚙️ Settings: {cfg.N_ROUNDS} rounds, {cfg.LOCAL_STEPS_PER_EPOCH} steps, {cfg.N_CLIENTS} clients")

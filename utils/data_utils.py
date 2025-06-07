@@ -1,7 +1,7 @@
 """
 Data utilities for loading and partitioning datasets
 """
-
+import os
 import torch
 from torch.utils.data import DataLoader, Dataset, random_split, Subset
 import torchvision
@@ -10,6 +10,7 @@ import numpy as np
 from typing import Tuple, List, Optional
 from pathlib import Path
 import torch.utils.data as data_utils
+from utils.datasets import Br35HDataset, get_br35h_transforms, get_br35h_info
 
 def get_dataloader(cfg, split="train"):
     """
@@ -120,6 +121,19 @@ def get_dataset(
             test_dataset = torchvision.datasets.MNIST(
                 root=data_path, train=False, download=True, transform=test_transform
             )
+        elif dataset_name == 'br35h':
+            full_dataset = Br35HDataset(
+                root_dir=os.path.join(data_path, 'Br35H'),
+                transform=train_transform
+            )
+            train_size = int(0.8 * len(full_dataset))
+            test_size = len(full_dataset) - train_size
+            train_dataset, test_dataset = random_split(
+                full_dataset, 
+                [train_size, test_size],
+                generator=torch.Generator().manual_seed(42)
+            )
+            test_dataset.dataset.transform = test_transform
         else:
             raise ValueError(f"Unknown dataset: {dataset_name}")
         
@@ -145,6 +159,11 @@ def get_dataset(
         elif dataset_name == 'mnist':
             dataset = torchvision.datasets.MNIST(
                 root='./data', train=train, download=True, transform=transform
+            )
+        elif dataset_name == 'br35h':
+            dataset = Br35HDataset(
+                root_dir='./data/Br35H',
+                transform=transform
             )
         else:
             raise ValueError(f"Unknown dataset: {dataset_name}")
@@ -236,8 +255,11 @@ def get_data_info(dataset_name: str) -> dict:
             'mean': (0.1307,),
             'std': (0.3081,)
         }
+    elif dataset_name == 'br35h':
+        return get_br35h_info()
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
+
 
 def get_data_transforms(dataset_name: str, train: bool = True) -> transforms.Compose:
     """
@@ -281,6 +303,8 @@ def get_data_transforms(dataset_name: str, train: bool = True) -> transforms.Com
             transforms.ToTensor(),
             transforms.Normalize((0.1307,), (0.3081,))
         ])
+    elif dataset_name == 'br35h':
+        return get_br35h_transforms(train)
     else:
         raise ValueError(f"Unknown dataset: {dataset_name}")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Complete pFedDef + DiffPure Training Pipeline
-Handles the full workflow including diffusion and MAE training for any dataset
+Complete Pipeline
+Handles the full workflow for any dataset
 """
 
 import torch
@@ -21,9 +21,9 @@ def setup_logging():
 
 def parse_args():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Complete pFedDef + DiffPure Training Pipeline')
+    parser = argparse.ArgumentParser(description='Complete Training Pipeline')
     parser.add_argument('--mode', type=str, choices=['debug', 'test', 'full'], default='debug',
-                       help='Training mode: debug (2-5 min), test (10-20 min), full (20-60 min)')
+                       help='Training mode: debug (short), test (mid), full (long)')
     parser.add_argument('--dataset', type=str, default='cifar10', choices=['cifar10', 'cifar100', 'mnist', 'br35h'],
                        help='Dataset to use')
     parser.add_argument('--train-diffusion', action='store_true',
@@ -216,7 +216,7 @@ def main():
     logger = setup_logging()
     args = parse_args()
     
-    print("🚀 pFedDef + DiffPure Complete Training Pipeline")
+    print("🚀 Complete Training Pipeline")
     print("=" * 60)
     
     # Get configuration
@@ -270,7 +270,7 @@ def main():
     print("\n" + "=" * 60)
     print("🎉 TRAINING PIPELINE COMPLETED SUCCESSFULLY!")
     print(f"📊 Mode: {args.mode}, Dataset: {cfg.DATASET_NAME}")
-    time_map = {'debug': '2-5 min', 'test': '10-20 min', 'full': '20-60 min'}
+    time_map = {'debug': 'Short', 'test': 'Mid', 'full': 'Long'}
     print(f"⏱️ Expected time for {args.mode} mode: {time_map[args.mode]}")
     print("=" * 60)
     

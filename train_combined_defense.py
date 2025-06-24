@@ -41,7 +41,7 @@ def main():
         cfg.PGD_STEPS = 10
         
     # Set experiment name
-    cfg.experiment_name = f"diffpure_pfeddef_{args.preset}"
+    cfg.experiment_name = f"combined_defense_{args.preset}"
     if args.demo:
         cfg.experiment_name += "_demo"
         

@@ -73,7 +73,7 @@ class FedServer:
         else:
             clone = type(model)()
         clone.load_state_dict(model.state_dict())
-        return clone.to(DEVICE)
+        return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
 
 class Server:
     def __init__(self, cfg):
@@ -111,7 +111,7 @@ class Server:
         aggregated_models = []
         for model in first_client_models:
             # Create a copy of the model
-            aggregated_model = type(model)()
+            aggregated_model = type(model)(model.cfg)
             aggregated_model.load_state_dict(model.state_dict())
             
             # Average parameters across all clients
@@ -148,7 +148,7 @@ class Server:
         else:
             clone = type(model)()
         clone.load_state_dict(model.state_dict())
-        return clone.to(DEVICE)
+        return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
     
     def aggregate_parameters(self, parameters_list: List[Dict[str, torch.Tensor]]):
         """
@@ -275,7 +275,7 @@ class Server:
         attack_success = []
         
         for data, target in attacker.test_loader:
-            data, target = data.to(DEVICE), target.to(DEVICE)
+            data, target = data.to(self.device), target.to(self.device)
             
             # Purify input
             with torch.no_grad():

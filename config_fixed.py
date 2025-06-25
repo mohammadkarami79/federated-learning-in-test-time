@@ -190,7 +190,7 @@ def get_full_config():
     # === Federated Learning ===
     cfg.N_CLIENTS = 10
     cfg.N_ROUNDS = 50
-    cfg.N_LEARNERS = 3  # for FedEM
+    cfg.N_LEARNERS = 10  # for FedEM
     cfg.LOCAL_EPOCHS = 1
     cfg.LOCAL_STEPS_PER_EPOCH = 10
     cfg.BATCH_SIZE = 32
@@ -206,7 +206,7 @@ def get_full_config():
     # === Model ===
     cfg.MODEL = 'resnet18'
     cfg.MODEL_NAME = 'ResNet18'
-    cfg.RESNET_WIDTH = 1.0  # Full width for research
+    cfg.RESNET_WIDTH = 0.25  # Full width for research
     cfg.DROPOUT_RATE = 0.1
 
     # === Adversarial Attack (PGD) ===
@@ -217,23 +217,23 @@ def get_full_config():
     cfg.PGD_RANDOM_START = True
 
     # === Diffusion Defense (DiffPure) ===
-    cfg.DIFFUSION_STEPS = 10
-    cfg.DIFFUSER_STEPS = 10  # alias for compatibility
-    cfg.DIFFUSER_SIGMA = 0.1
-    cfg.DIFFUSION_NOISE_SCHEDULE = "linear"
-    cfg.DIFFUSION_TIMESTEPS = 1000
-    cfg.DIFFUSION_BETA_START = 1e-4
-    cfg.DIFFUSION_BETA_END = 2e-2
+    # cfg.DIFFUSION_STEPS = 10
+    # cfg.DIFFUSER_STEPS = 10  # alias for compatibility
+    # cfg.DIFFUSER_SIGMA = 0.1
+    # cfg.DIFFUSION_NOISE_SCHEDULE = "linear"
+    # cfg.DIFFUSION_TIMESTEPS = 1000
+    # cfg.DIFFUSION_BETA_START = 1e-4
+    # cfg.DIFFUSION_BETA_END = 2e-2
 
     # === MAE Defense ===
-    cfg.MAE_ENABLED = True
-    cfg.MAE_THRESHOLD = 0.1
-    cfg.MAE_PATCH_SIZE = 4
-    cfg.MAE_EMBED_DIM = 512
-    cfg.MAE_DEPTH = 12
-    cfg.MAE_NUM_HEADS = 8
-    cfg.MAE_MASK_RATIO = 0.5
-    cfg.MAE_DECODER_EMBED_DIM = 256
+    # cfg.MAE_ENABLED = True
+    # cfg.MAE_THRESHOLD = 0.1
+    # cfg.MAE_PATCH_SIZE = 4
+    # cfg.MAE_EMBED_DIM = 512
+    # cfg.MAE_DEPTH = 12
+    # cfg.MAE_NUM_HEADS = 8
+    # cfg.MAE_MASK_RATIO = 0.5
+    # cfg.MAE_DECODER_EMBED_DIM = 256
 
     # === Logging, Saving, Reproducibility ===
     cfg.VERBOSE = True

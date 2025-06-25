@@ -9,6 +9,7 @@ import logging
 import argparse
 import time
 from pathlib import Path
+import traceback
 
 def setup_logging():
     """Setup logging"""
@@ -151,10 +152,10 @@ def run_federated_training(cfg):
             diffuser = diffuser.cuda()
         
         # Initialize components
-        clients = [Client(i, cfg, diffuser) for i in range(cfg.N_CLIENTS)]
+        clients = [Client(i, cfg, None) for i in range(cfg.N_CLIENTS)]
         server = Server(cfg)
-        attack = PGDAttack(cfg)
-        detector = MAEDetector(cfg)
+        pgd_attacker = PGDAttack(cfg)
+        mae_detector = MAEDetector(cfg)
         
         # Create test loader
         test_loader = data_utils.DataLoader(
@@ -178,29 +179,70 @@ def run_federated_training(cfg):
                     client.train(epochs=1)  # Quick training
                 except Exception as e:
                     logger.warning(f"⚠️ Client {client_idx} training issue: {e}")
-            
+ 
+            client_models = [client.model for client in clients]
+            server.receive_update(0, client_models)
+            global_models = server.aggregate()
+            # Broadcast updated model to all clients
+            for client in clients:
+                client.model.load_state_dict(global_models[0].state_dict()) 
+            print(cfg.DEVICE)
             # Simple evaluation
             if round_idx % 2 == 0:  # Evaluate every 2 rounds
                 try:
-                    client = clients[0]
-                    correct = 0
+                    clean_correct = 0
+                    adv_correct = 0
                     total = 0
-                    
-                    with torch.no_grad():
-                        for batch_idx, (data, target) in enumerate(test_loader):
-                            if batch_idx >= 5:  # Quick evaluation
-                                break
+                    detected_adv = 0
+                    adv_total = 0
+                    for batch_idx, (data, target) in enumerate(test_loader):
+                        if batch_idx >= 5:  # Quick evaluation
+                            break
+                        with torch.no_grad():
+                        
                             data, target = data.to(cfg.DEVICE), target.to(cfg.DEVICE)
-                            output = client.model(data)
+                            # Clean accuracy
+                            output = clients[0].model(data)
                             pred = output.argmax(dim=1)
-                            correct += pred.eq(target).sum().item()
+                            clean_correct += pred.eq(target).sum().item()
                             total += target.size(0)
+                        # Adversarial accuracy
+                        adv_data = pgd_attacker.attack(clients[0].model, data, target)
+                        adv_output = clients[0].model(adv_data)
+                        adv_pred = adv_output.argmax(dim=1)
+                        adv_correct += adv_pred.eq(target).sum().item()
+                        # Detection (MAE)
+                        detected = mae_detector.detect(adv_data)
+                        detected_adv += detected.sum().item()
+                        adv_total += detected.numel()
+                    clean_acc = 100. * clean_correct / total if total > 0 else 0
+                    adv_acc = 100. * adv_correct / total if total > 0 else 0
+                    detection_rate = 100. * detected_adv / adv_total if adv_total > 0 else 0
+                    logger.info(f"📊 Round {round_idx+1} Clean Acc: {clean_acc:.2f}% | Adv Acc: {adv_acc:.2f}% | MAE Detection: {detection_rate:.2f}%")
+
+                    training_time = time.time() - start_time
+                    logger.info(f"✅ Training completed in {training_time:.1f}s")
+                    # client = clients[0]
+                    # correct = 0
+                    # total = 0
                     
-                    accuracy = 100. * correct / total if total > 0 else 0
-                    logger.info(f"📊 Round {round_idx+1} Accuracy: {accuracy:.2f}%")
+                    # with torch.no_grad():
+                    #     for batch_idx, (data, target) in enumerate(test_loader):
+                    #         if batch_idx >= 5:  # Quick evaluation
+                    #             break
+                    #         data, target = data.to(cfg.DEVICE), target.to(cfg.DEVICE)
+                    #         output = client.model(data)
+                    #         pred = output.argmax(dim=1)
+                    #         correct += pred.eq(target).sum().item()
+                    #         total += target.size(0)
+                    
+                    # accuracy = 100. * correct / total if total > 0 else 0
+                    # logger.info(f"📊 Round {round_idx+1} Accuracy: {accuracy:.2f}%")
                     
                 except Exception as e:
                     logger.warning(f"⚠️ Evaluation error: {e}")
+                    logger.warning("Traceback:\n" + traceback.format_exc())
+
         
         training_time = time.time() - start_time
         logger.info(f"✅ Training completed in {training_time:.1f}s")
@@ -209,6 +251,7 @@ def run_federated_training(cfg):
         
     except Exception as e:
         logger.error(f"❌ Federated training failed: {e}")
+        logger.error("Traceback:\n" + traceback.format_exc())
         return False
 
 def main():

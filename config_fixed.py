@@ -190,7 +190,7 @@ def get_full_config():
     # === Federated Learning ===
     cfg.N_CLIENTS = 10
     cfg.N_ROUNDS = 50
-    cfg.N_LEARNERS = 10  # for FedEM
+    cfg.N_LEARNERS = 1  # for FedEM
     cfg.LOCAL_EPOCHS = 1
     cfg.LOCAL_STEPS_PER_EPOCH = 10
     cfg.BATCH_SIZE = 32

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Train DiffPure model for input purification
+Train diffusion model for input purification
 Updated to support different datasets with new config system
 """
 
@@ -29,7 +29,7 @@ def setup_logging():
 
 def parse_args():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='Train DiffPure Model')
+    parser = argparse.ArgumentParser(description='Train diffusion Model')
     parser.add_argument('--dataset', type=str, default='cifar10', 
                        choices=['cifar10', 'cifar100', 'mnist', 'br35h'])
     parser.add_argument('--epochs', type=int, default=25)
@@ -65,27 +65,31 @@ def get_config_for_dataset(dataset):
     
     return cfg
 
-def train_epoch(model, train_loader, optimizer, device, sigma):
-    """Train one epoch"""
+def train_epoch(model, train_loader, optimizer, device, sigma, scale_noise_by_t=True):
+    """Train one epoch of diffusion purification model"""
     model.train()
     total_loss = 0
+    loss_fn = nn.MSELoss()
     
     for batch_idx, (data, _) in enumerate(tqdm(train_loader, desc='Training')):
         data = data.to(device)
-        batch_size = data.shape[0]
+        batch_size = data.size(0)
         
-        # Sample random timesteps
-        t = torch.rand(batch_size, device=device)
+        # Sample random timesteps and reshape
+        t = torch.rand(batch_size, device=device).view(-1, 1)
         
         # Add noise
-        noise = torch.randn_like(data) * sigma
-        noisy_data = data + noise
+        noise = torch.randn_like(data)
+        if scale_noise_by_t:
+            noisy_data = data + sigma * t.view(-1, 1, 1, 1) * noise
+        else:
+            noisy_data = data + sigma * noise
         
-        # Forward pass
+        # Predict noise
         pred_noise = model(noisy_data, t)
-        loss = nn.MSELoss()(pred_noise, noise)
+        loss = loss_fn(pred_noise, noise)
         
-        # Backward pass
+        # Backward and optimize
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -94,37 +98,42 @@ def train_epoch(model, train_loader, optimizer, device, sigma):
     
     return total_loss / len(train_loader)
 
-def evaluate(model, test_loader, device, sigma):
+
+def evaluate(model, test_loader, device, sigma, scale_noise_by_t=True):
     """Evaluate model"""
     model.eval()
     total_loss = 0
+    loss_fn = nn.MSELoss()
     
     with torch.no_grad():
         for data, _ in tqdm(test_loader, desc='Evaluating'):
             data = data.to(device)
-            batch_size = data.shape[0]
+            batch_size = data.size(0)
             
-            # Sample random timesteps
-            t = torch.rand(batch_size, device=device)
+            # Random timestep
+            t = torch.rand(batch_size, device=device).view(-1, 1)
             
             # Add noise
-            noise = torch.randn_like(data) * sigma
-            noisy_data = data + noise
+            noise = torch.randn_like(data)
+            if scale_noise_by_t:
+                noisy_data = data + sigma * t.view(-1, 1, 1, 1) * noise
+            else:
+                noisy_data = data + sigma * noise
             
-            # Forward pass
+            # Predict
             pred_noise = model(noisy_data, t)
-            loss = nn.MSELoss()(pred_noise, noise)
-            
+            loss = loss_fn(pred_noise, noise)
             total_loss += loss.item()
     
     return total_loss / len(test_loader)
+
 
 def main():
     """Main training function"""
     logger = setup_logging()
     args = parse_args()
     cfg = get_config_for_dataset(args.dataset)
-    logger.info(f"🌊 Training DiffPure model for {cfg.DATASET_NAME}")
+    logger.info(f"🌊 Training diffusion model for {cfg.DATASET_NAME}")
     logger.info(f"⚙️ Settings: {args.epochs} epochs, batch size {args.batch_size}, lr {args.lr}, sigma {args.sigma}")
     
     # Create directories
@@ -193,5 +202,12 @@ def main():
     
     return 0
 
+def set_seed(seed=42):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
 if __name__ == '__main__':
+    set_seed(42)  # Set seed for reproducibility
     exit(main()) 

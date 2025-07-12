@@ -59,6 +59,8 @@ class UNet(nn.Module):
         self.down2 = Down(hidden_channels*2, hidden_channels*4)
         self.down3 = Down(hidden_channels*4, hidden_channels*8)
         self.down4 = Down(hidden_channels*8, hidden_channels*16)
+        # self.down5 = Down(hidden_channels*16, hidden_channels*32)
+        # self.up0 = Up(hidden_channels*32, hidden_channels*16)
         self.up1 = Up(hidden_channels*16, hidden_channels*8)
         self.up2 = Up(hidden_channels*8, hidden_channels*4)
         self.up3 = Up(hidden_channels*4, hidden_channels*2)

@@ -1,0 +1,28 @@
+main.py |-- setup_system.py
+        |
+        |-- diffuser.py
+        |
+        |-- client.py
+        |
+        |-- server.py
+        |
+        |-- pgd.py
+        |
+        |-- mae_detector.py
+        |
+        |-- data_utils.py
+        |
+        |-- config_fixed.py
+        |
+        |-- train_diffpure.py   |
+                                |-- diffusion/diffuser.py
+                                |
+                                |-- utils/data_utils.py
+                                |
+                                |-- config_fixed.py
+        |
+        |-- train_mae_detector.py
+
+|
+|--
+|

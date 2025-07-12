@@ -217,23 +217,23 @@ def get_full_config():
     cfg.PGD_RANDOM_START = True
 
     # === Diffusion Defense (DiffPure) ===
-    # cfg.DIFFUSION_STEPS = 10
-    # cfg.DIFFUSER_STEPS = 10  # alias for compatibility
-    # cfg.DIFFUSER_SIGMA = 0.1
-    # cfg.DIFFUSION_NOISE_SCHEDULE = "linear"
-    # cfg.DIFFUSION_TIMESTEPS = 1000
-    # cfg.DIFFUSION_BETA_START = 1e-4
-    # cfg.DIFFUSION_BETA_END = 2e-2
+    cfg.DIFFUSION_STEPS = 10
+    cfg.DIFFUSER_STEPS = 10  # alias for compatibility
+    cfg.DIFFUSER_SIGMA = 0.1
+    cfg.DIFFUSION_NOISE_SCHEDULE = "linear"
+    cfg.DIFFUSION_TIMESTEPS = 1000
+    cfg.DIFFUSION_BETA_START = 1e-4
+    cfg.DIFFUSION_BETA_END = 2e-2
 
     # === MAE Defense ===
-    # cfg.MAE_ENABLED = True
-    # cfg.MAE_THRESHOLD = 0.1
-    # cfg.MAE_PATCH_SIZE = 4
-    # cfg.MAE_EMBED_DIM = 512
-    # cfg.MAE_DEPTH = 12
-    # cfg.MAE_NUM_HEADS = 8
-    # cfg.MAE_MASK_RATIO = 0.5
-    # cfg.MAE_DECODER_EMBED_DIM = 256
+    cfg.MAE_ENABLED = True
+    cfg.MAE_THRESHOLD = 0.1
+    cfg.MAE_PATCH_SIZE = 4
+    cfg.MAE_EMBED_DIM = 512
+    cfg.MAE_DEPTH = 12
+    cfg.MAE_NUM_HEADS = 8
+    cfg.MAE_MASK_RATIO = 0.5
+    cfg.MAE_DECODER_EMBED_DIM = 256
 
     # === Logging, Saving, Reproducibility ===
     cfg.VERBOSE = True

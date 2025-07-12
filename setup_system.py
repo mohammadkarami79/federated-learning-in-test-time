@@ -279,7 +279,7 @@ def run_comprehensive_check() -> bool:
         print("\n💡 Next steps:")
         print("   1. Run quick test: python simple_test.py")
         print("   2. Start training: python run_training.py debug")
-        print("   3. Or use optimized: python main1.py")
+        print("   3. Or use optimized: python main.py")
         return True
     else:
         print("❌ SOME CHECKS FAILED - PLEASE FIX ISSUES ABOVE")

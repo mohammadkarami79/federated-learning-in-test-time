@@ -136,7 +136,7 @@ def test_user_implementations():
         
         # Test main1.py
         try:
-            import main1
+            import main
             print("✓ User's main1.py: Available")
         except ImportError:
             print("! User's main1.py not found")

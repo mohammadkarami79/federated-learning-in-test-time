@@ -80,13 +80,13 @@ def train_diffusion_model(cfg):
             logger.error(f"❌ Diffusion training failed: {result.stderr}")
             
             # Create minimal diffusion model as fallback
-            logger.info("📦 Creating minimal diffusion model as fallback...")
-            from diffusion.diffuser import UNet
-            diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=64)
-            checkpoint_path.parent.mkdir(exist_ok=True)
-            torch.save(diffuser.state_dict(), checkpoint_path)
-            logger.info(f"✅ Minimal diffusion model created: {checkpoint_path}")
-            return True
+            # logger.info("📦 Creating minimal diffusion model as fallback...")
+            # from diffusion.diffuser import UNet
+            # diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=64)
+            # checkpoint_path.parent.mkdir(exist_ok=True)
+            # torch.save(diffuser.state_dict(), checkpoint_path)
+            # logger.info(f"✅ Minimal diffusion model created: {checkpoint_path}")
+            return False
             
     except Exception as e:
         logger.error(f"❌ Diffusion training error: {e}")

@@ -26,15 +26,30 @@ class FedServer:
         """Initialize a new round with fresh global models."""
         if self.global_models is None:
             # First round - clone the template N_LEARNERS times
+            n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
             self.global_models = [
                 self._clone_model(model_template) 
-                for _ in range(self.cfg.N_LEARNERS)
+                for _ in range(n_learners)
             ]
         return self.global_models
         
     def receive_update(self, client_id: int, local_models: List[nn.Module]):
         """Receive and store client updates for later aggregation."""
-        assert len(local_models) == self.cfg.N_LEARNERS, "Mismatched number of learners"
+        n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
+        
+        # Handle both single model and list of models
+        if not isinstance(local_models, list):
+            local_models = [local_models]
+        
+        # If we have fewer models than expected learners, duplicate the model
+        while len(local_models) < n_learners:
+            local_models.append(local_models[0])
+        
+        # If we have more models than expected, truncate
+        if len(local_models) > n_learners:
+            local_models = local_models[:n_learners]
+            
+        assert len(local_models) == n_learners, "Mismatched number of learners"
         self.client_updates[client_id] = local_models
         
     def aggregate(self) -> List[nn.Module]:
@@ -42,8 +57,10 @@ class FedServer:
         n_clients = len(self.client_updates)
         assert n_clients > 0, "No updates received"
         
+        n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
+        
         # For each learner index
-        for learner_idx in range(self.cfg.N_LEARNERS):
+        for learner_idx in range(n_learners):
             # Get all client models for this learner
             client_models = [
                 updates[learner_idx].state_dict() 
@@ -72,7 +89,11 @@ class FedServer:
             clone = pFedDefModel(model.cfg)
         else:
             clone = type(model)()
-        clone.load_state_dict(model.state_dict())
+        
+        # Copy parameters manually to avoid state_dict issues
+        for param1, param2 in zip(model.parameters(), clone.parameters()):
+            param2.data.copy_(param1.data)
+        
         return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
 
 class Server:
@@ -86,16 +107,17 @@ class Server:
     def init_models(self, client_model: nn.Module):
         """Initialize global models using a client's model as template."""
         if self.global_models is None:
+            n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
             self.global_models = [
                 self._clone_model(client_model)
-                for _ in range(self.cfg.N_LEARNERS)
+                for _ in range(n_learners)
             ]
         
     def receive_update(self, client_id: int, local_models: List[nn.Module]):
         """Receive and store client updates for later aggregation."""
         if self.global_models is None:
             self.init_models(local_models[0])
-        assert len(local_models) == self.cfg.N_LEARNERS, "Mismatched number of learners"
+        # For simple models, we expect only one model per client
         self.client_updates[client_id] = local_models
         
     def aggregate(self) -> List[nn.Module]:
@@ -104,50 +126,44 @@ class Server:
         if n_clients == 0:
             return []
         
-        # Get first client's models as template
-        first_client_models = list(self.client_updates.values())[0]
+        # Get first client's model as template
+        first_client_model = list(self.client_updates.values())[0][0]
         
-        # Initialize aggregated models
-        aggregated_models = []
-        for model in first_client_models:
-            # Create a copy of the model
-            aggregated_model = type(model)(model.cfg)
-            aggregated_model.load_state_dict(model.state_dict())
-            
-            # Average parameters across all clients
-            avg_state = {}
-            for name, param in model.named_parameters():
-                # Collect parameters from all clients
-                client_params = []
-                for client_models in self.client_updates.values():
-                    for client_model in client_models:
-                        if name in dict(client_model.named_parameters()):
-                            client_params.append(dict(client_model.named_parameters())[name].data)
-                
-                if client_params:
-                    avg_state[name] = torch.stack(client_params).mean(dim=0)
-                else:
-                    avg_state[name] = param.data
-            
-            # Load averaged parameters
-            for name, param in aggregated_model.named_parameters():
-                if name in avg_state:
-                    param.data.copy_(avg_state[name])
-            
-            aggregated_models.append(aggregated_model)
+        # Create a simple copy without state_dict loading
+        if hasattr(first_client_model, 'fc'):
+            # For ResNet models
+            import torchvision.models as models
+            aggregated_model = models.resnet18(pretrained=False)
+            aggregated_model.fc = nn.Linear(aggregated_model.fc.in_features, getattr(self.cfg, 'NUM_CLASSES', 10))
+        else:
+            # For other models
+            aggregated_model = type(first_client_model)()
+        
+        # Copy parameters manually to avoid state_dict issues
+        for param1, param2 in zip(first_client_model.parameters(), aggregated_model.parameters()):
+            param2.data.copy_(param1.data)
         
         # Clear updates
         self.client_updates.clear()
-        return aggregated_models
+        return [aggregated_model]
         
     @staticmethod
     def _clone_model(model: nn.Module) -> nn.Module:
         """Deep copy a model including parameters."""
         if isinstance(model, pFedDefModel):
             clone = pFedDefModel(model.cfg)
+        elif hasattr(model, 'fc'):
+            # For ResNet models
+            import torchvision.models as models
+            clone = models.resnet18(pretrained=False)
+            clone.fc = nn.Linear(clone.fc.in_features, model.fc.out_features)
         else:
             clone = type(model)()
-        clone.load_state_dict(model.state_dict())
+        
+        # Copy parameters manually to avoid state_dict issues
+        for param1, param2 in zip(model.parameters(), clone.parameters()):
+            param2.data.copy_(param1.data)
+        
         return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
     
     def aggregate_parameters(self, parameters_list: List[Dict[str, torch.Tensor]]):

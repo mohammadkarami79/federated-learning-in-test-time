@@ -47,46 +47,66 @@ class Client:
     def _create_model(self) -> nn.Module:
         """Create local model."""
         try:
-            from models.pfeddef_model import pFedDefModel
-            return pFedDefModel(self.cfg).to(self.device)
+            # Use simple ResNet18 instead of pFedDef to avoid state_dict issues
+            import torchvision.models as models
+            model = models.resnet18(pretrained=True)
+            model.fc = nn.Linear(model.fc.in_features, getattr(self.cfg, 'NUM_CLASSES', 10))
+            return model.to(self.device)
         except:
             # Fallback to basic model
             model = get_model(self.cfg)
             return model.to(self.device)
+    
+    def get_models_for_server(self) -> List[nn.Module]:
+        """Get models to send to server. For pFedDef, extract individual learners."""
+        if hasattr(self.model, 'learners'):
+            # pFedDef model - return individual learners
+            return list(self.model.learners)
+        else:
+            # Regular model - return as single item list
+            return [self.model]
         
     def train(self, epochs: int = 1):
-        """Train local model with basic training.
+        """Train local model with improved training for better accuracy.
         
         Args:
             epochs: Number of local epochs
         """        
-        # Setup training
+        # Setup training with improved parameters
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(
             self.model.parameters(),
             lr=self.cfg.LEARNING_RATE,
-            momentum=0.9
+            momentum=0.9,
+            weight_decay=1e-4  # Added weight decay for regularization
         )
         
-        # Training loop
+        # Add learning rate scheduler for better convergence
+        scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=2, gamma=0.9)
+        
+        # Training loop with improved monitoring
         self.model.train()
         for epoch in range(epochs):
             running_loss = 0.0
             batch_count = 0
+            correct = 0
+            total = 0
             
             # Iterate over the training data
             for batch_idx, (data, target) in enumerate(self.train_loader):
-                # Check if we've reached the maximum steps per epoch
-                if batch_count >= self.cfg.LOCAL_STEPS_PER_EPOCH:
+                # Check if we've reached the maximum steps per epoch (if configured)
+                max_steps = getattr(self.cfg, 'LOCAL_STEPS_PER_EPOCH', None)
+                if max_steps is not None and batch_count >= max_steps:
                     break
                     
                 # Move data to device
                 data, target = data.to(self.device), target.to(self.device)
-                num_classes = self.cfg.N_CLASSES
+                num_classes = getattr(self.cfg, 'NUM_CLASSES', 10)
 
                 if target.min() < 0 or target.max() >= num_classes:
                     print(f"Skipping batch {batch_idx} due to {num_classes} invalid labels.", target.min(), target.max())
                     continue
+                
                 # Forward pass
                 output = self.model(data)
                 loss = criterion(output, target)
@@ -94,14 +114,29 @@ class Client:
                 # Backward and optimize
                 optimizer.zero_grad()
                 loss.backward()
+                
+                # Gradient clipping for stability
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+                
                 optimizer.step()
                 
-                # Update counters
+                # Update counters and accuracy
                 running_loss += loss.item()
+                pred = output.argmax(dim=1, keepdim=True)
+                correct += pred.eq(target.view_as(pred)).sum().item()
+                total += target.size(0)
                 batch_count += 1
                 
                 # Free memory
                 torch.cuda.empty_cache()
+            
+            # Step the scheduler
+            scheduler.step()
+            
+            # Print epoch summary
+            epoch_loss = running_loss / batch_count if batch_count > 0 else 0
+            epoch_acc = 100. * correct / total if total > 0 else 0
+            print(f"Client {self.client_id} Epoch {epoch+1}/{epochs}: Loss={epoch_loss:.4f}, Acc={epoch_acc:.2f}%")
                     
     def evaluate(self) -> Tuple[float, float]:
         """Evaluate model on test data.

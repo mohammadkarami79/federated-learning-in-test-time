@@ -1,0 +1,43 @@
+{
+  "collection_date": "2025-08-05T14:40:01.641085",
+  "datasets": [
+    {
+      "name": "br35h",
+      "has_diffusion": true,
+      "has_mae": false,
+      "has_results": false,
+      "files": [
+        "diffuser_br35h.pt",
+        "diffuser_br35h_checkpoint.pt",
+        "diffuser_br35h_config.json"
+      ]
+    },
+    {
+      "name": "cifar10",
+      "has_diffusion": true,
+      "has_mae": false,
+      "has_results": false,
+      "files": [
+        "diffuser_cifar10.pt",
+        "diffuser_cifar10_checkpoint.pt",
+        "diffuser_cifar10_config.json",
+        "diffuser_cifar10_final.pt"
+      ]
+    },
+    {
+      "name": "cifar100",
+      "has_diffusion": false,
+      "has_mae": false,
+      "has_results": false,
+      "files": []
+    },
+    {
+      "name": "mnist",
+      "has_diffusion": false,
+      "has_mae": false,
+      "has_results": false,
+      "files": []
+    }
+  ],
+  "overall_status": "incomplete"
+}

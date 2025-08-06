@@ -1,0 +1,29 @@
+{
+  "args": {
+    "dataset": "br35h",
+    "epochs": 10,
+    "batch_size": 32,
+    "lr": 0.0001,
+    "sigma": 0.04,
+    "hidden_channels": 64,
+    "resume": null,
+    "pretrained": null,
+    "seed": 42,
+    "save_config": true
+  },
+  "config": {
+    "DATASET": "br35h",
+    "DATASET_NAME": "BR35H",
+    "IMG_CHANNELS": 3,
+    "IMG_SIZE": 224,
+    "N_CLASSES": 2,
+    "HIDDEN_CHANNELS": 64
+  },
+  "system_info": {
+    "python_version": "3.13.5",
+    "torch_version": "2.7.0+cu118",
+    "cuda_available": true,
+    "cuda_version": "11.8"
+  },
+  "timestamp": 1754334824.6960611
+}

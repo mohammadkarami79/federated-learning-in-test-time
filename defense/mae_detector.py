@@ -22,7 +22,7 @@ class MAEDetector:
         # Try to use user's implementation
         self.user_detector = None
         try:
-            from mae_detector1 import MAEDetector as UserMAEDetector
+            from .mae_detector1 import MAEDetector as UserMAEDetector
             # Create a compatible config for user's detector
             user_cfg = self._create_compatible_config(cfg)
             self.user_detector = UserMAEDetector(user_cfg)

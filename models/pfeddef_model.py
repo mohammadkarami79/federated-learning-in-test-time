@@ -10,7 +10,7 @@ class pFedDefModel(nn.Module):
     def __init__(self, cfg):
         super().__init__()
         self.cfg = cfg
-        self.n_learners = cfg.N_LEARNERS
+        self.n_learners = getattr(cfg, 'N_LEARNERS', 2)  # Default to 2 learners
         
         # Get width multiplier from config
         self.width_multiplier = getattr(cfg, 'RESNET_WIDTH', 1.0)
@@ -75,7 +75,7 @@ class pFedDefModel(nn.Module):
             nn.Flatten(),
             nn.Linear(flatten_dim, hidden_dim),
             nn.ReLU(),
-            nn.Linear(hidden_dim, self.cfg.N_CLASSES)
+            nn.Linear(hidden_dim, getattr(self.cfg, 'NUM_CLASSES', 10))
         )
 
     def forward(self, x: torch.Tensor, client_id: Optional[int] = None) -> torch.Tensor:
@@ -99,6 +99,8 @@ class pFedDefModel(nn.Module):
         
         # Apply mixture weights
         weights = torch.softmax(self.mixture_weights, dim=0)
-        weighted_preds = (stacked_preds * weights.view(-1, 1, 1)).sum(dim=0)
         
-        return weighted_preds 
+        # Weighted ensemble
+        ensemble_pred = torch.sum(weights.unsqueeze(1).unsqueeze(2) * stacked_preds, dim=0)
+        
+        return ensemble_pred 

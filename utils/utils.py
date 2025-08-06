@@ -7,7 +7,7 @@ from datasets import *
 from learners.learner import *
 from learners.learners_ensemble import *
 from client import *
-from diffpure_client import DiffPureClient, DiffPureMixtureClient
+from diffpure_client import DiffusionClient, DiffusionMixtureClient
 from aggregator import *
 
 from .optim import *
@@ -327,7 +327,7 @@ def get_client(
         client_id=None,
         train_diffusion=True,
         diffusion_epochs=10,
-        save_path="weights/cifar10/diffpure"
+        save_path="weights/cifar10/diffusion"
 ):
     """
 
@@ -411,8 +411,8 @@ def get_client(
             local_steps=local_steps,
             tune_locally=tune_locally
         )
-    elif client_type == "diffpure":
-        return DiffPureClient(
+    elif client_type == "diffusion":
+        return DiffusionClient(
             learners_ensemble=learners_ensemble,
             train_iterator=train_iterator,
             val_iterator=val_iterator,
@@ -428,8 +428,8 @@ def get_client(
             diffusion_epochs=diffusion_epochs,
             save_path=save_path
         )
-    elif client_type == "diffpure_mixture":
-        return DiffPureMixtureClient(
+    elif client_type == "diffusion_mixture":
+        return DiffusionMixtureClient(
             learners_ensemble=learners_ensemble,
             train_iterator=train_iterator,
             val_iterator=val_iterator,

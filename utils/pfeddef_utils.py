@@ -1,5 +1,5 @@
 """
-Utility functions for pFedDef defense mechanism based on the original paper.
+Utility functions for Personalized Federated Defense mechanism based on the original paper.
 """
 
 import torch

@@ -12,15 +12,15 @@ class PGDAttack(nn.Module):
         if hasattr(cfg_or_epsilon, 'PGD_EPS'):
             # Config object passed
             cfg = cfg_or_epsilon
-            self.epsilon = getattr(cfg, 'PGD_EPS', 8/255)
+            self.epsilon = float(getattr(cfg, 'PGD_EPS', 8/255))
             self.steps = getattr(cfg, 'PGD_STEPS', 10)
-            self.step_size = getattr(cfg, 'PGD_ALPHA', self.epsilon/4)
+            self.step_size = float(getattr(cfg, 'PGD_ALPHA', self.epsilon/4))
             self.random_start = getattr(cfg, 'PGD_RANDOM_START', True)
         else:
             # Direct parameters passed
-            self.epsilon = cfg_or_epsilon
+            self.epsilon = float(cfg_or_epsilon)
             self.steps = steps or 10
-            self.step_size = step_size or (self.epsilon/4)
+            self.step_size = float(step_size or (self.epsilon/4))
             self.random_start = random_start if random_start is not None else True
         
         self.criterion = nn.CrossEntropyLoss()
@@ -99,4 +99,4 @@ class PGDAttack(nn.Module):
         Returns:
             Adversarial examples
         """
-        return self.generate(model, images, labels) 
+        return self.forward(model, images, labels) 

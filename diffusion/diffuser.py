@@ -52,30 +52,59 @@ class Up(nn.Module):
         return self.conv(x)
 
 class UNet(nn.Module):
-    def __init__(self, in_channels=3, hidden_channels=64):
+    def __init__(self, in_channels=3, hidden_channels=64, use_additional_layers=False):
         super().__init__()
+        self.hidden_channels = hidden_channels
+        self.use_additional_layers = use_additional_layers
+        
+        # Encoder
         self.inc = DoubleConv(in_channels, hidden_channels)
         self.down1 = Down(hidden_channels, hidden_channels*2)
         self.down2 = Down(hidden_channels*2, hidden_channels*4)
         self.down3 = Down(hidden_channels*4, hidden_channels*8)
         self.down4 = Down(hidden_channels*8, hidden_channels*16)
-        # self.down5 = Down(hidden_channels*16, hidden_channels*32)
-        # self.up0 = Up(hidden_channels*32, hidden_channels*16)
+        
+        # Additional layers for deeper architecture
+        if use_additional_layers:
+            self.down5 = Down(hidden_channels*16, hidden_channels*32)
+            self.up0 = Up(hidden_channels*32, hidden_channels*16)
+        
+        # Decoder
         self.up1 = Up(hidden_channels*16, hidden_channels*8)
         self.up2 = Up(hidden_channels*8, hidden_channels*4)
         self.up3 = Up(hidden_channels*4, hidden_channels*2)
         self.up4 = Up(hidden_channels*2, hidden_channels)
         self.outc = nn.Conv2d(hidden_channels, in_channels, kernel_size=1)
         
-        # Time embedding
+        # Improved time embedding with sinusoidal encoding
         self.time_embed = nn.Sequential(
             nn.Linear(1, hidden_channels),
-            nn.ReLU(),
+            nn.SiLU(),
+            nn.Linear(hidden_channels, hidden_channels),
+            nn.SiLU(),
             nn.Linear(hidden_channels, hidden_channels)
         )
+        
+        # Fine-tuning flag
+        self.fine_tuning = False
+        
+    def enable_fine_tuning(self):
+        """Enable fine-tuning mode - freeze early layers"""
+        self.fine_tuning = True
+        # Freeze early layers for fine-tuning
+        for param in self.inc.parameters():
+            param.requires_grad = False
+        for param in self.down1.parameters():
+            param.requires_grad = False
+            
+    def disable_fine_tuning(self):
+        """Disable fine-tuning mode - unfreeze all layers"""
+        self.fine_tuning = False
+        for param in self.parameters():
+            param.requires_grad = True
 
     def forward(self, x, t):
-        # Time embedding
+        # Time embedding with sinusoidal encoding
         t = t.view(-1, 1)
         t = self.time_embed(t)
         t = t.view(-1, t.shape[1], 1, 1)
@@ -87,8 +116,14 @@ class UNet(nn.Module):
         x4 = self.down3(x3)
         x5 = self.down4(x4)
         
-        # Decoder
-        x = self.up1(x5, x4)
+        # Additional layers if enabled
+        if self.use_additional_layers:
+            x6 = self.down5(x5)
+            x = self.up0(x6, x5)
+            x = self.up1(x, x4)
+        else:
+            x = self.up1(x5, x4)
+            
         x = self.up2(x, x3)
         x = self.up3(x, x2)
         x = self.up4(x, x1)
@@ -115,10 +150,20 @@ class UNet(nn.Module):
 
 class DiffusionPurifier:
     """DPM-Solver-2 based diffusion purifier"""
-    def __init__(self, sigma=0.04, steps=4):
+    def __init__(self, sigma=0.04, steps=4, hidden_channels=64, use_additional_layers=False):
         self.sigma = sigma
         self.steps = steps
-        self.model = UNet(in_channels=3)  # Only image channels
+        self.model = UNet(in_channels=3, hidden_channels=hidden_channels, 
+                         use_additional_layers=use_additional_layers)
+    
+    def load_pretrained(self, checkpoint_path):
+        """Load a pretrained model for fine-tuning"""
+        if Path(checkpoint_path).exists():
+            self.model.load_state_dict(torch.load(checkpoint_path, map_location='cpu'))
+            self.model.enable_fine_tuning()
+            print(f"Loaded pretrained model from {checkpoint_path} and enabled fine-tuning")
+        else:
+            print(f"Warning: Pretrained model not found at {checkpoint_path}")
     
     @torch.no_grad()
     def purify(self, x, steps=None, sigma=None):

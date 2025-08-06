@@ -1,8 +1,8 @@
 """
-Utility functions for integrating pFedDef and DiffPure defenses.
+Utility functions for integrating Personalized Federated Defense and Diffusion defenses.
 
-This module provides functions for loading pFedDef models, training them if needed,
-and combining them with DiffPure diffusion models for a comprehensive defense strategy.
+This module provides functions for loading Personalized Federated Defense models, training them if needed,
+and combining them with Diffusion models for a comprehensive defense strategy.
 """
 
 import os

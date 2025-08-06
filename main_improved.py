@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Complete Pipeline
-Handles the full workflow for any dataset
+Improved Main Pipeline with Better Logging
+Handles the full workflow for any dataset with detailed progress tracking
 """
 
 import torch
@@ -11,13 +11,17 @@ import argparse
 import time
 from pathlib import Path
 import traceback
+import sys
 
 def setup_logging():
-    """Setup logging"""
+    """Setup logging with better formatting"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
-        handlers=[logging.StreamHandler()]
+        handlers=[
+            logging.StreamHandler(sys.stdout),
+            logging.FileHandler('training.log')
+        ]
     )
     return logging.getLogger(__name__)
 
@@ -34,35 +38,38 @@ def parse_args():
                        help='Train MAE detector before main training (optional)')
     parser.add_argument('--skip-setup', action='store_true',
                        help='Skip system setup check')
+    parser.add_argument('--verbose', action='store_true',
+                       help='Enable verbose logging')
     return parser.parse_args()
 
 def run_system_setup():
     """Run system setup and verification"""
     logger = logging.getLogger(__name__)
-    logger.info("Running system setup...")
+    logger.info("🔄 Running system setup...")
     
     try:
         from setup_system import run_comprehensive_check
         success = run_comprehensive_check()
         if not success:
-            logger.error("System setup failed! Please fix issues before continuing.")
+            logger.error("❌ System setup failed! Please fix issues before continuing.")
             return False
         logger.info("✅ System setup completed successfully")
         return True
     except Exception as e:
-        logger.error(f"System setup error: {e}")
+        logger.error(f"❌ System setup error: {e}")
+        logger.error(traceback.format_exc())
         return False
 
 def train_diffusion_model(cfg):
     """Train diffusion model for the specified dataset"""
     logger = logging.getLogger(__name__)
-    logger.info(f"Training diffusion model for {cfg.DATASET_NAME}...")
+    logger.info(f"🔄 Training diffusion model for {cfg.DATASET_NAME}...")
     
     checkpoint_path = Path(f'checkpoints/diffuser_{cfg.DATASET.lower()}.pt')
     
     # Check if already exists
     if checkpoint_path.exists():
-        logger.info(f"Diffusion model already exists: {checkpoint_path}")
+        logger.info(f"✅ Diffusion model already exists: {checkpoint_path}")
         return True
     
     try:
@@ -72,31 +79,33 @@ def train_diffusion_model(cfg):
         # Get epochs from config or use default
         epochs = getattr(cfg, 'DIFFUSION_EPOCHS', 10)  # Configurable epochs
         
+        logger.info(f"🔄 Starting diffusion training for {epochs} epochs...")
+        
         result = subprocess.run([
             'python', 'train_diffpure.py', 
             '--dataset', cfg.DATASET.lower(),
             '--epochs', str(epochs),  # Use configurable epochs
-            '--hidden-channels', str(getattr(cfg, 'DIFFUSION_HIDDEN_CHANNELS', 256)),  # REDUCED: 256 for memory compatibility
+            '--hidden-channels', str(getattr(cfg, 'DIFFUSION_HIDDEN_CHANNELS', 64)),
             '--save-config'  # Save configuration for reproducibility
         ], text=True, capture_output=True)
         
         if result.returncode == 0:
-            logger.info("Diffusion model training completed successfully")
+            logger.info("✅ Diffusion model training completed successfully")
             return True
         else:
-            logger.error(f"Diffusion training failed: {result.stderr}")
+            logger.error(f"❌ Diffusion training failed: {result.stderr}")
             logger.error("Stopping execution - diffusion training is critical")
             return False  # Don't continue with fallback
             
     except Exception as e:
-        logger.error(f"Diffusion training error: {e}")
+        logger.error(f"❌ Diffusion training error: {e}")
         logger.error("Stopping execution - diffusion training is critical")
         return False
 
 def train_mae_detector(cfg):
     """Train MAE detector for the specified dataset"""
     logger = logging.getLogger(__name__)
-    logger.info(f"Training MAE detector for {cfg.DATASET_NAME}...")
+    logger.info(f"🔄 Training MAE detector for {cfg.DATASET_NAME}...")
     
     try:
         # Check if MAE training script exists
@@ -107,6 +116,8 @@ def train_mae_detector(cfg):
             # Get epochs from config or use default
             epochs = getattr(cfg, 'MAE_EPOCHS', 10)  # Configurable epochs
             
+            logger.info(f"🔄 Starting MAE training for {epochs} epochs...")
+            
             result = subprocess.run([
                 'python', str(mae_script),
                 '--dataset', cfg.DATASET.lower(),
@@ -115,18 +126,18 @@ def train_mae_detector(cfg):
             ], text=True, capture_output=True)
             
             if result.returncode == 0:
-                logger.info("MAE detector training completed successfully")
+                logger.info("✅ MAE detector training completed successfully")
                 return True
             else:
-                logger.error(f"MAE training failed: {result.stderr}")
+                logger.error(f"❌ MAE training failed: {result.stderr}")
                 logger.error("Stopping execution - MAE training is critical")
                 return False  # Don't continue with fallback
         else:
-            logger.info("Using built-in MAE detector (no separate training needed)")
+            logger.info("✅ Using built-in MAE detector (no separate training needed)")
             return True
         
     except Exception as e:
-        logger.error(f"MAE training error: {e}")
+        logger.error(f"❌ MAE training error: {e}")
         logger.error("Stopping execution - MAE training is critical")
         return False
 
@@ -134,10 +145,10 @@ def run_federated_training(cfg):
     """Run the main federated training with improved logging"""
     logger = logging.getLogger(__name__)
     
-    # Get configurable parameters with professional values for paper quality
-    n_clients = getattr(cfg, 'N_CLIENTS', 15)  # Professional client count
-    n_rounds = getattr(cfg, 'N_ROUNDS', 15)    # Professional rounds
-    client_epochs = getattr(cfg, 'CLIENT_EPOCHS', 10)  # Professional epochs
+    # Get configurable parameters
+    n_clients = getattr(cfg, 'N_CLIENTS', 10)  # Configurable client count
+    n_rounds = getattr(cfg, 'N_ROUNDS', 10)    # Configurable rounds
+    client_epochs = getattr(cfg, 'CLIENT_EPOCHS', 3)  # Configurable client epochs
     
     logger.info(f"🚀 Starting federated training with {n_clients} clients, {n_rounds} rounds")
     logger.info(f"📊 Each client trains for {client_epochs} epochs per round")
@@ -326,14 +337,15 @@ def run_federated_training(cfg):
         return False
 
 def main():
-    """Main training pipeline"""
+    """Main training pipeline with improved logging"""
     logger = setup_logging()
     args = parse_args()
     
-    print("Complete Training Pipeline")
+    print("🚀 Complete Training Pipeline")
     print("=" * 60)
     
     # Get configuration
+    logger.info("🔄 Loading configuration...")
     from config_fixed import get_debug_config, get_test_config, get_full_config
     
     if args.mode == 'debug':
@@ -357,35 +369,44 @@ def main():
             cfg.IMG_CHANNELS = 3
             cfg.NUM_CLASSES = 2
     
-    logger.info(f"Configuration: {args.mode} mode, {cfg.DATASET_NAME} dataset")
-    logger.info(f"Settings: {cfg.N_ROUNDS} rounds, {cfg.CLIENT_EPOCHS} epochs, {cfg.N_CLIENTS} clients")
+    logger.info(f"📋 Configuration: {args.mode} mode, {cfg.DATASET_NAME} dataset")
+    logger.info(f"⚙️ Settings: {cfg.N_ROUNDS} rounds, {cfg.CLIENT_EPOCHS} epochs, {cfg.N_CLIENTS} clients")
     
     # Step 1: System setup
     if not args.skip_setup:
+        logger.info("🔄 Step 1: System setup...")
         if not run_system_setup():
+            logger.error("❌ System setup failed")
             return 1
+        logger.info("✅ Step 1 completed")
     
     # Step 2: Train diffusion model (if requested or for new datasets)
     if args.train_diffusion or args.dataset != 'cifar10':
+        logger.info("🔄 Step 2: Training diffusion model...")
         if not train_diffusion_model(cfg):
-            logger.error("Diffusion training failed")
+            logger.error("❌ Diffusion training failed")
             return 1
+        logger.info("✅ Step 2 completed")
     
     # Step 3: Train MAE detector (if requested)
     if args.train_mae:
+        logger.info("🔄 Step 3: Training MAE detector...")
         if not train_mae_detector(cfg):
             logger.warning("⚠️ MAE training failed, continuing with fallback")
+        logger.info("✅ Step 3 completed")
     
     # Step 4: Run federated training
+    logger.info("🔄 Step 4: Running federated training...")
     if not run_federated_training(cfg):
-        logger.error("Federated training failed")
+        logger.error("❌ Federated training failed")
         return 1
+    logger.info("✅ Step 4 completed")
     
     print("\n" + "=" * 60)
-    print("TRAINING PIPELINE COMPLETED SUCCESSFULLY!")
-    print(f"Mode: {args.mode}, Dataset: {cfg.DATASET_NAME}")
+    print("🎉 TRAINING PIPELINE COMPLETED SUCCESSFULLY!")
+    print(f"📊 Mode: {args.mode}, Dataset: {cfg.DATASET_NAME}")
     time_map = {'debug': 'Short', 'test': 'Mid', 'full': 'Long'}
-    print(f"Expected time for {args.mode} mode: {time_map[args.mode]}")
+    print(f"⏱️ Expected time for {args.mode} mode: {time_map[args.mode]}")
     print("=" * 60)
     
     return 0

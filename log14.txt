@@ -1,0 +1,1845 @@
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ tail -f BASELINE_DEBUG_FC_*.log
+2025-09-27 17:32:20,433 - INFO - Created 10 clients
+2025-09-27 17:32:20,453 - INFO - All components initialized successfully
+2025-09-27 17:32:20,453 - INFO - Server initialized with pFedDef models
+2025-09-27 17:32:20,453 - INFO - PGD Attack (LOG8.TXT MATCH): eps=0.031, steps=10, alpha=0.007
+2025-09-27 17:32:20,453 - INFO - Starting federated training with 10 clients, 15 rounds
+2025-09-27 17:32:20,454 - INFO - Each client trains for 8 epochs per round
+2025-09-27 17:32:20,454 - INFO - Round 1/15
+2025-09-27 17:32:20,454 - INFO - Distributing global model to clients...
+2025-09-27 17:32:20,487 - INFO - Global model distributed to 10 clients
+2025-09-27 17:32:20,488 - INFO - Training client 1/10
+2025-09-27 17:32:28,736 - INFO - Client 0 Epoch 1/8: Loss=1.7037, Acc=42.79%
+2025-09-27 17:32:36,560 - INFO - Client 0 Epoch 2/8: Loss=1.2500, Acc=57.20%
+2025-09-27 17:32:44,496 - INFO - Client 0 Epoch 3/8: Loss=1.0068, Acc=64.89%
+2025-09-27 17:32:52,381 - INFO - Client 0 Epoch 4/8: Loss=0.8555, Acc=70.00%
+2025-09-27 17:32:59,897 - INFO - Client 0 Epoch 5/8: Loss=0.7318, Acc=74.69%
+2025-09-27 17:33:07,691 - INFO - Client 0 Epoch 6/8: Loss=0.6200, Acc=78.40%
+2025-09-27 17:33:15,279 - INFO - Client 0 Epoch 7/8: Loss=0.5421, Acc=81.13%
+2025-09-27 17:33:22,839 - INFO - Client 0 Epoch 8/8: Loss=0.4683, Acc=83.53%
+2025-09-27 17:33:22,840 - INFO - Client 1 completed in 62.4s
+2025-09-27 17:33:22,840 - INFO - Training client 2/10
+2025-09-27 17:33:30,456 - INFO - Client 1 Epoch 1/8: Loss=1.6881, Acc=43.33%
+2025-09-27 17:33:38,192 - INFO - Client 1 Epoch 2/8: Loss=1.2244, Acc=58.33%
+2025-09-27 17:33:45,763 - INFO - Client 1 Epoch 3/8: Loss=0.9785, Acc=66.63%
+2025-09-27 17:33:54,025 - INFO - Client 1 Epoch 4/8: Loss=0.8318, Acc=71.25%
+2025-09-27 17:34:01,762 - INFO - Client 1 Epoch 5/8: Loss=0.7012, Acc=75.68%
+2025-09-27 17:34:09,530 - INFO - Client 1 Epoch 6/8: Loss=0.5987, Acc=79.19%
+2025-09-27 17:34:17,419 - INFO - Client 1 Epoch 7/8: Loss=0.5184, Acc=81.87%
+2025-09-27 17:34:25,559 - INFO - Client 1 Epoch 8/8: Loss=0.4404, Acc=84.67%
+2025-09-27 17:34:25,559 - INFO - Client 2 completed in 62.7s
+2025-09-27 17:34:25,560 - INFO - Training client 3/10
+2025-09-27 17:34:33,281 - INFO - Client 2 Epoch 1/8: Loss=1.6901, Acc=43.15%
+2025-09-27 17:34:41,070 - INFO - Client 2 Epoch 2/8: Loss=1.1898, Acc=58.86%
+2025-09-27 17:34:49,363 - INFO - Client 2 Epoch 3/8: Loss=0.9641, Acc=66.46%
+2025-09-27 17:34:57,295 - INFO - Client 2 Epoch 4/8: Loss=0.7991, Acc=72.05%
+2025-09-27 17:35:04,964 - INFO - Client 2 Epoch 5/8: Loss=0.6930, Acc=75.79%
+2025-09-27 17:35:12,666 - INFO - Client 2 Epoch 6/8: Loss=0.5970, Acc=79.30%
+2025-09-27 17:35:20,605 - INFO - Client 2 Epoch 7/8: Loss=0.5263, Acc=81.54%
+2025-09-27 17:35:28,471 - INFO - Client 2 Epoch 8/8: Loss=0.4316, Acc=84.76%
+2025-09-27 17:35:28,472 - INFO - Client 3 completed in 62.9s
+2025-09-27 17:35:28,472 - INFO - Training client 4/10
+2025-09-27 17:35:36,852 - INFO - Client 3 Epoch 1/8: Loss=1.7273, Acc=41.96%
+2025-09-27 17:35:44,346 - INFO - Client 3 Epoch 2/8: Loss=1.2196, Acc=57.90%
+2025-09-27 17:35:52,388 - INFO - Client 3 Epoch 3/8: Loss=0.9925, Acc=65.73%
+2025-09-27 17:35:59,877 - INFO - Client 3 Epoch 4/8: Loss=0.8457, Acc=70.55%
+2025-09-27 17:36:07,561 - INFO - Client 3 Epoch 5/8: Loss=0.7339, Acc=74.52%
+2025-09-27 17:36:15,249 - INFO - Client 3 Epoch 6/8: Loss=0.6226, Acc=78.41%
+2025-09-27 17:36:23,322 - INFO - Client 3 Epoch 7/8: Loss=0.5381, Acc=81.37%
+2025-09-27 17:36:31,028 - INFO - Client 3 Epoch 8/8: Loss=0.4695, Acc=83.45%
+2025-09-27 17:36:31,029 - INFO - Client 4 completed in 62.6s
+2025-09-27 17:36:31,029 - INFO - Training client 5/10
+2025-09-27 17:36:38,701 - INFO - Client 4 Epoch 1/8: Loss=1.7429, Acc=42.52%
+2025-09-27 17:36:46,964 - INFO - Client 4 Epoch 2/8: Loss=1.2342, Acc=57.69%
+2025-09-27 17:36:55,071 - INFO - Client 4 Epoch 3/8: Loss=1.0292, Acc=64.68%
+2025-09-27 17:37:03,273 - INFO - Client 4 Epoch 4/8: Loss=0.8477, Acc=70.88%
+2025-09-27 17:37:11,012 - INFO - Client 4 Epoch 5/8: Loss=0.7345, Acc=74.66%
+2025-09-27 17:37:18,719 - INFO - Client 4 Epoch 6/8: Loss=0.6165, Acc=78.48%
+2025-09-27 17:37:26,375 - INFO - Client 4 Epoch 7/8: Loss=0.5304, Acc=81.42%
+2025-09-27 17:37:34,196 - INFO - Client 4 Epoch 8/8: Loss=0.4549, Acc=84.00%
+2025-09-27 17:37:34,197 - INFO - Client 5 completed in 63.2s
+2025-09-27 17:37:34,197 - INFO - Training client 6/10
+2025-09-27 17:37:41,954 - INFO - Client 5 Epoch 1/8: Loss=1.6879, Acc=42.73%
+2025-09-27 17:37:49,594 - INFO - Client 5 Epoch 2/8: Loss=1.2183, Acc=57.90%
+2025-09-27 17:37:57,405 - INFO - Client 5 Epoch 3/8: Loss=0.9884, Acc=66.13%
+2025-09-27 17:38:04,946 - INFO - Client 5 Epoch 4/8: Loss=0.8310, Acc=70.89%
+2025-09-27 17:38:12,651 - INFO - Client 5 Epoch 5/8: Loss=0.7136, Acc=74.94%
+2025-09-27 17:38:20,487 - INFO - Client 5 Epoch 6/8: Loss=0.6159, Acc=78.55%
+2025-09-27 17:38:28,151 - INFO - Client 5 Epoch 7/8: Loss=0.5252, Acc=81.37%
+2025-09-27 17:38:35,892 - INFO - Client 5 Epoch 8/8: Loss=0.4558, Acc=83.89%
+2025-09-27 17:38:35,893 - INFO - Client 6 completed in 61.7s
+2025-09-27 17:38:35,893 - INFO - Training client 7/10
+2025-09-27 17:38:43,700 - INFO - Client 6 Epoch 1/8: Loss=1.6534, Acc=44.21%
+2025-09-27 17:38:51,340 - INFO - Client 6 Epoch 2/8: Loss=1.2039, Acc=58.87%
+2025-09-27 17:38:59,056 - INFO - Client 6 Epoch 3/8: Loss=0.9694, Acc=66.49%
+2025-09-27 17:39:06,688 - INFO - Client 6 Epoch 4/8: Loss=0.8151, Acc=71.63%
+2025-09-27 17:39:14,303 - INFO - Client 6 Epoch 5/8: Loss=0.6953, Acc=75.55%
+2025-09-27 17:39:22,047 - INFO - Client 6 Epoch 6/8: Loss=0.6033, Acc=78.92%
+2025-09-27 17:39:29,851 - INFO - Client 6 Epoch 7/8: Loss=0.5185, Acc=81.87%
+2025-09-27 17:39:38,267 - INFO - Client 6 Epoch 8/8: Loss=0.4429, Acc=84.44%
+2025-09-27 17:39:38,268 - INFO - Client 7 completed in 62.4s
+2025-09-27 17:39:38,269 - INFO - Training client 8/10
+2025-09-27 17:39:45,890 - INFO - Client 7 Epoch 1/8: Loss=1.7164, Acc=42.74%
+2025-09-27 17:39:53,383 - INFO - Client 7 Epoch 2/8: Loss=1.2392, Acc=56.99%
+2025-09-27 17:40:00,974 - INFO - Client 7 Epoch 3/8: Loss=1.0106, Acc=64.98%
+2025-09-27 17:40:08,635 - INFO - Client 7 Epoch 4/8: Loss=0.8740, Acc=69.92%
+2025-09-27 17:40:16,582 - INFO - Client 7 Epoch 5/8: Loss=0.7323, Acc=74.39%
+2025-09-27 17:40:24,372 - INFO - Client 7 Epoch 6/8: Loss=0.6198, Acc=78.23%
+2025-09-27 17:40:31,983 - INFO - Client 7 Epoch 7/8: Loss=0.5356, Acc=81.25%
+2025-09-27 17:40:39,887 - INFO - Client 7 Epoch 8/8: Loss=0.4590, Acc=83.92%
+2025-09-27 17:40:39,889 - INFO - Client 8 completed in 61.6s
+2025-09-27 17:40:39,889 - INFO - Training client 9/10
+2025-09-27 17:40:47,708 - INFO - Client 8 Epoch 1/8: Loss=1.6930, Acc=43.06%
+2025-09-27 17:40:55,557 - INFO - Client 8 Epoch 2/8: Loss=1.2420, Acc=57.62%
+2025-09-27 17:41:03,228 - INFO - Client 8 Epoch 3/8: Loss=0.9775, Acc=66.14%
+2025-09-27 17:41:11,051 - INFO - Client 8 Epoch 4/8: Loss=0.8496, Acc=70.28%
+2025-09-27 17:41:18,858 - INFO - Client 8 Epoch 5/8: Loss=0.7054, Acc=75.30%
+2025-09-27 17:41:26,628 - INFO - Client 8 Epoch 6/8: Loss=0.6070, Acc=78.70%
+2025-09-27 17:41:34,353 - INFO - Client 8 Epoch 7/8: Loss=0.5223, Acc=81.66%
+2025-09-27 17:41:42,164 - INFO - Client 8 Epoch 8/8: Loss=0.4537, Acc=83.90%
+2025-09-27 17:41:42,166 - INFO - Client 9 completed in 62.3s
+2025-09-27 17:41:42,166 - INFO - Training client 10/10
+2025-09-27 17:41:49,895 - INFO - Client 9 Epoch 1/8: Loss=1.7241, Acc=41.99%
+2025-09-27 17:41:57,750 - INFO - Client 9 Epoch 2/8: Loss=1.2496, Acc=56.61%
+2025-09-27 17:42:05,320 - INFO - Client 9 Epoch 3/8: Loss=1.0270, Acc=64.41%
+2025-09-27 17:42:12,877 - INFO - Client 9 Epoch 4/8: Loss=0.8538, Acc=70.15%
+2025-09-27 17:42:20,773 - INFO - Client 9 Epoch 5/8: Loss=0.7348, Acc=74.36%
+2025-09-27 17:42:28,517 - INFO - Client 9 Epoch 6/8: Loss=0.6327, Acc=78.08%
+2025-09-27 17:42:36,162 - INFO - Client 9 Epoch 7/8: Loss=0.5414, Acc=80.92%
+2025-09-27 17:42:43,852 - INFO - Client 9 Epoch 8/8: Loss=0.4728, Acc=83.06%
+2025-09-27 17:42:43,853 - INFO - Client 10 completed in 61.7s
+2025-09-27 17:42:43,853 - INFO - Server aggregating...
+2025-09-27 17:42:43,876 - INFO - Aggregation completed
+2025-09-27 17:42:43,876 - INFO - Evaluating...
+2025-09-27 17:42:44,035 - INFO - DEBUG - First batch predictions: (array([3]), array([256]))
+2025-09-27 17:42:44,036 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 17:42:44,053 - INFO - DEBUG - Output logits range: [-1.576, 1.380]
+2025-09-27 17:42:44,053 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.147, 0.151]
+2025-09-27 17:42:44,054 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [ 0.00747403 -0.06043041  0.05072473  0.14141822  0.06150848  0.02681801
+ -0.02131106 -0.03054426 -0.09598629 -0.00651174]
+2025-09-27 17:42:44,055 - INFO - DEBUG - First sample logits: [ 0.2905248  -1.3372742   0.90751946  1.2627829   0.7186807   0.37982315
+ -0.6512358  -0.34731123 -0.05874163 -0.5395174 ]
+2025-09-27 17:42:44,055 - INFO - DEBUG - Softmax probs: [0.09632926 0.01891534 0.1785318  0.2546857  0.14781006 0.10532706
+ 0.03756269 0.05090372 0.06793189 0.04200253]
+2025-09-27 17:42:44,181 - INFO - Batch 0/40
+2025-09-27 17:42:45,555 - INFO - Batch 20/40
+2025-09-27 17:42:46,895 - INFO - Round 1 Results:
+2025-09-27 17:42:46,895 - INFO -    Clean Acc: 10.00%
+2025-09-27 17:42:46,895 - INFO -    Adv Acc: 10.00%
+2025-09-27 17:42:46,896 - INFO -    Time: 626.4s
+2025-09-27 17:42:46,896 - INFO - Round 2/15
+2025-09-27 17:42:46,896 - INFO - Distributing global model to clients...
+2025-09-27 17:42:46,943 - INFO - Global model distributed to 10 clients
+2025-09-27 17:42:46,943 - INFO - Training client 1/10
+2025-09-27 17:42:54,586 - INFO - Client 0 Epoch 1/8: Loss=1.2943, Acc=54.12%
+2025-09-27 17:43:02,243 - INFO - Client 0 Epoch 2/8: Loss=0.9060, Acc=68.36%
+2025-09-27 17:43:09,897 - INFO - Client 0 Epoch 3/8: Loss=0.7355, Acc=74.38%
+2025-09-27 17:43:17,452 - INFO - Client 0 Epoch 4/8: Loss=0.6194, Acc=78.30%
+2025-09-27 17:43:25,406 - INFO - Client 0 Epoch 5/8: Loss=0.5223, Acc=81.67%
+2025-09-27 17:43:33,380 - INFO - Client 0 Epoch 6/8: Loss=0.4356, Acc=84.78%
+2025-09-27 17:43:41,291 - INFO - Client 0 Epoch 7/8: Loss=0.3719, Acc=86.90%
+2025-09-27 17:43:48,824 - INFO - Client 0 Epoch 8/8: Loss=0.3156, Acc=88.77%
+2025-09-27 17:43:48,826 - INFO - Client 1 completed in 61.9s
+2025-09-27 17:43:48,826 - INFO - Training client 2/10
+2025-09-27 17:43:56,589 - INFO - Client 1 Epoch 1/8: Loss=1.3073, Acc=54.08%
+2025-09-27 17:44:04,222 - INFO - Client 1 Epoch 2/8: Loss=0.9230, Acc=67.72%
+2025-09-27 17:44:12,374 - INFO - Client 1 Epoch 3/8: Loss=0.7441, Acc=74.07%
+2025-09-27 17:44:20,125 - INFO - Client 1 Epoch 4/8: Loss=0.6247, Acc=78.15%
+2025-09-27 17:44:27,890 - INFO - Client 1 Epoch 5/8: Loss=0.5235, Acc=81.72%
+2025-09-27 17:44:35,633 - INFO - Client 1 Epoch 6/8: Loss=0.4417, Acc=84.59%
+2025-09-27 17:44:43,782 - INFO - Client 1 Epoch 7/8: Loss=0.3746, Acc=86.75%
+2025-09-27 17:44:51,442 - INFO - Client 1 Epoch 8/8: Loss=0.3188, Acc=88.93%
+2025-09-27 17:44:51,443 - INFO - Client 2 completed in 62.6s
+2025-09-27 17:44:51,443 - INFO - Training client 3/10
+2025-09-27 17:44:59,152 - INFO - Client 2 Epoch 1/8: Loss=1.2914, Acc=54.15%
+2025-09-27 17:45:07,500 - INFO - Client 2 Epoch 2/8: Loss=0.9115, Acc=67.74%
+2025-09-27 17:45:15,449 - INFO - Client 2 Epoch 3/8: Loss=0.7384, Acc=74.12%
+2025-09-27 17:45:23,214 - INFO - Client 2 Epoch 4/8: Loss=0.6183, Acc=78.26%
+2025-09-27 17:45:30,990 - INFO - Client 2 Epoch 5/8: Loss=0.5231, Acc=81.64%
+2025-09-27 17:45:38,550 - INFO - Client 2 Epoch 6/8: Loss=0.4481, Acc=84.30%
+2025-09-27 17:45:46,073 - INFO - Client 2 Epoch 7/8: Loss=0.3749, Acc=86.88%
+2025-09-27 17:45:53,677 - INFO - Client 2 Epoch 8/8: Loss=0.3171, Acc=88.79%
+2025-09-27 17:45:53,678 - INFO - Client 3 completed in 62.2s
+2025-09-27 17:45:53,678 - INFO - Training client 4/10
+2025-09-27 17:46:01,351 - INFO - Client 3 Epoch 1/8: Loss=1.2881, Acc=54.08%
+2025-09-27 17:46:09,402 - INFO - Client 3 Epoch 2/8: Loss=0.9069, Acc=68.38%
+2025-09-27 17:46:18,124 - INFO - Client 3 Epoch 3/8: Loss=0.7275, Acc=74.57%
+2025-09-27 17:46:26,057 - INFO - Client 3 Epoch 4/8: Loss=0.6020, Acc=78.93%
+2025-09-27 17:46:33,943 - INFO - Client 3 Epoch 5/8: Loss=0.5014, Acc=82.49%
+2025-09-27 17:46:41,746 - INFO - Client 3 Epoch 6/8: Loss=0.4241, Acc=85.03%
+2025-09-27 17:46:49,395 - INFO - Client 3 Epoch 7/8: Loss=0.3565, Acc=87.59%
+2025-09-27 17:46:57,291 - INFO - Client 3 Epoch 8/8: Loss=0.3084, Acc=89.12%
+2025-09-27 17:46:57,292 - INFO - Client 4 completed in 63.6s
+2025-09-27 17:46:57,292 - INFO - Training client 5/10
+2025-09-27 17:47:05,103 - INFO - Client 4 Epoch 1/8: Loss=1.3138, Acc=53.08%
+2025-09-27 17:47:12,751 - INFO - Client 4 Epoch 2/8: Loss=0.9170, Acc=67.67%
+2025-09-27 17:47:20,444 - INFO - Client 4 Epoch 3/8: Loss=0.7434, Acc=74.07%
+2025-09-27 17:47:28,204 - INFO - Client 4 Epoch 4/8: Loss=0.6202, Acc=78.31%
+2025-09-27 17:47:35,844 - INFO - Client 4 Epoch 5/8: Loss=0.5239, Acc=81.59%
+2025-09-27 17:47:43,498 - INFO - Client 4 Epoch 6/8: Loss=0.4359, Acc=84.68%
+2025-09-27 17:47:51,069 - INFO - Client 4 Epoch 7/8: Loss=0.3682, Acc=87.07%
+2025-09-27 17:47:58,758 - INFO - Client 4 Epoch 8/8: Loss=0.3162, Acc=88.74%
+2025-09-27 17:47:58,759 - INFO - Client 5 completed in 61.5s
+2025-09-27 17:47:58,759 - INFO - Training client 6/10
+2025-09-27 17:48:06,663 - INFO - Client 5 Epoch 1/8: Loss=1.2954, Acc=53.94%
+2025-09-27 17:48:14,265 - INFO - Client 5 Epoch 2/8: Loss=0.9145, Acc=67.90%
+2025-09-27 17:48:21,971 - INFO - Client 5 Epoch 3/8: Loss=0.7399, Acc=73.76%
+2025-09-27 17:48:29,931 - INFO - Client 5 Epoch 4/8: Loss=0.6191, Acc=78.23%
+2025-09-27 17:48:37,879 - INFO - Client 5 Epoch 5/8: Loss=0.5233, Acc=81.47%
+2025-09-27 17:48:45,498 - INFO - Client 5 Epoch 6/8: Loss=0.4392, Acc=84.66%
+2025-09-27 17:48:53,000 - INFO - Client 5 Epoch 7/8: Loss=0.3754, Acc=86.70%
+2025-09-27 17:49:00,541 - INFO - Client 5 Epoch 8/8: Loss=0.3153, Acc=89.01%
+2025-09-27 17:49:00,542 - INFO - Client 6 completed in 61.8s
+2025-09-27 17:49:00,542 - INFO - Training client 7/10
+2025-09-27 17:49:08,346 - INFO - Client 6 Epoch 1/8: Loss=1.3040, Acc=53.91%
+2025-09-27 17:49:15,918 - INFO - Client 6 Epoch 2/8: Loss=0.9235, Acc=67.54%
+2025-09-27 17:49:23,512 - INFO - Client 6 Epoch 3/8: Loss=0.7488, Acc=73.80%
+2025-09-27 17:49:31,114 - INFO - Client 6 Epoch 4/8: Loss=0.6262, Acc=78.12%
+2025-09-27 17:49:38,689 - INFO - Client 6 Epoch 5/8: Loss=0.5350, Acc=81.36%
+2025-09-27 17:49:46,208 - INFO - Client 6 Epoch 6/8: Loss=0.4477, Acc=84.28%
+2025-09-27 17:49:54,082 - INFO - Client 6 Epoch 7/8: Loss=0.3761, Acc=86.75%
+2025-09-27 17:50:01,711 - INFO - Client 6 Epoch 8/8: Loss=0.3193, Acc=88.72%
+2025-09-27 17:50:01,712 - INFO - Client 7 completed in 61.2s
+2025-09-27 17:50:01,712 - INFO - Training client 8/10
+2025-09-27 17:50:09,536 - INFO - Client 7 Epoch 1/8: Loss=1.3164, Acc=53.11%
+2025-09-27 17:50:17,404 - INFO - Client 7 Epoch 2/8: Loss=0.9232, Acc=67.45%
+2025-09-27 17:50:25,314 - INFO - Client 7 Epoch 3/8: Loss=0.7399, Acc=73.91%
+2025-09-27 17:50:33,110 - INFO - Client 7 Epoch 4/8: Loss=0.6178, Acc=78.31%
+2025-09-27 17:50:40,758 - INFO - Client 7 Epoch 5/8: Loss=0.5182, Acc=81.82%
+2025-09-27 17:50:48,367 - INFO - Client 7 Epoch 6/8: Loss=0.4339, Acc=84.74%
+2025-09-27 17:50:56,102 - INFO - Client 7 Epoch 7/8: Loss=0.3694, Acc=87.00%
+2025-09-27 17:51:04,005 - INFO - Client 7 Epoch 8/8: Loss=0.3099, Acc=88.93%
+2025-09-27 17:51:04,006 - INFO - Client 8 completed in 62.3s
+2025-09-27 17:51:04,006 - INFO - Training client 9/10
+2025-09-27 17:51:11,872 - INFO - Client 8 Epoch 1/8: Loss=1.3017, Acc=54.15%
+2025-09-27 17:51:19,617 - INFO - Client 8 Epoch 2/8: Loss=0.9203, Acc=67.89%
+2025-09-27 17:51:27,480 - INFO - Client 8 Epoch 3/8: Loss=0.7437, Acc=74.11%
+2025-09-27 17:51:35,530 - INFO - Client 8 Epoch 4/8: Loss=0.6169, Acc=78.39%
+2025-09-27 17:51:43,697 - INFO - Client 8 Epoch 5/8: Loss=0.5294, Acc=81.53%
+2025-09-27 17:51:51,382 - INFO - Client 8 Epoch 6/8: Loss=0.4420, Acc=84.54%
+2025-09-27 17:51:59,096 - INFO - Client 8 Epoch 7/8: Loss=0.3770, Acc=86.88%
+2025-09-27 17:52:06,922 - INFO - Client 8 Epoch 8/8: Loss=0.3138, Acc=89.04%
+2025-09-27 17:52:06,923 - INFO - Client 9 completed in 62.9s
+2025-09-27 17:52:06,924 - INFO - Training client 10/10
+2025-09-27 17:52:14,761 - INFO - Client 9 Epoch 1/8: Loss=1.2910, Acc=54.35%
+2025-09-27 17:52:22,524 - INFO - Client 9 Epoch 2/8: Loss=0.9087, Acc=68.12%
+2025-09-27 17:52:30,122 - INFO - Client 9 Epoch 3/8: Loss=0.7342, Acc=74.17%
+2025-09-27 17:52:37,758 - INFO - Client 9 Epoch 4/8: Loss=0.6157, Acc=78.31%
+2025-09-27 17:52:45,429 - INFO - Client 9 Epoch 5/8: Loss=0.5179, Acc=81.84%
+2025-09-27 17:52:53,002 - INFO - Client 9 Epoch 6/8: Loss=0.4380, Acc=84.43%
+2025-09-27 17:53:00,728 - INFO - Client 9 Epoch 7/8: Loss=0.3648, Acc=87.31%
+2025-09-27 17:53:08,474 - INFO - Client 9 Epoch 8/8: Loss=0.3100, Acc=89.08%
+2025-09-27 17:53:08,475 - INFO - Client 10 completed in 61.6s
+2025-09-27 17:53:08,475 - INFO - Server aggregating...
+2025-09-27 17:53:08,496 - INFO - Aggregation completed
+2025-09-27 17:53:08,496 - INFO - Evaluating...
+2025-09-27 17:53:08,624 - INFO - DEBUG - First batch predictions: (array([0, 2, 3, 4, 6, 7, 8, 9]), array([  8,   8,  75, 123,   5,   2,  23,  12]))
+2025-09-27 17:53:08,624 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 17:53:08,625 - INFO - DEBUG - Output logits range: [-4.000, 4.039]
+2025-09-27 17:53:08,625 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.195, 0.206]
+2025-09-27 17:53:08,626 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [ 0.00767377 -0.08882301  0.0588753   0.2048976   0.05756259  0.0622848
+ -0.02404346 -0.04459238 -0.15144709 -0.02886542]
+2025-09-27 17:53:08,626 - INFO - DEBUG - First sample logits: [-0.96864945 -2.0859952  -0.18307409  3.0158517   1.5386932   1.0036865
+ -0.45961204 -0.11508535 -0.6761137  -0.5276384 ]
+2025-09-27 17:53:08,626 - INFO - DEBUG - Softmax probs: [0.01195532 0.00391115 0.02622601 0.64269954 0.14671893 0.08592822
+ 0.01988993 0.02807109 0.01601798 0.01858188]
+2025-09-27 17:53:08,703 - INFO - Batch 0/40
+2025-09-27 17:53:10,079 - INFO - Batch 20/40
+2025-09-27 17:53:11,404 - INFO - Round 2 Results:
+2025-09-27 17:53:11,404 - INFO -    Clean Acc: 26.85%
+2025-09-27 17:53:11,404 - INFO -    Adv Acc: 10.23%
+2025-09-27 17:53:11,404 - INFO -    Time: 624.5s
+2025-09-27 17:53:11,404 - INFO - Round 3/15
+2025-09-27 17:53:11,404 - INFO - Distributing global model to clients...
+2025-09-27 17:53:11,447 - INFO - Global model distributed to 10 clients
+2025-09-27 17:53:11,447 - INFO - Training client 1/10
+2025-09-27 17:53:19,405 - INFO - Client 0 Epoch 1/8: Loss=0.8129, Acc=71.54%
+2025-09-27 17:53:27,062 - INFO - Client 0 Epoch 2/8: Loss=0.5895, Acc=79.37%
+2025-09-27 17:53:34,943 - INFO - Client 0 Epoch 3/8: Loss=0.4648, Acc=83.84%
+2025-09-27 17:53:43,005 - INFO - Client 0 Epoch 4/8: Loss=0.3768, Acc=86.85%
+2025-09-27 17:53:50,645 - INFO - Client 0 Epoch 5/8: Loss=0.3110, Acc=89.09%
+2025-09-27 17:53:58,166 - INFO - Client 0 Epoch 6/8: Loss=0.2591, Acc=90.93%
+2025-09-27 17:54:05,883 - INFO - Client 0 Epoch 7/8: Loss=0.2171, Acc=92.43%
+2025-09-27 17:54:13,656 - INFO - Client 0 Epoch 8/8: Loss=0.1918, Acc=93.25%
+2025-09-27 17:54:13,657 - INFO - Client 1 completed in 62.2s
+2025-09-27 17:54:13,657 - INFO - Training client 2/10
+2025-09-27 17:54:21,313 - INFO - Client 1 Epoch 1/8: Loss=0.8107, Acc=71.53%
+2025-09-27 17:54:28,983 - INFO - Client 1 Epoch 2/8: Loss=0.5875, Acc=79.40%
+2025-09-27 17:54:36,742 - INFO - Client 1 Epoch 3/8: Loss=0.4642, Acc=83.73%
+2025-09-27 17:54:44,772 - INFO - Client 1 Epoch 4/8: Loss=0.3803, Acc=86.77%
+2025-09-27 17:54:52,423 - INFO - Client 1 Epoch 5/8: Loss=0.3093, Acc=89.27%
+2025-09-27 17:55:00,095 - INFO - Client 1 Epoch 6/8: Loss=0.2651, Acc=90.65%
+2025-09-27 17:55:07,715 - INFO - Client 1 Epoch 7/8: Loss=0.2218, Acc=92.12%
+2025-09-27 17:55:15,467 - INFO - Client 1 Epoch 8/8: Loss=0.1978, Acc=93.02%
+2025-09-27 17:55:15,468 - INFO - Client 2 completed in 61.8s
+2025-09-27 17:55:15,469 - INFO - Training client 3/10
+2025-09-27 17:55:23,570 - INFO - Client 2 Epoch 1/8: Loss=0.8114, Acc=71.48%
+2025-09-27 17:55:31,504 - INFO - Client 2 Epoch 2/8: Loss=0.5830, Acc=79.48%
+2025-09-27 17:55:39,731 - INFO - Client 2 Epoch 3/8: Loss=0.4676, Acc=83.77%
+2025-09-27 17:55:47,723 - INFO - Client 2 Epoch 4/8: Loss=0.3749, Acc=86.99%
+2025-09-27 17:55:55,435 - INFO - Client 2 Epoch 5/8: Loss=0.3094, Acc=89.08%
+2025-09-27 17:56:03,388 - INFO - Client 2 Epoch 6/8: Loss=0.2594, Acc=90.83%
+2025-09-27 17:56:11,306 - INFO - Client 2 Epoch 7/8: Loss=0.2093, Acc=92.56%
+2025-09-27 17:56:19,263 - INFO - Client 2 Epoch 8/8: Loss=0.1974, Acc=93.06%
+2025-09-27 17:56:19,264 - INFO - Client 3 completed in 63.8s
+2025-09-27 17:56:19,264 - INFO - Training client 4/10
+2025-09-27 17:56:27,177 - INFO - Client 3 Epoch 1/8: Loss=0.8186, Acc=71.25%
+2025-09-27 17:56:35,142 - INFO - Client 3 Epoch 2/8: Loss=0.5915, Acc=79.40%
+2025-09-27 17:56:42,848 - INFO - Client 3 Epoch 3/8: Loss=0.4693, Acc=83.70%
+2025-09-27 17:56:50,524 - INFO - Client 3 Epoch 4/8: Loss=0.3823, Acc=86.77%
+2025-09-27 17:56:58,279 - INFO - Client 3 Epoch 5/8: Loss=0.3121, Acc=89.09%
+2025-09-27 17:57:06,251 - INFO - Client 3 Epoch 6/8: Loss=0.2578, Acc=90.85%
+2025-09-27 17:57:14,154 - INFO - Client 3 Epoch 7/8: Loss=0.2291, Acc=92.03%
+2025-09-27 17:57:21,827 - INFO - Client 3 Epoch 8/8: Loss=0.1914, Acc=93.33%
+2025-09-27 17:57:21,828 - INFO - Client 4 completed in 62.6s
+2025-09-27 17:57:21,828 - INFO - Training client 5/10
+2025-09-27 17:57:29,614 - INFO - Client 4 Epoch 1/8: Loss=0.8142, Acc=71.51%
+2025-09-27 17:57:37,357 - INFO - Client 4 Epoch 2/8: Loss=0.5852, Acc=79.47%
+2025-09-27 17:57:45,568 - INFO - Client 4 Epoch 3/8: Loss=0.4702, Acc=83.56%
+2025-09-27 17:57:53,283 - INFO - Client 4 Epoch 4/8: Loss=0.3747, Acc=87.06%
+2025-09-27 17:58:00,880 - INFO - Client 4 Epoch 5/8: Loss=0.3093, Acc=89.08%
+2025-09-27 17:58:08,551 - INFO - Client 4 Epoch 6/8: Loss=0.2610, Acc=90.89%
+2025-09-27 17:58:16,226 - INFO - Client 4 Epoch 7/8: Loss=0.2248, Acc=92.07%
+2025-09-27 17:58:23,696 - INFO - Client 4 Epoch 8/8: Loss=0.1920, Acc=93.27%
+2025-09-27 17:58:23,696 - INFO - Client 5 completed in 61.9s
+2025-09-27 17:58:23,697 - INFO - Training client 6/10
+2025-09-27 17:58:31,347 - INFO - Client 5 Epoch 1/8: Loss=0.8126, Acc=71.58%
+2025-09-27 17:58:39,178 - INFO - Client 5 Epoch 2/8: Loss=0.5861, Acc=79.61%
+2025-09-27 17:58:46,925 - INFO - Client 5 Epoch 3/8: Loss=0.4661, Acc=83.61%
+2025-09-27 17:58:54,557 - INFO - Client 5 Epoch 4/8: Loss=0.3793, Acc=86.78%
+2025-09-27 17:59:02,252 - INFO - Client 5 Epoch 5/8: Loss=0.3051, Acc=89.35%
+2025-09-27 17:59:09,782 - INFO - Client 5 Epoch 6/8: Loss=0.2560, Acc=90.93%
+2025-09-27 17:59:17,480 - INFO - Client 5 Epoch 7/8: Loss=0.2197, Acc=92.29%
+2025-09-27 17:59:25,078 - INFO - Client 5 Epoch 8/8: Loss=0.1916, Acc=93.29%
+2025-09-27 17:59:25,079 - INFO - Client 6 completed in 61.4s
+2025-09-27 17:59:25,079 - INFO - Training client 7/10
+2025-09-27 17:59:32,797 - INFO - Client 6 Epoch 1/8: Loss=0.8087, Acc=71.47%
+2025-09-27 17:59:40,607 - INFO - Client 6 Epoch 2/8: Loss=0.5921, Acc=79.43%
+2025-09-27 17:59:48,222 - INFO - Client 6 Epoch 3/8: Loss=0.4686, Acc=83.70%
+2025-09-27 17:59:55,797 - INFO - Client 6 Epoch 4/8: Loss=0.3776, Acc=86.83%
+2025-09-27 18:00:03,618 - INFO - Client 6 Epoch 5/8: Loss=0.3159, Acc=88.99%
+2025-09-27 18:00:11,514 - INFO - Client 6 Epoch 6/8: Loss=0.2558, Acc=91.09%
+2025-09-27 18:00:19,308 - INFO - Client 6 Epoch 7/8: Loss=0.2240, Acc=92.10%
+2025-09-27 18:00:27,262 - INFO - Client 6 Epoch 8/8: Loss=0.1828, Acc=93.53%
+2025-09-27 18:00:27,263 - INFO - Client 7 completed in 62.2s
+2025-09-27 18:00:27,263 - INFO - Training client 8/10
+2025-09-27 18:00:35,305 - INFO - Client 7 Epoch 1/8: Loss=0.8159, Acc=71.42%
+2025-09-27 18:00:43,089 - INFO - Client 7 Epoch 2/8: Loss=0.5839, Acc=79.61%
+2025-09-27 18:00:50,647 - INFO - Client 7 Epoch 3/8: Loss=0.4655, Acc=83.72%
+2025-09-27 18:00:58,791 - INFO - Client 7 Epoch 4/8: Loss=0.3792, Acc=86.53%
+2025-09-27 18:01:06,621 - INFO - Client 7 Epoch 5/8: Loss=0.3123, Acc=89.00%
+2025-09-27 18:01:14,853 - INFO - Client 7 Epoch 6/8: Loss=0.2623, Acc=90.71%
+2025-09-27 18:01:22,452 - INFO - Client 7 Epoch 7/8: Loss=0.2191, Acc=92.27%
+2025-09-27 18:01:30,474 - INFO - Client 7 Epoch 8/8: Loss=0.1946, Acc=93.11%
+2025-09-27 18:01:30,475 - INFO - Client 8 completed in 63.2s
+2025-09-27 18:01:30,475 - INFO - Training client 9/10
+2025-09-27 18:01:38,698 - INFO - Client 8 Epoch 1/8: Loss=0.8106, Acc=71.23%
+2025-09-27 18:01:46,694 - INFO - Client 8 Epoch 2/8: Loss=0.5855, Acc=79.49%
+2025-09-27 18:01:54,289 - INFO - Client 8 Epoch 3/8: Loss=0.4720, Acc=83.39%
+2025-09-27 18:02:01,945 - INFO - Client 8 Epoch 4/8: Loss=0.3778, Acc=86.77%
+2025-09-27 18:02:09,902 - INFO - Client 8 Epoch 5/8: Loss=0.3056, Acc=89.26%
+2025-09-27 18:02:18,228 - INFO - Client 8 Epoch 6/8: Loss=0.2621, Acc=90.81%
+2025-09-27 18:02:26,024 - INFO - Client 8 Epoch 7/8: Loss=0.2221, Acc=92.24%
+2025-09-27 18:02:33,527 - INFO - Client 8 Epoch 8/8: Loss=0.1993, Acc=93.05%
+2025-09-27 18:02:33,528 - INFO - Client 9 completed in 63.1s
+2025-09-27 18:02:33,528 - INFO - Training client 10/10
+2025-09-27 18:02:41,330 - INFO - Client 9 Epoch 1/8: Loss=0.8138, Acc=71.33%
+2025-09-27 18:02:49,136 - INFO - Client 9 Epoch 2/8: Loss=0.5874, Acc=79.53%
+2025-09-27 18:02:56,855 - INFO - Client 9 Epoch 3/8: Loss=0.4653, Acc=83.80%
+2025-09-27 18:03:04,552 - INFO - Client 9 Epoch 4/8: Loss=0.3827, Acc=86.65%
+2025-09-27 18:03:12,320 - INFO - Client 9 Epoch 5/8: Loss=0.3047, Acc=89.41%
+2025-09-27 18:03:20,078 - INFO - Client 9 Epoch 6/8: Loss=0.2579, Acc=91.00%
+2025-09-27 18:03:27,982 - INFO - Client 9 Epoch 7/8: Loss=0.2265, Acc=92.07%
+2025-09-27 18:03:35,569 - INFO - Client 9 Epoch 8/8: Loss=0.1902, Acc=93.42%
+2025-09-27 18:03:35,570 - INFO - Client 10 completed in 62.0s
+2025-09-27 18:03:35,570 - INFO - Server aggregating...
+2025-09-27 18:03:35,588 - INFO - Aggregation completed
+2025-09-27 18:03:35,588 - INFO - Evaluating...
+2025-09-27 18:03:35,713 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([24, 18, 20, 26, 21, 25, 32, 23, 35, 32]))
+2025-09-27 18:03:35,713 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:03:35,714 - INFO - DEBUG - Output logits range: [-6.450, 14.250]
+2025-09-27 18:03:35,714 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.219, 0.228]
+2025-09-27 18:03:35,714 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [ 0.01023903 -0.09824906  0.0573652   0.18982393  0.05692621  0.09408689
+ -0.01211829 -0.04987692 -0.1592232  -0.04981876]
+2025-09-27 18:03:35,715 - INFO - DEBUG - First sample logits: [-0.9490139  -2.1012836  -3.268634    6.6163044  -0.4940357   2.9714549
+  1.6908803  -1.1422063  -3.6171331   0.47103226]
+2025-09-27 18:03:35,715 - INFO - DEBUG - Softmax probs: [4.9936585e-04 1.5775900e-04 4.9093112e-05 9.6381730e-01 7.8706979e-04
+ 2.5180055e-02 6.9969730e-03 4.1163887e-04 3.4647292e-05 2.0660311e-03]
+2025-09-27 18:03:35,790 - INFO - Batch 0/40
+2025-09-27 18:03:37,196 - INFO - Batch 20/40
+2025-09-27 18:03:38,515 - INFO - Round 3 Results:
+2025-09-27 18:03:38,515 - INFO -    Clean Acc: 79.11%
+2025-09-27 18:03:38,515 - INFO -    Adv Acc: 23.44%
+2025-09-27 18:03:38,515 - INFO -    Time: 627.1s
+2025-09-27 18:03:38,515 - INFO - Round 4/15
+2025-09-27 18:03:38,515 - INFO - Distributing global model to clients...
+2025-09-27 18:03:38,559 - INFO - Global model distributed to 10 clients
+2025-09-27 18:03:38,560 - INFO - Training client 1/10
+2025-09-27 18:03:46,300 - INFO - Client 0 Epoch 1/8: Loss=0.2295, Acc=91.80%
+2025-09-27 18:03:54,110 - INFO - Client 0 Epoch 2/8: Loss=0.2404, Acc=91.46%
+2025-09-27 18:04:01,859 - INFO - Client 0 Epoch 3/8: Loss=0.2033, Acc=92.97%
+2025-09-27 18:04:09,706 - INFO - Client 0 Epoch 4/8: Loss=0.1695, Acc=94.13%
+2025-09-27 18:04:17,647 - INFO - Client 0 Epoch 5/8: Loss=0.1480, Acc=94.84%
+2025-09-27 18:04:25,406 - INFO - Client 0 Epoch 6/8: Loss=0.1336, Acc=95.41%
+2025-09-27 18:04:33,388 - INFO - Client 0 Epoch 7/8: Loss=0.1257, Acc=95.71%
+2025-09-27 18:04:41,297 - INFO - Client 0 Epoch 8/8: Loss=0.1192, Acc=95.94%
+2025-09-27 18:04:41,299 - INFO - Client 1 completed in 62.7s
+2025-09-27 18:04:41,299 - INFO - Training client 2/10
+2025-09-27 18:04:49,374 - INFO - Client 1 Epoch 1/8: Loss=0.2278, Acc=91.96%
+2025-09-27 18:04:57,479 - INFO - Client 1 Epoch 2/8: Loss=0.2381, Acc=91.54%
+2025-09-27 18:05:05,209 - INFO - Client 1 Epoch 3/8: Loss=0.1995, Acc=92.99%
+2025-09-27 18:05:13,095 - INFO - Client 1 Epoch 4/8: Loss=0.1694, Acc=94.06%
+2025-09-27 18:05:20,907 - INFO - Client 1 Epoch 5/8: Loss=0.1491, Acc=94.81%
+2025-09-27 18:05:28,813 - INFO - Client 1 Epoch 6/8: Loss=0.1354, Acc=95.36%
+2025-09-27 18:05:37,012 - INFO - Client 1 Epoch 7/8: Loss=0.1225, Acc=95.74%
+2025-09-27 18:05:44,701 - INFO - Client 1 Epoch 8/8: Loss=0.1196, Acc=95.87%
+2025-09-27 18:05:44,702 - INFO - Client 2 completed in 63.4s
+2025-09-27 18:05:44,702 - INFO - Training client 3/10
+2025-09-27 18:05:52,474 - INFO - Client 2 Epoch 1/8: Loss=0.2296, Acc=92.00%
+2025-09-27 18:06:00,402 - INFO - Client 2 Epoch 2/8: Loss=0.2349, Acc=91.73%
+2025-09-27 18:06:08,197 - INFO - Client 2 Epoch 3/8: Loss=0.1959, Acc=93.17%
+2025-09-27 18:06:16,587 - INFO - Client 2 Epoch 4/8: Loss=0.1699, Acc=94.04%
+2025-09-27 18:06:24,604 - INFO - Client 2 Epoch 5/8: Loss=0.1583, Acc=94.46%
+2025-09-27 18:06:32,269 - INFO - Client 2 Epoch 6/8: Loss=0.1354, Acc=95.32%
+2025-09-27 18:06:40,094 - INFO - Client 2 Epoch 7/8: Loss=0.1317, Acc=95.44%
+2025-09-27 18:06:47,957 - INFO - Client 2 Epoch 8/8: Loss=0.1125, Acc=96.07%
+2025-09-27 18:06:47,958 - INFO - Client 3 completed in 63.3s
+2025-09-27 18:06:47,958 - INFO - Training client 4/10
+2025-09-27 18:06:55,620 - INFO - Client 3 Epoch 1/8: Loss=0.2238, Acc=92.19%
+2025-09-27 18:07:03,419 - INFO - Client 3 Epoch 2/8: Loss=0.2404, Acc=91.52%
+2025-09-27 18:07:11,074 - INFO - Client 3 Epoch 3/8: Loss=0.1996, Acc=92.89%
+2025-09-27 18:07:18,889 - INFO - Client 3 Epoch 4/8: Loss=0.1773, Acc=93.85%
+2025-09-27 18:07:26,571 - INFO - Client 3 Epoch 5/8: Loss=0.1561, Acc=94.55%
+2025-09-27 18:07:34,261 - INFO - Client 3 Epoch 6/8: Loss=0.1361, Acc=95.33%
+2025-09-27 18:07:41,981 - INFO - Client 3 Epoch 7/8: Loss=0.1213, Acc=95.76%
+2025-09-27 18:07:49,784 - INFO - Client 3 Epoch 8/8: Loss=0.1124, Acc=96.07%
+2025-09-27 18:07:49,785 - INFO - Client 4 completed in 61.8s
+2025-09-27 18:07:49,785 - INFO - Training client 5/10
+2025-09-27 18:07:57,809 - INFO - Client 4 Epoch 1/8: Loss=0.2240, Acc=92.16%
+2025-09-27 18:08:05,990 - INFO - Client 4 Epoch 2/8: Loss=0.2418, Acc=91.42%
+2025-09-27 18:08:14,185 - INFO - Client 4 Epoch 3/8: Loss=0.1966, Acc=93.19%
+2025-09-27 18:08:21,947 - INFO - Client 4 Epoch 4/8: Loss=0.1713, Acc=94.09%
+2025-09-27 18:08:29,701 - INFO - Client 4 Epoch 5/8: Loss=0.1494, Acc=94.75%
+2025-09-27 18:08:37,294 - INFO - Client 4 Epoch 6/8: Loss=0.1319, Acc=95.38%
+2025-09-27 18:08:44,914 - INFO - Client 4 Epoch 7/8: Loss=0.1279, Acc=95.56%
+2025-09-27 18:08:52,563 - INFO - Client 4 Epoch 8/8: Loss=0.1192, Acc=95.82%
+2025-09-27 18:08:52,564 - INFO - Client 5 completed in 62.8s
+2025-09-27 18:08:52,564 - INFO - Training client 6/10
+2025-09-27 18:09:00,144 - INFO - Client 5 Epoch 1/8: Loss=0.2212, Acc=92.28%
+2025-09-27 18:09:07,909 - INFO - Client 5 Epoch 2/8: Loss=0.2423, Acc=91.57%
+2025-09-27 18:09:16,032 - INFO - Client 5 Epoch 3/8: Loss=0.1956, Acc=93.13%
+2025-09-27 18:09:23,655 - INFO - Client 5 Epoch 4/8: Loss=0.1765, Acc=93.78%
+2025-09-27 18:09:31,289 - INFO - Client 5 Epoch 5/8: Loss=0.1581, Acc=94.50%
+2025-09-27 18:09:38,883 - INFO - Client 5 Epoch 6/8: Loss=0.1305, Acc=95.46%
+2025-09-27 18:09:46,308 - INFO - Client 5 Epoch 7/8: Loss=0.1343, Acc=95.29%
+2025-09-27 18:09:53,931 - INFO - Client 5 Epoch 8/8: Loss=0.1162, Acc=96.01%
+2025-09-27 18:09:53,932 - INFO - Client 6 completed in 61.4s
+2025-09-27 18:09:53,932 - INFO - Training client 7/10
+2025-09-27 18:10:01,846 - INFO - Client 6 Epoch 1/8: Loss=0.2184, Acc=92.34%
+2025-09-27 18:10:09,596 - INFO - Client 6 Epoch 2/8: Loss=0.2425, Acc=91.46%
+2025-09-27 18:10:17,340 - INFO - Client 6 Epoch 3/8: Loss=0.2007, Acc=93.01%
+2025-09-27 18:10:24,971 - INFO - Client 6 Epoch 4/8: Loss=0.1760, Acc=93.92%
+2025-09-27 18:10:32,887 - INFO - Client 6 Epoch 5/8: Loss=0.1478, Acc=94.82%
+2025-09-27 18:10:40,832 - INFO - Client 6 Epoch 6/8: Loss=0.1347, Acc=95.31%
+2025-09-27 18:10:48,973 - INFO - Client 6 Epoch 7/8: Loss=0.1265, Acc=95.65%
+2025-09-27 18:10:56,537 - INFO - Client 6 Epoch 8/8: Loss=0.1172, Acc=95.99%
+2025-09-27 18:10:56,538 - INFO - Client 7 completed in 62.6s
+2025-09-27 18:10:56,538 - INFO - Training client 8/10
+2025-09-27 18:11:04,463 - INFO - Client 7 Epoch 1/8: Loss=0.2272, Acc=91.84%
+2025-09-27 18:11:12,086 - INFO - Client 7 Epoch 2/8: Loss=0.2374, Acc=91.61%
+2025-09-27 18:11:19,762 - INFO - Client 7 Epoch 3/8: Loss=0.2012, Acc=93.07%
+2025-09-27 18:11:27,543 - INFO - Client 7 Epoch 4/8: Loss=0.1692, Acc=94.07%
+2025-09-27 18:11:35,175 - INFO - Client 7 Epoch 5/8: Loss=0.1545, Acc=94.61%
+2025-09-27 18:11:42,716 - INFO - Client 7 Epoch 6/8: Loss=0.1341, Acc=95.27%
+2025-09-27 18:11:50,361 - INFO - Client 7 Epoch 7/8: Loss=0.1317, Acc=95.48%
+2025-09-27 18:11:58,129 - INFO - Client 7 Epoch 8/8: Loss=0.1170, Acc=95.96%
+2025-09-27 18:11:58,130 - INFO - Client 8 completed in 61.6s
+2025-09-27 18:11:58,130 - INFO - Training client 9/10
+2025-09-27 18:12:05,902 - INFO - Client 8 Epoch 1/8: Loss=0.2271, Acc=92.01%
+2025-09-27 18:12:13,903 - INFO - Client 8 Epoch 2/8: Loss=0.2434, Acc=91.43%
+2025-09-27 18:12:21,823 - INFO - Client 8 Epoch 3/8: Loss=0.1964, Acc=93.17%
+2025-09-27 18:12:29,437 - INFO - Client 8 Epoch 4/8: Loss=0.1683, Acc=94.02%
+2025-09-27 18:12:37,391 - INFO - Client 8 Epoch 5/8: Loss=0.1569, Acc=94.52%
+2025-09-27 18:12:45,206 - INFO - Client 8 Epoch 6/8: Loss=0.1334, Acc=95.34%
+2025-09-27 18:12:52,928 - INFO - Client 8 Epoch 7/8: Loss=0.1365, Acc=95.24%
+2025-09-27 18:13:00,501 - INFO - Client 8 Epoch 8/8: Loss=0.1069, Acc=96.26%
+2025-09-27 18:13:00,502 - INFO - Client 9 completed in 62.4s
+2025-09-27 18:13:00,502 - INFO - Training client 10/10
+2025-09-27 18:13:08,130 - INFO - Client 9 Epoch 1/8: Loss=0.2289, Acc=91.86%
+2025-09-27 18:13:15,770 - INFO - Client 9 Epoch 2/8: Loss=0.2388, Acc=91.50%
+2025-09-27 18:13:23,627 - INFO - Client 9 Epoch 3/8: Loss=0.1979, Acc=93.18%
+2025-09-27 18:13:31,479 - INFO - Client 9 Epoch 4/8: Loss=0.1703, Acc=94.03%
+2025-09-27 18:13:39,329 - INFO - Client 9 Epoch 5/8: Loss=0.1505, Acc=94.78%
+2025-09-27 18:13:46,910 - INFO - Client 9 Epoch 6/8: Loss=0.1371, Acc=95.20%
+2025-09-27 18:13:54,408 - INFO - Client 9 Epoch 7/8: Loss=0.1244, Acc=95.71%
+2025-09-27 18:14:02,071 - INFO - Client 9 Epoch 8/8: Loss=0.1214, Acc=95.74%
+2025-09-27 18:14:02,072 - INFO - Client 10 completed in 61.6s
+2025-09-27 18:14:02,072 - INFO - Server aggregating...
+2025-09-27 18:14:02,091 - INFO - Aggregation completed
+2025-09-27 18:14:02,091 - INFO - Evaluating...
+2025-09-27 18:14:02,227 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([24, 21, 25, 26, 16, 25, 31, 25, 35, 28]))
+2025-09-27 18:14:02,227 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:14:02,228 - INFO - DEBUG - Output logits range: [-6.619, 14.959]
+2025-09-27 18:14:02,228 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.222, 0.228]
+2025-09-27 18:14:02,228 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [ 0.00397065 -0.08286704  0.05356788  0.1464182   0.05438397  0.08657772
+ -0.0060638  -0.0383469  -0.14232102 -0.04667749]
+2025-09-27 18:14:02,229 - INFO - DEBUG - First sample logits: [-0.821449   -1.9553076  -3.676099    7.907078   -1.1044527   4.0223837
+  1.2619132  -0.5771665  -4.749885   -0.03619096]
+2025-09-27 18:14:02,229 - INFO - DEBUG - Softmax probs: [1.5829717e-04 5.0938314e-05 9.1141164e-06 9.7774202e-01 1.1927959e-04
+ 2.0096621e-02 1.2713526e-03 2.0209882e-04 3.1144039e-06 3.4714147e-04]
+2025-09-27 18:14:02,309 - INFO - Batch 0/40
+2025-09-27 18:14:03,675 - INFO - Batch 20/40
+2025-09-27 18:14:05,018 - INFO - Round 4 Results:
+2025-09-27 18:14:05,018 - INFO -    Clean Acc: 81.07%
+2025-09-27 18:14:05,019 - INFO -    Adv Acc: 24.35%
+2025-09-27 18:14:05,019 - INFO -    Time: 626.5s
+2025-09-27 18:14:05,019 - INFO - Round 5/15
+2025-09-27 18:14:05,019 - INFO - Distributing global model to clients...
+2025-09-27 18:14:05,062 - INFO - Global model distributed to 10 clients
+2025-09-27 18:14:05,062 - INFO - Training client 1/10
+2025-09-27 18:14:12,713 - INFO - Client 0 Epoch 1/8: Loss=0.0030, Acc=99.97%
+2025-09-27 18:14:20,548 - INFO - Client 0 Epoch 2/8: Loss=0.0017, Acc=99.99%
+2025-09-27 18:14:28,386 - INFO - Client 0 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:14:36,512 - INFO - Client 0 Epoch 4/8: Loss=0.0008, Acc=99.99%
+2025-09-27 18:14:44,252 - INFO - Client 0 Epoch 5/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:14:51,843 - INFO - Client 0 Epoch 6/8: Loss=0.1336, Acc=95.32%
+2025-09-27 18:14:59,520 - INFO - Client 0 Epoch 7/8: Loss=0.2246, Acc=92.23%
+2025-09-27 18:15:07,211 - INFO - Client 0 Epoch 8/8: Loss=0.1771, Acc=93.87%
+2025-09-27 18:15:07,212 - INFO - Client 1 completed in 62.1s
+2025-09-27 18:15:07,212 - INFO - Training client 2/10
+2025-09-27 18:15:14,944 - INFO - Client 1 Epoch 1/8: Loss=0.0029, Acc=99.98%
+2025-09-27 18:15:22,633 - INFO - Client 1 Epoch 2/8: Loss=0.0017, Acc=99.98%
+2025-09-27 18:15:30,654 - INFO - Client 1 Epoch 3/8: Loss=0.0016, Acc=99.97%
+2025-09-27 18:15:38,839 - INFO - Client 1 Epoch 4/8: Loss=0.0067, Acc=99.82%
+2025-09-27 18:15:46,621 - INFO - Client 1 Epoch 5/8: Loss=0.1405, Acc=95.16%
+2025-09-27 18:15:54,258 - INFO - Client 1 Epoch 6/8: Loss=0.2042, Acc=92.88%
+2025-09-27 18:16:01,870 - INFO - Client 1 Epoch 7/8: Loss=0.1607, Acc=94.39%
+2025-09-27 18:16:09,558 - INFO - Client 1 Epoch 8/8: Loss=0.1452, Acc=94.92%
+2025-09-27 18:16:09,559 - INFO - Client 2 completed in 62.3s
+2025-09-27 18:16:09,559 - INFO - Training client 3/10
+2025-09-27 18:16:17,314 - INFO - Client 2 Epoch 1/8: Loss=0.0030, Acc=99.98%
+2025-09-27 18:16:25,041 - INFO - Client 2 Epoch 2/8: Loss=0.0018, Acc=99.98%
+2025-09-27 18:16:33,125 - INFO - Client 2 Epoch 3/8: Loss=0.0016, Acc=99.98%
+2025-09-27 18:16:40,831 - INFO - Client 2 Epoch 4/8: Loss=0.0013, Acc=99.98%
+2025-09-27 18:16:48,380 - INFO - Client 2 Epoch 5/8: Loss=0.0850, Acc=97.13%
+2025-09-27 18:16:56,404 - INFO - Client 2 Epoch 6/8: Loss=0.2079, Acc=92.81%
+2025-09-27 18:17:04,225 - INFO - Client 2 Epoch 7/8: Loss=0.1763, Acc=93.83%
+2025-09-27 18:17:11,764 - INFO - Client 2 Epoch 8/8: Loss=0.1603, Acc=94.53%
+2025-09-27 18:17:11,766 - INFO - Client 3 completed in 62.2s
+2025-09-27 18:17:11,766 - INFO - Training client 4/10
+2025-09-27 18:17:19,621 - INFO - Client 3 Epoch 1/8: Loss=0.0030, Acc=99.98%
+2025-09-27 18:17:27,325 - INFO - Client 3 Epoch 2/8: Loss=0.0017, Acc=99.99%
+2025-09-27 18:17:35,608 - INFO - Client 3 Epoch 3/8: Loss=0.0012, Acc=99.99%
+2025-09-27 18:17:43,594 - INFO - Client 3 Epoch 4/8: Loss=0.0022, Acc=99.97%
+2025-09-27 18:17:51,536 - INFO - Client 3 Epoch 5/8: Loss=0.0450, Acc=98.59%
+2025-09-27 18:17:59,141 - INFO - Client 3 Epoch 6/8: Loss=0.2089, Acc=92.77%
+2025-09-27 18:18:06,850 - INFO - Client 3 Epoch 7/8: Loss=0.1924, Acc=93.21%
+2025-09-27 18:18:14,340 - INFO - Client 3 Epoch 8/8: Loss=0.1632, Acc=94.36%
+2025-09-27 18:18:14,341 - INFO - Client 4 completed in 62.6s
+2025-09-27 18:18:14,341 - INFO - Training client 5/10
+2025-09-27 18:18:21,954 - INFO - Client 4 Epoch 1/8: Loss=0.0029, Acc=99.99%
+2025-09-27 18:18:29,788 - INFO - Client 4 Epoch 2/8: Loss=0.0016, Acc=99.99%
+2025-09-27 18:18:37,591 - INFO - Client 4 Epoch 3/8: Loss=0.0014, Acc=99.98%
+2025-09-27 18:18:45,211 - INFO - Client 4 Epoch 4/8: Loss=0.0050, Acc=99.89%
+2025-09-27 18:18:52,884 - INFO - Client 4 Epoch 5/8: Loss=0.1467, Acc=94.99%
+2025-09-27 18:19:00,585 - INFO - Client 4 Epoch 6/8: Loss=0.1936, Acc=93.34%
+2025-09-27 18:19:08,328 - INFO - Client 4 Epoch 7/8: Loss=0.1692, Acc=94.19%
+2025-09-27 18:19:16,138 - INFO - Client 4 Epoch 8/8: Loss=0.1368, Acc=95.44%
+2025-09-27 18:19:16,139 - INFO - Client 5 completed in 61.8s
+2025-09-27 18:19:16,139 - INFO - Training client 6/10
+2025-09-27 18:19:23,811 - INFO - Client 5 Epoch 1/8: Loss=0.0030, Acc=99.98%
+2025-09-27 18:19:32,211 - INFO - Client 5 Epoch 2/8: Loss=0.0015, Acc=99.99%
+2025-09-27 18:19:40,989 - INFO - Client 5 Epoch 3/8: Loss=0.0018, Acc=99.97%
+2025-09-27 18:19:49,111 - INFO - Client 5 Epoch 4/8: Loss=0.0056, Acc=99.85%
+2025-09-27 18:19:56,713 - INFO - Client 5 Epoch 5/8: Loss=0.1467, Acc=94.94%
+2025-09-27 18:20:04,488 - INFO - Client 5 Epoch 6/8: Loss=0.2026, Acc=92.90%
+2025-09-27 18:20:12,457 - INFO - Client 5 Epoch 7/8: Loss=0.1638, Acc=94.32%
+2025-09-27 18:20:20,393 - INFO - Client 5 Epoch 8/8: Loss=0.1395, Acc=95.17%
+2025-09-27 18:20:20,394 - INFO - Client 6 completed in 64.3s
+2025-09-27 18:20:20,394 - INFO - Training client 7/10
+2025-09-27 18:20:28,129 - INFO - Client 6 Epoch 1/8: Loss=0.0029, Acc=99.98%
+2025-09-27 18:20:35,940 - INFO - Client 6 Epoch 2/8: Loss=0.0021, Acc=99.98%
+2025-09-27 18:20:43,708 - INFO - Client 6 Epoch 3/8: Loss=0.0012, Acc=99.99%
+2025-09-27 18:20:51,650 - INFO - Client 6 Epoch 4/8: Loss=0.0051, Acc=99.86%
+2025-09-27 18:20:59,274 - INFO - Client 6 Epoch 5/8: Loss=0.1306, Acc=95.51%
+2025-09-27 18:21:06,951 - INFO - Client 6 Epoch 6/8: Loss=0.2028, Acc=92.75%
+2025-09-27 18:21:14,572 - INFO - Client 6 Epoch 7/8: Loss=0.1591, Acc=94.50%
+2025-09-27 18:21:22,433 - INFO - Client 6 Epoch 8/8: Loss=0.1423, Acc=94.98%
+2025-09-27 18:21:22,434 - INFO - Client 7 completed in 62.0s
+2025-09-27 18:21:22,435 - INFO - Training client 8/10
+2025-09-27 18:21:30,120 - INFO - Client 7 Epoch 1/8: Loss=0.0029, Acc=99.98%
+2025-09-27 18:21:37,794 - INFO - Client 7 Epoch 2/8: Loss=0.0018, Acc=99.98%
+2025-09-27 18:21:45,498 - INFO - Client 7 Epoch 3/8: Loss=0.0019, Acc=99.98%
+2025-09-27 18:21:53,264 - INFO - Client 7 Epoch 4/8: Loss=0.0851, Acc=97.19%
+2025-09-27 18:22:00,891 - INFO - Client 7 Epoch 5/8: Loss=0.1776, Acc=93.83%
+2025-09-27 18:22:08,668 - INFO - Client 7 Epoch 6/8: Loss=0.1638, Acc=94.27%
+2025-09-27 18:22:16,419 - INFO - Client 7 Epoch 7/8: Loss=0.1442, Acc=95.06%
+2025-09-27 18:22:24,135 - INFO - Client 7 Epoch 8/8: Loss=0.1263, Acc=95.66%
+2025-09-27 18:22:24,136 - INFO - Client 8 completed in 61.7s
+2025-09-27 18:22:24,136 - INFO - Training client 9/10
+2025-09-27 18:22:31,975 - INFO - Client 8 Epoch 1/8: Loss=0.0031, Acc=99.97%
+2025-09-27 18:22:39,656 - INFO - Client 8 Epoch 2/8: Loss=0.0016, Acc=99.99%
+2025-09-27 18:22:47,439 - INFO - Client 8 Epoch 3/8: Loss=0.0011, Acc=99.99%
+2025-09-27 18:22:55,153 - INFO - Client 8 Epoch 4/8: Loss=0.0030, Acc=99.94%
+2025-09-27 18:23:02,868 - INFO - Client 8 Epoch 5/8: Loss=0.1373, Acc=95.33%
+2025-09-27 18:23:10,694 - INFO - Client 8 Epoch 6/8: Loss=0.2055, Acc=92.83%
+2025-09-27 18:23:19,094 - INFO - Client 8 Epoch 7/8: Loss=0.1587, Acc=94.43%
+2025-09-27 18:23:26,623 - INFO - Client 8 Epoch 8/8: Loss=0.1483, Acc=94.90%
+2025-09-27 18:23:26,625 - INFO - Client 9 completed in 62.5s
+2025-09-27 18:23:26,625 - INFO - Training client 10/10
+2025-09-27 18:23:34,318 - INFO - Client 9 Epoch 1/8: Loss=0.0028, Acc=99.98%
+2025-09-27 18:23:42,088 - INFO - Client 9 Epoch 2/8: Loss=0.0014, Acc=100.00%
+2025-09-27 18:23:49,870 - INFO - Client 9 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:23:58,113 - INFO - Client 9 Epoch 4/8: Loss=0.0015, Acc=99.97%
+2025-09-27 18:24:05,743 - INFO - Client 9 Epoch 5/8: Loss=0.0878, Acc=96.98%
+2025-09-27 18:24:14,478 - INFO - Client 9 Epoch 6/8: Loss=0.2172, Acc=92.32%
+2025-09-27 18:24:22,324 - INFO - Client 9 Epoch 7/8: Loss=0.1701, Acc=94.13%
+2025-09-27 18:24:30,263 - INFO - Client 9 Epoch 8/8: Loss=0.1514, Acc=94.83%
+2025-09-27 18:24:30,265 - INFO - Client 10 completed in 63.6s
+2025-09-27 18:24:30,265 - INFO - Server aggregating...
+2025-09-27 18:24:30,282 - INFO - Aggregation completed
+2025-09-27 18:24:30,282 - INFO - Evaluating...
+2025-09-27 18:24:30,414 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([22, 19, 24, 27, 16, 24, 32, 23, 38, 31]))
+2025-09-27 18:24:30,415 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:24:30,415 - INFO - DEBUG - Output logits range: [-5.871, 13.843]
+2025-09-27 18:24:30,415 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.204, 0.214]
+2025-09-27 18:24:30,416 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [ 0.0013811  -0.07110804  0.04607826  0.11404983  0.04687653  0.07463524
+ -0.00409534 -0.0296938  -0.1184505  -0.03872386]
+2025-09-27 18:24:30,416 - INFO - DEBUG - First sample logits: [-0.49058744 -2.0631618  -3.283194    6.6064005  -1.3083992   3.675176
+  1.224649   -0.9362474  -3.6386068   0.3462416 ]
+2025-09-27 18:24:30,416 - INFO - DEBUG - Softmax probs: [7.7940855e-04 1.6173525e-04 4.7747566e-05 9.4177634e-01 3.4402811e-04
+ 5.0226521e-02 4.3319436e-03 4.9913436e-04 3.3465516e-05 1.7996798e-03]
+2025-09-27 18:24:30,508 - INFO - Batch 0/40
+2025-09-27 18:24:31,904 - INFO - Batch 20/40
+2025-09-27 18:24:33,257 - INFO - Round 5 Results:
+2025-09-27 18:24:33,257 - INFO -    Clean Acc: 81.15%
+2025-09-27 18:24:33,257 - INFO -    Adv Acc: 24.37%
+2025-09-27 18:24:33,257 - INFO -    Time: 628.2s
+2025-09-27 18:24:33,257 - INFO - Round 6/15
+2025-09-27 18:24:33,258 - INFO - Distributing global model to clients...
+2025-09-27 18:24:33,302 - INFO - Global model distributed to 10 clients
+2025-09-27 18:24:33,302 - INFO - Training client 1/10
+2025-09-27 18:24:41,323 - INFO - Client 0 Epoch 1/8: Loss=0.0024, Acc=100.00%
+2025-09-27 18:24:49,223 - INFO - Client 0 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:24:57,283 - INFO - Client 0 Epoch 3/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:25:05,255 - INFO - Client 0 Epoch 4/8: Loss=0.0007, Acc=100.00%
+2025-09-27 18:25:12,944 - INFO - Client 0 Epoch 5/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:25:20,642 - INFO - Client 0 Epoch 6/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:25:28,233 - INFO - Client 0 Epoch 7/8: Loss=0.0361, Acc=98.80%
+2025-09-27 18:25:36,092 - INFO - Client 0 Epoch 8/8: Loss=0.2946, Acc=89.76%
+2025-09-27 18:25:36,093 - INFO - Client 1 completed in 62.8s
+2025-09-27 18:25:36,093 - INFO - Training client 2/10
+2025-09-27 18:25:43,705 - INFO - Client 1 Epoch 1/8: Loss=0.0024, Acc=100.00%
+2025-09-27 18:25:51,337 - INFO - Client 1 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:25:59,181 - INFO - Client 1 Epoch 3/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:26:07,181 - INFO - Client 1 Epoch 4/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:26:15,109 - INFO - Client 1 Epoch 5/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:26:23,160 - INFO - Client 1 Epoch 6/8: Loss=0.0007, Acc=100.00%
+2025-09-27 18:26:30,833 - INFO - Client 1 Epoch 7/8: Loss=0.0251, Acc=99.20%
+2025-09-27 18:26:39,722 - INFO - Client 1 Epoch 8/8: Loss=0.2772, Acc=90.45%
+2025-09-27 18:26:39,723 - INFO - Client 2 completed in 63.6s
+2025-09-27 18:26:39,723 - INFO - Training client 3/10
+2025-09-27 18:26:47,491 - INFO - Client 2 Epoch 1/8: Loss=0.0023, Acc=100.00%
+2025-09-27 18:26:55,352 - INFO - Client 2 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:27:03,411 - INFO - Client 2 Epoch 3/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:27:11,149 - INFO - Client 2 Epoch 4/8: Loss=0.0014, Acc=99.98%
+2025-09-27 18:27:18,912 - INFO - Client 2 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:27:27,074 - INFO - Client 2 Epoch 6/8: Loss=0.0644, Acc=97.87%
+2025-09-27 18:27:34,848 - INFO - Client 2 Epoch 7/8: Loss=0.2544, Acc=91.30%
+2025-09-27 18:27:42,712 - INFO - Client 2 Epoch 8/8: Loss=0.2003, Acc=93.15%
+2025-09-27 18:27:42,713 - INFO - Client 3 completed in 63.0s
+2025-09-27 18:27:42,713 - INFO - Training client 4/10
+2025-09-27 18:27:50,368 - INFO - Client 3 Epoch 1/8: Loss=0.0023, Acc=100.00%
+2025-09-27 18:27:58,054 - INFO - Client 3 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:28:06,149 - INFO - Client 3 Epoch 3/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:28:13,680 - INFO - Client 3 Epoch 4/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:28:21,593 - INFO - Client 3 Epoch 5/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:28:29,455 - INFO - Client 3 Epoch 6/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:28:37,650 - INFO - Client 3 Epoch 7/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:28:45,386 - INFO - Client 3 Epoch 8/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:28:45,388 - INFO - Client 4 completed in 62.7s
+2025-09-27 18:28:45,388 - INFO - Training client 5/10
+2025-09-27 18:28:53,126 - INFO - Client 4 Epoch 1/8: Loss=0.0025, Acc=99.99%
+2025-09-27 18:29:00,722 - INFO - Client 4 Epoch 2/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:29:08,791 - INFO - Client 4 Epoch 3/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:29:16,625 - INFO - Client 4 Epoch 4/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:29:24,168 - INFO - Client 4 Epoch 5/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:29:31,876 - INFO - Client 4 Epoch 6/8: Loss=0.0007, Acc=100.00%
+2025-09-27 18:29:39,775 - INFO - Client 4 Epoch 7/8: Loss=0.1038, Acc=96.47%
+2025-09-27 18:29:47,472 - INFO - Client 4 Epoch 8/8: Loss=0.2800, Acc=90.34%
+2025-09-27 18:29:47,473 - INFO - Client 5 completed in 62.1s
+2025-09-27 18:29:47,473 - INFO - Training client 6/10
+2025-09-27 18:29:55,291 - INFO - Client 5 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:30:03,075 - INFO - Client 5 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:30:10,908 - INFO - Client 5 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:30:18,899 - INFO - Client 5 Epoch 4/8: Loss=0.0469, Acc=98.45%
+2025-09-27 18:30:26,583 - INFO - Client 5 Epoch 5/8: Loss=0.1991, Acc=93.09%
+2025-09-27 18:30:34,182 - INFO - Client 5 Epoch 6/8: Loss=0.1687, Acc=94.13%
+2025-09-27 18:30:41,867 - INFO - Client 5 Epoch 7/8: Loss=0.1466, Acc=94.99%
+2025-09-27 18:30:49,504 - INFO - Client 5 Epoch 8/8: Loss=0.1408, Acc=95.19%
+2025-09-27 18:30:49,505 - INFO - Client 6 completed in 62.0s
+2025-09-27 18:30:49,505 - INFO - Training client 7/10
+2025-09-27 18:30:57,214 - INFO - Client 6 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:31:04,881 - INFO - Client 6 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:31:12,685 - INFO - Client 6 Epoch 3/8: Loss=0.0007, Acc=100.00%
+2025-09-27 18:31:20,526 - INFO - Client 6 Epoch 4/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:31:28,240 - INFO - Client 6 Epoch 5/8: Loss=0.0019, Acc=99.97%
+2025-09-27 18:31:36,297 - INFO - Client 6 Epoch 6/8: Loss=0.1095, Acc=96.31%
+2025-09-27 18:31:44,037 - INFO - Client 6 Epoch 7/8: Loss=0.2422, Acc=91.50%
+2025-09-27 18:31:51,960 - INFO - Client 6 Epoch 8/8: Loss=0.1965, Acc=93.13%
+2025-09-27 18:31:51,961 - INFO - Client 7 completed in 62.5s
+2025-09-27 18:31:51,961 - INFO - Training client 8/10
+2025-09-27 18:31:59,697 - INFO - Client 7 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:32:07,583 - INFO - Client 7 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:32:15,287 - INFO - Client 7 Epoch 3/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:32:23,230 - INFO - Client 7 Epoch 4/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:32:31,214 - INFO - Client 7 Epoch 5/8: Loss=0.0082, Acc=99.76%
+2025-09-27 18:32:39,084 - INFO - Client 7 Epoch 6/8: Loss=0.2119, Acc=92.90%
+2025-09-27 18:32:47,604 - INFO - Client 7 Epoch 7/8: Loss=0.2182, Acc=92.52%
+2025-09-27 18:32:55,805 - INFO - Client 7 Epoch 8/8: Loss=0.1735, Acc=94.03%
+2025-09-27 18:32:55,806 - INFO - Client 8 completed in 63.8s
+2025-09-27 18:32:55,806 - INFO - Training client 9/10
+2025-09-27 18:33:03,652 - INFO - Client 8 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:33:11,319 - INFO - Client 8 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:33:19,018 - INFO - Client 8 Epoch 3/8: Loss=0.0014, Acc=99.98%
+2025-09-27 18:33:26,795 - INFO - Client 8 Epoch 4/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:33:34,619 - INFO - Client 8 Epoch 5/8: Loss=0.0005, Acc=100.00%
+2025-09-27 18:33:42,381 - INFO - Client 8 Epoch 6/8: Loss=0.0006, Acc=100.00%
+2025-09-27 18:33:50,071 - INFO - Client 8 Epoch 7/8: Loss=0.0122, Acc=99.63%
+2025-09-27 18:33:57,880 - INFO - Client 8 Epoch 8/8: Loss=0.3005, Acc=89.75%
+2025-09-27 18:33:57,882 - INFO - Client 9 completed in 62.1s
+2025-09-27 18:33:57,882 - INFO - Training client 10/10
+2025-09-27 18:34:05,634 - INFO - Client 9 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:34:13,667 - INFO - Client 9 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:34:21,856 - INFO - Client 9 Epoch 3/8: Loss=0.0008, Acc=99.99%
+2025-09-27 18:34:29,634 - INFO - Client 9 Epoch 4/8: Loss=0.0280, Acc=99.05%
+2025-09-27 18:34:37,319 - INFO - Client 9 Epoch 5/8: Loss=0.1907, Acc=93.49%
+2025-09-27 18:34:45,081 - INFO - Client 9 Epoch 6/8: Loss=0.1896, Acc=93.55%
+2025-09-27 18:34:52,735 - INFO - Client 9 Epoch 7/8: Loss=0.1598, Acc=94.45%
+2025-09-27 18:35:00,776 - INFO - Client 9 Epoch 8/8: Loss=0.1310, Acc=95.46%
+2025-09-27 18:35:00,777 - INFO - Client 10 completed in 62.9s
+2025-09-27 18:35:00,777 - INFO - Server aggregating...
+2025-09-27 18:35:00,795 - INFO - Aggregation completed
+2025-09-27 18:35:00,796 - INFO - Evaluating...
+2025-09-27 18:35:00,920 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([22, 20, 24, 24, 18, 24, 35, 23, 36, 30]))
+2025-09-27 18:35:00,920 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:35:00,920 - INFO - DEBUG - Output logits range: [-4.565, 12.040]
+2025-09-27 18:35:00,921 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.178, 0.192]
+2025-09-27 18:35:00,921 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00339487 -0.05591023  0.04074772  0.08746722  0.03729164  0.06190086
+ -0.00215944 -0.01986546 -0.09629031 -0.03446671]
+2025-09-27 18:35:00,921 - INFO - DEBUG - First sample logits: [-1.3158216 -1.7633632 -2.563413   6.494523  -0.8675358  2.1288135
+  1.6074919 -0.7788318 -2.8057582 -0.1414606]
+2025-09-27 18:35:00,922 - INFO - DEBUG - Softmax probs: [3.96105577e-04 2.53189850e-04 1.13759874e-04 9.76788640e-01
+ 6.20153442e-04 1.24107245e-02 7.36868475e-03 6.77676871e-04
+ 8.92770040e-05 1.28182769e-03]
+2025-09-27 18:35:00,998 - INFO - Batch 0/40
+2025-09-27 18:35:02,397 - INFO - Batch 20/40
+2025-09-27 18:35:03,743 - INFO - Round 6 Results:
+2025-09-27 18:35:03,743 - INFO -    Clean Acc: 81.00%
+2025-09-27 18:35:03,743 - INFO -    Adv Acc: 24.84%
+2025-09-27 18:35:03,743 - INFO -    Time: 630.5s
+2025-09-27 18:35:03,743 - INFO - Round 7/15
+2025-09-27 18:35:03,743 - INFO - Distributing global model to clients...
+2025-09-27 18:35:03,788 - INFO - Global model distributed to 10 clients
+2025-09-27 18:35:03,788 - INFO - Training client 1/10
+2025-09-27 18:35:11,593 - INFO - Client 0 Epoch 1/8: Loss=0.0025, Acc=99.99%
+2025-09-27 18:35:19,555 - INFO - Client 0 Epoch 2/8: Loss=0.0012, Acc=99.99%
+2025-09-27 18:35:27,607 - INFO - Client 0 Epoch 3/8: Loss=0.0029, Acc=99.94%
+2025-09-27 18:35:35,363 - INFO - Client 0 Epoch 4/8: Loss=0.1889, Acc=93.52%
+2025-09-27 18:35:43,376 - INFO - Client 0 Epoch 5/8: Loss=0.2313, Acc=91.93%
+2025-09-27 18:35:51,098 - INFO - Client 0 Epoch 6/8: Loss=0.1803, Acc=93.86%
+2025-09-27 18:35:58,730 - INFO - Client 0 Epoch 7/8: Loss=0.1467, Acc=94.94%
+2025-09-27 18:36:07,198 - INFO - Client 0 Epoch 8/8: Loss=0.1315, Acc=95.52%
+2025-09-27 18:36:07,200 - INFO - Client 1 completed in 63.4s
+2025-09-27 18:36:07,200 - INFO - Training client 2/10
+2025-09-27 18:36:15,158 - INFO - Client 1 Epoch 1/8: Loss=0.0025, Acc=99.99%
+2025-09-27 18:36:22,830 - INFO - Client 1 Epoch 2/8: Loss=0.0049, Acc=99.89%
+2025-09-27 18:36:30,668 - INFO - Client 1 Epoch 3/8: Loss=0.1546, Acc=94.70%
+2025-09-27 18:36:38,576 - INFO - Client 1 Epoch 4/8: Loss=0.2160, Acc=92.57%
+2025-09-27 18:36:46,398 - INFO - Client 1 Epoch 5/8: Loss=0.1698, Acc=94.13%
+2025-09-27 18:36:54,359 - INFO - Client 1 Epoch 6/8: Loss=0.1369, Acc=95.28%
+2025-09-27 18:37:02,181 - INFO - Client 1 Epoch 7/8: Loss=0.1265, Acc=95.80%
+2025-09-27 18:37:10,266 - INFO - Client 1 Epoch 8/8: Loss=0.1157, Acc=96.03%
+2025-09-27 18:37:10,268 - INFO - Client 2 completed in 63.1s
+2025-09-27 18:37:10,268 - INFO - Training client 3/10
+2025-09-27 18:37:18,114 - INFO - Client 2 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:37:25,948 - INFO - Client 2 Epoch 2/8: Loss=0.0016, Acc=99.98%
+2025-09-27 18:37:34,366 - INFO - Client 2 Epoch 3/8: Loss=0.0260, Acc=99.16%
+2025-09-27 18:37:42,084 - INFO - Client 2 Epoch 4/8: Loss=0.2375, Acc=91.81%
+2025-09-27 18:37:49,626 - INFO - Client 2 Epoch 5/8: Loss=0.2020, Acc=92.95%
+2025-09-27 18:37:57,579 - INFO - Client 2 Epoch 6/8: Loss=0.1639, Acc=94.41%
+2025-09-27 18:38:05,272 - INFO - Client 2 Epoch 7/8: Loss=0.1463, Acc=94.99%
+2025-09-27 18:38:12,887 - INFO - Client 2 Epoch 8/8: Loss=0.1250, Acc=95.74%
+2025-09-27 18:38:12,888 - INFO - Client 3 completed in 62.6s
+2025-09-27 18:38:12,888 - INFO - Training client 4/10
+2025-09-27 18:38:20,607 - INFO - Client 3 Epoch 1/8: Loss=0.0024, Acc=100.00%
+2025-09-27 18:38:28,653 - INFO - Client 3 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:38:36,274 - INFO - Client 3 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:38:44,006 - INFO - Client 3 Epoch 4/8: Loss=0.1149, Acc=96.07%
+2025-09-27 18:38:51,705 - INFO - Client 3 Epoch 5/8: Loss=0.2582, Acc=91.11%
+2025-09-27 18:38:59,815 - INFO - Client 3 Epoch 6/8: Loss=0.1963, Acc=93.30%
+2025-09-27 18:39:08,030 - INFO - Client 3 Epoch 7/8: Loss=0.1620, Acc=94.48%
+2025-09-27 18:39:15,825 - INFO - Client 3 Epoch 8/8: Loss=0.1387, Acc=95.24%
+2025-09-27 18:39:15,826 - INFO - Client 4 completed in 62.9s
+2025-09-27 18:39:15,826 - INFO - Training client 5/10
+2025-09-27 18:39:23,499 - INFO - Client 4 Epoch 1/8: Loss=0.0024, Acc=100.00%
+2025-09-27 18:39:31,225 - INFO - Client 4 Epoch 2/8: Loss=0.0007, Acc=100.00%
+2025-09-27 18:39:39,051 - INFO - Client 4 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:39:47,933 - INFO - Client 4 Epoch 4/8: Loss=0.1300, Acc=95.57%
+2025-09-27 18:39:56,016 - INFO - Client 4 Epoch 5/8: Loss=0.2471, Acc=91.45%
+2025-09-27 18:40:03,757 - INFO - Client 4 Epoch 6/8: Loss=0.1952, Acc=93.39%
+2025-09-27 18:40:11,378 - INFO - Client 4 Epoch 7/8: Loss=0.1591, Acc=94.58%
+2025-09-27 18:40:19,463 - INFO - Client 4 Epoch 8/8: Loss=0.1396, Acc=95.24%
+2025-09-27 18:40:19,464 - INFO - Client 5 completed in 63.6s
+2025-09-27 18:40:19,465 - INFO - Training client 6/10
+2025-09-27 18:40:27,295 - INFO - Client 5 Epoch 1/8: Loss=0.0025, Acc=100.00%
+2025-09-27 18:40:35,216 - INFO - Client 5 Epoch 2/8: Loss=0.0762, Acc=97.42%
+2025-09-27 18:40:43,138 - INFO - Client 5 Epoch 3/8: Loss=0.2007, Acc=93.11%
+2025-09-27 18:40:50,958 - INFO - Client 5 Epoch 4/8: Loss=0.1767, Acc=93.88%
+2025-09-27 18:40:58,691 - INFO - Client 5 Epoch 5/8: Loss=0.1469, Acc=94.98%
+2025-09-27 18:41:06,727 - INFO - Client 5 Epoch 6/8: Loss=0.1310, Acc=95.44%
+2025-09-27 18:41:14,687 - INFO - Client 5 Epoch 7/8: Loss=0.1158, Acc=95.98%
+2025-09-27 18:41:22,731 - INFO - Client 5 Epoch 8/8: Loss=0.1038, Acc=96.50%
+2025-09-27 18:41:22,732 - INFO - Client 6 completed in 63.3s
+2025-09-27 18:41:22,733 - INFO - Training client 7/10
+2025-09-27 18:41:30,550 - INFO - Client 6 Epoch 1/8: Loss=0.0028, Acc=99.99%
+2025-09-27 18:41:38,270 - INFO - Client 6 Epoch 2/8: Loss=0.0015, Acc=99.98%
+2025-09-27 18:41:46,082 - INFO - Client 6 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:41:53,793 - INFO - Client 6 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:42:01,598 - INFO - Client 6 Epoch 5/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:42:09,328 - INFO - Client 6 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:42:17,126 - INFO - Client 6 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:42:24,751 - INFO - Client 6 Epoch 8/8: Loss=0.0472, Acc=98.51%
+2025-09-27 18:42:24,752 - INFO - Client 7 completed in 62.0s
+2025-09-27 18:42:24,752 - INFO - Training client 8/10
+2025-09-27 18:42:32,606 - INFO - Client 7 Epoch 1/8: Loss=0.0028, Acc=99.99%
+2025-09-27 18:42:40,536 - INFO - Client 7 Epoch 2/8: Loss=0.0558, Acc=98.17%
+2025-09-27 18:42:48,346 - INFO - Client 7 Epoch 3/8: Loss=0.2055, Acc=92.87%
+2025-09-27 18:42:56,227 - INFO - Client 7 Epoch 4/8: Loss=0.1842, Acc=93.61%
+2025-09-27 18:43:04,250 - INFO - Client 7 Epoch 5/8: Loss=0.1540, Acc=94.70%
+2025-09-27 18:43:12,035 - INFO - Client 7 Epoch 6/8: Loss=0.1256, Acc=95.72%
+2025-09-27 18:43:19,904 - INFO - Client 7 Epoch 7/8: Loss=0.1157, Acc=96.10%
+2025-09-27 18:43:27,675 - INFO - Client 7 Epoch 8/8: Loss=0.1096, Acc=96.31%
+2025-09-27 18:43:27,676 - INFO - Client 8 completed in 62.9s
+2025-09-27 18:43:27,676 - INFO - Training client 9/10
+2025-09-27 18:43:35,688 - INFO - Client 8 Epoch 1/8: Loss=0.0024, Acc=99.99%
+2025-09-27 18:43:43,565 - INFO - Client 8 Epoch 2/8: Loss=0.0102, Acc=99.71%
+2025-09-27 18:43:51,395 - INFO - Client 8 Epoch 3/8: Loss=0.1856, Acc=93.54%
+2025-09-27 18:43:59,267 - INFO - Client 8 Epoch 4/8: Loss=0.1992, Acc=93.16%
+2025-09-27 18:44:07,173 - INFO - Client 8 Epoch 5/8: Loss=0.1588, Acc=94.57%
+2025-09-27 18:44:15,338 - INFO - Client 8 Epoch 6/8: Loss=0.1373, Acc=95.27%
+2025-09-27 18:44:23,169 - INFO - Client 8 Epoch 7/8: Loss=0.1307, Acc=95.57%
+2025-09-27 18:44:31,094 - INFO - Client 8 Epoch 8/8: Loss=0.1076, Acc=96.29%
+2025-09-27 18:44:31,095 - INFO - Client 9 completed in 63.4s
+2025-09-27 18:44:31,095 - INFO - Training client 10/10
+2025-09-27 18:44:38,995 - INFO - Client 9 Epoch 1/8: Loss=0.0025, Acc=100.00%
+2025-09-27 18:44:46,910 - INFO - Client 9 Epoch 2/8: Loss=0.0944, Acc=96.79%
+2025-09-27 18:44:54,614 - INFO - Client 9 Epoch 3/8: Loss=0.1960, Acc=93.23%
+2025-09-27 18:45:02,841 - INFO - Client 9 Epoch 4/8: Loss=0.1655, Acc=94.24%
+2025-09-27 18:45:11,215 - INFO - Client 9 Epoch 5/8: Loss=0.1460, Acc=94.99%
+2025-09-27 18:45:19,187 - INFO - Client 9 Epoch 6/8: Loss=0.1250, Acc=95.79%
+2025-09-27 18:45:27,131 - INFO - Client 9 Epoch 7/8: Loss=0.1201, Acc=95.90%
+2025-09-27 18:45:35,071 - INFO - Client 9 Epoch 8/8: Loss=0.1020, Acc=96.43%
+2025-09-27 18:45:35,073 - INFO - Client 10 completed in 64.0s
+2025-09-27 18:45:35,073 - INFO - Server aggregating...
+2025-09-27 18:45:35,092 - INFO - Aggregation completed
+2025-09-27 18:45:35,092 - INFO - Evaluating...
+2025-09-27 18:45:35,225 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([22, 18, 25, 28, 19, 23, 29, 25, 37, 30]))
+2025-09-27 18:45:35,226 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:45:35,227 - INFO - DEBUG - Output logits range: [-4.490, 12.306]
+2025-09-27 18:45:35,227 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.174, 0.192]
+2025-09-27 18:45:35,227 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00586114 -0.04577968  0.03514947  0.0735194   0.03659307  0.05076553
+ -0.00062747 -0.01359084 -0.08686513 -0.03209966]
+2025-09-27 18:45:35,228 - INFO - DEBUG - First sample logits: [-1.7814984  -1.831893   -2.8630817   5.5689273  -0.5518335   3.7238436
+  0.8779755  -0.68321466 -3.050582    0.6269762 ]
+2025-09-27 18:45:35,228 - INFO - DEBUG - Softmax probs: [5.4428948e-04 5.1753991e-04 1.8454590e-04 8.4738207e-01 1.8615151e-03
+ 1.3389662e-01 7.7772276e-03 1.6323321e-03 1.5299393e-04 6.0508600e-03]
+2025-09-27 18:45:35,309 - INFO - Batch 0/40
+2025-09-27 18:45:36,719 - INFO - Batch 20/40
+2025-09-27 18:45:38,116 - INFO - Round 7 Results:
+2025-09-27 18:45:38,117 - INFO -    Clean Acc: 80.86%
+2025-09-27 18:45:38,117 - INFO -    Adv Acc: 24.32%
+2025-09-27 18:45:38,117 - INFO -    Time: 634.4s
+2025-09-27 18:45:38,117 - INFO - Round 8/15
+2025-09-27 18:45:38,117 - INFO - Distributing global model to clients...
+2025-09-27 18:45:38,157 - INFO - Global model distributed to 10 clients
+2025-09-27 18:45:38,157 - INFO - Training client 1/10
+2025-09-27 18:45:45,843 - INFO - Client 0 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:45:53,455 - INFO - Client 0 Epoch 2/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:46:01,257 - INFO - Client 0 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:46:08,995 - INFO - Client 0 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:46:16,684 - INFO - Client 0 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:46:24,745 - INFO - Client 0 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:46:32,627 - INFO - Client 0 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:46:40,616 - INFO - Client 0 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:46:40,617 - INFO - Client 1 completed in 62.5s
+2025-09-27 18:46:40,617 - INFO - Training client 2/10
+2025-09-27 18:46:48,373 - INFO - Client 1 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:46:56,199 - INFO - Client 1 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:47:04,470 - INFO - Client 1 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:47:12,161 - INFO - Client 1 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:47:20,212 - INFO - Client 1 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:47:28,046 - INFO - Client 1 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:47:35,602 - INFO - Client 1 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:47:43,595 - INFO - Client 1 Epoch 8/8: Loss=0.0016, Acc=99.99%
+2025-09-27 18:47:43,596 - INFO - Client 2 completed in 63.0s
+2025-09-27 18:47:43,596 - INFO - Training client 3/10
+2025-09-27 18:47:51,726 - INFO - Client 2 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:47:59,370 - INFO - Client 2 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:48:07,331 - INFO - Client 2 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:48:15,068 - INFO - Client 2 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:48:23,269 - INFO - Client 2 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:48:30,967 - INFO - Client 2 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:48:38,528 - INFO - Client 2 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:48:46,185 - INFO - Client 2 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:48:46,186 - INFO - Client 3 completed in 62.6s
+2025-09-27 18:48:46,187 - INFO - Training client 4/10
+2025-09-27 18:48:53,920 - INFO - Client 3 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:49:01,619 - INFO - Client 3 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:49:10,169 - INFO - Client 3 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:49:18,120 - INFO - Client 3 Epoch 4/8: Loss=0.0021, Acc=99.98%
+2025-09-27 18:49:25,727 - INFO - Client 3 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:49:33,488 - INFO - Client 3 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:49:41,003 - INFO - Client 3 Epoch 7/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:49:48,572 - INFO - Client 3 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:49:48,573 - INFO - Client 4 completed in 62.4s
+2025-09-27 18:49:48,573 - INFO - Training client 5/10
+2025-09-27 18:49:56,180 - INFO - Client 4 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:50:03,901 - INFO - Client 4 Epoch 2/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:50:11,730 - INFO - Client 4 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:50:20,241 - INFO - Client 4 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:50:28,120 - INFO - Client 4 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:50:35,877 - INFO - Client 4 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:50:43,374 - INFO - Client 4 Epoch 7/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:50:51,257 - INFO - Client 4 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:50:51,258 - INFO - Client 5 completed in 62.7s
+2025-09-27 18:50:51,258 - INFO - Training client 6/10
+2025-09-27 18:50:58,955 - INFO - Client 5 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:51:06,614 - INFO - Client 5 Epoch 2/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:51:14,277 - INFO - Client 5 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:51:22,255 - INFO - Client 5 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:51:29,892 - INFO - Client 5 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:51:37,599 - INFO - Client 5 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:51:45,542 - INFO - Client 5 Epoch 7/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:51:53,727 - INFO - Client 5 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:51:53,728 - INFO - Client 6 completed in 62.5s
+2025-09-27 18:51:53,728 - INFO - Training client 7/10
+2025-09-27 18:52:01,381 - INFO - Client 6 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:52:09,087 - INFO - Client 6 Epoch 2/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:52:16,870 - INFO - Client 6 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:52:24,908 - INFO - Client 6 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:52:32,467 - INFO - Client 6 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:52:40,393 - INFO - Client 6 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:52:48,252 - INFO - Client 6 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:52:55,951 - INFO - Client 6 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:52:55,952 - INFO - Client 7 completed in 62.2s
+2025-09-27 18:52:55,952 - INFO - Training client 8/10
+2025-09-27 18:53:04,129 - INFO - Client 7 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:53:11,954 - INFO - Client 7 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:53:19,618 - INFO - Client 7 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:53:27,389 - INFO - Client 7 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:53:35,748 - INFO - Client 7 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:53:43,549 - INFO - Client 7 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:53:51,221 - INFO - Client 7 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:53:58,874 - INFO - Client 7 Epoch 8/8: Loss=0.1434, Acc=95.22%
+2025-09-27 18:53:58,875 - INFO - Client 8 completed in 62.9s
+2025-09-27 18:53:58,875 - INFO - Training client 9/10
+2025-09-27 18:54:06,658 - INFO - Client 8 Epoch 1/8: Loss=0.0018, Acc=100.00%
+2025-09-27 18:54:14,355 - INFO - Client 8 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:54:22,152 - INFO - Client 8 Epoch 3/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:54:29,869 - INFO - Client 8 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:54:37,418 - INFO - Client 8 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:54:45,229 - INFO - Client 8 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:54:52,995 - INFO - Client 8 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:55:00,703 - INFO - Client 8 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:55:00,704 - INFO - Client 9 completed in 61.8s
+2025-09-27 18:55:00,704 - INFO - Training client 10/10
+2025-09-27 18:55:08,431 - INFO - Client 9 Epoch 1/8: Loss=0.0019, Acc=99.99%
+2025-09-27 18:55:16,277 - INFO - Client 9 Epoch 2/8: Loss=0.0018, Acc=99.98%
+2025-09-27 18:55:23,950 - INFO - Client 9 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:55:31,849 - INFO - Client 9 Epoch 4/8: Loss=0.0008, Acc=100.00%
+2025-09-27 18:55:39,789 - INFO - Client 9 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:55:47,596 - INFO - Client 9 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:55:55,703 - INFO - Client 9 Epoch 7/8: Loss=0.0009, Acc=100.00%
+2025-09-27 18:56:03,637 - INFO - Client 9 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 18:56:03,639 - INFO - Client 10 completed in 62.9s
+2025-09-27 18:56:03,639 - INFO - Server aggregating...
+2025-09-27 18:56:03,656 - INFO - Aggregation completed
+2025-09-27 18:56:03,657 - INFO - Evaluating...
+2025-09-27 18:56:03,787 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([22, 20, 24, 34, 16, 22, 28, 25, 37, 28]))
+2025-09-27 18:56:03,788 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 18:56:03,788 - INFO - DEBUG - Output logits range: [-3.520, 10.310]
+2025-09-27 18:56:03,788 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.145, 0.162]
+2025-09-27 18:56:03,789 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00301065 -0.02674671  0.02085485  0.0438039   0.0248543   0.03377684
+  0.00162285 -0.00704163 -0.05965783 -0.02026685]
+2025-09-27 18:56:03,789 - INFO - DEBUG - First sample logits: [-1.2177362  -1.0809256  -2.013136    6.2431264  -1.0846767   2.5994604
+ -0.12635107 -1.1004951  -2.1117737  -0.09665123]
+2025-09-27 18:56:03,789 - INFO - DEBUG - Softmax probs: [5.5696524e-04 6.3862256e-04 2.5141469e-04 9.6836609e-01 6.3623139e-04
+ 2.5328854e-02 1.6588640e-03 6.2624662e-04 2.2779933e-04 1.7088708e-03]
+2025-09-27 18:56:03,868 - INFO - Batch 0/40
+2025-09-27 18:56:05,280 - INFO - Batch 20/40
+2025-09-27 18:56:06,626 - INFO - Round 8 Results:
+2025-09-27 18:56:06,626 - INFO -    Clean Acc: 81.58%
+2025-09-27 18:56:06,626 - INFO -    Adv Acc: 24.60%
+2025-09-27 18:56:06,626 - INFO -    Time: 628.5s
+2025-09-27 18:56:06,626 - INFO - Round 9/15
+2025-09-27 18:56:06,626 - INFO - Distributing global model to clients...
+2025-09-27 18:56:06,667 - INFO - Global model distributed to 10 clients
+2025-09-27 18:56:06,667 - INFO - Training client 1/10
+2025-09-27 18:56:14,585 - INFO - Client 0 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:56:22,382 - INFO - Client 0 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:56:30,153 - INFO - Client 0 Epoch 3/8: Loss=0.0670, Acc=97.83%
+2025-09-27 18:56:38,235 - INFO - Client 0 Epoch 4/8: Loss=0.4044, Acc=85.90%
+2025-09-27 18:56:46,090 - INFO - Client 0 Epoch 5/8: Loss=0.2674, Acc=90.96%
+2025-09-27 18:56:53,827 - INFO - Client 0 Epoch 6/8: Loss=0.2041, Acc=92.98%
+2025-09-27 18:57:01,418 - INFO - Client 0 Epoch 7/8: Loss=0.1709, Acc=94.16%
+2025-09-27 18:57:09,091 - INFO - Client 0 Epoch 8/8: Loss=0.1412, Acc=95.16%
+2025-09-27 18:57:09,092 - INFO - Client 1 completed in 62.4s
+2025-09-27 18:57:09,092 - INFO - Training client 2/10
+2025-09-27 18:57:16,849 - INFO - Client 1 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:57:25,087 - INFO - Client 1 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:57:32,831 - INFO - Client 1 Epoch 3/8: Loss=0.3077, Acc=89.58%
+2025-09-27 18:57:40,651 - INFO - Client 1 Epoch 4/8: Loss=0.3057, Acc=89.54%
+2025-09-27 18:57:48,779 - INFO - Client 1 Epoch 5/8: Loss=0.2199, Acc=92.38%
+2025-09-27 18:57:56,571 - INFO - Client 1 Epoch 6/8: Loss=0.1760, Acc=93.98%
+2025-09-27 18:58:05,127 - INFO - Client 1 Epoch 7/8: Loss=0.1555, Acc=94.79%
+2025-09-27 18:58:13,345 - INFO - Client 1 Epoch 8/8: Loss=0.1248, Acc=95.70%
+2025-09-27 18:58:13,346 - INFO - Client 2 completed in 64.3s
+2025-09-27 18:58:13,346 - INFO - Training client 3/10
+2025-09-27 18:58:21,007 - INFO - Client 2 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:58:28,657 - INFO - Client 2 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:58:36,312 - INFO - Client 2 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:58:44,167 - INFO - Client 2 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:58:51,988 - INFO - Client 2 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:58:59,678 - INFO - Client 2 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:07,568 - INFO - Client 2 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:15,351 - INFO - Client 2 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:15,352 - INFO - Client 3 completed in 62.0s
+2025-09-27 18:59:15,352 - INFO - Training client 4/10
+2025-09-27 18:59:22,957 - INFO - Client 3 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:30,821 - INFO - Client 3 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:38,474 - INFO - Client 3 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:46,139 - INFO - Client 3 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 18:59:54,596 - INFO - Client 3 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:00:02,605 - INFO - Client 3 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:00:10,320 - INFO - Client 3 Epoch 7/8: Loss=0.5301, Acc=81.86%
+2025-09-27 19:00:18,134 - INFO - Client 3 Epoch 8/8: Loss=0.3475, Acc=87.98%
+2025-09-27 19:00:18,135 - INFO - Client 4 completed in 62.8s
+2025-09-27 19:00:18,135 - INFO - Training client 5/10
+2025-09-27 19:00:25,798 - INFO - Client 4 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:00:33,401 - INFO - Client 4 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:00:40,919 - INFO - Client 4 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:00:48,638 - INFO - Client 4 Epoch 4/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:00:56,309 - INFO - Client 4 Epoch 5/8: Loss=0.4480, Acc=84.68%
+2025-09-27 19:01:04,013 - INFO - Client 4 Epoch 6/8: Loss=0.3087, Acc=89.40%
+2025-09-27 19:01:11,781 - INFO - Client 4 Epoch 7/8: Loss=0.2287, Acc=92.19%
+2025-09-27 19:01:19,606 - INFO - Client 4 Epoch 8/8: Loss=0.1784, Acc=93.86%
+2025-09-27 19:01:19,607 - INFO - Client 5 completed in 61.5s
+2025-09-27 19:01:19,607 - INFO - Training client 6/10
+2025-09-27 19:01:27,348 - INFO - Client 5 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:01:35,434 - INFO - Client 5 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:01:43,211 - INFO - Client 5 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:01:51,183 - INFO - Client 5 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:01:58,845 - INFO - Client 5 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:06,492 - INFO - Client 5 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:14,247 - INFO - Client 5 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:22,277 - INFO - Client 5 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:22,277 - INFO - Client 6 completed in 62.7s
+2025-09-27 19:02:22,278 - INFO - Training client 7/10
+2025-09-27 19:02:30,145 - INFO - Client 6 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:37,601 - INFO - Client 6 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:45,265 - INFO - Client 6 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:02:53,126 - INFO - Client 6 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:00,673 - INFO - Client 6 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:08,634 - INFO - Client 6 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:16,340 - INFO - Client 6 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:24,278 - INFO - Client 6 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:24,279 - INFO - Client 7 completed in 62.0s
+2025-09-27 19:03:24,279 - INFO - Training client 8/10
+2025-09-27 19:03:31,976 - INFO - Client 7 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:39,656 - INFO - Client 7 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:47,304 - INFO - Client 7 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:03:55,269 - INFO - Client 7 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:02,876 - INFO - Client 7 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:10,561 - INFO - Client 7 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:18,271 - INFO - Client 7 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:26,210 - INFO - Client 7 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:26,211 - INFO - Client 8 completed in 61.9s
+2025-09-27 19:04:26,211 - INFO - Training client 9/10
+2025-09-27 19:04:33,882 - INFO - Client 8 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:41,847 - INFO - Client 8 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:49,645 - INFO - Client 8 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:04:57,361 - INFO - Client 8 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:05:05,040 - INFO - Client 8 Epoch 5/8: Loss=0.3669, Acc=87.52%
+2025-09-27 19:05:12,784 - INFO - Client 8 Epoch 6/8: Loss=0.3420, Acc=88.32%
+2025-09-27 19:05:20,652 - INFO - Client 8 Epoch 7/8: Loss=0.2427, Acc=91.57%
+2025-09-27 19:05:28,414 - INFO - Client 8 Epoch 8/8: Loss=0.1864, Acc=93.62%
+2025-09-27 19:05:28,415 - INFO - Client 9 completed in 62.2s
+2025-09-27 19:05:28,416 - INFO - Training client 10/10
+2025-09-27 19:05:36,338 - INFO - Client 9 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:05:43,926 - INFO - Client 9 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:05:51,791 - INFO - Client 9 Epoch 3/8: Loss=0.3137, Acc=89.30%
+2025-09-27 19:06:00,104 - INFO - Client 9 Epoch 4/8: Loss=0.3005, Acc=89.75%
+2025-09-27 19:06:07,957 - INFO - Client 9 Epoch 5/8: Loss=0.2185, Acc=92.44%
+2025-09-27 19:06:16,459 - INFO - Client 9 Epoch 6/8: Loss=0.1744, Acc=94.06%
+2025-09-27 19:06:24,645 - INFO - Client 9 Epoch 7/8: Loss=0.1514, Acc=94.78%
+2025-09-27 19:06:32,371 - INFO - Client 9 Epoch 8/8: Loss=0.1214, Acc=95.84%
+2025-09-27 19:06:32,372 - INFO - Client 10 completed in 64.0s
+2025-09-27 19:06:32,373 - INFO - Server aggregating...
+2025-09-27 19:06:32,391 - INFO - Aggregation completed
+2025-09-27 19:06:32,391 - INFO - Evaluating...
+2025-09-27 19:06:32,518 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([23, 12, 13, 45, 47, 12, 26, 13, 36, 29]))
+2025-09-27 19:06:32,519 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:06:32,519 - INFO - DEBUG - Output logits range: [-2.944, 8.376]
+2025-09-27 19:06:32,520 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.141, 0.170]
+2025-09-27 19:06:32,520 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00671672 -0.0258116   0.02466048  0.04010192  0.01858603  0.03322726
+ -0.00326627 -0.00601007 -0.0499923  -0.01879372]
+2025-09-27 19:06:32,521 - INFO - DEBUG - First sample logits: [-1.1940943  -2.158058   -0.78362507  2.9026399   1.8255974   1.09361
+  0.19489346 -0.09322643 -1.4916482  -0.2885346 ]
+2025-09-27 19:06:32,521 - INFO - DEBUG - Softmax probs: [0.00965221 0.00368114 0.01455095 0.58051807 0.19772525 0.09509639
+ 0.03871296 0.02902201 0.00716804 0.02387296]
+2025-09-27 19:06:32,602 - INFO - Batch 0/40
+2025-09-27 19:06:33,977 - INFO - Batch 20/40
+2025-09-27 19:06:35,314 - INFO - Round 9 Results:
+2025-09-27 19:06:35,315 - INFO -    Clean Acc: 69.32%
+2025-09-27 19:06:35,315 - INFO -    Adv Acc: 16.09%
+2025-09-27 19:06:35,315 - INFO -    Time: 628.7s
+2025-09-27 19:06:35,315 - INFO - Round 10/15
+2025-09-27 19:06:35,315 - INFO - Distributing global model to clients...
+2025-09-27 19:06:35,359 - INFO - Global model distributed to 10 clients
+2025-09-27 19:06:35,359 - INFO - Training client 1/10
+2025-09-27 19:06:43,039 - INFO - Client 0 Epoch 1/8: Loss=0.0024, Acc=99.98%
+2025-09-27 19:06:50,947 - INFO - Client 0 Epoch 2/8: Loss=0.1920, Acc=93.52%
+2025-09-27 19:06:58,636 - INFO - Client 0 Epoch 3/8: Loss=0.2722, Acc=90.66%
+2025-09-27 19:07:06,940 - INFO - Client 0 Epoch 4/8: Loss=0.1888, Acc=93.49%
+2025-09-27 19:07:14,790 - INFO - Client 0 Epoch 5/8: Loss=0.1571, Acc=94.66%
+2025-09-27 19:07:22,515 - INFO - Client 0 Epoch 6/8: Loss=0.1387, Acc=95.23%
+2025-09-27 19:07:30,241 - INFO - Client 0 Epoch 7/8: Loss=0.1159, Acc=96.07%
+2025-09-27 19:07:38,017 - INFO - Client 0 Epoch 8/8: Loss=0.0967, Acc=96.82%
+2025-09-27 19:07:38,018 - INFO - Client 1 completed in 62.7s
+2025-09-27 19:07:38,018 - INFO - Training client 2/10
+2025-09-27 19:07:45,801 - INFO - Client 1 Epoch 1/8: Loss=0.0058, Acc=99.89%
+2025-09-27 19:07:53,726 - INFO - Client 1 Epoch 2/8: Loss=0.2779, Acc=90.35%
+2025-09-27 19:08:01,620 - INFO - Client 1 Epoch 3/8: Loss=0.2347, Acc=91.97%
+2025-09-27 19:08:09,467 - INFO - Client 1 Epoch 4/8: Loss=0.1717, Acc=94.07%
+2025-09-27 19:08:17,096 - INFO - Client 1 Epoch 5/8: Loss=0.1465, Acc=95.00%
+2025-09-27 19:08:24,696 - INFO - Client 1 Epoch 6/8: Loss=0.1301, Acc=95.56%
+2025-09-27 19:08:32,531 - INFO - Client 1 Epoch 7/8: Loss=0.1157, Acc=96.02%
+2025-09-27 19:08:40,390 - INFO - Client 1 Epoch 8/8: Loss=0.1016, Acc=96.43%
+2025-09-27 19:08:40,391 - INFO - Client 2 completed in 62.4s
+2025-09-27 19:08:40,391 - INFO - Training client 3/10
+2025-09-27 19:08:47,986 - INFO - Client 2 Epoch 1/8: Loss=0.0286, Acc=99.10%
+2025-09-27 19:08:55,594 - INFO - Client 2 Epoch 2/8: Loss=0.2752, Acc=90.47%
+2025-09-27 19:09:03,609 - INFO - Client 2 Epoch 3/8: Loss=0.2262, Acc=92.22%
+2025-09-27 19:09:11,472 - INFO - Client 2 Epoch 4/8: Loss=0.1718, Acc=94.19%
+2025-09-27 19:09:19,437 - INFO - Client 2 Epoch 5/8: Loss=0.1406, Acc=95.23%
+2025-09-27 19:09:27,142 - INFO - Client 2 Epoch 6/8: Loss=0.1236, Acc=95.77%
+2025-09-27 19:09:35,027 - INFO - Client 2 Epoch 7/8: Loss=0.1096, Acc=96.32%
+2025-09-27 19:09:42,759 - INFO - Client 2 Epoch 8/8: Loss=0.1041, Acc=96.51%
+2025-09-27 19:09:42,760 - INFO - Client 3 completed in 62.4s
+2025-09-27 19:09:42,760 - INFO - Training client 4/10
+2025-09-27 19:09:50,475 - INFO - Client 3 Epoch 1/8: Loss=0.0108, Acc=99.72%
+2025-09-27 19:09:58,286 - INFO - Client 3 Epoch 2/8: Loss=0.2874, Acc=90.11%
+2025-09-27 19:10:06,279 - INFO - Client 3 Epoch 3/8: Loss=0.2280, Acc=92.22%
+2025-09-27 19:10:13,976 - INFO - Client 3 Epoch 4/8: Loss=0.1722, Acc=94.13%
+2025-09-27 19:10:21,705 - INFO - Client 3 Epoch 5/8: Loss=0.1440, Acc=95.07%
+2025-09-27 19:10:29,359 - INFO - Client 3 Epoch 6/8: Loss=0.1255, Acc=95.63%
+2025-09-27 19:10:37,225 - INFO - Client 3 Epoch 7/8: Loss=0.1101, Acc=96.24%
+2025-09-27 19:10:44,893 - INFO - Client 3 Epoch 8/8: Loss=0.1027, Acc=96.52%
+2025-09-27 19:10:44,895 - INFO - Client 4 completed in 62.1s
+2025-09-27 19:10:44,895 - INFO - Training client 5/10
+2025-09-27 19:10:52,817 - INFO - Client 4 Epoch 1/8: Loss=0.0022, Acc=99.99%
+2025-09-27 19:11:00,482 - INFO - Client 4 Epoch 2/8: Loss=0.0883, Acc=97.03%
+2025-09-27 19:11:08,445 - INFO - Client 4 Epoch 3/8: Loss=0.3041, Acc=89.53%
+2025-09-27 19:11:16,264 - INFO - Client 4 Epoch 4/8: Loss=0.2234, Acc=92.38%
+2025-09-27 19:11:24,241 - INFO - Client 4 Epoch 5/8: Loss=0.1720, Acc=94.05%
+2025-09-27 19:11:32,027 - INFO - Client 4 Epoch 6/8: Loss=0.1360, Acc=95.30%
+2025-09-27 19:11:40,144 - INFO - Client 4 Epoch 7/8: Loss=0.1210, Acc=95.78%
+2025-09-27 19:11:47,897 - INFO - Client 4 Epoch 8/8: Loss=0.1123, Acc=96.12%
+2025-09-27 19:11:47,898 - INFO - Client 5 completed in 63.0s
+2025-09-27 19:11:47,898 - INFO - Training client 6/10
+2025-09-27 19:11:55,746 - INFO - Client 5 Epoch 1/8: Loss=0.0035, Acc=99.96%
+2025-09-27 19:12:03,578 - INFO - Client 5 Epoch 2/8: Loss=0.2343, Acc=91.91%
+2025-09-27 19:12:11,158 - INFO - Client 5 Epoch 3/8: Loss=0.2498, Acc=91.39%
+2025-09-27 19:12:19,071 - INFO - Client 5 Epoch 4/8: Loss=0.1862, Acc=93.56%
+2025-09-27 19:12:26,660 - INFO - Client 5 Epoch 5/8: Loss=0.1451, Acc=95.08%
+2025-09-27 19:12:34,159 - INFO - Client 5 Epoch 6/8: Loss=0.1331, Acc=95.39%
+2025-09-27 19:12:41,943 - INFO - Client 5 Epoch 7/8: Loss=0.1233, Acc=95.86%
+2025-09-27 19:12:49,909 - INFO - Client 5 Epoch 8/8: Loss=0.0989, Acc=96.62%
+2025-09-27 19:12:49,910 - INFO - Client 6 completed in 62.0s
+2025-09-27 19:12:49,910 - INFO - Training client 7/10
+2025-09-27 19:12:58,615 - INFO - Client 6 Epoch 1/8: Loss=0.0061, Acc=99.87%
+2025-09-27 19:13:06,706 - INFO - Client 6 Epoch 2/8: Loss=0.2656, Acc=90.91%
+2025-09-27 19:13:14,615 - INFO - Client 6 Epoch 3/8: Loss=0.2243, Acc=92.40%
+2025-09-27 19:13:22,475 - INFO - Client 6 Epoch 4/8: Loss=0.1838, Acc=93.69%
+2025-09-27 19:13:30,240 - INFO - Client 6 Epoch 5/8: Loss=0.1479, Acc=94.95%
+2025-09-27 19:13:38,112 - INFO - Client 6 Epoch 6/8: Loss=0.1278, Acc=95.61%
+2025-09-27 19:13:45,899 - INFO - Client 6 Epoch 7/8: Loss=0.1191, Acc=95.91%
+2025-09-27 19:13:53,489 - INFO - Client 6 Epoch 8/8: Loss=0.1049, Acc=96.42%
+2025-09-27 19:13:53,489 - INFO - Client 7 completed in 63.6s
+2025-09-27 19:13:53,490 - INFO - Training client 8/10
+2025-09-27 19:14:01,092 - INFO - Client 7 Epoch 1/8: Loss=0.0056, Acc=99.88%
+2025-09-27 19:14:08,815 - INFO - Client 7 Epoch 2/8: Loss=0.2535, Acc=91.32%
+2025-09-27 19:14:16,516 - INFO - Client 7 Epoch 3/8: Loss=0.2523, Acc=91.28%
+2025-09-27 19:14:24,346 - INFO - Client 7 Epoch 4/8: Loss=0.1828, Acc=93.80%
+2025-09-27 19:14:32,352 - INFO - Client 7 Epoch 5/8: Loss=0.1410, Acc=95.19%
+2025-09-27 19:14:40,175 - INFO - Client 7 Epoch 6/8: Loss=0.1333, Acc=95.47%
+2025-09-27 19:14:47,753 - INFO - Client 7 Epoch 7/8: Loss=0.1115, Acc=96.25%
+2025-09-27 19:14:55,734 - INFO - Client 7 Epoch 8/8: Loss=0.1021, Acc=96.54%
+2025-09-27 19:14:55,735 - INFO - Client 8 completed in 62.2s
+2025-09-27 19:14:55,736 - INFO - Training client 9/10
+2025-09-27 19:15:03,566 - INFO - Client 8 Epoch 1/8: Loss=0.0037, Acc=99.94%
+2025-09-27 19:15:11,470 - INFO - Client 8 Epoch 2/8: Loss=0.1796, Acc=93.85%
+2025-09-27 19:15:19,296 - INFO - Client 8 Epoch 3/8: Loss=0.2659, Acc=90.88%
+2025-09-27 19:15:27,062 - INFO - Client 8 Epoch 4/8: Loss=0.2002, Acc=93.11%
+2025-09-27 19:15:34,880 - INFO - Client 8 Epoch 5/8: Loss=0.1595, Acc=94.53%
+2025-09-27 19:15:42,653 - INFO - Client 8 Epoch 6/8: Loss=0.1346, Acc=95.36%
+2025-09-27 19:15:50,952 - INFO - Client 8 Epoch 7/8: Loss=0.1131, Acc=96.13%
+2025-09-27 19:15:58,884 - INFO - Client 8 Epoch 8/8: Loss=0.1116, Acc=96.17%
+2025-09-27 19:15:58,885 - INFO - Client 9 completed in 63.1s
+2025-09-27 19:15:58,885 - INFO - Training client 10/10
+2025-09-27 19:16:06,858 - INFO - Client 9 Epoch 1/8: Loss=0.0592, Acc=98.05%
+2025-09-27 19:16:14,444 - INFO - Client 9 Epoch 2/8: Loss=0.2709, Acc=90.75%
+2025-09-27 19:16:22,173 - INFO - Client 9 Epoch 3/8: Loss=0.2134, Acc=92.77%
+2025-09-27 19:16:29,830 - INFO - Client 9 Epoch 4/8: Loss=0.1609, Acc=94.54%
+2025-09-27 19:16:37,710 - INFO - Client 9 Epoch 5/8: Loss=0.1412, Acc=95.24%
+2025-09-27 19:16:45,420 - INFO - Client 9 Epoch 6/8: Loss=0.1238, Acc=95.83%
+2025-09-27 19:16:53,087 - INFO - Client 9 Epoch 7/8: Loss=0.1078, Acc=96.46%
+2025-09-27 19:17:00,795 - INFO - Client 9 Epoch 8/8: Loss=0.1032, Acc=96.49%
+2025-09-27 19:17:00,796 - INFO - Client 10 completed in 61.9s
+2025-09-27 19:17:00,796 - INFO - Server aggregating...
+2025-09-27 19:17:00,816 - INFO - Aggregation completed
+2025-09-27 19:17:00,817 - INFO - Evaluating...
+2025-09-27 19:17:00,940 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([24, 17, 23, 26, 19, 26, 28, 24, 40, 29]))
+2025-09-27 19:17:00,941 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:17:00,941 - INFO - DEBUG - Output logits range: [-4.412, 13.256]
+2025-09-27 19:17:00,942 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.149, 0.181]
+2025-09-27 19:17:00,942 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00417826 -0.02478146  0.02411487  0.03924961  0.01571663  0.0291593
+ -0.00579781 -0.00655171 -0.04275566 -0.01980122]
+2025-09-27 19:17:00,943 - INFO - DEBUG - First sample logits: [-1.9015443  -1.3121527  -2.2005188   5.717405   -0.7368809   4.060735
+ -0.2808553  -1.5268344  -2.4908433   0.67067045]
+2025-09-27 19:17:00,943 - INFO - DEBUG - Softmax probs: [4.0785942e-04 7.3532586e-04 3.0245958e-04 8.3057332e-01 1.3071258e-03
+ 1.5845118e-01 2.0623708e-03 5.9325970e-04 2.2624611e-04 5.3408341e-03]
+2025-09-27 19:17:01,019 - INFO - Batch 0/40
+2025-09-27 19:17:02,431 - INFO - Batch 20/40
+2025-09-27 19:17:03,776 - INFO - Round 10 Results:
+2025-09-27 19:17:03,776 - INFO -    Clean Acc: 81.53%
+2025-09-27 19:17:03,776 - INFO -    Adv Acc: 24.76%
+2025-09-27 19:17:03,776 - INFO -    Time: 628.5s
+2025-09-27 19:17:03,776 - INFO - Round 11/15
+2025-09-27 19:17:03,776 - INFO - Distributing global model to clients...
+2025-09-27 19:17:03,817 - INFO - Global model distributed to 10 clients
+2025-09-27 19:17:03,817 - INFO - Training client 1/10
+2025-09-27 19:17:11,552 - INFO - Client 0 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:17:19,224 - INFO - Client 0 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:17:26,842 - INFO - Client 0 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:17:34,486 - INFO - Client 0 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:17:42,628 - INFO - Client 0 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:17:50,360 - INFO - Client 0 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:17:58,167 - INFO - Client 0 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:18:06,383 - INFO - Client 0 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:18:06,384 - INFO - Client 1 completed in 62.6s
+2025-09-27 19:18:06,384 - INFO - Training client 2/10
+2025-09-27 19:18:14,020 - INFO - Client 1 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:18:21,711 - INFO - Client 1 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:18:29,758 - INFO - Client 1 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:18:37,542 - INFO - Client 1 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:18:46,199 - INFO - Client 1 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:18:54,153 - INFO - Client 1 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:19:01,731 - INFO - Client 1 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:19:09,451 - INFO - Client 1 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:19:09,452 - INFO - Client 2 completed in 63.1s
+2025-09-27 19:19:09,452 - INFO - Training client 3/10
+2025-09-27 19:19:17,068 - INFO - Client 2 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:19:24,566 - INFO - Client 2 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:19:32,420 - INFO - Client 2 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:19:40,665 - INFO - Client 2 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:19:48,308 - INFO - Client 2 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:19:56,079 - INFO - Client 2 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:20:03,806 - INFO - Client 2 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:20:11,441 - INFO - Client 2 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:20:11,443 - INFO - Client 3 completed in 62.0s
+2025-09-27 19:20:11,443 - INFO - Training client 4/10
+2025-09-27 19:20:19,089 - INFO - Client 3 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:20:26,886 - INFO - Client 3 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:20:34,727 - INFO - Client 3 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:20:43,087 - INFO - Client 3 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:20:50,969 - INFO - Client 3 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:20:58,732 - INFO - Client 3 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:21:06,462 - INFO - Client 3 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:21:14,717 - INFO - Client 3 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:21:14,718 - INFO - Client 4 completed in 63.3s
+2025-09-27 19:21:14,718 - INFO - Training client 5/10
+2025-09-27 19:21:22,488 - INFO - Client 4 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:21:30,454 - INFO - Client 4 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:21:38,228 - INFO - Client 4 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:21:46,097 - INFO - Client 4 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:21:53,954 - INFO - Client 4 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:22:01,724 - INFO - Client 4 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:22:09,537 - INFO - Client 4 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:22:17,264 - INFO - Client 4 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:22:17,265 - INFO - Client 5 completed in 62.5s
+2025-09-27 19:22:17,265 - INFO - Training client 6/10
+2025-09-27 19:22:25,078 - INFO - Client 5 Epoch 1/8: Loss=0.0015, Acc=100.00%
+2025-09-27 19:22:32,656 - INFO - Client 5 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:22:40,645 - INFO - Client 5 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:22:48,610 - INFO - Client 5 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:22:56,365 - INFO - Client 5 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:23:04,823 - INFO - Client 5 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:23:12,414 - INFO - Client 5 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:23:20,321 - INFO - Client 5 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:23:20,322 - INFO - Client 6 completed in 63.1s
+2025-09-27 19:23:20,322 - INFO - Training client 7/10
+2025-09-27 19:23:28,071 - INFO - Client 6 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:23:35,655 - INFO - Client 6 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:23:43,443 - INFO - Client 6 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:23:51,063 - INFO - Client 6 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:23:58,888 - INFO - Client 6 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:24:06,791 - INFO - Client 6 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:24:14,575 - INFO - Client 6 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:24:22,329 - INFO - Client 6 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:24:22,330 - INFO - Client 7 completed in 62.0s
+2025-09-27 19:24:22,330 - INFO - Training client 8/10
+2025-09-27 19:24:30,193 - INFO - Client 7 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:24:37,849 - INFO - Client 7 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:24:46,135 - INFO - Client 7 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:24:53,967 - INFO - Client 7 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:25:01,880 - INFO - Client 7 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:25:09,873 - INFO - Client 7 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:25:17,918 - INFO - Client 7 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:25:25,595 - INFO - Client 7 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:25:25,596 - INFO - Client 8 completed in 63.3s
+2025-09-27 19:25:25,596 - INFO - Training client 9/10
+2025-09-27 19:25:33,285 - INFO - Client 8 Epoch 1/8: Loss=0.0016, Acc=100.00%
+2025-09-27 19:25:41,096 - INFO - Client 8 Epoch 2/8: Loss=0.0012, Acc=100.00%
+2025-09-27 19:25:48,992 - INFO - Client 8 Epoch 3/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:25:56,639 - INFO - Client 8 Epoch 4/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:26:04,719 - INFO - Client 8 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:26:12,554 - INFO - Client 8 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:26:20,535 - INFO - Client 8 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:26:28,244 - INFO - Client 8 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:26:28,245 - INFO - Client 9 completed in 62.6s
+2025-09-27 19:26:28,245 - INFO - Training client 10/10
+2025-09-27 19:26:35,770 - INFO - Client 9 Epoch 1/8: Loss=0.0015, Acc=100.00%
+2025-09-27 19:26:43,418 - INFO - Client 9 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:26:51,099 - INFO - Client 9 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:26:58,822 - INFO - Client 9 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:27:06,706 - INFO - Client 9 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:27:14,605 - INFO - Client 9 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:27:22,297 - INFO - Client 9 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:27:30,040 - INFO - Client 9 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:27:30,042 - INFO - Client 10 completed in 61.8s
+2025-09-27 19:27:30,042 - INFO - Server aggregating...
+2025-09-27 19:27:30,063 - INFO - Aggregation completed
+2025-09-27 19:27:30,063 - INFO - Evaluating...
+2025-09-27 19:27:30,190 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([25, 17, 24, 27, 18, 27, 27, 24, 38, 29]))
+2025-09-27 19:27:30,190 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:27:30,190 - INFO - DEBUG - Output logits range: [-2.975, 9.709]
+2025-09-27 19:27:30,191 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.127, 0.164]
+2025-09-27 19:27:30,191 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-3.88284703e-03 -1.18259154e-02  1.19126765e-02  1.87936388e-02
+  9.15699452e-03  1.88084319e-02 -1.14460790e-03  9.90599510e-05
+ -2.46315505e-02 -1.40931951e-02]
+2025-09-27 19:27:30,192 - INFO - DEBUG - First sample logits: [-1.0801245  -0.84989846 -1.476352    6.3357844  -1.1624563   1.7641954
+ -0.48533574 -1.1588055  -1.83687    -0.06119419]
+2025-09-27 19:27:30,192 - INFO - DEBUG - Softmax probs: [5.9198280e-04 7.4523810e-04 3.9831767e-04 9.8400521e-01 5.4519635e-04
+ 1.0176104e-02 1.0730562e-03 5.4719031e-04 2.7775305e-04 1.6399280e-03]
+2025-09-27 19:27:30,271 - INFO - Batch 0/40
+2025-09-27 19:27:31,644 - INFO - Batch 20/40
+2025-09-27 19:27:32,994 - INFO - Round 11 Results:
+2025-09-27 19:27:32,995 - INFO -    Clean Acc: 81.99%
+2025-09-27 19:27:32,995 - INFO -    Adv Acc: 24.99%
+2025-09-27 19:27:32,995 - INFO -    Time: 629.2s
+2025-09-27 19:27:32,995 - INFO - Round 12/15
+2025-09-27 19:27:32,995 - INFO - Distributing global model to clients...
+2025-09-27 19:27:33,038 - INFO - Global model distributed to 10 clients
+2025-09-27 19:27:33,038 - INFO - Training client 1/10
+2025-09-27 19:27:41,571 - INFO - Client 0 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:27:49,412 - INFO - Client 0 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:27:57,211 - INFO - Client 0 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:04,942 - INFO - Client 0 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:12,907 - INFO - Client 0 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:20,680 - INFO - Client 0 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:28,362 - INFO - Client 0 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:36,231 - INFO - Client 0 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:28:36,232 - INFO - Client 1 completed in 63.2s
+2025-09-27 19:28:36,232 - INFO - Training client 2/10
+2025-09-27 19:28:44,284 - INFO - Client 1 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:28:51,901 - INFO - Client 1 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:29:00,571 - INFO - Client 1 Epoch 3/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:29:08,600 - INFO - Client 1 Epoch 4/8: Loss=0.3660, Acc=87.51%
+2025-09-27 19:29:16,398 - INFO - Client 1 Epoch 5/8: Loss=0.2644, Acc=91.03%
+2025-09-27 19:29:24,093 - INFO - Client 1 Epoch 6/8: Loss=0.1970, Acc=93.22%
+2025-09-27 19:29:32,125 - INFO - Client 1 Epoch 7/8: Loss=0.1573, Acc=94.62%
+2025-09-27 19:29:39,824 - INFO - Client 1 Epoch 8/8: Loss=0.1310, Acc=95.59%
+2025-09-27 19:29:39,825 - INFO - Client 2 completed in 63.6s
+2025-09-27 19:29:39,825 - INFO - Training client 3/10
+2025-09-27 19:29:47,488 - INFO - Client 2 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:29:55,696 - INFO - Client 2 Epoch 2/8: Loss=0.0067, Acc=99.83%
+2025-09-27 19:30:03,615 - INFO - Client 2 Epoch 3/8: Loss=0.3431, Acc=88.33%
+2025-09-27 19:30:11,364 - INFO - Client 2 Epoch 4/8: Loss=0.2556, Acc=91.29%
+2025-09-27 19:30:19,295 - INFO - Client 2 Epoch 5/8: Loss=0.1711, Acc=94.11%
+2025-09-27 19:30:27,055 - INFO - Client 2 Epoch 6/8: Loss=0.1564, Acc=94.67%
+2025-09-27 19:30:34,849 - INFO - Client 2 Epoch 7/8: Loss=0.1237, Acc=95.81%
+2025-09-27 19:30:42,679 - INFO - Client 2 Epoch 8/8: Loss=0.1125, Acc=96.14%
+2025-09-27 19:30:42,680 - INFO - Client 3 completed in 62.9s
+2025-09-27 19:30:42,681 - INFO - Training client 4/10
+2025-09-27 19:30:50,572 - INFO - Client 3 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:30:58,313 - INFO - Client 3 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:06,093 - INFO - Client 3 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:13,975 - INFO - Client 3 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:21,754 - INFO - Client 3 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:29,610 - INFO - Client 3 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:37,237 - INFO - Client 3 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:31:45,796 - INFO - Client 3 Epoch 8/8: Loss=0.4403, Acc=85.15%
+2025-09-27 19:31:45,797 - INFO - Client 4 completed in 63.1s
+2025-09-27 19:31:45,797 - INFO - Training client 5/10
+2025-09-27 19:31:53,946 - INFO - Client 4 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:32:01,792 - INFO - Client 4 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:32:09,439 - INFO - Client 4 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:32:17,037 - INFO - Client 4 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:32:24,674 - INFO - Client 4 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:32:32,503 - INFO - Client 4 Epoch 6/8: Loss=0.2063, Acc=93.04%
+2025-09-27 19:32:40,958 - INFO - Client 4 Epoch 7/8: Loss=0.3967, Acc=86.39%
+2025-09-27 19:32:48,512 - INFO - Client 4 Epoch 8/8: Loss=0.2613, Acc=91.05%
+2025-09-27 19:32:48,513 - INFO - Client 5 completed in 62.7s
+2025-09-27 19:32:48,513 - INFO - Training client 6/10
+2025-09-27 19:32:56,363 - INFO - Client 5 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:33:03,989 - INFO - Client 5 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:12,073 - INFO - Client 5 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:19,685 - INFO - Client 5 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:27,410 - INFO - Client 5 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:35,154 - INFO - Client 5 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:43,011 - INFO - Client 5 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:50,685 - INFO - Client 5 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:33:50,686 - INFO - Client 6 completed in 62.2s
+2025-09-27 19:33:50,687 - INFO - Training client 7/10
+2025-09-27 19:33:58,470 - INFO - Client 6 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:34:06,408 - INFO - Client 6 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:14,029 - INFO - Client 6 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:21,618 - INFO - Client 6 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:29,257 - INFO - Client 6 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:36,875 - INFO - Client 6 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:44,675 - INFO - Client 6 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:52,310 - INFO - Client 6 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:34:52,311 - INFO - Client 7 completed in 61.6s
+2025-09-27 19:34:52,311 - INFO - Training client 8/10
+2025-09-27 19:35:00,190 - INFO - Client 7 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:35:08,372 - INFO - Client 7 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:35:16,748 - INFO - Client 7 Epoch 3/8: Loss=0.0012, Acc=100.00%
+2025-09-27 19:35:24,525 - INFO - Client 7 Epoch 4/8: Loss=0.1402, Acc=95.28%
+2025-09-27 19:35:32,540 - INFO - Client 7 Epoch 5/8: Loss=0.3549, Acc=87.77%
+2025-09-27 19:35:40,641 - INFO - Client 7 Epoch 6/8: Loss=0.2428, Acc=91.64%
+2025-09-27 19:35:49,128 - INFO - Client 7 Epoch 7/8: Loss=0.1931, Acc=93.34%
+2025-09-27 19:35:56,788 - INFO - Client 7 Epoch 8/8: Loss=0.1389, Acc=95.34%
+2025-09-27 19:35:56,789 - INFO - Client 8 completed in 64.5s
+2025-09-27 19:35:56,789 - INFO - Training client 9/10
+2025-09-27 19:36:04,482 - INFO - Client 8 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:36:12,161 - INFO - Client 8 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:36:19,767 - INFO - Client 8 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:36:27,310 - INFO - Client 8 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:36:35,149 - INFO - Client 8 Epoch 5/8: Loss=0.3735, Acc=87.19%
+2025-09-27 19:36:42,709 - INFO - Client 8 Epoch 6/8: Loss=0.2855, Acc=90.16%
+2025-09-27 19:36:50,311 - INFO - Client 8 Epoch 7/8: Loss=0.2037, Acc=92.87%
+2025-09-27 19:36:57,967 - INFO - Client 8 Epoch 8/8: Loss=0.1726, Acc=94.13%
+2025-09-27 19:36:57,969 - INFO - Client 9 completed in 61.2s
+2025-09-27 19:36:57,969 - INFO - Training client 10/10
+2025-09-27 19:37:05,708 - INFO - Client 9 Epoch 1/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:37:13,313 - INFO - Client 9 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:21,103 - INFO - Client 9 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:28,830 - INFO - Client 9 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:36,666 - INFO - Client 9 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:44,608 - INFO - Client 9 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:52,205 - INFO - Client 9 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:59,996 - INFO - Client 9 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:37:59,997 - INFO - Client 10 completed in 62.0s
+2025-09-27 19:37:59,998 - INFO - Server aggregating...
+2025-09-27 19:38:00,018 - INFO - Aggregation completed
+2025-09-27 19:38:00,018 - INFO - Evaluating...
+2025-09-27 19:38:00,155 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 14, 11, 46, 35, 15, 33, 12, 35, 29]))
+2025-09-27 19:38:00,155 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:38:00,156 - INFO - DEBUG - Output logits range: [-3.018, 8.860]
+2025-09-27 19:38:00,156 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.121, 0.169]
+2025-09-27 19:38:00,156 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00446454 -0.01231261  0.01576662  0.02286846  0.00619284  0.01877152
+ -0.00517863 -0.00167151 -0.02304417 -0.01459867]
+2025-09-27 19:38:00,157 - INFO - DEBUG - First sample logits: [-0.900255   -2.072434   -0.60574996  3.0765326   0.6739914   1.1440588
+ -0.06634235  0.26674047 -1.1599876  -0.36575302]
+2025-09-27 19:38:00,157 - INFO - DEBUG - Softmax probs: [0.01306489 0.00404608 0.01753912 0.6969519  0.06306558 0.10091137
+ 0.03007943 0.04196871 0.0100764  0.02229653]
+2025-09-27 19:38:00,242 - INFO - Batch 0/40
+2025-09-27 19:38:01,620 - INFO - Batch 20/40
+2025-09-27 19:38:02,955 - INFO - Round 12 Results:
+2025-09-27 19:38:02,956 - INFO -    Clean Acc: 72.70%
+2025-09-27 19:38:02,956 - INFO -    Adv Acc: 17.65%
+2025-09-27 19:38:02,956 - INFO -    Time: 630.0s
+2025-09-27 19:38:02,956 - INFO - Round 13/15
+2025-09-27 19:38:02,956 - INFO - Distributing global model to clients...
+2025-09-27 19:38:02,997 - INFO - Global model distributed to 10 clients
+2025-09-27 19:38:02,997 - INFO - Training client 1/10
+2025-09-27 19:38:10,854 - INFO - Client 0 Epoch 1/8: Loss=0.0033, Acc=99.95%
+2025-09-27 19:38:18,736 - INFO - Client 0 Epoch 2/8: Loss=0.2260, Acc=92.29%
+2025-09-27 19:38:26,384 - INFO - Client 0 Epoch 3/8: Loss=0.2500, Acc=91.29%
+2025-09-27 19:38:34,618 - INFO - Client 0 Epoch 4/8: Loss=0.1796, Acc=93.87%
+2025-09-27 19:38:42,455 - INFO - Client 0 Epoch 5/8: Loss=0.1450, Acc=95.03%
+2025-09-27 19:38:50,454 - INFO - Client 0 Epoch 6/8: Loss=0.1325, Acc=95.44%
+2025-09-27 19:38:58,404 - INFO - Client 0 Epoch 7/8: Loss=0.1067, Acc=96.41%
+2025-09-27 19:39:06,412 - INFO - Client 0 Epoch 8/8: Loss=0.0890, Acc=97.01%
+2025-09-27 19:39:06,413 - INFO - Client 1 completed in 63.4s
+2025-09-27 19:39:06,413 - INFO - Training client 2/10
+2025-09-27 19:39:14,018 - INFO - Client 1 Epoch 1/8: Loss=0.0020, Acc=100.00%
+2025-09-27 19:39:21,868 - INFO - Client 1 Epoch 2/8: Loss=0.0015, Acc=99.99%
+2025-09-27 19:39:29,585 - INFO - Client 1 Epoch 3/8: Loss=0.2599, Acc=91.07%
+2025-09-27 19:39:37,208 - INFO - Client 1 Epoch 4/8: Loss=0.2616, Acc=91.01%
+2025-09-27 19:39:44,910 - INFO - Client 1 Epoch 5/8: Loss=0.1903, Acc=93.50%
+2025-09-27 19:39:52,733 - INFO - Client 1 Epoch 6/8: Loss=0.1520, Acc=94.76%
+2025-09-27 19:40:00,361 - INFO - Client 1 Epoch 7/8: Loss=0.1249, Acc=95.80%
+2025-09-27 19:40:08,085 - INFO - Client 1 Epoch 8/8: Loss=0.0984, Acc=96.71%
+2025-09-27 19:40:08,086 - INFO - Client 2 completed in 61.7s
+2025-09-27 19:40:08,086 - INFO - Training client 3/10
+2025-09-27 19:40:15,813 - INFO - Client 2 Epoch 1/8: Loss=0.0021, Acc=99.99%
+2025-09-27 19:40:23,495 - INFO - Client 2 Epoch 2/8: Loss=0.2196, Acc=92.40%
+2025-09-27 19:40:31,234 - INFO - Client 2 Epoch 3/8: Loss=0.2429, Acc=91.76%
+2025-09-27 19:40:38,908 - INFO - Client 2 Epoch 4/8: Loss=0.1886, Acc=93.42%
+2025-09-27 19:40:47,305 - INFO - Client 2 Epoch 5/8: Loss=0.1478, Acc=94.87%
+2025-09-27 19:40:55,150 - INFO - Client 2 Epoch 6/8: Loss=0.1232, Acc=95.79%
+2025-09-27 19:41:02,939 - INFO - Client 2 Epoch 7/8: Loss=0.1097, Acc=96.33%
+2025-09-27 19:41:10,692 - INFO - Client 2 Epoch 8/8: Loss=0.1060, Acc=96.40%
+2025-09-27 19:41:10,693 - INFO - Client 3 completed in 62.6s
+2025-09-27 19:41:10,694 - INFO - Training client 4/10
+2025-09-27 19:41:18,370 - INFO - Client 3 Epoch 1/8: Loss=0.0063, Acc=99.87%
+2025-09-27 19:41:26,047 - INFO - Client 3 Epoch 2/8: Loss=0.2524, Acc=91.45%
+2025-09-27 19:41:33,690 - INFO - Client 3 Epoch 3/8: Loss=0.2287, Acc=91.94%
+2025-09-27 19:41:41,319 - INFO - Client 3 Epoch 4/8: Loss=0.1730, Acc=93.98%
+2025-09-27 19:41:49,079 - INFO - Client 3 Epoch 5/8: Loss=0.1426, Acc=95.12%
+2025-09-27 19:41:56,805 - INFO - Client 3 Epoch 6/8: Loss=0.1231, Acc=95.80%
+2025-09-27 19:42:04,934 - INFO - Client 3 Epoch 7/8: Loss=0.1065, Acc=96.45%
+2025-09-27 19:42:12,615 - INFO - Client 3 Epoch 8/8: Loss=0.0993, Acc=96.61%
+2025-09-27 19:42:12,616 - INFO - Client 4 completed in 61.9s
+2025-09-27 19:42:12,616 - INFO - Training client 5/10
+2025-09-27 19:42:20,406 - INFO - Client 4 Epoch 1/8: Loss=0.0276, Acc=99.16%
+2025-09-27 19:42:28,029 - INFO - Client 4 Epoch 2/8: Loss=0.2735, Acc=90.61%
+2025-09-27 19:42:35,623 - INFO - Client 4 Epoch 3/8: Loss=0.2189, Acc=92.59%
+2025-09-27 19:42:43,231 - INFO - Client 4 Epoch 4/8: Loss=0.1706, Acc=94.14%
+2025-09-27 19:42:50,963 - INFO - Client 4 Epoch 5/8: Loss=0.1448, Acc=95.02%
+2025-09-27 19:42:59,187 - INFO - Client 4 Epoch 6/8: Loss=0.1156, Acc=96.17%
+2025-09-27 19:43:07,226 - INFO - Client 4 Epoch 7/8: Loss=0.1068, Acc=96.41%
+2025-09-27 19:43:15,650 - INFO - Client 4 Epoch 8/8: Loss=0.1008, Acc=96.60%
+2025-09-27 19:43:15,651 - INFO - Client 5 completed in 63.0s
+2025-09-27 19:43:15,651 - INFO - Training client 6/10
+2025-09-27 19:43:23,379 - INFO - Client 5 Epoch 1/8: Loss=0.0032, Acc=99.96%
+2025-09-27 19:43:31,250 - INFO - Client 5 Epoch 2/8: Loss=0.2104, Acc=92.78%
+2025-09-27 19:43:39,084 - INFO - Client 5 Epoch 3/8: Loss=0.2564, Acc=91.16%
+2025-09-27 19:43:47,510 - INFO - Client 5 Epoch 4/8: Loss=0.1858, Acc=93.60%
+2025-09-27 19:43:55,163 - INFO - Client 5 Epoch 5/8: Loss=0.1538, Acc=94.70%
+2025-09-27 19:44:02,883 - INFO - Client 5 Epoch 6/8: Loss=0.1224, Acc=95.84%
+2025-09-27 19:44:10,589 - INFO - Client 5 Epoch 7/8: Loss=0.1091, Acc=96.27%
+2025-09-27 19:44:18,489 - INFO - Client 5 Epoch 8/8: Loss=0.0947, Acc=96.84%
+2025-09-27 19:44:18,490 - INFO - Client 6 completed in 62.8s
+2025-09-27 19:44:18,490 - INFO - Training client 7/10
+2025-09-27 19:44:26,059 - INFO - Client 6 Epoch 1/8: Loss=0.0043, Acc=99.92%
+2025-09-27 19:44:33,724 - INFO - Client 6 Epoch 2/8: Loss=0.2428, Acc=91.70%
+2025-09-27 19:44:41,536 - INFO - Client 6 Epoch 3/8: Loss=0.2383, Acc=91.71%
+2025-09-27 19:44:49,660 - INFO - Client 6 Epoch 4/8: Loss=0.1766, Acc=94.08%
+2025-09-27 19:44:57,611 - INFO - Client 6 Epoch 5/8: Loss=0.1433, Acc=95.06%
+2025-09-27 19:45:05,478 - INFO - Client 6 Epoch 6/8: Loss=0.1292, Acc=95.62%
+2025-09-27 19:45:13,165 - INFO - Client 6 Epoch 7/8: Loss=0.1037, Acc=96.54%
+2025-09-27 19:45:21,412 - INFO - Client 6 Epoch 8/8: Loss=0.0962, Acc=96.74%
+2025-09-27 19:45:21,413 - INFO - Client 7 completed in 62.9s
+2025-09-27 19:45:21,413 - INFO - Training client 8/10
+2025-09-27 19:45:29,295 - INFO - Client 7 Epoch 1/8: Loss=0.0019, Acc=100.00%
+2025-09-27 19:45:36,922 - INFO - Client 7 Epoch 2/8: Loss=0.0883, Acc=97.06%
+2025-09-27 19:45:44,589 - INFO - Client 7 Epoch 3/8: Loss=0.3057, Acc=89.43%
+2025-09-27 19:45:52,118 - INFO - Client 7 Epoch 4/8: Loss=0.2119, Acc=92.82%
+2025-09-27 19:45:59,640 - INFO - Client 7 Epoch 5/8: Loss=0.1630, Acc=94.45%
+2025-09-27 19:46:07,475 - INFO - Client 7 Epoch 6/8: Loss=0.1322, Acc=95.52%
+2025-09-27 19:46:15,004 - INFO - Client 7 Epoch 7/8: Loss=0.1205, Acc=95.87%
+2025-09-27 19:46:23,163 - INFO - Client 7 Epoch 8/8: Loss=0.1048, Acc=96.45%
+2025-09-27 19:46:23,164 - INFO - Client 8 completed in 61.8s
+2025-09-27 19:46:23,164 - INFO - Training client 9/10
+2025-09-27 19:46:31,229 - INFO - Client 8 Epoch 1/8: Loss=0.0019, Acc=100.00%
+2025-09-27 19:46:39,130 - INFO - Client 8 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:46:46,909 - INFO - Client 8 Epoch 3/8: Loss=0.1626, Acc=94.32%
+2025-09-27 19:46:54,735 - INFO - Client 8 Epoch 4/8: Loss=0.3021, Acc=89.58%
+2025-09-27 19:47:02,474 - INFO - Client 8 Epoch 5/8: Loss=0.2081, Acc=92.98%
+2025-09-27 19:47:10,619 - INFO - Client 8 Epoch 6/8: Loss=0.1682, Acc=94.30%
+2025-09-27 19:47:18,193 - INFO - Client 8 Epoch 7/8: Loss=0.1390, Acc=95.29%
+2025-09-27 19:47:25,749 - INFO - Client 8 Epoch 8/8: Loss=0.1247, Acc=95.64%
+2025-09-27 19:47:25,750 - INFO - Client 9 completed in 62.6s
+2025-09-27 19:47:25,750 - INFO - Training client 10/10
+2025-09-27 19:47:33,408 - INFO - Client 9 Epoch 1/8: Loss=0.0029, Acc=99.97%
+2025-09-27 19:47:41,011 - INFO - Client 9 Epoch 2/8: Loss=0.1987, Acc=93.23%
+2025-09-27 19:47:48,793 - INFO - Client 9 Epoch 3/8: Loss=0.2511, Acc=91.53%
+2025-09-27 19:47:56,454 - INFO - Client 9 Epoch 4/8: Loss=0.1888, Acc=93.59%
+2025-09-27 19:48:04,120 - INFO - Client 9 Epoch 5/8: Loss=0.1519, Acc=94.82%
+2025-09-27 19:48:12,461 - INFO - Client 9 Epoch 6/8: Loss=0.1346, Acc=95.51%
+2025-09-27 19:48:20,468 - INFO - Client 9 Epoch 7/8: Loss=0.1079, Acc=96.39%
+2025-09-27 19:48:28,147 - INFO - Client 9 Epoch 8/8: Loss=0.1011, Acc=96.59%
+2025-09-27 19:48:28,148 - INFO - Client 10 completed in 62.4s
+2025-09-27 19:48:28,149 - INFO - Server aggregating...
+2025-09-27 19:48:28,166 - INFO - Aggregation completed
+2025-09-27 19:48:28,166 - INFO - Evaluating...
+2025-09-27 19:48:28,290 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([24, 18, 23, 26, 17, 28, 28, 23, 38, 31]))
+2025-09-27 19:48:28,291 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:48:28,291 - INFO - DEBUG - Output logits range: [-4.338, 13.208]
+2025-09-27 19:48:28,291 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.128, 0.181]
+2025-09-27 19:48:28,292 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00643262 -0.01293648  0.01637736  0.02631708  0.00592502  0.02074442
+ -0.01116642 -0.00241973 -0.01987751 -0.01483166]
+2025-09-27 19:48:28,292 - INFO - DEBUG - First sample logits: [-2.007576   -1.4540395  -1.6858476   6.774072   -1.3036205   3.0307329
+  0.10021075 -1.0296348  -2.9078212   0.47436306]
+2025-09-27 19:48:28,292 - INFO - DEBUG - Softmax probs: [1.4931578e-04 2.5971909e-04 2.0598267e-04 9.7258425e-01 3.0187677e-04
+ 2.3025846e-02 1.2288702e-03 3.9702718e-04 6.0692408e-05 1.7864803e-03]
+2025-09-27 19:48:28,369 - INFO - Batch 0/40
+2025-09-27 19:48:29,730 - INFO - Batch 20/40
+2025-09-27 19:48:31,058 - INFO - Round 13 Results:
+2025-09-27 19:48:31,058 - INFO -    Clean Acc: 81.89%
+2025-09-27 19:48:31,059 - INFO -    Adv Acc: 25.12%
+2025-09-27 19:48:31,059 - INFO -    Time: 628.1s
+2025-09-27 19:48:31,059 - INFO - Round 14/15
+2025-09-27 19:48:31,059 - INFO - Distributing global model to clients...
+2025-09-27 19:48:31,100 - INFO - Global model distributed to 10 clients
+2025-09-27 19:48:31,100 - INFO - Training client 1/10
+2025-09-27 19:48:38,810 - INFO - Client 0 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:48:46,522 - INFO - Client 0 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:48:54,314 - INFO - Client 0 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:49:02,073 - INFO - Client 0 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:49:10,304 - INFO - Client 0 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:49:18,604 - INFO - Client 0 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:49:26,582 - INFO - Client 0 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:49:34,481 - INFO - Client 0 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:49:34,482 - INFO - Client 1 completed in 63.4s
+2025-09-27 19:49:34,482 - INFO - Training client 2/10
+2025-09-27 19:49:42,052 - INFO - Client 1 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:49:49,596 - INFO - Client 1 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:49:57,658 - INFO - Client 1 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:50:05,346 - INFO - Client 1 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:50:13,037 - INFO - Client 1 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:50:20,938 - INFO - Client 1 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:50:28,506 - INFO - Client 1 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:50:36,181 - INFO - Client 1 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:50:36,182 - INFO - Client 2 completed in 61.7s
+2025-09-27 19:50:36,182 - INFO - Training client 3/10
+2025-09-27 19:50:44,095 - INFO - Client 2 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:50:51,732 - INFO - Client 2 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:50:59,367 - INFO - Client 2 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:51:06,993 - INFO - Client 2 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:51:14,548 - INFO - Client 2 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:51:22,321 - INFO - Client 2 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:51:29,953 - INFO - Client 2 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:51:37,550 - INFO - Client 2 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:51:37,550 - INFO - Client 3 completed in 61.4s
+2025-09-27 19:51:37,551 - INFO - Training client 4/10
+2025-09-27 19:51:45,106 - INFO - Client 3 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:51:52,781 - INFO - Client 3 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:52:00,403 - INFO - Client 3 Epoch 3/8: Loss=0.0044, Acc=99.92%
+2025-09-27 19:52:08,163 - INFO - Client 3 Epoch 4/8: Loss=0.0031, Acc=99.95%
+2025-09-27 19:52:16,054 - INFO - Client 3 Epoch 5/8: Loss=0.0273, Acc=99.13%
+2025-09-27 19:52:23,957 - INFO - Client 3 Epoch 6/8: Loss=0.1681, Acc=94.31%
+2025-09-27 19:52:31,686 - INFO - Client 3 Epoch 7/8: Loss=0.1606, Acc=94.45%
+2025-09-27 19:52:39,426 - INFO - Client 3 Epoch 8/8: Loss=0.1283, Acc=95.67%
+2025-09-27 19:52:39,427 - INFO - Client 4 completed in 61.9s
+2025-09-27 19:52:39,427 - INFO - Training client 5/10
+2025-09-27 19:52:47,203 - INFO - Client 4 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:52:55,025 - INFO - Client 4 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:53:02,764 - INFO - Client 4 Epoch 3/8: Loss=0.0015, Acc=99.99%
+2025-09-27 19:53:10,444 - INFO - Client 4 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:53:18,111 - INFO - Client 4 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:53:26,232 - INFO - Client 4 Epoch 6/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:53:33,929 - INFO - Client 4 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:53:41,564 - INFO - Client 4 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:53:41,565 - INFO - Client 5 completed in 62.1s
+2025-09-27 19:53:41,565 - INFO - Training client 6/10
+2025-09-27 19:53:49,196 - INFO - Client 5 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:53:56,991 - INFO - Client 5 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:54:04,788 - INFO - Client 5 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:54:12,445 - INFO - Client 5 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:54:20,315 - INFO - Client 5 Epoch 5/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:54:28,038 - INFO - Client 5 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:54:35,552 - INFO - Client 5 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:54:43,224 - INFO - Client 5 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:54:43,225 - INFO - Client 6 completed in 61.7s
+2025-09-27 19:54:43,225 - INFO - Training client 7/10
+2025-09-27 19:54:50,872 - INFO - Client 6 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:54:58,675 - INFO - Client 6 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:55:06,420 - INFO - Client 6 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:55:14,593 - INFO - Client 6 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:55:22,580 - INFO - Client 6 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:55:30,255 - INFO - Client 6 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:55:38,021 - INFO - Client 6 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:55:45,943 - INFO - Client 6 Epoch 8/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:55:45,944 - INFO - Client 7 completed in 62.7s
+2025-09-27 19:55:45,945 - INFO - Training client 8/10
+2025-09-27 19:55:53,748 - INFO - Client 7 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:56:01,558 - INFO - Client 7 Epoch 2/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:56:09,908 - INFO - Client 7 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:56:17,681 - INFO - Client 7 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:56:25,350 - INFO - Client 7 Epoch 5/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:56:33,111 - INFO - Client 7 Epoch 6/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:56:40,937 - INFO - Client 7 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:56:49,133 - INFO - Client 7 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:56:49,134 - INFO - Client 8 completed in 63.2s
+2025-09-27 19:56:49,135 - INFO - Training client 9/10
+2025-09-27 19:56:56,903 - INFO - Client 8 Epoch 1/8: Loss=0.0014, Acc=100.00%
+2025-09-27 19:57:05,142 - INFO - Client 8 Epoch 2/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:57:12,812 - INFO - Client 8 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:57:20,872 - INFO - Client 8 Epoch 4/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:57:28,440 - INFO - Client 8 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:57:36,171 - INFO - Client 8 Epoch 6/8: Loss=0.0011, Acc=99.99%
+2025-09-27 19:57:44,446 - INFO - Client 8 Epoch 7/8: Loss=0.0020, Acc=99.98%
+2025-09-27 19:57:52,761 - INFO - Client 8 Epoch 8/8: Loss=0.1686, Acc=94.36%
+2025-09-27 19:57:52,762 - INFO - Client 9 completed in 63.6s
+2025-09-27 19:57:52,763 - INFO - Training client 10/10
+2025-09-27 19:58:00,508 - INFO - Client 9 Epoch 1/8: Loss=0.0013, Acc=100.00%
+2025-09-27 19:58:08,262 - INFO - Client 9 Epoch 2/8: Loss=0.0010, Acc=99.99%
+2025-09-27 19:58:16,085 - INFO - Client 9 Epoch 3/8: Loss=0.0009, Acc=100.00%
+2025-09-27 19:58:24,076 - INFO - Client 9 Epoch 4/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:58:32,085 - INFO - Client 9 Epoch 5/8: Loss=0.0014, Acc=99.99%
+2025-09-27 19:58:39,851 - INFO - Client 9 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:58:47,981 - INFO - Client 9 Epoch 7/8: Loss=0.0010, Acc=100.00%
+2025-09-27 19:58:55,690 - INFO - Client 9 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:58:55,691 - INFO - Client 10 completed in 62.9s
+2025-09-27 19:58:55,691 - INFO - Server aggregating...
+2025-09-27 19:58:55,709 - INFO - Aggregation completed
+2025-09-27 19:58:55,710 - INFO - Evaluating...
+2025-09-27 19:58:55,839 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([25, 17, 23, 29, 17, 27, 29, 21, 38, 30]))
+2025-09-27 19:58:55,840 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 19:58:55,841 - INFO - DEBUG - Output logits range: [-2.864, 9.905]
+2025-09-27 19:58:55,841 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.112, 0.163]
+2025-09-27 19:58:55,842 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.004954   -0.00521292  0.00833597  0.00986357  0.00264875  0.01285899
+ -0.00565915  0.00162835 -0.00909849 -0.0091752 ]
+2025-09-27 19:58:55,842 - INFO - DEBUG - First sample logits: [-1.3555251  -1.1289736  -1.0864357   5.9585443  -0.9797284   1.9582876
+ -0.26603547 -0.8652062  -1.8406578  -0.4010298 ]
+2025-09-27 19:58:55,843 - INFO - DEBUG - Softmax probs: [6.4867601e-04 8.1361318e-04 8.4896904e-04 9.7384042e-01 9.4457046e-04
+ 1.7831935e-02 1.9283557e-03 1.0591821e-03 3.9933505e-04 1.6848451e-03]
+2025-09-27 19:58:55,928 - INFO - Batch 0/40
+2025-09-27 19:58:57,331 - INFO - Batch 20/40
+2025-09-27 19:58:58,657 - INFO - Round 14 Results:
+2025-09-27 19:58:58,658 - INFO -    Clean Acc: 81.66%
+2025-09-27 19:58:58,658 - INFO -    Adv Acc: 24.75%
+2025-09-27 19:58:58,658 - INFO -    Time: 627.6s
+2025-09-27 19:58:58,658 - INFO - Round 15/15
+2025-09-27 19:58:58,658 - INFO - Distributing global model to clients...
+2025-09-27 19:58:58,698 - INFO - Global model distributed to 10 clients
+2025-09-27 19:58:58,699 - INFO - Training client 1/10
+2025-09-27 19:59:06,365 - INFO - Client 0 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:59:14,571 - INFO - Client 0 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:59:22,417 - INFO - Client 0 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 19:59:30,114 - INFO - Client 0 Epoch 4/8: Loss=0.2681, Acc=91.00%
+2025-09-27 19:59:37,985 - INFO - Client 0 Epoch 5/8: Loss=0.2608, Acc=91.05%
+2025-09-27 19:59:45,595 - INFO - Client 0 Epoch 6/8: Loss=0.1912, Acc=93.50%
+2025-09-27 19:59:53,559 - INFO - Client 0 Epoch 7/8: Loss=0.1442, Acc=95.12%
+2025-09-27 20:00:01,257 - INFO - Client 0 Epoch 8/8: Loss=0.1341, Acc=95.47%
+2025-09-27 20:00:01,258 - INFO - Client 1 completed in 62.6s
+2025-09-27 20:00:01,259 - INFO - Training client 2/10
+2025-09-27 20:00:09,298 - INFO - Client 1 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:16,784 - INFO - Client 1 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:24,458 - INFO - Client 1 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:32,068 - INFO - Client 1 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:39,833 - INFO - Client 1 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:47,859 - INFO - Client 1 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:00:55,380 - INFO - Client 1 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:03,053 - INFO - Client 1 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:03,054 - INFO - Client 2 completed in 61.8s
+2025-09-27 20:01:03,054 - INFO - Training client 3/10
+2025-09-27 20:01:10,524 - INFO - Client 2 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:18,498 - INFO - Client 2 Epoch 2/8: Loss=0.0012, Acc=100.00%
+2025-09-27 20:01:26,010 - INFO - Client 2 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:33,743 - INFO - Client 2 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:41,482 - INFO - Client 2 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:49,226 - INFO - Client 2 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:01:56,906 - INFO - Client 2 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:04,441 - INFO - Client 2 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:04,442 - INFO - Client 3 completed in 61.4s
+2025-09-27 20:02:04,443 - INFO - Training client 4/10
+2025-09-27 20:02:12,302 - INFO - Client 3 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:19,998 - INFO - Client 3 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:27,607 - INFO - Client 3 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:35,205 - INFO - Client 3 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:42,761 - INFO - Client 3 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:50,723 - INFO - Client 3 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:02:58,394 - INFO - Client 3 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:06,509 - INFO - Client 3 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:06,511 - INFO - Client 4 completed in 62.1s
+2025-09-27 20:03:06,511 - INFO - Training client 5/10
+2025-09-27 20:03:14,236 - INFO - Client 4 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:21,947 - INFO - Client 4 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:29,811 - INFO - Client 4 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:37,875 - INFO - Client 4 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:45,603 - INFO - Client 4 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:03:53,672 - INFO - Client 4 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:01,571 - INFO - Client 4 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:10,027 - INFO - Client 4 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:10,028 - INFO - Client 5 completed in 63.5s
+2025-09-27 20:04:10,028 - INFO - Training client 6/10
+2025-09-27 20:04:17,673 - INFO - Client 5 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:25,408 - INFO - Client 5 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:33,031 - INFO - Client 5 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:40,816 - INFO - Client 5 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:48,401 - INFO - Client 5 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:04:56,138 - INFO - Client 5 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:03,894 - INFO - Client 5 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:11,448 - INFO - Client 5 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:11,449 - INFO - Client 6 completed in 61.4s
+2025-09-27 20:05:11,449 - INFO - Training client 7/10
+2025-09-27 20:05:19,311 - INFO - Client 6 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:27,493 - INFO - Client 6 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:35,591 - INFO - Client 6 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:05:43,147 - INFO - Client 6 Epoch 4/8: Loss=0.0012, Acc=100.00%
+2025-09-27 20:05:50,763 - INFO - Client 6 Epoch 5/8: Loss=0.3531, Acc=87.93%
+2025-09-27 20:05:58,350 - INFO - Client 6 Epoch 6/8: Loss=0.2518, Acc=91.38%
+2025-09-27 20:06:06,101 - INFO - Client 6 Epoch 7/8: Loss=0.1916, Acc=93.46%
+2025-09-27 20:06:13,766 - INFO - Client 6 Epoch 8/8: Loss=0.1468, Acc=95.08%
+2025-09-27 20:06:13,767 - INFO - Client 7 completed in 62.3s
+2025-09-27 20:06:13,767 - INFO - Training client 8/10
+2025-09-27 20:06:21,574 - INFO - Client 7 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:06:30,076 - INFO - Client 7 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:06:37,939 - INFO - Client 7 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:06:45,442 - INFO - Client 7 Epoch 4/8: Loss=0.0882, Acc=97.13%
+2025-09-27 20:06:53,226 - INFO - Client 7 Epoch 5/8: Loss=0.3380, Acc=88.41%
+2025-09-27 20:07:00,899 - INFO - Client 7 Epoch 6/8: Loss=0.2262, Acc=92.29%
+2025-09-27 20:07:08,883 - INFO - Client 7 Epoch 7/8: Loss=0.1712, Acc=94.13%
+2025-09-27 20:07:17,033 - INFO - Client 7 Epoch 8/8: Loss=0.1409, Acc=95.23%
+2025-09-27 20:07:17,034 - INFO - Client 8 completed in 63.3s
+2025-09-27 20:07:17,034 - INFO - Training client 9/10
+2025-09-27 20:07:25,492 - INFO - Client 8 Epoch 1/8: Loss=0.0012, Acc=100.00%
+2025-09-27 20:07:33,291 - INFO - Client 8 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:07:41,555 - INFO - Client 8 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:07:49,130 - INFO - Client 8 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:07:56,734 - INFO - Client 8 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:04,727 - INFO - Client 8 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:12,477 - INFO - Client 8 Epoch 7/8: Loss=0.3264, Acc=88.95%
+2025-09-27 20:08:20,033 - INFO - Client 8 Epoch 8/8: Loss=0.3225, Acc=88.91%
+2025-09-27 20:08:20,034 - INFO - Client 9 completed in 63.0s
+2025-09-27 20:08:20,034 - INFO - Training client 10/10
+2025-09-27 20:08:27,600 - INFO - Client 9 Epoch 1/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:35,366 - INFO - Client 9 Epoch 2/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:43,051 - INFO - Client 9 Epoch 3/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:50,792 - INFO - Client 9 Epoch 4/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:08:58,299 - INFO - Client 9 Epoch 5/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:09:05,908 - INFO - Client 9 Epoch 6/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:09:13,513 - INFO - Client 9 Epoch 7/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:09:21,360 - INFO - Client 9 Epoch 8/8: Loss=0.0011, Acc=100.00%
+2025-09-27 20:09:21,361 - INFO - Client 10 completed in 61.3s
+2025-09-27 20:09:21,361 - INFO - Server aggregating...
+2025-09-27 20:09:21,379 - INFO - Aggregation completed
+2025-09-27 20:09:21,380 - INFO - Evaluating...
+2025-09-27 20:09:21,502 - INFO - DEBUG - First batch predictions: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([24, 11, 12, 50, 40, 11, 33, 13, 32, 30]))
+2025-09-27 20:09:21,502 - INFO - DEBUG - First batch labels: (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([26, 20, 24, 23, 20, 26, 29, 24, 34, 30]))
+2025-09-27 20:09:21,503 - INFO - DEBUG - Output logits range: [-2.758, 8.354]
+2025-09-27 20:09:21,503 - INFO - DEBUG - FC weight shape: torch.Size([10, 512]), range: [-0.107, 0.164]
+2025-09-27 20:09:21,503 - INFO - DEBUG - FC bias shape: torch.Size([10]), values: [-0.00516153 -0.00500325  0.00854447  0.01098663  0.00032174  0.01214196
+ -0.00568936 -0.0003649  -0.00595217 -0.00892641]
+2025-09-27 20:09:21,504 - INFO - DEBUG - First sample logits: [-0.6094156  -1.9916682  -0.1617511   2.3741102   0.9810778   0.89357936
+  0.05789523 -0.11221995 -0.65617895 -0.780096  ]
+2025-09-27 20:09:21,504 - INFO - DEBUG - Softmax probs: [0.02676314 0.00671788 0.04187505 0.5287689  0.1313045  0.12030386
+ 0.05216107 0.04400139 0.02554042 0.02256376]
+2025-09-27 20:09:21,580 - INFO - Batch 0/40
+2025-09-27 20:09:22,950 - INFO - Batch 20/40
+2025-09-27 20:09:24,296 - INFO - Round 15 Results:
+2025-09-27 20:09:24,296 - INFO -    Clean Acc: 68.64%
+2025-09-27 20:09:24,296 - INFO -    Adv Acc: 14.28%
+2025-09-27 20:09:24,296 - INFO -    Time: 625.6s
+2025-09-27 20:09:24,296 - INFO - BASELINE EVALUATION COMPLETED!
+2025-09-27 20:09:24,296 - INFO - Final Results (pFedDef ONLY):
+2025-09-27 20:09:24,296 - INFO -    Clean Accuracy: 68.64%
+2025-09-27 20:09:24,296 - INFO -    Adversarial Accuracy: 14.28%
+2025-09-27 20:09:24,296 - INFO -    Total Training Time: 9423.8s
+2025-09-27 20:09:24,298 - INFO - Results saved to: baseline_pfeddef_cifar10_full_results.json

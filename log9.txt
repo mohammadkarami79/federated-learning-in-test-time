@@ -1,0 +1,985 @@
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ nohup python run_br35h_final.py > br35h_final_$(date +%Y%m%d_%H%M%S).log 2>&1 &
+[1] 1403165
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ tail -n 200 -f $(ls -t br35h_final_*.log | head -1)
+nohup: ignoring input
+2025-09-22 12:22:01,633 - __main__ - INFO - 🚀 Starting BR35H Final Training with Improved Defense
+2025-09-22 12:22:01,881 - __main__ - INFO - Loaded BR35H final configuration: 61 parameters
+2025-09-22 12:22:03,080 - __main__ - INFO - Loading BR35H dataset...
+2025-09-22 12:22:03,089 - __main__ - INFO - Test dataset loaded: 600 samples
+2025-09-22 12:22:03,090 - __main__ - INFO - Starting federated training with improved selective defense...
+2025-09-22 12:22:03,090 - main - INFO - ?? Loading components...
+2025-09-22 12:22:03,333 - main - INFO - ? All imports successful
+2025-09-22 12:22:03,333 - main - INFO - ?? Loading datasets...
+2025-09-22 12:22:03,342 - main - INFO - ? Dataset loaded: 2400 train, 600 test
+2025-09-22 12:22:03,342 - main - INFO - ? Test loader created with 600 samples
+2025-09-22 12:22:03,342 - main - INFO - ?? Loading diffusion model...
+2025-09-22 12:22:05,130 - main - INFO - ? Loaded diffusion model: checkpoints/diffuser_br35h.pt
+2025-09-22 12:22:05,131 - main - INFO - ?? Initializing components...
+2025-09-22 12:22:06,234 - defense.mae_detector - INFO - ✅ Using user's MAE detector implementation
+2025-09-22 12:22:06,234 - defense.mae_detector - WARNING - BR35H detected: disabling user's MAE detector and using internal MAE for stability
+2025-09-22 12:22:06,236 - main - INFO - Using user's MAE detector implementation
+2025-09-22 12:22:06,280 - defense.mae_detector - INFO - ✅ Using user's MAE detector implementation
+2025-09-22 12:22:06,280 - defense.mae_detector - WARNING - BR35H detected: disabling user's MAE detector and using internal MAE for stability
+2025-09-22 12:22:06,282 - main - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-09-22 12:22:06,493 - main - INFO - ?? Server initialized with global models
+2025-09-22 12:22:06,661 - main - INFO - ?? Round 1/15
+2025-09-22 12:22:06,676 - main - INFO - ?? Training client 1/5
+2025-09-22 12:23:34,511 - main - INFO - ? Client 1 completed in 87.8s
+2025-09-22 12:23:34,512 - main - INFO - ?? Training client 2/5
+2025-09-22 12:25:00,107 - main - INFO - ? Client 2 completed in 85.6s
+2025-09-22 12:25:00,107 - main - INFO - ?? Training client 3/5
+2025-09-22 12:26:26,012 - main - INFO - ? Client 3 completed in 85.9s
+2025-09-22 12:26:26,012 - main - INFO - ?? Training client 4/5
+2025-09-22 12:27:51,130 - main - INFO - ? Client 4 completed in 85.1s
+2025-09-22 12:27:51,130 - main - INFO - ?? Training client 5/5
+2025-09-22 12:29:18,888 - main - INFO - ? Client 5 completed in 87.8s
+2025-09-22 12:29:18,889 - main - INFO - ?? Aggregating models...
+2025-09-22 12:29:18,910 - main - INFO - ? Model aggregation completed
+2025-09-22 12:29:18,911 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 12:29:34,184 - main - INFO - ?? Running evaluation...
+[PGD] Epsilon: 0.031000, Step size: 0.007000, Steps: 10
+Error loading MAE detector: 'state'
+Error loading MAE detector: 'state'
+Client 0 Epoch 1/8: Loss=0.6599, Acc=61.71%
+Client 0 Epoch 2/8: Loss=0.5887, Acc=71.46%
+Client 0 Epoch 3/8: Loss=0.5363, Acc=77.08%
+Client 0 Epoch 4/8: Loss=0.4987, Acc=78.29%
+Client 0 Epoch 5/8: Loss=0.4673, Acc=79.96%
+Client 0 Epoch 6/8: Loss=0.4460, Acc=81.17%
+Client 0 Epoch 7/8: Loss=0.4218, Acc=81.92%
+Client 0 Epoch 8/8: Loss=0.4020, Acc=82.71%
+Client 1 Epoch 1/8: Loss=0.6700, Acc=60.96%
+Client 1 Epoch 2/8: Loss=0.5959, Acc=70.79%
+Client 1 Epoch 3/8: Loss=0.5497, Acc=75.88%
+Client 1 Epoch 4/8: Loss=0.5059, Acc=77.88%
+Client 1 Epoch 5/8: Loss=0.4750, Acc=79.29%
+Client 1 Epoch 6/8: Loss=0.4519, Acc=80.46%
+Client 1 Epoch 7/8: Loss=0.4288, Acc=82.33%
+Client 1 Epoch 8/8: Loss=0.4096, Acc=82.79%
+Client 2 Epoch 1/8: Loss=0.6672, Acc=61.62%
+Client 2 Epoch 2/8: Loss=0.5948, Acc=70.88%
+Client 2 Epoch 3/8: Loss=0.5427, Acc=77.33%
+Client 2 Epoch 4/8: Loss=0.5083, Acc=77.71%
+Client 2 Epoch 5/8: Loss=0.4821, Acc=78.71%
+Client 2 Epoch 6/8: Loss=0.4611, Acc=79.67%
+Client 2 Epoch 7/8: Loss=0.4355, Acc=81.54%
+Client 2 Epoch 8/8: Loss=0.4199, Acc=82.04%
+Client 3 Epoch 1/8: Loss=0.6617, Acc=61.54%
+Client 3 Epoch 2/8: Loss=0.5909, Acc=70.88%
+Client 3 Epoch 3/8: Loss=0.5401, Acc=76.21%
+Client 3 Epoch 4/8: Loss=0.4974, Acc=78.54%
+Client 3 Epoch 5/8: Loss=0.4698, Acc=79.17%
+Client 3 Epoch 6/8: Loss=0.4431, Acc=80.92%
+Client 3 Epoch 7/8: Loss=0.4269, Acc=81.08%
+Client 3 Epoch 8/8: Loss=0.4119, Acc=82.21%
+Client 4 Epoch 1/8: Loss=0.6648, Acc=63.54%
+Client 4 Epoch 2/8: Loss=0.5914, Acc=71.21%
+Client 4 Epoch 3/8: Loss=0.5345, Acc=77.33%
+Client 4 Epoch 4/8: Loss=0.5000, Acc=78.79%
+Client 4 Epoch 5/8: Loss=0.4774, Acc=79.75%
+Client 4 Epoch 6/8: Loss=0.4505, Acc=80.50%
+Client 4 Epoch 7/8: Loss=0.4276, Acc=82.08%
+Client 4 Epoch 8/8: Loss=0.4106, Acc=82.71%
+2025-09-22 12:29:35,786 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:35,786 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 12:29:35,786 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 12:29:35,786 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 12:29:37,014 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:38,243 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:39,472 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:40,700 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:41,932 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:43,164 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:44,396 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:45,629 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:46,864 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:48,101 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:49,339 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:50,577 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:51,816 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:53,054 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:54,295 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:55,535 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:56,776 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:29:57,758 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 12:29:57,802 - main - INFO - ?? Round 1 Clean Acc: 80.50% | Adv Acc: 49.17% | MAE Detection: 100.00% | Time: 471.1s
+2025-09-22 12:29:57,803 - main - INFO - ?? Total training time: 474.7s
+2025-09-22 12:29:57,803 - main - INFO - ?? Round 2/15
+2025-09-22 12:29:57,825 - main - INFO - ?? Training client 1/5
+2025-09-22 12:31:23,376 - main - INFO - ? Client 1 completed in 85.6s
+2025-09-22 12:31:23,376 - main - INFO - ?? Training client 2/5
+2025-09-22 12:32:46,274 - main - INFO - ? Client 2 completed in 82.9s
+2025-09-22 12:32:46,274 - main - INFO - ?? Training client 3/5
+2025-09-22 12:34:09,601 - main - INFO - ? Client 3 completed in 83.3s
+2025-09-22 12:34:09,601 - main - INFO - ?? Training client 4/5
+2025-09-22 12:35:34,427 - main - INFO - ? Client 4 completed in 84.8s
+2025-09-22 12:35:34,428 - main - INFO - ?? Training client 5/5
+2025-09-22 12:37:00,357 - main - INFO - ? Client 5 completed in 85.9s
+2025-09-22 12:37:00,357 - main - INFO - ?? Aggregating models...
+2025-09-22 12:37:00,377 - main - INFO - ? Model aggregation completed
+2025-09-22 12:37:00,377 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 12:37:12,359 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.4236, Acc=81.96%
+Client 0 Epoch 2/8: Loss=0.3880, Acc=84.12%
+Client 0 Epoch 3/8: Loss=0.3685, Acc=85.00%
+Client 0 Epoch 4/8: Loss=0.3425, Acc=87.21%
+Client 0 Epoch 5/8: Loss=0.3241, Acc=87.25%
+Client 0 Epoch 6/8: Loss=0.3184, Acc=88.00%
+Client 0 Epoch 7/8: Loss=0.2861, Acc=89.71%
+Client 0 Epoch 8/8: Loss=0.2743, Acc=90.17%
+Client 1 Epoch 1/8: Loss=0.4199, Acc=82.17%
+Client 1 Epoch 2/8: Loss=0.3935, Acc=83.62%
+Client 1 Epoch 3/8: Loss=0.3703, Acc=85.08%
+Client 1 Epoch 4/8: Loss=0.3451, Acc=85.92%
+Client 1 Epoch 5/8: Loss=0.3176, Acc=88.25%
+Client 1 Epoch 6/8: Loss=0.3044, Acc=88.62%
+Client 1 Epoch 7/8: Loss=0.2878, Acc=89.88%
+Client 1 Epoch 8/8: Loss=0.2684, Acc=90.46%
+Client 2 Epoch 1/8: Loss=0.4210, Acc=82.42%
+Client 2 Epoch 2/8: Loss=0.3910, Acc=83.88%
+Client 2 Epoch 3/8: Loss=0.3710, Acc=85.12%
+Client 2 Epoch 4/8: Loss=0.3420, Acc=86.00%
+Client 2 Epoch 5/8: Loss=0.3253, Acc=87.21%
+Client 2 Epoch 6/8: Loss=0.3090, Acc=88.29%
+Client 2 Epoch 7/8: Loss=0.2925, Acc=88.67%
+Client 2 Epoch 8/8: Loss=0.2769, Acc=90.12%
+Client 3 Epoch 1/8: Loss=0.4243, Acc=82.25%
+Client 3 Epoch 2/8: Loss=0.3899, Acc=84.83%
+Client 3 Epoch 3/8: Loss=0.3620, Acc=85.33%
+Client 3 Epoch 4/8: Loss=0.3410, Acc=86.08%
+Client 3 Epoch 5/8: Loss=0.3195, Acc=87.46%
+Client 3 Epoch 6/8: Loss=0.3111, Acc=87.96%
+Client 3 Epoch 7/8: Loss=0.2962, Acc=88.71%
+Client 3 Epoch 8/8: Loss=0.2767, Acc=90.00%
+Client 4 Epoch 1/8: Loss=0.4273, Acc=81.58%
+Client 4 Epoch 2/8: Loss=0.3974, Acc=83.08%
+Client 4 Epoch 3/8: Loss=0.3664, Acc=85.17%
+Client 4 Epoch 4/8: Loss=0.3402, Acc=86.54%
+Client 4 Epoch 5/8: Loss=0.3241, Acc=87.71%
+Client 4 Epoch 6/8: Loss=0.3029, Acc=88.33%
+Client 4 Epoch 7/8: Loss=0.2906, Acc=89.42%
+Client 4 Epoch 8/8: Loss=0.2795, Acc=89.92%
+2025-09-22 12:37:13,787 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:13,788 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 12:37:13,788 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 12:37:13,788 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 12:37:15,011 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:16,240 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:17,468 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:18,696 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:19,927 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:21,157 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:22,389 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:23,622 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:24,855 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:26,088 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:27,322 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:28,558 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:29,795 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:31,034 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:32,272 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:33,511 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:34,751 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:37:35,698 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 12:37:35,740 - main - INFO - ?? Round 2 Clean Acc: 88.67% | Adv Acc: 49.17% | MAE Detection: 100.00% | Time: 457.9s
+2025-09-22 12:37:35,740 - main - INFO - ?? Total training time: 932.7s
+2025-09-22 12:37:35,740 - main - INFO - ?? Round 3/15
+2025-09-22 12:37:35,763 - main - INFO - ?? Training client 1/5
+2025-09-22 12:39:01,186 - main - INFO - ? Client 1 completed in 85.4s
+2025-09-22 12:39:01,186 - main - INFO - ?? Training client 2/5
+2025-09-22 12:40:26,936 - main - INFO - ? Client 2 completed in 85.7s
+2025-09-22 12:40:26,936 - main - INFO - ?? Training client 3/5
+2025-09-22 12:41:50,672 - main - INFO - ? Client 3 completed in 83.7s
+2025-09-22 12:41:50,672 - main - INFO - ?? Training client 4/5
+2025-09-22 12:43:19,131 - main - INFO - ? Client 4 completed in 88.5s
+2025-09-22 12:43:19,131 - main - INFO - ?? Training client 5/5
+2025-09-22 12:44:50,343 - main - INFO - ? Client 5 completed in 91.2s
+2025-09-22 12:44:50,343 - main - INFO - ?? Aggregating models...
+2025-09-22 12:44:50,361 - main - INFO - ? Model aggregation completed
+2025-09-22 12:44:50,362 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 12:45:03,259 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.2803, Acc=89.54%
+Client 0 Epoch 2/8: Loss=0.2586, Acc=90.58%
+Client 0 Epoch 3/8: Loss=0.2409, Acc=91.54%
+Client 0 Epoch 4/8: Loss=0.2355, Acc=91.71%
+Client 0 Epoch 5/8: Loss=0.2079, Acc=92.88%
+Client 0 Epoch 6/8: Loss=0.1995, Acc=93.54%
+Client 0 Epoch 7/8: Loss=0.1981, Acc=93.54%
+Client 0 Epoch 8/8: Loss=0.1817, Acc=94.79%
+Client 1 Epoch 1/8: Loss=0.2788, Acc=89.71%
+Client 1 Epoch 2/8: Loss=0.2569, Acc=90.88%
+Client 1 Epoch 3/8: Loss=0.2507, Acc=90.88%
+Client 1 Epoch 4/8: Loss=0.2169, Acc=92.96%
+Client 1 Epoch 5/8: Loss=0.2087, Acc=93.17%
+Client 1 Epoch 6/8: Loss=0.1929, Acc=94.12%
+Client 1 Epoch 7/8: Loss=0.1864, Acc=94.29%
+Client 1 Epoch 8/8: Loss=0.1903, Acc=94.00%
+Client 2 Epoch 1/8: Loss=0.2863, Acc=89.62%
+Client 2 Epoch 2/8: Loss=0.2607, Acc=90.79%
+Client 2 Epoch 3/8: Loss=0.2403, Acc=91.79%
+Client 2 Epoch 4/8: Loss=0.2191, Acc=92.54%
+Client 2 Epoch 5/8: Loss=0.2156, Acc=92.75%
+Client 2 Epoch 6/8: Loss=0.2065, Acc=92.79%
+Client 2 Epoch 7/8: Loss=0.1930, Acc=94.00%
+Client 2 Epoch 8/8: Loss=0.1885, Acc=93.88%
+Client 3 Epoch 1/8: Loss=0.2752, Acc=90.00%
+Client 3 Epoch 2/8: Loss=0.2529, Acc=91.21%
+Client 3 Epoch 3/8: Loss=0.2450, Acc=91.12%
+Client 3 Epoch 4/8: Loss=0.2252, Acc=92.38%
+Client 3 Epoch 5/8: Loss=0.2179, Acc=92.58%
+Client 3 Epoch 6/8: Loss=0.2017, Acc=93.33%
+Client 3 Epoch 7/8: Loss=0.1957, Acc=93.79%
+Client 3 Epoch 8/8: Loss=0.1823, Acc=94.29%
+Client 4 Epoch 1/8: Loss=0.2789, Acc=89.54%
+Client 4 Epoch 2/8: Loss=0.2536, Acc=91.00%
+Client 4 Epoch 3/8: Loss=0.2428, Acc=91.50%
+Client 4 Epoch 4/8: Loss=0.2240, Acc=92.21%
+Client 4 Epoch 5/8: Loss=0.2032, Acc=93.83%
+Client 4 Epoch 6/8: Loss=0.2029, Acc=93.29%
+Client 4 Epoch 7/8: Loss=0.1807, Acc=94.62%
+Client 4 Epoch 8/8: Loss=0.1829, Acc=94.00%
+2025-09-22 12:45:04,683 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:04,684 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 12:45:04,684 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 12:45:04,684 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 12:45:05,906 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:07,128 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:08,355 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:09,583 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:10,812 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:12,043 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:13,274 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:14,505 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:15,739 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:16,972 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:18,206 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:19,444 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:20,682 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:21,920 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:23,158 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:24,398 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:25,638 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:45:26,584 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 12:45:26,630 - main - INFO - ?? Round 3 Clean Acc: 92.00% | Adv Acc: 49.67% | MAE Detection: 100.00% | Time: 470.9s
+2025-09-22 12:45:26,631 - main - INFO - ?? Total training time: 1403.5s
+2025-09-22 12:45:26,631 - main - INFO - ?? Round 4/15
+2025-09-22 12:45:26,656 - main - INFO - ?? Training client 1/5
+2025-09-22 12:46:52,761 - main - INFO - ? Client 1 completed in 86.1s
+2025-09-22 12:46:52,762 - main - INFO - ?? Training client 2/5
+2025-09-22 12:48:18,678 - main - INFO - ? Client 2 completed in 85.9s
+2025-09-22 12:48:18,678 - main - INFO - ?? Training client 3/5
+2025-09-22 12:49:44,877 - main - INFO - ? Client 3 completed in 86.2s
+2025-09-22 12:49:44,877 - main - INFO - ?? Training client 4/5
+2025-09-22 12:51:12,657 - main - INFO - ? Client 4 completed in 87.8s
+2025-09-22 12:51:12,658 - main - INFO - ?? Training client 5/5
+2025-09-22 12:52:40,292 - main - INFO - ? Client 5 completed in 87.6s
+2025-09-22 12:52:40,293 - main - INFO - ?? Aggregating models...
+2025-09-22 12:52:40,312 - main - INFO - ? Model aggregation completed
+2025-09-22 12:52:40,312 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 12:52:53,154 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.1860, Acc=94.33%
+Client 0 Epoch 2/8: Loss=0.1670, Acc=94.96%
+Client 0 Epoch 3/8: Loss=0.1671, Acc=94.92%
+Client 0 Epoch 4/8: Loss=0.1445, Acc=95.75%
+Client 0 Epoch 5/8: Loss=0.1400, Acc=96.12%
+Client 0 Epoch 6/8: Loss=0.1314, Acc=96.29%
+Client 0 Epoch 7/8: Loss=0.1321, Acc=96.29%
+Client 0 Epoch 8/8: Loss=0.1206, Acc=96.83%
+Client 1 Epoch 1/8: Loss=0.1791, Acc=94.25%
+Client 1 Epoch 2/8: Loss=0.1647, Acc=95.42%
+Client 1 Epoch 3/8: Loss=0.1641, Acc=95.08%
+Client 1 Epoch 4/8: Loss=0.1548, Acc=95.38%
+Client 1 Epoch 5/8: Loss=0.1330, Acc=96.29%
+Client 1 Epoch 6/8: Loss=0.1479, Acc=95.58%
+Client 1 Epoch 7/8: Loss=0.1246, Acc=96.50%
+Client 1 Epoch 8/8: Loss=0.1097, Acc=97.50%
+Client 2 Epoch 1/8: Loss=0.1896, Acc=93.21%
+Client 2 Epoch 2/8: Loss=0.1709, Acc=94.75%
+Client 2 Epoch 3/8: Loss=0.1592, Acc=95.04%
+Client 2 Epoch 4/8: Loss=0.1374, Acc=96.21%
+Client 2 Epoch 5/8: Loss=0.1480, Acc=95.71%
+Client 2 Epoch 6/8: Loss=0.1296, Acc=96.50%
+Client 2 Epoch 7/8: Loss=0.1271, Acc=96.58%
+Client 2 Epoch 8/8: Loss=0.1152, Acc=96.75%
+Client 3 Epoch 1/8: Loss=0.1902, Acc=94.17%
+Client 3 Epoch 2/8: Loss=0.1707, Acc=94.46%
+Client 3 Epoch 3/8: Loss=0.1605, Acc=94.92%
+Client 3 Epoch 4/8: Loss=0.1465, Acc=95.92%
+Client 3 Epoch 5/8: Loss=0.1404, Acc=96.25%
+Client 3 Epoch 6/8: Loss=0.1369, Acc=96.12%
+Client 3 Epoch 7/8: Loss=0.1162, Acc=97.50%
+Client 3 Epoch 8/8: Loss=0.1217, Acc=96.79%
+Client 4 Epoch 1/8: Loss=0.1732, Acc=94.58%
+Client 4 Epoch 2/8: Loss=0.1754, Acc=94.17%
+Client 4 Epoch 3/8: Loss=0.1666, Acc=94.38%
+Client 4 Epoch 4/8: Loss=0.1514, Acc=95.71%
+Client 4 Epoch 5/8: Loss=0.1560, Acc=94.96%
+Client 4 Epoch 6/8: Loss=0.1240, Acc=96.71%
+Client 4 Epoch 7/8: Loss=0.1233, Acc=96.79%
+Client 4 Epoch 8/8: Loss=0.1106, Acc=97.25%
+2025-09-22 12:52:54,570 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:52:54,571 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 12:52:54,571 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 12:52:54,571 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 12:52:55,795 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:52:57,022 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:52:58,250 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:52:59,479 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:00,708 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:01,937 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:03,168 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:04,400 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:05,631 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:06,865 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:08,099 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:09,333 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:10,571 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:11,808 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:13,050 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:14,291 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:15,532 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 12:53:16,479 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 12:53:16,526 - main - INFO - ?? Round 4 Clean Acc: 94.00% | Adv Acc: 48.33% | MAE Detection: 100.00% | Time: 469.9s
+2025-09-22 12:53:16,526 - main - INFO - ?? Total training time: 1873.4s
+2025-09-22 12:53:16,526 - main - INFO - ?? Round 5/15
+2025-09-22 12:53:16,549 - main - INFO - ?? Training client 1/5
+2025-09-22 12:54:47,152 - main - INFO - ? Client 1 completed in 90.6s
+2025-09-22 12:54:47,152 - main - INFO - ?? Training client 2/5
+2025-09-22 12:56:15,865 - main - INFO - ? Client 2 completed in 88.7s
+2025-09-22 12:56:15,866 - main - INFO - ?? Training client 3/5
+2025-09-22 12:57:44,958 - main - INFO - ? Client 3 completed in 89.1s
+2025-09-22 12:57:44,958 - main - INFO - ?? Training client 4/5
+2025-09-22 12:59:11,250 - main - INFO - ? Client 4 completed in 86.3s
+2025-09-22 12:59:11,250 - main - INFO - ?? Training client 5/5
+2025-09-22 13:00:41,060 - main - INFO - ? Client 5 completed in 89.8s
+2025-09-22 13:00:41,060 - main - INFO - ?? Aggregating models...
+2025-09-22 13:00:41,079 - main - INFO - ? Model aggregation completed
+2025-09-22 13:00:41,079 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:00:53,412 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.1188, Acc=96.58%
+Client 0 Epoch 2/8: Loss=0.1113, Acc=96.71%
+Client 0 Epoch 3/8: Loss=0.0916, Acc=97.79%
+Client 0 Epoch 4/8: Loss=0.0891, Acc=97.88%
+Client 0 Epoch 5/8: Loss=0.0739, Acc=98.83%
+Client 0 Epoch 6/8: Loss=0.0747, Acc=98.00%
+Client 0 Epoch 7/8: Loss=0.0792, Acc=98.33%
+Client 0 Epoch 8/8: Loss=0.0666, Acc=98.71%
+Client 1 Epoch 1/8: Loss=0.1142, Acc=96.62%
+Client 1 Epoch 2/8: Loss=0.1058, Acc=97.21%
+Client 1 Epoch 3/8: Loss=0.0972, Acc=97.96%
+Client 1 Epoch 4/8: Loss=0.0848, Acc=98.04%
+Client 1 Epoch 5/8: Loss=0.0866, Acc=97.79%
+Client 1 Epoch 6/8: Loss=0.0783, Acc=98.17%
+Client 1 Epoch 7/8: Loss=0.0710, Acc=98.75%
+Client 1 Epoch 8/8: Loss=0.0642, Acc=98.71%
+Client 2 Epoch 1/8: Loss=0.1102, Acc=97.33%
+Client 2 Epoch 2/8: Loss=0.1129, Acc=97.04%
+Client 2 Epoch 3/8: Loss=0.0952, Acc=97.50%
+Client 2 Epoch 4/8: Loss=0.0853, Acc=98.21%
+Client 2 Epoch 5/8: Loss=0.0826, Acc=97.88%
+Client 2 Epoch 6/8: Loss=0.0752, Acc=98.42%
+Client 2 Epoch 7/8: Loss=0.0689, Acc=98.67%
+Client 2 Epoch 8/8: Loss=0.0599, Acc=98.79%
+Client 3 Epoch 1/8: Loss=0.1189, Acc=96.83%
+Client 3 Epoch 2/8: Loss=0.1178, Acc=96.54%
+Client 3 Epoch 3/8: Loss=0.0991, Acc=97.46%
+Client 3 Epoch 4/8: Loss=0.0849, Acc=97.96%
+Client 3 Epoch 5/8: Loss=0.0792, Acc=98.33%
+Client 3 Epoch 6/8: Loss=0.0775, Acc=98.25%
+Client 3 Epoch 7/8: Loss=0.0652, Acc=98.79%
+Client 3 Epoch 8/8: Loss=0.0603, Acc=98.79%
+Client 4 Epoch 1/8: Loss=0.1179, Acc=96.75%
+Client 4 Epoch 2/8: Loss=0.1163, Acc=97.33%
+Client 4 Epoch 3/8: Loss=0.1072, Acc=96.92%
+Client 4 Epoch 4/8: Loss=0.0908, Acc=97.88%
+Client 4 Epoch 5/8: Loss=0.0827, Acc=98.42%
+Client 4 Epoch 6/8: Loss=0.0788, Acc=98.29%
+Client 4 Epoch 7/8: Loss=0.0672, Acc=98.79%
+Client 4 Epoch 8/8: Loss=0.0622, Acc=98.96%
+2025-09-22 13:00:54,830 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:00:54,830 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:00:54,830 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:00:54,831 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:00:56,052 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:00:57,276 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:00:58,506 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:00:59,735 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:00,964 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:02,193 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:03,424 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:04,656 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:05,888 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:07,121 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:08,355 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:09,590 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:10,823 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:12,062 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:13,303 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:14,542 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:15,782 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:01:16,727 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:01:16,765 - main - INFO - ?? Round 5 Clean Acc: 95.17% | Adv Acc: 45.67% | MAE Detection: 100.00% | Time: 480.2s
+2025-09-22 13:01:16,766 - main - INFO - ?? Total training time: 2353.7s
+2025-09-22 13:01:16,766 - main - INFO - ?? Round 6/15
+2025-09-22 13:01:16,786 - main - INFO - ?? Training client 1/5
+2025-09-22 13:02:44,010 - main - INFO - ? Client 1 completed in 87.2s
+2025-09-22 13:02:44,010 - main - INFO - ?? Training client 2/5
+2025-09-22 13:04:13,967 - main - INFO - ? Client 2 completed in 90.0s
+2025-09-22 13:04:13,968 - main - INFO - ?? Training client 3/5
+2025-09-22 13:05:40,201 - main - INFO - ? Client 3 completed in 86.2s
+2025-09-22 13:05:40,202 - main - INFO - ?? Training client 4/5
+2025-09-22 13:07:07,759 - main - INFO - ? Client 4 completed in 87.6s
+2025-09-22 13:07:07,759 - main - INFO - ?? Training client 5/5
+2025-09-22 13:08:33,730 - main - INFO - ? Client 5 completed in 86.0s
+2025-09-22 13:08:33,730 - main - INFO - ?? Aggregating models...
+2025-09-22 13:08:33,749 - main - INFO - ? Model aggregation completed
+2025-09-22 13:08:33,749 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:08:45,345 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0624, Acc=98.79%
+Client 0 Epoch 2/8: Loss=0.0636, Acc=98.42%
+Client 0 Epoch 3/8: Loss=0.0546, Acc=98.96%
+Client 0 Epoch 4/8: Loss=0.0427, Acc=99.29%
+Client 0 Epoch 5/8: Loss=0.0425, Acc=99.38%
+Client 0 Epoch 6/8: Loss=0.0399, Acc=99.33%
+Client 0 Epoch 7/8: Loss=0.0354, Acc=99.38%
+Client 0 Epoch 8/8: Loss=0.0319, Acc=99.46%
+Client 1 Epoch 1/8: Loss=0.0699, Acc=98.21%
+Client 1 Epoch 2/8: Loss=0.0727, Acc=98.04%
+Client 1 Epoch 3/8: Loss=0.0548, Acc=98.96%
+Client 1 Epoch 4/8: Loss=0.0529, Acc=99.04%
+Client 1 Epoch 5/8: Loss=0.0422, Acc=99.25%
+Client 1 Epoch 6/8: Loss=0.0413, Acc=99.21%
+Client 1 Epoch 7/8: Loss=0.0413, Acc=99.25%
+Client 1 Epoch 8/8: Loss=0.0411, Acc=99.12%
+Client 2 Epoch 1/8: Loss=0.0695, Acc=98.58%
+Client 2 Epoch 2/8: Loss=0.0663, Acc=98.54%
+Client 2 Epoch 3/8: Loss=0.0625, Acc=98.58%
+Client 2 Epoch 4/8: Loss=0.0566, Acc=98.42%
+Client 2 Epoch 5/8: Loss=0.0409, Acc=99.46%
+Client 2 Epoch 6/8: Loss=0.0406, Acc=99.33%
+Client 2 Epoch 7/8: Loss=0.0318, Acc=99.50%
+Client 2 Epoch 8/8: Loss=0.0322, Acc=99.42%
+Client 3 Epoch 1/8: Loss=0.0635, Acc=98.58%
+Client 3 Epoch 2/8: Loss=0.0618, Acc=98.79%
+Client 3 Epoch 3/8: Loss=0.0568, Acc=98.58%
+Client 3 Epoch 4/8: Loss=0.0518, Acc=99.04%
+Client 3 Epoch 5/8: Loss=0.0483, Acc=99.17%
+Client 3 Epoch 6/8: Loss=0.0434, Acc=99.12%
+Client 3 Epoch 7/8: Loss=0.0370, Acc=99.25%
+Client 3 Epoch 8/8: Loss=0.0305, Acc=99.67%
+Client 4 Epoch 1/8: Loss=0.0663, Acc=98.38%
+Client 4 Epoch 2/8: Loss=0.0668, Acc=98.62%
+Client 4 Epoch 3/8: Loss=0.0539, Acc=99.12%
+Client 4 Epoch 4/8: Loss=0.0492, Acc=99.04%
+Client 4 Epoch 5/8: Loss=0.0473, Acc=99.08%
+Client 4 Epoch 6/8: Loss=0.0391, Acc=99.33%
+Client 4 Epoch 7/8: Loss=0.0365, Acc=99.46%
+Client 4 Epoch 8/8: Loss=0.0370, Acc=99.29%
+2025-09-22 13:08:46,761 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:46,762 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:08:46,762 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:08:46,762 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:08:47,982 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:49,203 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:50,431 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:51,660 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:52,889 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:54,118 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:55,351 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:56,583 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:57,816 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:08:59,051 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:00,285 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:01,519 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:02,754 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:03,993 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:05,233 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:06,474 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:07,713 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:09:08,660 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:09:08,704 - main - INFO - ?? Round 6 Clean Acc: 95.83% | Adv Acc: 43.50% | MAE Detection: 100.00% | Time: 471.9s
+2025-09-22 13:09:08,705 - main - INFO - ?? Total training time: 2825.6s
+2025-09-22 13:09:08,705 - main - INFO - ?? Round 7/15
+2025-09-22 13:09:08,724 - main - INFO - ?? Training client 1/5
+2025-09-22 13:10:40,667 - main - INFO - ? Client 1 completed in 91.9s
+2025-09-22 13:10:40,667 - main - INFO - ?? Training client 2/5
+2025-09-22 13:12:07,050 - main - INFO - ? Client 2 completed in 86.4s
+2025-09-22 13:12:07,051 - main - INFO - ?? Training client 3/5
+2025-09-22 13:13:36,959 - main - INFO - ? Client 3 completed in 89.9s
+2025-09-22 13:13:36,959 - main - INFO - ?? Training client 4/5
+2025-09-22 13:15:04,551 - main - INFO - ? Client 4 completed in 87.6s
+2025-09-22 13:15:04,551 - main - INFO - ?? Training client 5/5
+2025-09-22 13:16:33,298 - main - INFO - ? Client 5 completed in 88.7s
+2025-09-22 13:16:33,299 - main - INFO - ?? Aggregating models...
+2025-09-22 13:16:33,325 - main - INFO - ? Model aggregation completed
+2025-09-22 13:16:33,325 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:16:45,653 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0352, Acc=99.29%
+Client 0 Epoch 2/8: Loss=0.0371, Acc=99.33%
+Client 0 Epoch 3/8: Loss=0.0295, Acc=99.46%
+Client 0 Epoch 4/8: Loss=0.0275, Acc=99.33%
+Client 0 Epoch 5/8: Loss=0.0245, Acc=99.46%
+Client 0 Epoch 6/8: Loss=0.0217, Acc=99.62%
+Client 0 Epoch 7/8: Loss=0.0149, Acc=99.83%
+Client 0 Epoch 8/8: Loss=0.0141, Acc=99.79%
+Client 1 Epoch 1/8: Loss=0.0350, Acc=99.46%
+Client 1 Epoch 2/8: Loss=0.0360, Acc=99.21%
+Client 1 Epoch 3/8: Loss=0.0277, Acc=99.58%
+Client 1 Epoch 4/8: Loss=0.0305, Acc=99.38%
+Client 1 Epoch 5/8: Loss=0.0212, Acc=99.58%
+Client 1 Epoch 6/8: Loss=0.0206, Acc=99.67%
+Client 1 Epoch 7/8: Loss=0.0217, Acc=99.62%
+Client 1 Epoch 8/8: Loss=0.0147, Acc=99.92%
+Client 2 Epoch 1/8: Loss=0.0336, Acc=99.42%
+Client 2 Epoch 2/8: Loss=0.0334, Acc=99.33%
+Client 2 Epoch 3/8: Loss=0.0290, Acc=99.42%
+Client 2 Epoch 4/8: Loss=0.0234, Acc=99.67%
+Client 2 Epoch 5/8: Loss=0.0229, Acc=99.46%
+Client 2 Epoch 6/8: Loss=0.0213, Acc=99.67%
+Client 2 Epoch 7/8: Loss=0.0159, Acc=99.88%
+Client 2 Epoch 8/8: Loss=0.0151, Acc=99.88%
+Client 3 Epoch 1/8: Loss=0.0347, Acc=99.38%
+Client 3 Epoch 2/8: Loss=0.0279, Acc=99.62%
+Client 3 Epoch 3/8: Loss=0.0234, Acc=99.75%
+Client 3 Epoch 4/8: Loss=0.0228, Acc=99.75%
+Client 3 Epoch 5/8: Loss=0.0200, Acc=99.67%
+Client 3 Epoch 6/8: Loss=0.0168, Acc=99.75%
+Client 3 Epoch 7/8: Loss=0.0155, Acc=99.83%
+Client 3 Epoch 8/8: Loss=0.0134, Acc=99.88%
+Client 4 Epoch 1/8: Loss=0.0354, Acc=99.33%
+Client 4 Epoch 2/8: Loss=0.0396, Acc=99.17%
+Client 4 Epoch 3/8: Loss=0.0261, Acc=99.58%
+Client 4 Epoch 4/8: Loss=0.0246, Acc=99.54%
+Client 4 Epoch 5/8: Loss=0.0198, Acc=99.71%
+Client 4 Epoch 6/8: Loss=0.0245, Acc=99.58%
+Client 4 Epoch 7/8: Loss=0.0186, Acc=99.75%
+Client 4 Epoch 8/8: Loss=0.0132, Acc=99.88%
+2025-09-22 13:16:47,074 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:47,074 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:16:47,074 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:16:47,074 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:16:48,295 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:49,518 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:50,743 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:51,972 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:53,199 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:54,429 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:55,661 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:56,893 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:58,125 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:16:59,358 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:00,592 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:01,826 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:03,061 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:04,297 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:05,535 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:06,776 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:08,015 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:17:08,960 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:17:09,005 - main - INFO - ?? Round 7 Clean Acc: 96.17% | Adv Acc: 43.17% | MAE Detection: 100.00% | Time: 480.3s
+2025-09-22 13:17:09,006 - main - INFO - ?? Total training time: 3305.9s
+2025-09-22 13:17:09,006 - main - INFO - ?? Round 8/15
+2025-09-22 13:17:09,029 - main - INFO - ?? Training client 1/5
+2025-09-22 13:18:36,168 - main - INFO - ? Client 1 completed in 87.1s
+2025-09-22 13:18:36,168 - main - INFO - ?? Training client 2/5
+2025-09-22 13:20:02,876 - main - INFO - ? Client 2 completed in 86.7s
+2025-09-22 13:20:02,877 - main - INFO - ?? Training client 3/5
+2025-09-22 13:21:29,243 - main - INFO - ? Client 3 completed in 86.4s
+2025-09-22 13:21:29,244 - main - INFO - ?? Training client 4/5
+2025-09-22 13:22:58,997 - main - INFO - ? Client 4 completed in 89.8s
+2025-09-22 13:22:58,998 - main - INFO - ?? Training client 5/5
+2025-09-22 13:24:24,432 - main - INFO - ? Client 5 completed in 85.4s
+2025-09-22 13:24:24,432 - main - INFO - ?? Aggregating models...
+2025-09-22 13:24:24,451 - main - INFO - ? Model aggregation completed
+2025-09-22 13:24:24,451 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:24:36,117 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0182, Acc=99.67%
+Client 0 Epoch 2/8: Loss=0.0138, Acc=99.88%
+Client 0 Epoch 3/8: Loss=0.0133, Acc=99.75%
+Client 0 Epoch 4/8: Loss=0.0087, Acc=99.92%
+Client 0 Epoch 5/8: Loss=0.0093, Acc=99.83%
+Client 0 Epoch 6/8: Loss=0.0093, Acc=99.83%
+Client 0 Epoch 7/8: Loss=0.0076, Acc=99.92%
+Client 0 Epoch 8/8: Loss=0.0079, Acc=99.88%
+Client 1 Epoch 1/8: Loss=0.0208, Acc=99.38%
+Client 1 Epoch 2/8: Loss=0.0161, Acc=99.83%
+Client 1 Epoch 3/8: Loss=0.0160, Acc=99.75%
+Client 1 Epoch 4/8: Loss=0.0132, Acc=99.88%
+Client 1 Epoch 5/8: Loss=0.0114, Acc=99.79%
+Client 1 Epoch 6/8: Loss=0.0073, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0087, Acc=99.92%
+Client 1 Epoch 8/8: Loss=0.0067, Acc=99.92%
+Client 2 Epoch 1/8: Loss=0.0191, Acc=99.71%
+Client 2 Epoch 2/8: Loss=0.0141, Acc=99.75%
+Client 2 Epoch 3/8: Loss=0.0134, Acc=99.79%
+Client 2 Epoch 4/8: Loss=0.0116, Acc=99.83%
+Client 2 Epoch 5/8: Loss=0.0119, Acc=99.79%
+Client 2 Epoch 6/8: Loss=0.0119, Acc=99.79%
+Client 2 Epoch 7/8: Loss=0.0074, Acc=99.92%
+Client 2 Epoch 8/8: Loss=0.0069, Acc=99.92%
+Client 3 Epoch 1/8: Loss=0.0189, Acc=99.58%
+Client 3 Epoch 2/8: Loss=0.0160, Acc=99.71%
+Client 3 Epoch 3/8: Loss=0.0102, Acc=99.92%
+Client 3 Epoch 4/8: Loss=0.0100, Acc=99.88%
+Client 3 Epoch 5/8: Loss=0.0136, Acc=99.62%
+Client 3 Epoch 6/8: Loss=0.0111, Acc=99.79%
+Client 3 Epoch 7/8: Loss=0.0093, Acc=99.88%
+Client 3 Epoch 8/8: Loss=0.0090, Acc=99.88%
+Client 4 Epoch 1/8: Loss=0.0147, Acc=99.79%
+Client 4 Epoch 2/8: Loss=0.0147, Acc=99.79%
+Client 4 Epoch 3/8: Loss=0.0132, Acc=99.83%
+Client 4 Epoch 4/8: Loss=0.0091, Acc=99.92%
+Client 4 Epoch 5/8: Loss=0.0085, Acc=99.83%
+Client 4 Epoch 6/8: Loss=0.0131, Acc=99.62%
+Client 4 Epoch 7/8: Loss=0.0079, Acc=99.92%
+Client 4 Epoch 8/8: Loss=0.0076, Acc=99.88%
+2025-09-22 13:24:37,544 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:37,544 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:24:37,544 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:24:37,545 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:24:38,765 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:39,986 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:41,209 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:42,438 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:43,667 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:44,904 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:46,136 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:47,369 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:48,603 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:49,838 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:51,072 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:52,308 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:53,544 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:54,779 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:56,014 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:57,256 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:58,497 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:24:59,445 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:24:59,496 - main - INFO - ?? Round 8 Clean Acc: 96.00% | Adv Acc: 42.33% | MAE Detection: 100.00% | Time: 470.5s
+2025-09-22 13:24:59,497 - main - INFO - ?? Total training time: 3776.4s
+2025-09-22 13:24:59,497 - main - INFO - ?? Round 9/15
+2025-09-22 13:24:59,520 - main - INFO - ?? Training client 1/5
+2025-09-22 13:26:28,446 - main - INFO - ? Client 1 completed in 88.9s
+2025-09-22 13:26:28,446 - main - INFO - ?? Training client 2/5
+2025-09-22 13:27:57,848 - main - INFO - ? Client 2 completed in 89.4s
+2025-09-22 13:27:57,848 - main - INFO - ?? Training client 3/5
+2025-09-22 13:29:23,704 - main - INFO - ? Client 3 completed in 85.9s
+2025-09-22 13:29:23,704 - main - INFO - ?? Training client 4/5
+2025-09-22 13:30:49,056 - main - INFO - ? Client 4 completed in 85.4s
+2025-09-22 13:30:49,057 - main - INFO - ?? Training client 5/5
+2025-09-22 13:32:15,104 - main - INFO - ? Client 5 completed in 86.0s
+2025-09-22 13:32:15,104 - main - INFO - ?? Aggregating models...
+2025-09-22 13:32:15,122 - main - INFO - ? Model aggregation completed
+2025-09-22 13:32:15,122 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:32:26,765 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0051, Acc=99.96%
+Client 0 Epoch 2/8: Loss=0.0079, Acc=99.88%
+Client 0 Epoch 3/8: Loss=0.0063, Acc=99.88%
+Client 0 Epoch 4/8: Loss=0.0066, Acc=99.96%
+Client 0 Epoch 5/8: Loss=0.0046, Acc=99.96%
+Client 0 Epoch 6/8: Loss=0.0068, Acc=99.92%
+Client 0 Epoch 7/8: Loss=0.0038, Acc=99.96%
+Client 0 Epoch 8/8: Loss=0.0060, Acc=99.96%
+Client 1 Epoch 1/8: Loss=0.0103, Acc=99.83%
+Client 1 Epoch 2/8: Loss=0.0063, Acc=99.92%
+Client 1 Epoch 3/8: Loss=0.0100, Acc=99.83%
+Client 1 Epoch 4/8: Loss=0.0073, Acc=99.83%
+Client 1 Epoch 5/8: Loss=0.0045, Acc=99.88%
+Client 1 Epoch 6/8: Loss=0.0054, Acc=99.88%
+Client 1 Epoch 7/8: Loss=0.0044, Acc=99.96%
+Client 1 Epoch 8/8: Loss=0.0049, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0086, Acc=99.83%
+Client 2 Epoch 2/8: Loss=0.0122, Acc=99.92%
+Client 2 Epoch 3/8: Loss=0.0085, Acc=99.88%
+Client 2 Epoch 4/8: Loss=0.0072, Acc=99.92%
+Client 2 Epoch 5/8: Loss=0.0040, Acc=99.96%
+Client 2 Epoch 6/8: Loss=0.0064, Acc=99.88%
+Client 2 Epoch 7/8: Loss=0.0057, Acc=99.92%
+Client 2 Epoch 8/8: Loss=0.0046, Acc=99.96%
+Client 3 Epoch 1/8: Loss=0.0112, Acc=99.71%
+Client 3 Epoch 2/8: Loss=0.0126, Acc=99.71%
+Client 3 Epoch 3/8: Loss=0.0062, Acc=99.92%
+Client 3 Epoch 4/8: Loss=0.0083, Acc=99.83%
+Client 3 Epoch 5/8: Loss=0.0047, Acc=99.92%
+Client 3 Epoch 6/8: Loss=0.0050, Acc=99.92%
+Client 3 Epoch 7/8: Loss=0.0040, Acc=99.96%
+Client 3 Epoch 8/8: Loss=0.0072, Acc=99.79%
+Client 4 Epoch 1/8: Loss=0.0062, Acc=99.88%
+Client 4 Epoch 2/8: Loss=0.0077, Acc=99.88%
+Client 4 Epoch 3/8: Loss=0.0075, Acc=99.92%
+Client 4 Epoch 4/8: Loss=0.0057, Acc=99.88%
+Client 4 Epoch 5/8: Loss=0.0053, Acc=99.96%
+Client 4 Epoch 6/8: Loss=0.0075, Acc=99.88%
+Client 4 Epoch 7/8: Loss=0.0042, Acc=99.96%
+Client 4 Epoch 8/8: Loss=0.0027, Acc=100.00%
+2025-09-22 13:32:28,182 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:28,183 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:32:28,185 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:32:28,185 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:32:29,409 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:30,634 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:31,860 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:33,089 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:34,318 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:35,549 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:36,781 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:38,011 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:39,246 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:40,479 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:41,712 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:42,946 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:44,181 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:45,419 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:46,658 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:47,899 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:49,139 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:32:50,085 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:32:50,127 - main - INFO - ?? Round 9 Clean Acc: 96.00% | Adv Acc: 43.33% | MAE Detection: 100.00% | Time: 470.6s
+2025-09-22 13:32:50,128 - main - INFO - ?? Total training time: 4247.0s
+2025-09-22 13:32:50,128 - main - INFO - ?? Round 10/15
+2025-09-22 13:32:50,149 - main - INFO - ?? Training client 1/5
+2025-09-22 13:34:18,288 - main - INFO - ? Client 1 completed in 88.1s
+2025-09-22 13:34:18,289 - main - INFO - ?? Training client 2/5
+2025-09-22 13:35:49,945 - main - INFO - ? Client 2 completed in 91.7s
+2025-09-22 13:35:49,945 - main - INFO - ?? Training client 3/5
+2025-09-22 13:37:16,342 - main - INFO - ? Client 3 completed in 86.4s
+2025-09-22 13:37:16,342 - main - INFO - ?? Training client 4/5
+2025-09-22 13:38:42,384 - main - INFO - ? Client 4 completed in 86.0s
+2025-09-22 13:38:42,385 - main - INFO - ?? Training client 5/5
+2025-09-22 13:40:10,017 - main - INFO - ? Client 5 completed in 87.6s
+2025-09-22 13:40:10,018 - main - INFO - ?? Aggregating models...
+2025-09-22 13:40:10,036 - main - INFO - ? Model aggregation completed
+2025-09-22 13:40:10,036 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:40:22,415 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0055, Acc=99.96%
+Client 0 Epoch 2/8: Loss=0.0031, Acc=99.96%
+Client 0 Epoch 3/8: Loss=0.0040, Acc=99.96%
+Client 0 Epoch 4/8: Loss=0.0040, Acc=99.92%
+Client 0 Epoch 5/8: Loss=0.0049, Acc=99.92%
+Client 0 Epoch 6/8: Loss=0.0039, Acc=99.96%
+Client 0 Epoch 7/8: Loss=0.0023, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0018, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0062, Acc=99.92%
+Client 1 Epoch 2/8: Loss=0.0071, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0043, Acc=99.92%
+Client 1 Epoch 4/8: Loss=0.0043, Acc=99.92%
+Client 1 Epoch 5/8: Loss=0.0036, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0040, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0017, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0033, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0044, Acc=99.88%
+Client 2 Epoch 2/8: Loss=0.0062, Acc=99.88%
+Client 2 Epoch 3/8: Loss=0.0048, Acc=99.83%
+Client 2 Epoch 4/8: Loss=0.0039, Acc=99.96%
+Client 2 Epoch 5/8: Loss=0.0021, Acc=99.96%
+Client 2 Epoch 6/8: Loss=0.0036, Acc=99.88%
+Client 2 Epoch 7/8: Loss=0.0024, Acc=100.00%
+Client 2 Epoch 8/8: Loss=0.0034, Acc=99.96%
+Client 3 Epoch 1/8: Loss=0.0045, Acc=99.96%
+Client 3 Epoch 2/8: Loss=0.0040, Acc=100.00%
+Client 3 Epoch 3/8: Loss=0.0030, Acc=99.96%
+Client 3 Epoch 4/8: Loss=0.0028, Acc=100.00%
+Client 3 Epoch 5/8: Loss=0.0036, Acc=99.92%
+Client 3 Epoch 6/8: Loss=0.0035, Acc=99.96%
+Client 3 Epoch 7/8: Loss=0.0028, Acc=99.96%
+Client 3 Epoch 8/8: Loss=0.0020, Acc=100.00%
+Client 4 Epoch 1/8: Loss=0.0039, Acc=99.96%
+Client 4 Epoch 2/8: Loss=0.0051, Acc=99.96%
+Client 4 Epoch 3/8: Loss=0.0035, Acc=99.96%
+Client 4 Epoch 4/8: Loss=0.0039, Acc=99.96%
+Client 4 Epoch 5/8: Loss=0.0027, Acc=100.00%
+Client 4 Epoch 6/8: Loss=0.0017, Acc=100.00%
+Client 4 Epoch 7/8: Loss=0.0023, Acc=100.00%
+Client 4 Epoch 8/8: Loss=0.0033, Acc=99.92%
+2025-09-22 13:40:23,846 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:23,847 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:40:23,847 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:40:23,847 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:40:25,069 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:26,292 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:27,518 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:28,752 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:29,985 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:31,216 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:32,450 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:33,683 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:34,914 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:36,148 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:37,382 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:38,619 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:39,855 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:41,092 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:42,330 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:43,568 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:44,808 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:40:45,755 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:40:45,807 - main - INFO - ?? Round 10 Clean Acc: 95.83% | Adv Acc: 42.83% | MAE Detection: 100.00% | Time: 475.7s
+2025-09-22 13:40:45,807 - main - INFO - ?? Total training time: 4722.7s
+2025-09-22 13:40:45,807 - main - INFO - ?? Round 11/15
+2025-09-22 13:40:45,829 - main - INFO - ?? Training client 1/5
+2025-09-22 13:42:12,459 - main - INFO - ? Client 1 completed in 86.6s
+2025-09-22 13:42:12,459 - main - INFO - ?? Training client 2/5
+2025-09-22 13:43:39,456 - main - INFO - ? Client 2 completed in 87.0s
+2025-09-22 13:43:39,457 - main - INFO - ?? Training client 3/5
+2025-09-22 13:45:08,135 - main - INFO - ? Client 3 completed in 88.7s
+2025-09-22 13:45:08,135 - main - INFO - ?? Training client 4/5
+2025-09-22 13:46:36,720 - main - INFO - ? Client 4 completed in 88.6s
+2025-09-22 13:46:36,720 - main - INFO - ?? Training client 5/5
+2025-09-22 13:48:02,069 - main - INFO - ? Client 5 completed in 85.3s
+2025-09-22 13:48:02,069 - main - INFO - ?? Aggregating models...
+2025-09-22 13:48:02,086 - main - INFO - ? Model aggregation completed
+2025-09-22 13:48:02,086 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:48:13,985 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0032, Acc=99.96%
+Client 0 Epoch 2/8: Loss=0.0039, Acc=99.92%
+Client 0 Epoch 3/8: Loss=0.0037, Acc=99.92%
+Client 0 Epoch 4/8: Loss=0.0019, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0029, Acc=99.96%
+Client 0 Epoch 6/8: Loss=0.0034, Acc=99.92%
+Client 0 Epoch 7/8: Loss=0.0017, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0017, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0017, Acc=100.00%
+Client 1 Epoch 2/8: Loss=0.0030, Acc=100.00%
+Client 1 Epoch 3/8: Loss=0.0032, Acc=99.88%
+Client 1 Epoch 4/8: Loss=0.0016, Acc=99.96%
+Client 1 Epoch 5/8: Loss=0.0034, Acc=99.92%
+Client 1 Epoch 6/8: Loss=0.0020, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0014, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0045, Acc=99.92%
+Client 2 Epoch 1/8: Loss=0.0022, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0021, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0018, Acc=100.00%
+Client 2 Epoch 4/8: Loss=0.0019, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0015, Acc=100.00%
+Client 2 Epoch 6/8: Loss=0.0012, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0018, Acc=100.00%
+Client 2 Epoch 8/8: Loss=0.0013, Acc=100.00%
+Client 3 Epoch 1/8: Loss=0.0039, Acc=99.92%
+Client 3 Epoch 2/8: Loss=0.0030, Acc=99.96%
+Client 3 Epoch 3/8: Loss=0.0021, Acc=99.96%
+Client 3 Epoch 4/8: Loss=0.0015, Acc=100.00%
+Client 3 Epoch 5/8: Loss=0.0024, Acc=99.96%
+Client 3 Epoch 6/8: Loss=0.0020, Acc=100.00%
+Client 3 Epoch 7/8: Loss=0.0016, Acc=100.00%
+Client 3 Epoch 8/8: Loss=0.0019, Acc=100.00%
+Client 4 Epoch 1/8: Loss=0.0034, Acc=99.92%
+Client 4 Epoch 2/8: Loss=0.0029, Acc=100.00%
+Client 4 Epoch 3/8: Loss=0.0047, Acc=99.83%
+Client 4 Epoch 4/8: Loss=0.0016, Acc=99.96%
+Client 4 Epoch 5/8: Loss=0.0013, Acc=100.00%
+Client 4 Epoch 6/8: Loss=0.0018, Acc=100.00%
+Client 4 Epoch 7/8: Loss=0.0021, Acc=99.96%
+Client 4 Epoch 8/8: Loss=0.0012, Acc=100.00%
+2025-09-22 13:48:15,404 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:15,404 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:48:15,404 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:48:15,404 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:48:16,622 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:17,844 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:19,067 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:20,297 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:21,528 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:22,760 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:23,991 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:25,224 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:26,458 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:27,693 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:28,928 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:30,165 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:31,402 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:32,639 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:33,875 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:35,111 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:36,353 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:48:37,300 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:48:37,344 - main - INFO - ?? Round 11 Clean Acc: 96.33% | Adv Acc: 43.17% | MAE Detection: 100.00% | Time: 471.5s
+2025-09-22 13:48:37,344 - main - INFO - ?? Total training time: 5194.3s
+2025-09-22 13:48:37,344 - main - INFO - ?? Round 12/15
+2025-09-22 13:48:37,367 - main - INFO - ?? Training client 1/5
+2025-09-22 13:50:04,920 - main - INFO - ? Client 1 completed in 87.6s
+2025-09-22 13:50:04,921 - main - INFO - ?? Training client 2/5
+2025-09-22 13:51:29,748 - main - INFO - ? Client 2 completed in 84.8s
+2025-09-22 13:51:29,748 - main - INFO - ?? Training client 3/5
+2025-09-22 13:52:56,248 - main - INFO - ? Client 3 completed in 86.5s
+2025-09-22 13:52:56,249 - main - INFO - ?? Training client 4/5
+2025-09-22 13:54:23,635 - main - INFO - ? Client 4 completed in 87.4s
+2025-09-22 13:54:23,635 - main - INFO - ?? Training client 5/5
+2025-09-22 13:55:53,887 - main - INFO - ? Client 5 completed in 90.3s
+2025-09-22 13:55:53,887 - main - INFO - ?? Aggregating models...
+2025-09-22 13:55:53,905 - main - INFO - ? Model aggregation completed
+2025-09-22 13:55:53,905 - main - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-22 13:56:06,174 - main - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0014, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0026, Acc=99.96%
+Client 0 Epoch 3/8: Loss=0.0018, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0011, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0011, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0024, Acc=99.96%
+Client 0 Epoch 7/8: Loss=0.0007, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0010, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0018, Acc=99.96%
+Client 1 Epoch 2/8: Loss=0.0008, Acc=100.00%
+Client 1 Epoch 3/8: Loss=0.0019, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0017, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0016, Acc=99.96%
+Client 1 Epoch 6/8: Loss=0.0021, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0013, Acc=99.96%
+Client 1 Epoch 8/8: Loss=0.0010, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0029, Acc=99.96%
+Client 2 Epoch 2/8: Loss=0.0034, Acc=99.88%
+Client 2 Epoch 3/8: Loss=0.0021, Acc=99.96%
+Client 2 Epoch 4/8: Loss=0.0023, Acc=99.92%
+Client 2 Epoch 5/8: Loss=0.0014, Acc=100.00%
+Client 2 Epoch 6/8: Loss=0.0013, Acc=99.96%
+Client 2 Epoch 7/8: Loss=0.0022, Acc=99.92%
+Client 2 Epoch 8/8: Loss=0.0012, Acc=100.00%
+Client 3 Epoch 1/8: Loss=0.0033, Acc=100.00%
+Client 3 Epoch 2/8: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 3/8: Loss=0.0026, Acc=99.96%
+Client 3 Epoch 4/8: Loss=0.0018, Acc=100.00%
+Client 3 Epoch 5/8: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 6/8: Loss=0.0021, Acc=100.00%
+Client 3 Epoch 7/8: Loss=0.0011, Acc=100.00%
+Client 3 Epoch 8/8: Loss=0.0024, Acc=99.96%
+Client 4 Epoch 1/8: Loss=0.0016, Acc=100.00%
+Client 4 Epoch 2/8: Loss=0.0013, Acc=100.00%
+Client 4 Epoch 3/8: Loss=0.0012, Acc=100.00%
+Client 4 Epoch 4/8: Loss=0.0015, Acc=100.00%
+Client 4 Epoch 5/8: Loss=0.0014, Acc=100.00%
+Client 4 Epoch 6/8: Loss=0.0022, Acc=99.96%
+Client 4 Epoch 7/8: Loss=0.0014, Acc=100.00%
+Client 4 Epoch 8/8: Loss=0.0007, Acc=100.00%
+2025-09-22 13:56:07,616 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:07,616 - main - INFO - MAE Debug - Threshold: 0.1500
+2025-09-22 13:56:07,616 - main - INFO - MAE Debug - Detection: 32/32
+2025-09-22 13:56:07,617 - main - INFO - MAE Debug - Recon errors range: [0.1571, 0.2428]
+2025-09-22 13:56:08,836 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:10,058 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:11,284 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:12,509 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:13,739 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:14,969 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:16,202 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:17,433 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:18,666 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:19,903 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:21,138 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:22,374 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:23,611 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:24,848 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:26,084 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:27,321 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:28,562 - main - INFO - Applied DiffPure to 32/32 detected samples
+2025-09-22 13:56:29,508 - main - INFO - Applied DiffPure to 24/24 detected samples
+2025-09-22 13:56:29,550 - main - INFO - ?? Round 12 Clean Acc: 95.83% | Adv Acc: 41.67% | MAE Detection: 100.00% | Time: 472.2s
+2025-09-22 13:56:29,550 - main - INFO - ?? Total training time: 5666.5s
+2025-09-22 13:56:29,550 - main - INFO - ?? Round 13/15
+2025-09-22 13:56:29,570 - main - INFO - ?? Training client 1/5
+2025-09-22 13:57:56,111 - main - INFO - ? Client 1 completed in 86.5s
+2025-09-22 13:57:56,111 - main - INFO - ?? Training client 2/5
+2025-09-22 13:59:22,721 - main - INFO - ? Client 2 completed in 86.6s
+2025-09-22 13:59:22,721 - main - INFO - ?? Training client 3/5

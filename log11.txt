@@ -1,0 +1,1300 @@
+nohup: ignoring input
+2025-09-24 16:10:23,136 - INFO - Configuration: full mode, BR35H dataset
+2025-09-24 16:10:23,136 - INFO - Settings: 15 rounds, 5 epochs, 10 clients
+2025-09-24 16:10:23,136 - INFO - Training diffusion model for BR35H...
+2025-09-24 16:10:23,136 - INFO - Diffusion model already exists: checkpoints/diffuser_br35h.pt
+2025-09-24 16:10:23,137 - INFO - ? MAE detector checkpoint exists: checkpoints/mae_detector_br35h.pt
+2025-09-24 16:10:23,137 - INFO - ?? Skipping MAE detector training (checkpoint found)
+2025-09-24 16:10:23,137 - INFO - ?? Starting federated training with 10 clients, 15 rounds
+2025-09-24 16:10:23,137 - INFO - ?? Each client trains for 5 epochs per round
+2025-09-24 16:10:24,248 - INFO - ?? Loading components...
+2025-09-24 16:10:24,471 - INFO - ? All imports successful
+2025-09-24 16:10:24,472 - INFO - ?? Loading datasets...
+2025-09-24 16:10:24,481 - INFO - ? Dataset loaded: 2400 train, 600 test
+2025-09-24 16:10:24,481 - INFO - ? Test loader created with 600 samples
+2025-09-24 16:10:24,481 - INFO - ?? Loading diffusion model...
+2025-09-24 16:10:26,148 - INFO - ? Loaded diffusion model: checkpoints/diffuser_br35h.pt
+2025-09-24 16:10:26,148 - INFO - ?? Initializing components...
+2025-09-24 16:10:27,765 - WARNING - Error loading user's MAE detector: embed_dim must be divisible by num_heads
+2025-09-24 16:10:27,767 - INFO - Using user's MAE detector implementation
+2025-09-24 16:10:27,771 - WARNING - Error loading user's MAE detector: embed_dim must be divisible by num_heads
+2025-09-24 16:10:27,772 - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-09-24 16:10:28,029 - INFO - ?? Server initialized with ResNet18 models
+2025-09-24 16:10:28,188 - INFO - ?? Round 1/15
+2025-09-24 16:10:28,214 - INFO - ?? Training client 1/10
+2025-09-24 16:11:21,521 - INFO - ? Client 1 completed in 53.3s
+2025-09-24 16:11:21,522 - INFO - ?? Training client 2/10
+2025-09-24 16:12:16,039 - INFO - ? Client 2 completed in 54.5s
+2025-09-24 16:12:16,039 - INFO - ?? Training client 3/10
+2025-09-24 16:13:07,321 - INFO - ? Client 3 completed in 51.3s
+2025-09-24 16:13:07,321 - INFO - ?? Training client 4/10
+2025-09-24 16:14:02,764 - INFO - ? Client 4 completed in 55.4s
+2025-09-24 16:14:02,765 - INFO - ?? Training client 5/10
+2025-09-24 16:14:54,301 - INFO - ? Client 5 completed in 51.5s
+2025-09-24 16:14:54,301 - INFO - ?? Training client 6/10
+2025-09-24 16:15:53,146 - INFO - ? Client 6 completed in 58.8s
+2025-09-24 16:15:53,146 - INFO - ?? Training client 7/10
+2025-09-24 16:16:52,152 - INFO - ? Client 7 completed in 59.0s
+2025-09-24 16:16:52,152 - INFO - ?? Training client 8/10
+2025-09-24 16:17:42,068 - INFO - ? Client 8 completed in 49.9s
+2025-09-24 16:17:42,068 - INFO - ?? Training client 9/10
+2025-09-24 16:18:33,501 - INFO - ? Client 9 completed in 51.4s
+2025-09-24 16:18:33,501 - INFO - ?? Training client 10/10
+2025-09-24 16:19:26,444 - INFO - ? Client 10 completed in 52.9s
+2025-09-24 16:19:26,445 - INFO - ?? Aggregating models...
+2025-09-24 16:19:26,461 - INFO - ? Model aggregation completed
+2025-09-24 16:19:26,461 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 16:20:20,270 - INFO - ?? Running evaluation...
+Complete Training Pipeline
+============================================================
+[PGD] Epsilon: 0.015000, Step size: 0.003000, Steps: 7
+Client 0 Epoch 1/5: Loss=1.0330, Acc=54.21%
+Client 0 Epoch 2/5: Loss=0.5088, Acc=76.08%
+Client 0 Epoch 3/5: Loss=0.4027, Acc=82.58%
+Client 0 Epoch 4/5: Loss=0.3141, Acc=88.25%
+Client 0 Epoch 5/5: Loss=0.2601, Acc=91.08%
+Client 1 Epoch 1/5: Loss=1.0261, Acc=55.88%
+Client 1 Epoch 2/5: Loss=0.4916, Acc=76.58%
+Client 1 Epoch 3/5: Loss=0.3801, Acc=83.79%
+Client 1 Epoch 4/5: Loss=0.3032, Acc=88.33%
+Client 1 Epoch 5/5: Loss=0.2481, Acc=90.96%
+Client 2 Epoch 1/5: Loss=1.0348, Acc=54.04%
+Client 2 Epoch 2/5: Loss=0.5206, Acc=74.88%
+Client 2 Epoch 3/5: Loss=0.4276, Acc=81.00%
+Client 2 Epoch 4/5: Loss=0.3285, Acc=87.12%
+Client 2 Epoch 5/5: Loss=0.2587, Acc=90.79%
+Client 3 Epoch 1/5: Loss=1.0256, Acc=56.04%
+Client 3 Epoch 2/5: Loss=0.5173, Acc=75.12%
+Client 3 Epoch 3/5: Loss=0.3996, Acc=82.17%
+Client 3 Epoch 4/5: Loss=0.3191, Acc=87.71%
+Client 3 Epoch 5/5: Loss=0.2550, Acc=90.46%
+Client 4 Epoch 1/5: Loss=1.0243, Acc=55.88%
+Client 4 Epoch 2/5: Loss=0.5014, Acc=76.29%
+Client 4 Epoch 3/5: Loss=0.3968, Acc=82.38%
+Client 4 Epoch 4/5: Loss=0.3239, Acc=87.25%
+Client 4 Epoch 5/5: Loss=0.2745, Acc=89.21%
+Client 5 Epoch 1/5: Loss=1.0376, Acc=53.25%
+Client 5 Epoch 2/5: Loss=0.5179, Acc=74.50%
+Client 5 Epoch 3/5: Loss=0.4267, Acc=81.54%
+Client 5 Epoch 4/5: Loss=0.3537, Acc=85.25%
+Client 5 Epoch 5/5: Loss=0.3047, Acc=87.29%
+Client 6 Epoch 1/5: Loss=1.0237, Acc=54.88%
+Client 6 Epoch 2/5: Loss=0.5084, Acc=75.92%
+Client 6 Epoch 3/5: Loss=0.4030, Acc=81.96%
+Client 6 Epoch 4/5: Loss=0.3157, Acc=87.67%
+Client 6 Epoch 5/5: Loss=0.2641, Acc=90.58%
+Client 7 Epoch 1/5: Loss=1.0364, Acc=54.33%
+Client 7 Epoch 2/5: Loss=0.5200, Acc=74.25%
+Client 7 Epoch 3/5: Loss=0.4026, Acc=82.96%
+Client 7 Epoch 4/5: Loss=0.3378, Acc=86.54%
+Client 7 Epoch 5/5: Loss=0.2583, Acc=90.88%
+Client 8 Epoch 1/5: Loss=1.0303, Acc=55.42%
+Client 8 Epoch 2/5: Loss=0.4991, Acc=77.54%
+Client 8 Epoch 3/5: Loss=0.3978, Acc=83.58%
+Client 8 Epoch 4/5: Loss=0.2982, Acc=88.38%
+Client 8 Epoch 5/5: Loss=0.2589, Acc=90.08%
+Client 9 Epoch 1/5: Loss=1.0330, Acc=54.25%
+Client 9 Epoch 2/5: Loss=0.5166, Acc=74.71%
+Client 9 Epoch 3/5: Loss=0.4141, Acc=82.38%
+Client 9 Epoch 4/5: Loss=0.3212, Acc=87.29%
+Client 9 Epoch 5/5: Loss=0.2756, Acc=90.00%
+2025-09-24 16:20:21,891 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 16:20:21,892 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 16:20:21,892 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 16:20:22,633 - INFO - Applied DiffPure to 10/19 selected of 23 detected
+2025-09-24 16:20:23,375 - INFO - Applied DiffPure to 15/19 selected of 23 detected
+2025-09-24 16:20:24,117 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 16:20:24,655 - INFO - Applied DiffPure to 7/13 selected of 16 detected
+2025-09-24 16:20:24,712 - INFO - ?? Round 1 Clean Acc: 88.17% | Adv Acc: 71.33% | MAE Detection: 18.00% | Time: 596.5s
+2025-09-24 16:20:24,712 - INFO - ?? Total training time: 600.5s
+2025-09-24 16:20:24,712 - INFO - ?? Round 2/15
+2025-09-24 16:20:24,748 - INFO - ?? Training client 1/10
+2025-09-24 16:21:15,910 - INFO - ? Client 1 completed in 51.2s
+2025-09-24 16:21:15,910 - INFO - ?? Training client 2/10
+2025-09-24 16:22:07,746 - INFO - ? Client 2 completed in 51.8s
+2025-09-24 16:22:07,746 - INFO - ?? Training client 3/10
+2025-09-24 16:22:59,932 - INFO - ? Client 3 completed in 52.2s
+2025-09-24 16:22:59,932 - INFO - ?? Training client 4/10
+2025-09-24 16:23:53,324 - INFO - ? Client 4 completed in 53.4s
+2025-09-24 16:23:53,324 - INFO - ?? Training client 5/10
+2025-09-24 16:24:45,745 - INFO - ? Client 5 completed in 52.4s
+2025-09-24 16:24:45,745 - INFO - ?? Training client 6/10
+2025-09-24 16:25:40,800 - INFO - ? Client 6 completed in 55.1s
+2025-09-24 16:25:40,801 - INFO - ?? Training client 7/10
+2025-09-24 16:26:33,645 - INFO - ? Client 7 completed in 52.8s
+2025-09-24 16:26:33,645 - INFO - ?? Training client 8/10
+2025-09-24 16:27:25,717 - INFO - ? Client 8 completed in 52.1s
+2025-09-24 16:27:25,717 - INFO - ?? Training client 9/10
+2025-09-24 16:28:17,827 - INFO - ? Client 9 completed in 52.1s
+2025-09-24 16:28:17,827 - INFO - ?? Training client 10/10
+2025-09-24 16:29:14,916 - INFO - ? Client 10 completed in 57.1s
+2025-09-24 16:29:14,916 - INFO - ?? Aggregating models...
+2025-09-24 16:29:14,932 - INFO - ? Model aggregation completed
+2025-09-24 16:29:14,933 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 16:30:04,716 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.2771, Acc=90.21%
+Client 0 Epoch 2/5: Loss=0.2288, Acc=91.62%
+Client 0 Epoch 3/5: Loss=0.1965, Acc=92.17%
+Client 0 Epoch 4/5: Loss=0.1389, Acc=95.75%
+Client 0 Epoch 5/5: Loss=0.1093, Acc=97.08%
+Client 1 Epoch 1/5: Loss=0.2789, Acc=89.04%
+Client 1 Epoch 2/5: Loss=0.2386, Acc=91.67%
+Client 1 Epoch 3/5: Loss=0.2045, Acc=92.54%
+Client 1 Epoch 4/5: Loss=0.1640, Acc=94.46%
+Client 1 Epoch 5/5: Loss=0.1231, Acc=96.33%
+Client 2 Epoch 1/5: Loss=0.2808, Acc=89.29%
+Client 2 Epoch 2/5: Loss=0.2387, Acc=91.58%
+Client 2 Epoch 3/5: Loss=0.1988, Acc=93.38%
+Client 2 Epoch 4/5: Loss=0.1657, Acc=94.50%
+Client 2 Epoch 5/5: Loss=0.1256, Acc=96.17%
+Client 3 Epoch 1/5: Loss=0.2885, Acc=88.75%
+Client 3 Epoch 2/5: Loss=0.2220, Acc=91.92%
+Client 3 Epoch 3/5: Loss=0.1868, Acc=93.42%
+Client 3 Epoch 4/5: Loss=0.1410, Acc=95.54%
+Client 3 Epoch 5/5: Loss=0.1098, Acc=96.71%
+Client 4 Epoch 1/5: Loss=0.2913, Acc=88.79%
+Client 4 Epoch 2/5: Loss=0.2570, Acc=90.21%
+Client 4 Epoch 3/5: Loss=0.2129, Acc=92.21%
+Client 4 Epoch 4/5: Loss=0.1669, Acc=94.04%
+Client 4 Epoch 5/5: Loss=0.1182, Acc=96.62%
+Client 5 Epoch 1/5: Loss=0.2853, Acc=89.58%
+Client 5 Epoch 2/5: Loss=0.2371, Acc=91.38%
+Client 5 Epoch 3/5: Loss=0.1912, Acc=93.04%
+Client 5 Epoch 4/5: Loss=0.1433, Acc=95.58%
+Client 5 Epoch 5/5: Loss=0.1203, Acc=95.96%
+Client 6 Epoch 1/5: Loss=0.2858, Acc=88.46%
+Client 6 Epoch 2/5: Loss=0.2555, Acc=90.54%
+Client 6 Epoch 3/5: Loss=0.2168, Acc=92.96%
+Client 6 Epoch 4/5: Loss=0.1645, Acc=94.75%
+Client 6 Epoch 5/5: Loss=0.1162, Acc=96.62%
+Client 7 Epoch 1/5: Loss=0.2738, Acc=89.79%
+Client 7 Epoch 2/5: Loss=0.2532, Acc=90.71%
+Client 7 Epoch 3/5: Loss=0.2170, Acc=91.75%
+Client 7 Epoch 4/5: Loss=0.1654, Acc=94.50%
+Client 7 Epoch 5/5: Loss=0.1151, Acc=96.58%
+Client 8 Epoch 1/5: Loss=0.2772, Acc=89.67%
+Client 8 Epoch 2/5: Loss=0.2386, Acc=91.42%
+Client 8 Epoch 3/5: Loss=0.1903, Acc=92.83%
+Client 8 Epoch 4/5: Loss=0.1685, Acc=93.75%
+Client 8 Epoch 5/5: Loss=0.1060, Acc=96.92%
+Client 9 Epoch 1/5: Loss=0.2684, Acc=89.96%
+Client 9 Epoch 2/5: Loss=0.2396, Acc=90.50%
+Client 9 Epoch 3/5: Loss=0.1784, Acc=94.00%
+Client 9 Epoch 4/5: Loss=0.1384, Acc=96.00%
+Client 9 Epoch 5/5: Loss=0.1207, Acc=95.92%
+2025-09-24 16:30:06,100 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 16:30:06,101 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 16:30:06,101 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 16:30:06,844 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 16:30:07,588 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 16:30:08,331 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 16:30:08,864 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 16:30:08,929 - INFO - ?? Round 2 Clean Acc: 96.67% | Adv Acc: 81.50% | MAE Detection: 18.00% | Time: 584.2s
+2025-09-24 16:30:08,930 - INFO - ?? Total training time: 1184.7s
+2025-09-24 16:30:08,930 - INFO - ?? Round 3/15
+2025-09-24 16:30:08,968 - INFO - ?? Training client 1/10
+2025-09-24 16:31:05,008 - INFO - ? Client 1 completed in 56.0s
+2025-09-24 16:31:05,008 - INFO - ?? Training client 2/10
+2025-09-24 16:31:55,862 - INFO - ? Client 2 completed in 50.9s
+2025-09-24 16:31:55,862 - INFO - ?? Training client 3/10
+2025-09-24 16:32:47,377 - INFO - ? Client 3 completed in 51.5s
+2025-09-24 16:32:47,378 - INFO - ?? Training client 4/10
+2025-09-24 16:33:39,632 - INFO - ? Client 4 completed in 52.3s
+2025-09-24 16:33:39,633 - INFO - ?? Training client 5/10
+2025-09-24 16:34:33,675 - INFO - ? Client 5 completed in 54.0s
+2025-09-24 16:34:33,675 - INFO - ?? Training client 6/10
+2025-09-24 16:35:26,525 - INFO - ? Client 6 completed in 52.9s
+2025-09-24 16:35:26,526 - INFO - ?? Training client 7/10
+2025-09-24 16:36:20,546 - INFO - ? Client 7 completed in 54.0s
+2025-09-24 16:36:20,546 - INFO - ?? Training client 8/10
+2025-09-24 16:37:11,219 - INFO - ? Client 8 completed in 50.7s
+2025-09-24 16:37:11,219 - INFO - ?? Training client 9/10
+2025-09-24 16:38:02,604 - INFO - ? Client 9 completed in 51.4s
+2025-09-24 16:38:02,604 - INFO - ?? Training client 10/10
+2025-09-24 16:38:53,354 - INFO - ? Client 10 completed in 50.7s
+2025-09-24 16:38:53,354 - INFO - ?? Aggregating models...
+2025-09-24 16:38:53,369 - INFO - ? Model aggregation completed
+2025-09-24 16:38:53,369 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 16:39:40,341 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0885, Acc=97.79%
+Client 0 Epoch 2/5: Loss=0.0722, Acc=97.92%
+Client 0 Epoch 3/5: Loss=0.0521, Acc=98.83%
+Client 0 Epoch 4/5: Loss=0.0385, Acc=99.17%
+Client 0 Epoch 5/5: Loss=0.0248, Acc=99.62%
+Client 1 Epoch 1/5: Loss=0.1314, Acc=95.17%
+Client 1 Epoch 2/5: Loss=0.0978, Acc=97.00%
+Client 1 Epoch 3/5: Loss=0.0826, Acc=97.71%
+Client 1 Epoch 4/5: Loss=0.0519, Acc=98.62%
+Client 1 Epoch 5/5: Loss=0.0238, Acc=99.83%
+Client 2 Epoch 1/5: Loss=0.0986, Acc=97.12%
+Client 2 Epoch 2/5: Loss=0.0846, Acc=97.54%
+Client 2 Epoch 3/5: Loss=0.0490, Acc=99.12%
+Client 2 Epoch 4/5: Loss=0.0362, Acc=99.38%
+Client 2 Epoch 5/5: Loss=0.0211, Acc=99.58%
+Client 3 Epoch 1/5: Loss=0.0906, Acc=97.46%
+Client 3 Epoch 2/5: Loss=0.0848, Acc=97.38%
+Client 3 Epoch 3/5: Loss=0.0487, Acc=98.83%
+Client 3 Epoch 4/5: Loss=0.0317, Acc=99.46%
+Client 3 Epoch 5/5: Loss=0.0229, Acc=99.58%
+Client 4 Epoch 1/5: Loss=0.1070, Acc=96.42%
+Client 4 Epoch 2/5: Loss=0.0788, Acc=97.96%
+Client 4 Epoch 3/5: Loss=0.0621, Acc=98.46%
+Client 4 Epoch 4/5: Loss=0.0313, Acc=99.67%
+Client 4 Epoch 5/5: Loss=0.0245, Acc=99.54%
+Client 5 Epoch 1/5: Loss=0.1130, Acc=96.17%
+Client 5 Epoch 2/5: Loss=0.0857, Acc=97.42%
+Client 5 Epoch 3/5: Loss=0.0543, Acc=98.83%
+Client 5 Epoch 4/5: Loss=0.0334, Acc=99.42%
+Client 5 Epoch 5/5: Loss=0.0164, Acc=99.92%
+Client 6 Epoch 1/5: Loss=0.1050, Acc=96.88%
+Client 6 Epoch 2/5: Loss=0.0737, Acc=98.25%
+Client 6 Epoch 3/5: Loss=0.0463, Acc=99.08%
+Client 6 Epoch 4/5: Loss=0.0335, Acc=99.29%
+Client 6 Epoch 5/5: Loss=0.0270, Acc=99.33%
+Client 7 Epoch 1/5: Loss=0.0929, Acc=97.17%
+Client 7 Epoch 2/5: Loss=0.0841, Acc=97.29%
+Client 7 Epoch 3/5: Loss=0.0693, Acc=97.92%
+Client 7 Epoch 4/5: Loss=0.0381, Acc=99.08%
+Client 7 Epoch 5/5: Loss=0.0309, Acc=99.42%
+Client 8 Epoch 1/5: Loss=0.0951, Acc=97.42%
+Client 8 Epoch 2/5: Loss=0.0912, Acc=97.25%
+Client 8 Epoch 3/5: Loss=0.0664, Acc=98.00%
+Client 8 Epoch 4/5: Loss=0.0377, Acc=99.29%
+Client 8 Epoch 5/5: Loss=0.0248, Acc=99.62%
+Client 9 Epoch 1/5: Loss=0.1068, Acc=96.83%
+Client 9 Epoch 2/5: Loss=0.0857, Acc=97.00%
+Client 9 Epoch 3/5: Loss=0.0517, Acc=98.92%
+Client 9 Epoch 4/5: Loss=0.0390, Acc=99.00%
+Client 9 Epoch 5/5: Loss=0.0250, Acc=99.62%
+2025-09-24 16:39:41,679 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 16:39:41,680 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 16:39:41,680 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 16:39:42,422 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 16:39:43,164 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 16:39:43,906 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 16:39:44,438 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 16:39:44,500 - INFO - ?? Round 3 Clean Acc: 97.50% | Adv Acc: 85.83% | MAE Detection: 18.00% | Time: 575.6s
+2025-09-24 16:39:44,500 - INFO - ?? Total training time: 1760.3s
+2025-09-24 16:39:44,500 - INFO - ?? Round 4/15
+2025-09-24 16:39:44,538 - INFO - ?? Training client 1/10
+2025-09-24 16:40:35,984 - INFO - ? Client 1 completed in 51.4s
+2025-09-24 16:40:35,984 - INFO - ?? Training client 2/10
+2025-09-24 16:41:30,288 - INFO - ? Client 2 completed in 54.3s
+2025-09-24 16:41:30,288 - INFO - ?? Training client 3/10
+2025-09-24 16:42:22,807 - INFO - ? Client 3 completed in 52.5s
+2025-09-24 16:42:22,807 - INFO - ?? Training client 4/10
+2025-09-24 16:43:16,815 - INFO - ? Client 4 completed in 54.0s
+2025-09-24 16:43:16,815 - INFO - ?? Training client 5/10
+2025-09-24 16:44:10,546 - INFO - ? Client 5 completed in 53.7s
+2025-09-24 16:44:10,546 - INFO - ?? Training client 6/10
+2025-09-24 16:45:06,994 - INFO - ? Client 6 completed in 56.4s
+2025-09-24 16:45:06,994 - INFO - ?? Training client 7/10
+2025-09-24 16:46:00,384 - INFO - ? Client 7 completed in 53.4s
+2025-09-24 16:46:00,385 - INFO - ?? Training client 8/10
+2025-09-24 16:46:51,200 - INFO - ? Client 8 completed in 50.8s
+2025-09-24 16:46:51,200 - INFO - ?? Training client 9/10
+2025-09-24 16:47:44,319 - INFO - ? Client 9 completed in 53.1s
+2025-09-24 16:47:44,319 - INFO - ?? Training client 10/10
+2025-09-24 16:48:39,023 - INFO - ? Client 10 completed in 54.7s
+2025-09-24 16:48:39,023 - INFO - ?? Aggregating models...
+2025-09-24 16:48:39,041 - INFO - ? Model aggregation completed
+2025-09-24 16:48:39,041 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 16:49:26,827 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0152, Acc=99.79%
+Client 0 Epoch 2/5: Loss=0.0113, Acc=99.96%
+Client 0 Epoch 3/5: Loss=0.0162, Acc=99.75%
+Client 0 Epoch 4/5: Loss=0.0176, Acc=99.50%
+Client 0 Epoch 5/5: Loss=0.0086, Acc=99.83%
+Client 1 Epoch 1/5: Loss=0.0159, Acc=99.88%
+Client 1 Epoch 2/5: Loss=0.0077, Acc=99.96%
+Client 1 Epoch 3/5: Loss=0.0048, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0041, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0046, Acc=99.92%
+Client 2 Epoch 1/5: Loss=0.0142, Acc=99.88%
+Client 2 Epoch 2/5: Loss=0.0134, Acc=99.71%
+Client 2 Epoch 3/5: Loss=0.0112, Acc=99.88%
+Client 2 Epoch 4/5: Loss=0.0112, Acc=99.79%
+Client 2 Epoch 5/5: Loss=0.0054, Acc=99.88%
+Client 3 Epoch 1/5: Loss=0.0114, Acc=99.92%
+Client 3 Epoch 2/5: Loss=0.0110, Acc=99.96%
+Client 3 Epoch 3/5: Loss=0.0061, Acc=99.92%
+Client 3 Epoch 4/5: Loss=0.0047, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0035, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0476, Acc=98.42%
+Client 4 Epoch 2/5: Loss=0.0230, Acc=99.54%
+Client 4 Epoch 3/5: Loss=0.0115, Acc=99.88%
+Client 4 Epoch 4/5: Loss=0.0052, Acc=99.96%
+Client 4 Epoch 5/5: Loss=0.0027, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0141, Acc=99.88%
+Client 5 Epoch 2/5: Loss=0.0132, Acc=99.83%
+Client 5 Epoch 3/5: Loss=0.0085, Acc=99.96%
+Client 5 Epoch 4/5: Loss=0.0061, Acc=99.92%
+Client 5 Epoch 5/5: Loss=0.0032, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0122, Acc=99.92%
+Client 6 Epoch 2/5: Loss=0.0150, Acc=99.75%
+Client 6 Epoch 3/5: Loss=0.0102, Acc=99.88%
+Client 6 Epoch 4/5: Loss=0.0053, Acc=99.96%
+Client 6 Epoch 5/5: Loss=0.0032, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0202, Acc=99.54%
+Client 7 Epoch 2/5: Loss=0.0109, Acc=99.88%
+Client 7 Epoch 3/5: Loss=0.0070, Acc=99.96%
+Client 7 Epoch 4/5: Loss=0.0050, Acc=99.92%
+Client 7 Epoch 5/5: Loss=0.0054, Acc=99.88%
+Client 8 Epoch 1/5: Loss=0.0156, Acc=99.83%
+Client 8 Epoch 2/5: Loss=0.0190, Acc=99.75%
+Client 8 Epoch 3/5: Loss=0.0075, Acc=99.96%
+Client 8 Epoch 4/5: Loss=0.0035, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0025, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0120, Acc=99.88%
+Client 9 Epoch 2/5: Loss=0.0129, Acc=99.83%
+Client 9 Epoch 3/5: Loss=0.0067, Acc=99.92%
+Client 9 Epoch 4/5: Loss=0.0041, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0040, Acc=99.88%
+2025-09-24 16:49:28,145 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 16:49:28,145 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 16:49:28,145 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 16:49:28,884 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 16:49:29,626 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 16:49:30,367 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 16:49:30,898 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 16:49:30,963 - INFO - ?? Round 4 Clean Acc: 97.33% | Adv Acc: 87.83% | MAE Detection: 18.00% | Time: 586.5s
+2025-09-24 16:49:30,963 - INFO - ?? Total training time: 2346.7s
+2025-09-24 16:49:30,963 - INFO - ?? Round 5/15
+2025-09-24 16:49:31,001 - INFO - ?? Training client 1/10
+2025-09-24 16:50:24,798 - INFO - ? Client 1 completed in 53.8s
+2025-09-24 16:50:24,799 - INFO - ?? Training client 2/10
+2025-09-24 16:51:18,060 - INFO - ? Client 2 completed in 53.3s
+2025-09-24 16:51:18,060 - INFO - ?? Training client 3/10
+2025-09-24 16:52:12,439 - INFO - ? Client 3 completed in 54.4s
+2025-09-24 16:52:12,440 - INFO - ?? Training client 4/10
+2025-09-24 16:53:06,358 - INFO - ? Client 4 completed in 53.9s
+2025-09-24 16:53:06,358 - INFO - ?? Training client 5/10
+2025-09-24 16:54:00,209 - INFO - ? Client 5 completed in 53.9s
+2025-09-24 16:54:00,209 - INFO - ?? Training client 6/10
+2025-09-24 16:54:55,348 - INFO - ? Client 6 completed in 55.1s
+2025-09-24 16:54:55,348 - INFO - ?? Training client 7/10
+2025-09-24 16:55:49,377 - INFO - ? Client 7 completed in 54.0s
+2025-09-24 16:55:49,377 - INFO - ?? Training client 8/10
+2025-09-24 16:56:41,886 - INFO - ? Client 8 completed in 52.5s
+2025-09-24 16:56:41,886 - INFO - ?? Training client 9/10
+2025-09-24 16:57:37,176 - INFO - ? Client 9 completed in 55.3s
+2025-09-24 16:57:37,176 - INFO - ?? Training client 10/10
+2025-09-24 16:58:32,719 - INFO - ? Client 10 completed in 55.5s
+2025-09-24 16:58:32,719 - INFO - ?? Aggregating models...
+2025-09-24 16:58:32,735 - INFO - ? Model aggregation completed
+2025-09-24 16:58:32,735 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 16:59:18,982 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0012, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0010, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0015, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0012, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0006, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0010, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0008, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0011, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0007, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0011, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0006, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0008, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0008, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0011, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0007, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0008, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0009, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0010, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0013, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0006, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0006, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0008, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0011, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0008, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0007, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0006, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0010, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0007, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0007, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0010, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0008, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0010, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0008, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0007, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0007, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0007, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0013, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0010, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0009, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0011, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0015, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0012, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0015, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0024, Acc=99.96%
+Client 9 Epoch 5/5: Loss=0.0008, Acc=100.00%
+2025-09-24 16:59:20,338 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 16:59:20,338 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 16:59:20,338 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 16:59:21,078 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 16:59:21,818 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 16:59:22,560 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 16:59:23,091 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 16:59:23,152 - INFO - ?? Round 5 Clean Acc: 97.67% | Adv Acc: 87.83% | MAE Detection: 18.00% | Time: 592.2s
+2025-09-24 16:59:23,152 - INFO - ?? Total training time: 2938.9s
+2025-09-24 16:59:23,153 - INFO - ?? Round 6/15
+2025-09-24 16:59:23,188 - INFO - ?? Training client 1/10
+2025-09-24 17:00:18,987 - INFO - ? Client 1 completed in 55.8s
+2025-09-24 17:00:18,988 - INFO - ?? Training client 2/10
+2025-09-24 17:01:12,751 - INFO - ? Client 2 completed in 53.8s
+2025-09-24 17:01:12,752 - INFO - ?? Training client 3/10
+2025-09-24 17:02:06,528 - INFO - ? Client 3 completed in 53.8s
+2025-09-24 17:02:06,528 - INFO - ?? Training client 4/10
+2025-09-24 17:03:01,245 - INFO - ? Client 4 completed in 54.7s
+2025-09-24 17:03:01,245 - INFO - ?? Training client 5/10
+2025-09-24 17:03:55,809 - INFO - ? Client 5 completed in 54.6s
+2025-09-24 17:03:55,809 - INFO - ?? Training client 6/10
+2025-09-24 17:04:48,073 - INFO - ? Client 6 completed in 52.3s
+2025-09-24 17:04:48,073 - INFO - ?? Training client 7/10
+2025-09-24 17:05:43,289 - INFO - ? Client 7 completed in 55.2s
+2025-09-24 17:05:43,290 - INFO - ?? Training client 8/10
+2025-09-24 17:06:36,568 - INFO - ? Client 8 completed in 53.3s
+2025-09-24 17:06:36,569 - INFO - ?? Training client 9/10
+2025-09-24 17:07:28,893 - INFO - ? Client 9 completed in 52.3s
+2025-09-24 17:07:28,893 - INFO - ?? Training client 10/10
+2025-09-24 17:08:21,742 - INFO - ? Client 10 completed in 52.8s
+2025-09-24 17:08:21,743 - INFO - ?? Aggregating models...
+2025-09-24 17:08:21,763 - INFO - ? Model aggregation completed
+2025-09-24 17:08:21,763 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:09:12,353 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0005, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0007, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0007, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0006, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0006, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0005, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0005, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0006, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0005, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0006, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0005, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0015, Acc=99.96%
+Client 6 Epoch 4/5: Loss=0.0019, Acc=99.96%
+Client 6 Epoch 5/5: Loss=0.0010, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0005, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0012, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0006, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0005, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0005, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0009, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0007, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0005, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0021, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0017, Acc=99.96%
+Client 9 Epoch 5/5: Loss=0.0013, Acc=100.00%
+2025-09-24 17:09:13,701 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 17:09:13,701 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:09:13,701 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 17:09:14,442 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 17:09:15,184 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:09:15,926 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:09:16,457 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:09:16,527 - INFO - ?? Round 6 Clean Acc: 97.50% | Adv Acc: 88.33% | MAE Detection: 18.00% | Time: 593.4s
+2025-09-24 17:09:16,527 - INFO - ?? Total training time: 3532.3s
+2025-09-24 17:09:16,528 - INFO - ?? Round 7/15
+2025-09-24 17:09:16,564 - INFO - ?? Training client 1/10
+2025-09-24 17:10:15,205 - INFO - ? Client 1 completed in 58.6s
+2025-09-24 17:10:15,205 - INFO - ?? Training client 2/10
+2025-09-24 17:11:08,107 - INFO - ? Client 2 completed in 52.9s
+2025-09-24 17:11:08,107 - INFO - ?? Training client 3/10
+2025-09-24 17:12:06,331 - INFO - ? Client 3 completed in 58.2s
+2025-09-24 17:12:06,332 - INFO - ?? Training client 4/10
+2025-09-24 17:13:01,589 - INFO - ? Client 4 completed in 55.3s
+2025-09-24 17:13:01,589 - INFO - ?? Training client 5/10
+2025-09-24 17:13:53,970 - INFO - ? Client 5 completed in 52.4s
+2025-09-24 17:13:53,970 - INFO - ?? Training client 6/10
+2025-09-24 17:14:46,897 - INFO - ? Client 6 completed in 52.9s
+2025-09-24 17:14:46,897 - INFO - ?? Training client 7/10
+2025-09-24 17:15:41,787 - INFO - ? Client 7 completed in 54.9s
+2025-09-24 17:15:41,788 - INFO - ?? Training client 8/10
+2025-09-24 17:16:35,536 - INFO - ? Client 8 completed in 53.7s
+2025-09-24 17:16:35,536 - INFO - ?? Training client 9/10
+2025-09-24 17:17:29,655 - INFO - ? Client 9 completed in 54.1s
+2025-09-24 17:17:29,655 - INFO - ?? Training client 10/10
+2025-09-24 17:18:22,734 - INFO - ? Client 10 completed in 53.1s
+2025-09-24 17:18:22,735 - INFO - ?? Aggregating models...
+2025-09-24 17:18:22,749 - INFO - ? Model aggregation completed
+2025-09-24 17:18:22,749 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:19:10,667 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0005, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0007, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0006, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0006, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0005, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0005, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0007, Acc=100.00%
+2025-09-24 17:19:12,045 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 17:19:12,045 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:19:12,046 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 17:19:12,787 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 17:19:13,529 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:19:14,272 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:19:14,804 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:19:14,865 - INFO - ?? Round 7 Clean Acc: 97.67% | Adv Acc: 88.33% | MAE Detection: 18.00% | Time: 598.3s
+2025-09-24 17:19:14,865 - INFO - ?? Total training time: 4130.6s
+2025-09-24 17:19:14,865 - INFO - ?? Round 8/15
+2025-09-24 17:19:14,905 - INFO - ?? Training client 1/10
+2025-09-24 17:20:09,195 - INFO - ? Client 1 completed in 54.3s
+2025-09-24 17:20:09,195 - INFO - ?? Training client 2/10
+2025-09-24 17:21:04,902 - INFO - ? Client 2 completed in 55.7s
+2025-09-24 17:21:04,902 - INFO - ?? Training client 3/10
+2025-09-24 17:21:58,127 - INFO - ? Client 3 completed in 53.2s
+2025-09-24 17:21:58,127 - INFO - ?? Training client 4/10
+2025-09-24 17:22:50,819 - INFO - ? Client 4 completed in 52.7s
+2025-09-24 17:22:50,819 - INFO - ?? Training client 5/10
+2025-09-24 17:23:46,110 - INFO - ? Client 5 completed in 55.3s
+2025-09-24 17:23:46,111 - INFO - ?? Training client 6/10
+2025-09-24 17:24:40,154 - INFO - ? Client 6 completed in 54.0s
+2025-09-24 17:24:40,154 - INFO - ?? Training client 7/10
+2025-09-24 17:25:33,986 - INFO - ? Client 7 completed in 53.8s
+2025-09-24 17:25:33,986 - INFO - ?? Training client 8/10
+2025-09-24 17:26:25,911 - INFO - ? Client 8 completed in 51.9s
+2025-09-24 17:26:25,911 - INFO - ?? Training client 9/10
+2025-09-24 17:27:18,209 - INFO - ? Client 9 completed in 52.3s
+2025-09-24 17:27:18,210 - INFO - ?? Training client 10/10
+2025-09-24 17:28:12,990 - INFO - ? Client 10 completed in 54.8s
+2025-09-24 17:28:12,990 - INFO - ?? Aggregating models...
+2025-09-24 17:28:13,006 - INFO - ? Model aggregation completed
+2025-09-24 17:28:13,006 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:29:03,332 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0003, Acc=100.00%
+2025-09-24 17:29:04,722 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 17:29:04,722 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:29:04,722 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 17:29:05,464 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 17:29:06,208 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:29:06,950 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:29:07,482 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:29:07,544 - INFO - ?? Round 8 Clean Acc: 97.67% | Adv Acc: 88.00% | MAE Detection: 18.00% | Time: 592.7s
+2025-09-24 17:29:07,545 - INFO - ?? Total training time: 4723.3s
+2025-09-24 17:29:07,545 - INFO - ?? Round 9/15
+2025-09-24 17:29:07,585 - INFO - ?? Training client 1/10
+2025-09-24 17:30:02,110 - INFO - ? Client 1 completed in 54.5s
+2025-09-24 17:30:02,110 - INFO - ?? Training client 2/10
+2025-09-24 17:30:54,735 - INFO - ? Client 2 completed in 52.6s
+2025-09-24 17:30:54,736 - INFO - ?? Training client 3/10
+2025-09-24 17:31:47,202 - INFO - ? Client 3 completed in 52.5s
+2025-09-24 17:31:47,202 - INFO - ?? Training client 4/10
+2025-09-24 17:32:41,579 - INFO - ? Client 4 completed in 54.4s
+2025-09-24 17:32:41,580 - INFO - ?? Training client 5/10
+2025-09-24 17:33:34,853 - INFO - ? Client 5 completed in 53.3s
+2025-09-24 17:33:34,853 - INFO - ?? Training client 6/10
+2025-09-24 17:34:27,943 - INFO - ? Client 6 completed in 53.1s
+2025-09-24 17:34:27,944 - INFO - ?? Training client 7/10
+2025-09-24 17:35:21,954 - INFO - ? Client 7 completed in 54.0s
+2025-09-24 17:35:21,954 - INFO - ?? Training client 8/10
+2025-09-24 17:36:16,248 - INFO - ? Client 8 completed in 54.3s
+2025-09-24 17:36:16,249 - INFO - ?? Training client 9/10
+2025-09-24 17:37:08,210 - INFO - ? Client 9 completed in 52.0s
+2025-09-24 17:37:08,210 - INFO - ?? Training client 10/10
+2025-09-24 17:38:03,354 - INFO - ? Client 10 completed in 55.1s
+2025-09-24 17:38:03,354 - INFO - ?? Aggregating models...
+2025-09-24 17:38:03,370 - INFO - ? Model aggregation completed
+2025-09-24 17:38:03,370 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:38:51,985 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0004, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0006, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0002, Acc=100.00%
+2025-09-24 17:38:53,408 - INFO - Applied DiffPure to 15/19 selected of 23 detected
+2025-09-24 17:38:53,408 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:38:53,409 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 17:38:54,149 - INFO - Applied DiffPure to 17/19 selected of 23 detected
+2025-09-24 17:38:54,889 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:38:55,630 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:38:56,161 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:38:56,225 - INFO - ?? Round 9 Clean Acc: 97.67% | Adv Acc: 88.50% | MAE Detection: 18.00% | Time: 588.7s
+2025-09-24 17:38:56,225 - INFO - ?? Total training time: 5312.0s
+2025-09-24 17:38:56,225 - INFO - ?? Round 10/15
+2025-09-24 17:38:56,262 - INFO - ?? Training client 1/10
+2025-09-24 17:39:50,426 - INFO - ? Client 1 completed in 54.2s
+2025-09-24 17:39:50,427 - INFO - ?? Training client 2/10
+2025-09-24 17:40:44,917 - INFO - ? Client 2 completed in 54.5s
+2025-09-24 17:40:44,918 - INFO - ?? Training client 3/10
+2025-09-24 17:41:37,863 - INFO - ? Client 3 completed in 52.9s
+2025-09-24 17:41:37,863 - INFO - ?? Training client 4/10
+2025-09-24 17:42:30,686 - INFO - ? Client 4 completed in 52.8s
+2025-09-24 17:42:30,687 - INFO - ?? Training client 5/10
+2025-09-24 17:43:23,108 - INFO - ? Client 5 completed in 52.4s
+2025-09-24 17:43:23,108 - INFO - ?? Training client 6/10
+2025-09-24 17:44:19,280 - INFO - ? Client 6 completed in 56.2s
+2025-09-24 17:44:19,281 - INFO - ?? Training client 7/10
+2025-09-24 17:45:13,564 - INFO - ? Client 7 completed in 54.3s
+2025-09-24 17:45:13,565 - INFO - ?? Training client 8/10
+2025-09-24 17:46:05,941 - INFO - ? Client 8 completed in 52.4s
+2025-09-24 17:46:05,942 - INFO - ?? Training client 9/10
+2025-09-24 17:46:58,577 - INFO - ? Client 9 completed in 52.6s
+2025-09-24 17:46:58,577 - INFO - ?? Training client 10/10
+2025-09-24 17:47:52,309 - INFO - ? Client 10 completed in 53.7s
+2025-09-24 17:47:52,310 - INFO - ?? Aggregating models...
+2025-09-24 17:47:52,324 - INFO - ? Model aggregation completed
+2025-09-24 17:47:52,324 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:48:40,424 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0006, Acc=99.96%
+Client 6 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0001, Acc=100.00%
+2025-09-24 17:48:41,757 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 17:48:41,757 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:48:41,757 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 17:48:42,500 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 17:48:43,243 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:48:43,988 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:48:44,520 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:48:44,585 - INFO - ?? Round 10 Clean Acc: 97.67% | Adv Acc: 86.67% | MAE Detection: 18.00% | Time: 588.4s
+2025-09-24 17:48:44,585 - INFO - ?? Total training time: 5900.3s
+2025-09-24 17:48:44,585 - INFO - ?? Round 11/15
+2025-09-24 17:48:44,622 - INFO - ?? Training client 1/10
+2025-09-24 17:49:41,043 - INFO - ? Client 1 completed in 56.4s
+2025-09-24 17:49:41,044 - INFO - ?? Training client 2/10
+2025-09-24 17:50:33,663 - INFO - ? Client 2 completed in 52.6s
+2025-09-24 17:50:33,663 - INFO - ?? Training client 3/10
+2025-09-24 17:51:29,147 - INFO - ? Client 3 completed in 55.5s
+2025-09-24 17:51:29,148 - INFO - ?? Training client 4/10
+2025-09-24 17:52:21,088 - INFO - ? Client 4 completed in 51.9s
+2025-09-24 17:52:21,088 - INFO - ?? Training client 5/10
+2025-09-24 17:53:12,839 - INFO - ? Client 5 completed in 51.8s
+2025-09-24 17:53:12,839 - INFO - ?? Training client 6/10
+2025-09-24 17:54:07,416 - INFO - ? Client 6 completed in 54.6s
+2025-09-24 17:54:07,417 - INFO - ?? Training client 7/10
+2025-09-24 17:55:02,067 - INFO - ? Client 7 completed in 54.6s
+2025-09-24 17:55:02,067 - INFO - ?? Training client 8/10
+2025-09-24 17:55:56,505 - INFO - ? Client 8 completed in 54.4s
+2025-09-24 17:55:56,506 - INFO - ?? Training client 9/10
+2025-09-24 17:56:51,996 - INFO - ? Client 9 completed in 55.5s
+2025-09-24 17:56:51,996 - INFO - ?? Training client 10/10
+2025-09-24 17:57:45,068 - INFO - ? Client 10 completed in 53.1s
+2025-09-24 17:57:45,068 - INFO - ?? Aggregating models...
+2025-09-24 17:57:45,083 - INFO - ? Model aggregation completed
+2025-09-24 17:57:45,083 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 17:58:31,859 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0003, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0001, Acc=100.00%
+2025-09-24 17:58:33,171 - INFO - Applied DiffPure to 15/19 selected of 23 detected
+2025-09-24 17:58:33,171 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 17:58:33,171 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 17:58:33,912 - INFO - Applied DiffPure to 17/19 selected of 23 detected
+2025-09-24 17:58:34,655 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 17:58:35,398 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 17:58:35,931 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 17:58:35,996 - INFO - ?? Round 11 Clean Acc: 97.67% | Adv Acc: 87.83% | MAE Detection: 18.00% | Time: 591.4s
+2025-09-24 17:58:35,996 - INFO - ?? Total training time: 6491.7s
+2025-09-24 17:58:35,996 - INFO - ?? Round 12/15
+2025-09-24 17:58:36,033 - INFO - ?? Training client 1/10
+2025-09-24 17:59:28,800 - INFO - ? Client 1 completed in 52.8s
+2025-09-24 17:59:28,800 - INFO - ?? Training client 2/10
+2025-09-24 18:00:25,392 - INFO - ? Client 2 completed in 56.6s
+2025-09-24 18:00:25,393 - INFO - ?? Training client 3/10
+2025-09-24 18:01:17,934 - INFO - ? Client 3 completed in 52.5s
+2025-09-24 18:01:17,934 - INFO - ?? Training client 4/10
+2025-09-24 18:02:11,131 - INFO - ? Client 4 completed in 53.2s
+2025-09-24 18:02:11,132 - INFO - ?? Training client 5/10
+2025-09-24 18:03:04,534 - INFO - ? Client 5 completed in 53.4s
+2025-09-24 18:03:04,534 - INFO - ?? Training client 6/10
+2025-09-24 18:04:02,571 - INFO - ? Client 6 completed in 58.0s
+2025-09-24 18:04:02,571 - INFO - ?? Training client 7/10
+2025-09-24 18:04:55,680 - INFO - ? Client 7 completed in 53.1s
+2025-09-24 18:04:55,681 - INFO - ?? Training client 8/10
+2025-09-24 18:05:52,462 - INFO - ? Client 8 completed in 56.8s
+2025-09-24 18:05:52,463 - INFO - ?? Training client 9/10
+2025-09-24 18:06:44,154 - INFO - ? Client 9 completed in 51.7s
+2025-09-24 18:06:44,154 - INFO - ?? Training client 10/10
+2025-09-24 18:07:38,547 - INFO - ? Client 10 completed in 54.4s
+2025-09-24 18:07:38,548 - INFO - ?? Aggregating models...
+2025-09-24 18:07:38,564 - INFO - ? Model aggregation completed
+2025-09-24 18:07:38,564 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 18:08:25,249 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0004, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0010, Acc=99.96%
+Client 7 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0001, Acc=100.00%
+2025-09-24 18:08:26,596 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 18:08:26,596 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 18:08:26,597 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 18:08:27,338 - INFO - Applied DiffPure to 18/19 selected of 23 detected
+2025-09-24 18:08:28,078 - INFO - Applied DiffPure to 12/19 selected of 23 detected
+2025-09-24 18:08:28,820 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 18:08:29,350 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 18:08:29,418 - INFO - ?? Round 12 Clean Acc: 97.50% | Adv Acc: 87.17% | MAE Detection: 18.00% | Time: 593.4s
+2025-09-24 18:08:29,418 - INFO - ?? Total training time: 7085.2s
+2025-09-24 18:08:29,418 - INFO - ?? Round 13/15
+2025-09-24 18:08:29,455 - INFO - ?? Training client 1/10
+2025-09-24 18:09:23,944 - INFO - ? Client 1 completed in 54.5s
+2025-09-24 18:09:23,944 - INFO - ?? Training client 2/10
+2025-09-24 18:10:18,433 - INFO - ? Client 2 completed in 54.5s
+2025-09-24 18:10:18,433 - INFO - ?? Training client 3/10
+2025-09-24 18:11:13,499 - INFO - ? Client 3 completed in 55.1s
+2025-09-24 18:11:13,500 - INFO - ?? Training client 4/10
+2025-09-24 18:12:05,793 - INFO - ? Client 4 completed in 52.3s
+2025-09-24 18:12:05,793 - INFO - ?? Training client 5/10
+2025-09-24 18:12:58,712 - INFO - ? Client 5 completed in 52.9s
+2025-09-24 18:12:58,712 - INFO - ?? Training client 6/10
+2025-09-24 18:13:52,743 - INFO - ? Client 6 completed in 54.0s
+2025-09-24 18:13:52,743 - INFO - ?? Training client 7/10
+2025-09-24 18:14:48,909 - INFO - ? Client 7 completed in 56.2s
+2025-09-24 18:14:48,909 - INFO - ?? Training client 8/10
+2025-09-24 18:15:44,247 - INFO - ? Client 8 completed in 55.3s
+2025-09-24 18:15:44,247 - INFO - ?? Training client 9/10
+2025-09-24 18:16:38,168 - INFO - ? Client 9 completed in 53.9s
+2025-09-24 18:16:38,168 - INFO - ?? Training client 10/10
+2025-09-24 18:17:31,681 - INFO - ? Client 10 completed in 53.5s
+2025-09-24 18:17:31,681 - INFO - ?? Aggregating models...
+2025-09-24 18:17:31,695 - INFO - ? Model aggregation completed
+2025-09-24 18:17:31,695 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 18:18:19,883 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0002, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0002, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0001, Acc=100.00%
+2025-09-24 18:18:21,286 - INFO - Applied DiffPure to 16/19 selected of 23 detected
+2025-09-24 18:18:21,287 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 18:18:21,287 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 18:18:22,030 - INFO - Applied DiffPure to 17/19 selected of 23 detected
+2025-09-24 18:18:22,774 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 18:18:23,516 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 18:18:24,048 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 18:18:24,111 - INFO - ?? Round 13 Clean Acc: 97.67% | Adv Acc: 87.50% | MAE Detection: 18.00% | Time: 594.7s
+2025-09-24 18:18:24,112 - INFO - ?? Total training time: 7679.9s
+2025-09-24 18:18:24,112 - INFO - ?? Round 14/15
+2025-09-24 18:18:24,150 - INFO - ?? Training client 1/10
+2025-09-24 18:19:16,777 - INFO - ? Client 1 completed in 52.6s
+2025-09-24 18:19:16,777 - INFO - ?? Training client 2/10
+2025-09-24 18:20:10,598 - INFO - ? Client 2 completed in 53.8s
+2025-09-24 18:20:10,598 - INFO - ?? Training client 3/10
+2025-09-24 18:21:03,043 - INFO - ? Client 3 completed in 52.4s
+2025-09-24 18:21:03,043 - INFO - ?? Training client 4/10
+2025-09-24 18:21:56,426 - INFO - ? Client 4 completed in 53.4s
+2025-09-24 18:21:56,426 - INFO - ?? Training client 5/10
+2025-09-24 18:22:52,871 - INFO - ? Client 5 completed in 56.4s
+2025-09-24 18:22:52,871 - INFO - ?? Training client 6/10
+2025-09-24 18:23:47,467 - INFO - ? Client 6 completed in 54.6s
+2025-09-24 18:23:47,467 - INFO - ?? Training client 7/10
+2025-09-24 18:24:43,802 - INFO - ? Client 7 completed in 56.3s
+2025-09-24 18:24:43,802 - INFO - ?? Training client 8/10
+2025-09-24 18:25:37,625 - INFO - ? Client 8 completed in 53.8s
+2025-09-24 18:25:37,626 - INFO - ?? Training client 9/10
+2025-09-24 18:26:29,848 - INFO - ? Client 9 completed in 52.2s
+2025-09-24 18:26:29,848 - INFO - ?? Training client 10/10
+2025-09-24 18:27:22,478 - INFO - ? Client 10 completed in 52.6s
+2025-09-24 18:27:22,479 - INFO - ?? Aggregating models...
+2025-09-24 18:27:22,493 - INFO - ? Model aggregation completed
+2025-09-24 18:27:22,493 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 18:28:08,654 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0009, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0002, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0003, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0019, Acc=99.92%
+2025-09-24 18:28:09,986 - INFO - Applied DiffPure to 15/19 selected of 23 detected
+2025-09-24 18:28:09,987 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 18:28:09,987 - INFO - MAE Debug - Recon errors range: [0.1581, 0.2470]
+2025-09-24 18:28:10,729 - INFO - Applied DiffPure to 17/19 selected of 23 detected
+2025-09-24 18:28:11,474 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 18:28:12,216 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 18:28:12,748 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 18:28:12,811 - INFO - ?? Round 14 Clean Acc: 97.67% | Adv Acc: 88.33% | MAE Detection: 18.00% | Time: 588.7s
+2025-09-24 18:28:12,811 - INFO - ?? Total training time: 8268.6s
+2025-09-24 18:28:12,811 - INFO - ?? Round 15/15
+2025-09-24 18:28:12,843 - INFO - ?? Training client 1/10
+2025-09-24 18:29:07,601 - INFO - ? Client 1 completed in 54.8s
+2025-09-24 18:29:07,601 - INFO - ?? Training client 2/10
+2025-09-24 18:30:02,095 - INFO - ? Client 2 completed in 54.5s
+2025-09-24 18:30:02,096 - INFO - ?? Training client 3/10
+2025-09-24 18:30:55,002 - INFO - ? Client 3 completed in 52.9s
+2025-09-24 18:30:55,002 - INFO - ?? Training client 4/10
+2025-09-24 18:31:50,259 - INFO - ? Client 4 completed in 55.3s
+2025-09-24 18:31:50,260 - INFO - ?? Training client 5/10
+2025-09-24 18:32:43,653 - INFO - ? Client 5 completed in 53.4s
+2025-09-24 18:32:43,653 - INFO - ?? Training client 6/10
+2025-09-24 18:33:37,528 - INFO - ? Client 6 completed in 53.9s
+2025-09-24 18:33:37,528 - INFO - ?? Training client 7/10
+2025-09-24 18:34:30,071 - INFO - ? Client 7 completed in 52.5s
+2025-09-24 18:34:30,071 - INFO - ?? Training client 8/10
+2025-09-24 18:35:25,447 - INFO - ? Client 8 completed in 55.4s
+2025-09-24 18:35:25,447 - INFO - ?? Training client 9/10
+2025-09-24 18:36:20,957 - INFO - ? Client 9 completed in 55.5s
+2025-09-24 18:36:20,957 - INFO - ?? Training client 10/10
+2025-09-24 18:37:15,900 - INFO - ? Client 10 completed in 54.9s
+2025-09-24 18:37:15,900 - INFO - ?? Aggregating models...
+2025-09-24 18:37:15,918 - INFO - ? Model aggregation completed
+2025-09-24 18:37:15,918 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-24 18:38:06,293 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 3 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 4 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 5 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 6 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 7 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 1/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 8 Epoch 5/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 1/5: Loss=0.0002, Acc=100.00%
+Client 9 Epoch 2/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 3/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 4/5: Loss=0.0001, Acc=100.00%
+Client 9 Epoch 5/5: Loss=0.0001, Acc=100.00%
+2025-09-24 18:38:07,667 - INFO - Applied DiffPure to 15/19 selected of 23 detected
+2025-09-24 18:38:07,667 - INFO - MAE Debug - Detection: 23/128
+2025-09-24 18:38:07,667 - INFO - MAE Debug - Recon errors range: [0.1580, 0.2470]
+2025-09-24 18:38:08,407 - INFO - Applied DiffPure to 17/19 selected of 23 detected
+2025-09-24 18:38:09,148 - INFO - Applied DiffPure to 13/19 selected of 23 detected
+2025-09-24 18:38:09,888 - INFO - Applied DiffPure to 14/19 selected of 23 detected
+2025-09-24 18:38:10,420 - INFO - Applied DiffPure to 8/13 selected of 16 detected
+2025-09-24 18:38:10,487 - INFO - ?? Round 15 Clean Acc: 97.67% | Adv Acc: 87.33% | MAE Detection: 18.00% | Time: 597.7s
+2025-09-24 18:38:10,487 - INFO - ?? Total training time: 8866.2s
+2025-09-24 18:38:10,487 - INFO - ?? Training completed in 8866.2s
+2025-09-24 18:38:10,489 - INFO - ?? Results saved to: experiment_results/results_br35h_20250924_183810.json
+2025-09-24 18:38:10,489 - INFO - ?? Latest results: experiment_results/latest_results_br35h.json
+2025-09-24 18:38:10,490 - INFO - ?? EXPERIMENT RESULTS SUMMARY
+2025-09-24 18:38:10,490 - INFO - Dataset: BR35H
+2025-09-24 18:38:10,490 - INFO - Clean Accuracy: 97.67%
+2025-09-24 18:38:10,490 - INFO - Adversarial Accuracy: 87.33%
+2025-09-24 18:38:10,490 - INFO - MAE Detection Rate: 18.00%
+2025-09-24 18:38:10,490 - INFO - Training Time: 8866.2 seconds
+2025-09-24 18:38:10,490 - INFO - Results File: experiment_results/results_br35h_20250924_183810.json
+2025-09-24 18:38:10,511 - INFO - ?? Training pipeline completed successfully!

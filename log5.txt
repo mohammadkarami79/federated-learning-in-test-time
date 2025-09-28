@@ -1,0 +1,1061 @@
+nohup: ignoring input
+2025-09-03 14:51:57,453 - INFO - Configuration: full mode, BR35H dataset
+2025-09-03 14:51:57,453 - INFO - Settings: 25 rounds, 8 epochs, 3 clients
+2025-09-03 14:51:57,453 - INFO - Training diffusion model for BR35H...
+2025-09-03 14:51:57,453 - INFO - Diffusion model already exists: checkpoints/diffuser_br35h.pt
+2025-09-03 14:51:57,453 - INFO - ?? Starting federated training with 3 clients, 25 rounds
+2025-09-03 14:51:57,453 - INFO - ?? Each client trains for 8 epochs per round
+2025-09-03 14:51:59,176 - INFO - ?? Loading components...
+2025-09-03 14:51:59,411 - INFO - ? All imports successful
+2025-09-03 14:51:59,411 - INFO - ?? Loading datasets...
+2025-09-03 14:51:59,416 - INFO - ? Dataset loaded: 94 samples
+2025-09-03 14:51:59,417 - INFO - ?? Loading diffusion model...
+2025-09-03 14:52:04,993 - INFO - ? Loaded diffusion model: checkpoints/diffuser_br35h.pt
+2025-09-03 14:52:04,993 - INFO - ?? Initializing components...
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+2025-09-03 14:52:05,955 - INFO - Using user's MAE detector implementation
+2025-09-03 14:52:05,990 - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-09-03 14:52:06,196 - INFO - ?? Server initialized with global models
+2025-09-03 14:52:06,196 - INFO - ?? Round 1/25
+2025-09-03 14:52:06,196 - INFO - ?? Training client 1/3
+2025-09-03 14:53:53,091 - INFO - ? Client 1 completed in 106.9s
+2025-09-03 14:53:53,092 - INFO - ?? Training client 2/3
+2025-09-03 14:55:37,030 - INFO - ? Client 2 completed in 103.9s
+2025-09-03 14:55:37,030 - INFO - ?? Training client 3/3
+2025-09-03 14:57:21,348 - INFO - ? Client 3 completed in 104.3s
+2025-09-03 14:57:21,348 - INFO - ?? Aggregating models...
+2025-09-03 14:57:21,910 - INFO - ? Model aggregation completed
+2025-09-03 14:57:21,910 - INFO - ?? Running evaluation...
+Complete Training Pipeline
+============================================================
+Client 0 Epoch 1/8: Loss=0.2787, Acc=88.62%
+Client 0 Epoch 2/8: Loss=0.0722, Acc=97.58%
+Client 0 Epoch 3/8: Loss=0.0556, Acc=98.25%
+Client 0 Epoch 4/8: Loss=0.0599, Acc=98.38%
+Client 0 Epoch 5/8: Loss=0.0165, Acc=99.50%
+Client 0 Epoch 6/8: Loss=0.0390, Acc=98.83%
+Client 0 Epoch 7/8: Loss=0.0358, Acc=98.88%
+Client 0 Epoch 8/8: Loss=0.0113, Acc=99.54%
+Client 1 Epoch 1/8: Loss=0.3037, Acc=85.88%
+Client 1 Epoch 2/8: Loss=0.0888, Acc=97.00%
+Client 1 Epoch 3/8: Loss=0.0476, Acc=98.46%
+Client 1 Epoch 4/8: Loss=0.0448, Acc=98.54%
+Client 1 Epoch 5/8: Loss=0.0208, Acc=99.42%
+Client 1 Epoch 6/8: Loss=0.0309, Acc=99.04%
+Client 1 Epoch 7/8: Loss=0.0155, Acc=99.54%
+Client 1 Epoch 8/8: Loss=0.0251, Acc=99.29%
+Client 2 Epoch 1/8: Loss=0.2558, Acc=88.50%
+Client 2 Epoch 2/8: Loss=0.0866, Acc=97.33%
+Client 2 Epoch 3/8: Loss=0.0454, Acc=98.58%
+Client 2 Epoch 4/8: Loss=0.0555, Acc=98.42%
+Client 2 Epoch 5/8: Loss=0.0439, Acc=98.88%
+Client 2 Epoch 6/8: Loss=0.0205, Acc=99.54%
+Client 2 Epoch 7/8: Loss=0.0177, Acc=99.50%
+Client 2 Epoch 8/8: Loss=0.0240, Acc=99.46%
+2025-09-03 14:57:27,345 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 14:57:27,658 - INFO - ?? MAE Debug - Reconstruction errors: min=0.369433, max=0.750664, mean=0.503349
+2025-09-03 14:57:27,658 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 14:57:27,658 - INFO - ?? MAE Debug - Detection values: [False, False, True, False, False]
+2025-09-03 14:57:27,658 - INFO - ?? MAE Debug - Detection sum: 11/32
+2025-09-03 14:58:16,427 - INFO - ?? Round 1 Clean Acc: 57.19% | Adv Acc: 55.00% | MAE Detection: 27.19% | Time: 370.2s
+2025-09-03 14:58:16,427 - INFO - ?? Total training time: 377.3s
+2025-09-03 14:58:16,427 - INFO - ?? Round 2/25
+2025-09-03 14:58:16,427 - INFO - ?? Training client 1/3
+2025-09-03 14:59:59,593 - INFO - ? Client 1 completed in 103.2s
+2025-09-03 14:59:59,594 - INFO - ?? Training client 2/3
+2025-09-03 15:01:44,522 - INFO - ? Client 2 completed in 104.9s
+2025-09-03 15:01:44,522 - INFO - ?? Training client 3/3
+2025-09-03 15:03:29,045 - INFO - ? Client 3 completed in 104.5s
+2025-09-03 15:03:29,045 - INFO - ?? Aggregating models...
+2025-09-03 15:03:29,579 - INFO - ? Model aggregation completed
+2025-09-03 15:03:29,579 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.1884, Acc=92.42%
+Client 0 Epoch 2/8: Loss=0.0685, Acc=97.71%
+Client 0 Epoch 3/8: Loss=0.0796, Acc=97.54%
+Client 0 Epoch 4/8: Loss=0.0344, Acc=98.88%
+Client 0 Epoch 5/8: Loss=0.0196, Acc=99.50%
+Client 0 Epoch 6/8: Loss=0.0262, Acc=99.00%
+Client 0 Epoch 7/8: Loss=0.0085, Acc=99.67%
+Client 0 Epoch 8/8: Loss=0.0254, Acc=99.29%
+Client 1 Epoch 1/8: Loss=0.1726, Acc=93.58%
+Client 1 Epoch 2/8: Loss=0.0872, Acc=97.21%
+Client 1 Epoch 3/8: Loss=0.0528, Acc=98.38%
+Client 1 Epoch 4/8: Loss=0.0352, Acc=99.04%
+Client 1 Epoch 5/8: Loss=0.0393, Acc=98.54%
+Client 1 Epoch 6/8: Loss=0.0166, Acc=99.50%
+Client 1 Epoch 7/8: Loss=0.0092, Acc=99.71%
+Client 1 Epoch 8/8: Loss=0.0157, Acc=99.54%
+Client 2 Epoch 1/8: Loss=0.1948, Acc=92.88%
+Client 2 Epoch 2/8: Loss=0.0946, Acc=97.00%
+Client 2 Epoch 3/8: Loss=0.0387, Acc=98.67%
+Client 2 Epoch 4/8: Loss=0.0383, Acc=98.67%
+Client 2 Epoch 5/8: Loss=0.0275, Acc=99.00%
+Client 2 Epoch 6/8: Loss=0.0179, Acc=99.17%
+Client 2 Epoch 7/8: Loss=0.0151, Acc=99.46%
+Client 2 Epoch 8/8: Loss=0.0094, Acc=99.67%
+2025-09-03 15:03:34,507 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:03:35,126 - INFO - ?? MAE Debug - Reconstruction errors: min=0.361490, max=0.726232, mean=0.476289
+2025-09-03 15:03:35,127 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:03:35,127 - INFO - ?? MAE Debug - Detection values: [False, False, False, False, True]
+2025-09-03 15:03:35,127 - INFO - ?? MAE Debug - Detection sum: 10/32
+2025-09-03 15:04:23,823 - INFO - ?? Round 2 Clean Acc: 51.88% | Adv Acc: 41.25% | MAE Detection: 30.94% | Time: 367.4s
+2025-09-03 15:04:23,823 - INFO - ?? Total training time: 744.6s
+2025-09-03 15:04:23,823 - INFO - ?? Round 3/25
+2025-09-03 15:04:23,824 - INFO - ?? Training client 1/3
+2025-09-03 15:06:03,763 - INFO - ? Client 1 completed in 99.9s
+2025-09-03 15:06:03,763 - INFO - ?? Training client 2/3
+2025-09-03 15:07:48,600 - INFO - ? Client 2 completed in 104.8s
+2025-09-03 15:07:48,601 - INFO - ?? Training client 3/3
+2025-09-03 15:09:39,434 - INFO - ? Client 3 completed in 110.8s
+2025-09-03 15:09:39,434 - INFO - ?? Aggregating models...
+2025-09-03 15:09:39,958 - INFO - ? Model aggregation completed
+2025-09-03 15:09:39,958 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0116, Acc=99.54%
+Client 0 Epoch 2/8: Loss=0.0125, Acc=99.58%
+Client 0 Epoch 3/8: Loss=0.0170, Acc=99.54%
+Client 0 Epoch 4/8: Loss=0.0070, Acc=99.71%
+Client 0 Epoch 5/8: Loss=0.0124, Acc=99.58%
+Client 0 Epoch 6/8: Loss=0.0052, Acc=99.83%
+Client 0 Epoch 7/8: Loss=0.0059, Acc=99.83%
+Client 0 Epoch 8/8: Loss=0.0094, Acc=99.62%
+Client 1 Epoch 1/8: Loss=0.0380, Acc=98.88%
+Client 1 Epoch 2/8: Loss=0.0228, Acc=99.29%
+Client 1 Epoch 3/8: Loss=0.0092, Acc=99.58%
+Client 1 Epoch 4/8: Loss=0.0175, Acc=99.33%
+Client 1 Epoch 5/8: Loss=0.0374, Acc=99.04%
+Client 1 Epoch 6/8: Loss=0.0021, Acc=99.96%
+Client 1 Epoch 7/8: Loss=0.0114, Acc=99.54%
+Client 1 Epoch 8/8: Loss=0.0410, Acc=98.96%
+Client 2 Epoch 1/8: Loss=0.0184, Acc=99.50%
+Client 2 Epoch 2/8: Loss=0.0272, Acc=99.12%
+Client 2 Epoch 3/8: Loss=0.0179, Acc=99.42%
+Client 2 Epoch 4/8: Loss=0.0244, Acc=99.12%
+Client 2 Epoch 5/8: Loss=0.0286, Acc=99.17%
+Client 2 Epoch 6/8: Loss=0.0049, Acc=99.79%
+Client 2 Epoch 7/8: Loss=0.0166, Acc=99.62%
+Client 2 Epoch 8/8: Loss=0.0223, Acc=99.50%
+2025-09-03 15:09:44,888 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:09:45,509 - INFO - ?? MAE Debug - Reconstruction errors: min=0.363190, max=0.749457, mean=0.478651
+2025-09-03 15:09:45,509 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:09:45,509 - INFO - ?? MAE Debug - Detection values: [False, False, True, False, False]
+2025-09-03 15:09:45,510 - INFO - ?? MAE Debug - Detection sum: 11/32
+2025-09-03 15:10:34,216 - INFO - ?? Round 3 Clean Acc: 50.94% | Adv Acc: 47.50% | MAE Detection: 31.88% | Time: 370.4s
+2025-09-03 15:10:34,216 - INFO - ?? Total training time: 1115.0s
+2025-09-03 15:10:34,216 - INFO - ?? Round 4/25
+2025-09-03 15:10:34,217 - INFO - ?? Training client 1/3
+2025-09-03 15:12:14,872 - INFO - ? Client 1 completed in 100.7s
+2025-09-03 15:12:14,873 - INFO - ?? Training client 2/3
+2025-09-03 15:13:58,127 - INFO - ? Client 2 completed in 103.3s
+2025-09-03 15:13:58,127 - INFO - ?? Training client 3/3
+2025-09-03 15:15:44,838 - INFO - ? Client 3 completed in 106.7s
+2025-09-03 15:15:44,838 - INFO - ?? Aggregating models...
+2025-09-03 15:15:45,361 - INFO - ? Model aggregation completed
+2025-09-03 15:15:45,361 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0116, Acc=99.75%
+Client 0 Epoch 2/8: Loss=0.0186, Acc=99.71%
+Client 0 Epoch 3/8: Loss=0.0052, Acc=99.88%
+Client 0 Epoch 4/8: Loss=0.0335, Acc=99.04%
+Client 0 Epoch 5/8: Loss=0.0026, Acc=99.88%
+Client 0 Epoch 6/8: Loss=0.0102, Acc=99.79%
+Client 0 Epoch 7/8: Loss=0.0240, Acc=99.46%
+Client 0 Epoch 8/8: Loss=0.0101, Acc=99.75%
+Client 1 Epoch 1/8: Loss=0.0061, Acc=99.79%
+Client 1 Epoch 2/8: Loss=0.0246, Acc=99.46%
+Client 1 Epoch 3/8: Loss=0.0113, Acc=99.62%
+Client 1 Epoch 4/8: Loss=0.0113, Acc=99.62%
+Client 1 Epoch 5/8: Loss=0.0169, Acc=99.46%
+Client 1 Epoch 6/8: Loss=0.0391, Acc=99.00%
+Client 1 Epoch 7/8: Loss=0.0024, Acc=99.92%
+Client 1 Epoch 8/8: Loss=0.0008, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0161, Acc=99.71%
+Client 2 Epoch 2/8: Loss=0.0053, Acc=99.79%
+Client 2 Epoch 3/8: Loss=0.0190, Acc=99.54%
+Client 2 Epoch 4/8: Loss=0.0254, Acc=99.42%
+Client 2 Epoch 5/8: Loss=0.0298, Acc=99.33%
+Client 2 Epoch 6/8: Loss=0.0189, Acc=99.54%
+Client 2 Epoch 7/8: Loss=0.0347, Acc=99.12%
+Client 2 Epoch 8/8: Loss=0.0016, Acc=99.96%
+2025-09-03 15:15:50,288 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:15:50,907 - INFO - ?? MAE Debug - Reconstruction errors: min=0.369615, max=0.898165, mean=0.491059
+2025-09-03 15:15:50,908 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:15:50,908 - INFO - ?? MAE Debug - Detection values: [True, False, False, True, True]
+2025-09-03 15:15:50,908 - INFO - ?? MAE Debug - Detection sum: 10/32
+2025-09-03 15:16:39,607 - INFO - ?? Round 4 Clean Acc: 55.00% | Adv Acc: 38.44% | MAE Detection: 30.94% | Time: 365.4s
+2025-09-03 15:16:39,607 - INFO - ?? Total training time: 1480.4s
+2025-09-03 15:16:39,607 - INFO - ?? Round 5/25
+2025-09-03 15:16:39,607 - INFO - ?? Training client 1/3
+2025-09-03 15:18:27,578 - INFO - ? Client 1 completed in 108.0s
+2025-09-03 15:18:27,579 - INFO - ?? Training client 2/3
+2025-09-03 15:20:11,969 - INFO - ? Client 2 completed in 104.4s
+2025-09-03 15:20:11,969 - INFO - ?? Training client 3/3
+2025-09-03 15:22:01,255 - INFO - ? Client 3 completed in 109.3s
+2025-09-03 15:22:01,255 - INFO - ?? Aggregating models...
+2025-09-03 15:22:01,793 - INFO - ? Model aggregation completed
+2025-09-03 15:22:01,793 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0158, Acc=99.62%
+Client 0 Epoch 2/8: Loss=0.0034, Acc=99.83%
+Client 0 Epoch 3/8: Loss=0.0180, Acc=99.58%
+Client 0 Epoch 4/8: Loss=0.0021, Acc=99.92%
+Client 0 Epoch 5/8: Loss=0.0030, Acc=99.96%
+Client 0 Epoch 6/8: Loss=0.0092, Acc=99.75%
+Client 0 Epoch 7/8: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0067, Acc=99.75%
+Client 1 Epoch 1/8: Loss=0.0091, Acc=99.83%
+Client 1 Epoch 2/8: Loss=0.0113, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0172, Acc=99.67%
+Client 1 Epoch 4/8: Loss=0.0227, Acc=99.42%
+Client 1 Epoch 5/8: Loss=0.0199, Acc=99.50%
+Client 1 Epoch 6/8: Loss=0.0031, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0023, Acc=99.88%
+Client 1 Epoch 8/8: Loss=0.0281, Acc=99.33%
+Client 2 Epoch 1/8: Loss=0.0145, Acc=99.50%
+Client 2 Epoch 2/8: Loss=0.0129, Acc=99.62%
+Client 2 Epoch 3/8: Loss=0.0153, Acc=99.50%
+Client 2 Epoch 4/8: Loss=0.0195, Acc=99.54%
+Client 2 Epoch 5/8: Loss=0.0134, Acc=99.75%
+Client 2 Epoch 6/8: Loss=0.0146, Acc=99.58%
+Client 2 Epoch 7/8: Loss=0.0098, Acc=99.83%
+Client 2 Epoch 8/8: Loss=0.0033, Acc=99.79%
+2025-09-03 15:22:06,752 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:22:07,370 - INFO - ?? MAE Debug - Reconstruction errors: min=0.364861, max=0.814907, mean=0.466232
+2025-09-03 15:22:07,370 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:22:07,370 - INFO - ?? MAE Debug - Detection values: [False, False, True, True, False]
+2025-09-03 15:22:07,370 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 15:22:56,063 - INFO - ?? Round 5 Clean Acc: 59.69% | Adv Acc: 43.44% | MAE Detection: 31.56% | Time: 376.5s
+2025-09-03 15:22:56,064 - INFO - ?? Total training time: 1856.9s
+2025-09-03 15:22:56,064 - INFO - ?? Round 6/25
+2025-09-03 15:22:56,064 - INFO - ?? Training client 1/3
+2025-09-03 15:24:36,676 - INFO - ? Client 1 completed in 100.6s
+2025-09-03 15:24:36,676 - INFO - ?? Training client 2/3
+2025-09-03 15:26:19,912 - INFO - ? Client 2 completed in 103.2s
+2025-09-03 15:26:19,912 - INFO - ?? Training client 3/3
+2025-09-03 15:28:05,194 - INFO - ? Client 3 completed in 105.3s
+2025-09-03 15:28:05,194 - INFO - ?? Aggregating models...
+2025-09-03 15:28:05,717 - INFO - ? Model aggregation completed
+2025-09-03 15:28:05,717 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0085, Acc=99.75%
+Client 0 Epoch 2/8: Loss=0.0102, Acc=99.79%
+Client 0 Epoch 3/8: Loss=0.0063, Acc=99.83%
+Client 0 Epoch 4/8: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0216, Acc=99.58%
+Client 0 Epoch 6/8: Loss=0.0107, Acc=99.83%
+Client 0 Epoch 7/8: Loss=0.0017, Acc=99.92%
+Client 0 Epoch 8/8: Loss=0.0301, Acc=99.25%
+Client 1 Epoch 1/8: Loss=0.0085, Acc=99.71%
+Client 1 Epoch 2/8: Loss=0.0148, Acc=99.58%
+Client 1 Epoch 3/8: Loss=0.0119, Acc=99.83%
+Client 1 Epoch 4/8: Loss=0.0185, Acc=99.62%
+Client 1 Epoch 5/8: Loss=0.0059, Acc=99.75%
+Client 1 Epoch 6/8: Loss=0.0105, Acc=99.75%
+Client 1 Epoch 7/8: Loss=0.0119, Acc=99.62%
+Client 1 Epoch 8/8: Loss=0.0245, Acc=99.50%
+Client 2 Epoch 1/8: Loss=0.0006, Acc=99.96%
+Client 2 Epoch 2/8: Loss=0.0114, Acc=99.71%
+Client 2 Epoch 3/8: Loss=0.0083, Acc=99.71%
+Client 2 Epoch 4/8: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0071, Acc=99.75%
+Client 2 Epoch 6/8: Loss=0.0390, Acc=99.33%
+Client 2 Epoch 7/8: Loss=0.0090, Acc=99.67%
+Client 2 Epoch 8/8: Loss=0.0035, Acc=99.88%
+2025-09-03 15:28:10,654 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:28:11,272 - INFO - ?? MAE Debug - Reconstruction errors: min=0.363540, max=0.840564, mean=0.517995
+2025-09-03 15:28:11,272 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:28:11,272 - INFO - ?? MAE Debug - Detection values: [True, True, True, False, False]
+2025-09-03 15:28:11,272 - INFO - ?? MAE Debug - Detection sum: 14/32
+2025-09-03 15:29:00,275 - INFO - ?? Round 6 Clean Acc: 54.69% | Adv Acc: 43.12% | MAE Detection: 33.44% | Time: 364.2s
+2025-09-03 15:29:00,275 - INFO - ?? Total training time: 2221.1s
+2025-09-03 15:29:00,275 - INFO - ?? Round 7/25
+2025-09-03 15:29:00,275 - INFO - ?? Training client 1/3
+2025-09-03 15:30:41,765 - INFO - ? Client 1 completed in 101.5s
+2025-09-03 15:30:41,765 - INFO - ?? Training client 2/3
+2025-09-03 15:32:23,843 - INFO - ? Client 2 completed in 102.1s
+2025-09-03 15:32:23,843 - INFO - ?? Training client 3/3
+2025-09-03 15:34:06,319 - INFO - ? Client 3 completed in 102.5s
+2025-09-03 15:34:06,319 - INFO - ?? Aggregating models...
+2025-09-03 15:34:06,845 - INFO - ? Model aggregation completed
+2025-09-03 15:34:06,845 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0101, Acc=99.75%
+Client 0 Epoch 2/8: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 3/8: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0070, Acc=99.79%
+Client 0 Epoch 5/8: Loss=0.0021, Acc=99.88%
+Client 0 Epoch 6/8: Loss=0.0073, Acc=99.79%
+Client 0 Epoch 7/8: Loss=0.0152, Acc=99.67%
+Client 0 Epoch 8/8: Loss=0.0144, Acc=99.50%
+Client 1 Epoch 1/8: Loss=0.0104, Acc=99.75%
+Client 1 Epoch 2/8: Loss=0.0268, Acc=99.29%
+Client 1 Epoch 3/8: Loss=0.0070, Acc=99.71%
+Client 1 Epoch 4/8: Loss=0.0049, Acc=99.83%
+Client 1 Epoch 5/8: Loss=0.0135, Acc=99.54%
+Client 1 Epoch 6/8: Loss=0.0017, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0254, Acc=99.42%
+Client 1 Epoch 8/8: Loss=0.0106, Acc=99.67%
+Client 2 Epoch 1/8: Loss=0.0101, Acc=99.79%
+Client 2 Epoch 2/8: Loss=0.0133, Acc=99.75%
+Client 2 Epoch 3/8: Loss=0.0136, Acc=99.62%
+Client 2 Epoch 4/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0141, Acc=99.58%
+Client 2 Epoch 6/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0165, Acc=99.50%
+Client 2 Epoch 8/8: Loss=0.0169, Acc=99.46%
+2025-09-03 15:34:11,770 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:34:12,387 - INFO - ?? MAE Debug - Reconstruction errors: min=0.368955, max=0.784162, mean=0.497878
+2025-09-03 15:34:12,387 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:34:12,387 - INFO - ?? MAE Debug - Detection values: [True, True, False, False, True]
+2025-09-03 15:34:12,388 - INFO - ?? MAE Debug - Detection sum: 13/32
+2025-09-03 15:35:01,067 - INFO - ?? Round 7 Clean Acc: 56.25% | Adv Acc: 47.50% | MAE Detection: 35.31% | Time: 360.8s
+2025-09-03 15:35:01,067 - INFO - ?? Total training time: 2581.9s
+2025-09-03 15:35:01,068 - INFO - ?? Round 8/25
+2025-09-03 15:35:01,068 - INFO - ?? Training client 1/3
+2025-09-03 15:36:41,689 - INFO - ? Client 1 completed in 100.6s
+2025-09-03 15:36:41,690 - INFO - ?? Training client 2/3
+2025-09-03 15:38:22,585 - INFO - ? Client 2 completed in 100.9s
+2025-09-03 15:38:22,585 - INFO - ?? Training client 3/3
+2025-09-03 15:40:04,242 - INFO - ? Client 3 completed in 101.7s
+2025-09-03 15:40:04,242 - INFO - ?? Aggregating models...
+2025-09-03 15:40:04,771 - INFO - ? Model aggregation completed
+2025-09-03 15:40:04,771 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0012, Acc=99.92%
+Client 0 Epoch 2/8: Loss=0.0227, Acc=99.25%
+Client 0 Epoch 3/8: Loss=0.0221, Acc=99.38%
+Client 0 Epoch 4/8: Loss=0.0121, Acc=99.67%
+Client 0 Epoch 5/8: Loss=0.0114, Acc=99.71%
+Client 0 Epoch 6/8: Loss=0.0073, Acc=99.75%
+Client 0 Epoch 7/8: Loss=0.0075, Acc=99.71%
+Client 0 Epoch 8/8: Loss=0.0137, Acc=99.46%
+Client 1 Epoch 1/8: Loss=0.0006, Acc=100.00%
+Client 1 Epoch 2/8: Loss=0.0018, Acc=99.92%
+Client 1 Epoch 3/8: Loss=0.0087, Acc=99.75%
+Client 1 Epoch 4/8: Loss=0.0094, Acc=99.71%
+Client 1 Epoch 5/8: Loss=0.0056, Acc=99.75%
+Client 1 Epoch 6/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0131, Acc=99.62%
+Client 2 Epoch 1/8: Loss=0.0017, Acc=99.96%
+Client 2 Epoch 2/8: Loss=0.0089, Acc=99.75%
+Client 2 Epoch 3/8: Loss=0.0114, Acc=99.75%
+Client 2 Epoch 4/8: Loss=0.0119, Acc=99.67%
+Client 2 Epoch 5/8: Loss=0.0084, Acc=99.83%
+Client 2 Epoch 6/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0093, Acc=99.79%
+Client 2 Epoch 8/8: Loss=0.0060, Acc=99.75%
+2025-09-03 15:40:09,670 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:40:10,288 - INFO - ?? MAE Debug - Reconstruction errors: min=0.368619, max=0.699975, mean=0.451081
+2025-09-03 15:40:10,288 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:40:10,288 - INFO - ?? MAE Debug - Detection values: [False, False, False, False, False]
+2025-09-03 15:40:10,288 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 15:40:58,976 - INFO - ?? Round 8 Clean Acc: 57.81% | Adv Acc: 51.88% | MAE Detection: 38.12% | Time: 357.9s
+2025-09-03 15:40:58,976 - INFO - ?? Total training time: 2939.8s
+2025-09-03 15:40:58,976 - INFO - ?? Round 9/25
+2025-09-03 15:40:58,977 - INFO - ?? Training client 1/3
+2025-09-03 15:42:37,816 - INFO - ? Client 1 completed in 98.8s
+2025-09-03 15:42:37,816 - INFO - ?? Training client 2/3
+2025-09-03 15:44:16,444 - INFO - ? Client 2 completed in 98.6s
+2025-09-03 15:44:16,445 - INFO - ?? Training client 3/3
+2025-09-03 15:46:01,356 - INFO - ? Client 3 completed in 104.9s
+2025-09-03 15:46:01,357 - INFO - ?? Aggregating models...
+2025-09-03 15:46:01,927 - INFO - ? Model aggregation completed
+2025-09-03 15:46:01,927 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0058, Acc=99.71%
+Client 0 Epoch 2/8: Loss=0.0012, Acc=99.96%
+Client 0 Epoch 3/8: Loss=0.0111, Acc=99.71%
+Client 0 Epoch 4/8: Loss=0.0039, Acc=99.88%
+Client 0 Epoch 5/8: Loss=0.0057, Acc=99.75%
+Client 0 Epoch 6/8: Loss=0.0112, Acc=99.62%
+Client 0 Epoch 7/8: Loss=0.0024, Acc=99.92%
+Client 0 Epoch 8/8: Loss=0.0040, Acc=99.75%
+Client 1 Epoch 1/8: Loss=0.0183, Acc=99.50%
+Client 1 Epoch 2/8: Loss=0.0073, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0096, Acc=99.75%
+Client 1 Epoch 4/8: Loss=0.0209, Acc=99.42%
+Client 1 Epoch 5/8: Loss=0.0031, Acc=99.88%
+Client 1 Epoch 6/8: Loss=0.0033, Acc=99.88%
+Client 1 Epoch 7/8: Loss=0.0141, Acc=99.58%
+Client 1 Epoch 8/8: Loss=0.0181, Acc=99.33%
+Client 2 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0085, Acc=99.75%
+Client 2 Epoch 3/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0133, Acc=99.58%
+Client 2 Epoch 6/8: Loss=0.0069, Acc=99.75%
+Client 2 Epoch 7/8: Loss=0.0179, Acc=99.58%
+Client 2 Epoch 8/8: Loss=0.0080, Acc=99.83%
+2025-09-03 15:46:06,887 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:46:07,504 - INFO - ?? MAE Debug - Reconstruction errors: min=0.367920, max=0.903918, mean=0.496389
+2025-09-03 15:46:07,504 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:46:07,504 - INFO - ?? MAE Debug - Detection values: [True, True, False, False, False]
+2025-09-03 15:46:07,505 - INFO - ?? MAE Debug - Detection sum: 13/32
+2025-09-03 15:46:56,146 - INFO - ?? Round 9 Clean Acc: 53.12% | Adv Acc: 47.19% | MAE Detection: 34.06% | Time: 357.2s
+2025-09-03 15:46:56,147 - INFO - ?? Total training time: 3297.0s
+2025-09-03 15:46:56,147 - INFO - ?? Round 10/25
+2025-09-03 15:46:56,147 - INFO - ?? Training client 1/3
+2025-09-03 15:48:39,100 - INFO - ? Client 1 completed in 103.0s
+2025-09-03 15:48:39,101 - INFO - ?? Training client 2/3
+2025-09-03 15:50:20,184 - INFO - ? Client 2 completed in 101.1s
+2025-09-03 15:50:20,185 - INFO - ?? Training client 3/3
+2025-09-03 15:52:00,064 - INFO - ? Client 3 completed in 99.9s
+2025-09-03 15:52:00,064 - INFO - ?? Aggregating models...
+2025-09-03 15:52:00,587 - INFO - ? Model aggregation completed
+2025-09-03 15:52:00,587 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0120, Acc=99.54%
+Client 0 Epoch 2/8: Loss=0.0041, Acc=99.79%
+Client 0 Epoch 3/8: Loss=0.0036, Acc=99.88%
+Client 0 Epoch 4/8: Loss=0.0013, Acc=99.96%
+Client 0 Epoch 5/8: Loss=0.0012, Acc=99.96%
+Client 0 Epoch 6/8: Loss=0.0113, Acc=99.58%
+Client 0 Epoch 7/8: Loss=0.0118, Acc=99.54%
+Client 0 Epoch 8/8: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0042, Acc=99.83%
+Client 1 Epoch 2/8: Loss=0.0024, Acc=99.96%
+Client 1 Epoch 3/8: Loss=0.0128, Acc=99.58%
+Client 1 Epoch 4/8: Loss=0.0059, Acc=99.83%
+Client 1 Epoch 5/8: Loss=0.0047, Acc=99.83%
+Client 1 Epoch 6/8: Loss=0.0126, Acc=99.79%
+Client 1 Epoch 7/8: Loss=0.0230, Acc=99.58%
+Client 1 Epoch 8/8: Loss=0.0011, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0017, Acc=99.96%
+Client 2 Epoch 2/8: Loss=0.0011, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0013, Acc=99.96%
+Client 2 Epoch 4/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0101, Acc=99.58%
+Client 2 Epoch 6/8: Loss=0.0044, Acc=99.75%
+Client 2 Epoch 7/8: Loss=0.0059, Acc=99.83%
+Client 2 Epoch 8/8: Loss=0.0012, Acc=99.96%
+2025-09-03 15:52:05,530 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:52:06,149 - INFO - ?? MAE Debug - Reconstruction errors: min=0.360810, max=0.848866, mean=0.481347
+2025-09-03 15:52:06,149 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:52:06,149 - INFO - ?? MAE Debug - Detection values: [False, False, False, True, True]
+2025-09-03 15:52:06,149 - INFO - ?? MAE Debug - Detection sum: 10/32
+2025-09-03 15:52:54,859 - INFO - ?? Round 10 Clean Acc: 55.94% | Adv Acc: 50.31% | MAE Detection: 36.56% | Time: 358.7s
+2025-09-03 15:52:54,860 - INFO - ?? Total training time: 3655.7s
+2025-09-03 15:52:54,860 - INFO - ?? Round 11/25
+2025-09-03 15:52:54,860 - INFO - ?? Training client 1/3
+2025-09-03 15:54:37,076 - INFO - ? Client 1 completed in 102.2s
+2025-09-03 15:54:37,077 - INFO - ?? Training client 2/3
+2025-09-03 15:56:17,779 - INFO - ? Client 2 completed in 100.7s
+2025-09-03 15:56:17,780 - INFO - ?? Training client 3/3
+2025-09-03 15:58:00,737 - INFO - ? Client 3 completed in 103.0s
+2025-09-03 15:58:00,738 - INFO - ?? Aggregating models...
+2025-09-03 15:58:01,276 - INFO - ? Model aggregation completed
+2025-09-03 15:58:01,276 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 3/8: Loss=0.0227, Acc=99.46%
+Client 0 Epoch 4/8: Loss=0.0104, Acc=99.79%
+Client 0 Epoch 5/8: Loss=0.0060, Acc=99.83%
+Client 0 Epoch 6/8: Loss=0.0013, Acc=99.96%
+Client 0 Epoch 7/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0157, Acc=99.42%
+Client 1 Epoch 2/8: Loss=0.0068, Acc=99.83%
+Client 1 Epoch 3/8: Loss=0.0053, Acc=99.71%
+Client 1 Epoch 4/8: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0045, Acc=99.79%
+Client 1 Epoch 6/8: Loss=0.0069, Acc=99.62%
+Client 1 Epoch 7/8: Loss=0.0126, Acc=99.67%
+Client 1 Epoch 8/8: Loss=0.0008, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0152, Acc=99.42%
+Client 2 Epoch 2/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 4/8: Loss=0.0006, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0146, Acc=99.54%
+Client 2 Epoch 6/8: Loss=0.0015, Acc=99.96%
+Client 2 Epoch 7/8: Loss=0.0212, Acc=99.42%
+Client 2 Epoch 8/8: Loss=0.0051, Acc=99.79%
+2025-09-03 15:58:06,239 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 15:58:06,856 - INFO - ?? MAE Debug - Reconstruction errors: min=0.362094, max=0.827190, mean=0.475028
+2025-09-03 15:58:06,857 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 15:58:06,857 - INFO - ?? MAE Debug - Detection values: [False, False, True, False, False]
+2025-09-03 15:58:06,857 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 15:58:55,500 - INFO - ?? Round 11 Clean Acc: 55.31% | Adv Acc: 49.06% | MAE Detection: 31.25% | Time: 360.6s
+2025-09-03 15:58:55,501 - INFO - ?? Total training time: 4016.3s
+2025-09-03 15:58:55,501 - INFO - ?? Round 12/25
+2025-09-03 15:58:55,501 - INFO - ?? Training client 1/3
+2025-09-03 16:00:37,967 - INFO - ? Client 1 completed in 102.5s
+2025-09-03 16:00:37,967 - INFO - ?? Training client 2/3
+2025-09-03 16:02:20,203 - INFO - ? Client 2 completed in 102.2s
+2025-09-03 16:02:20,204 - INFO - ?? Training client 3/3
+2025-09-03 16:04:02,086 - INFO - ? Client 3 completed in 101.9s
+2025-09-03 16:04:02,086 - INFO - ?? Aggregating models...
+2025-09-03 16:04:02,623 - INFO - ? Model aggregation completed
+2025-09-03 16:04:02,623 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0238, Acc=99.12%
+Client 0 Epoch 2/8: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 3/8: Loss=0.0027, Acc=99.83%
+Client 0 Epoch 4/8: Loss=0.0109, Acc=99.79%
+Client 0 Epoch 5/8: Loss=0.0144, Acc=99.67%
+Client 0 Epoch 6/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 7/8: Loss=0.0012, Acc=99.96%
+Client 0 Epoch 8/8: Loss=0.0013, Acc=99.96%
+Client 1 Epoch 1/8: Loss=0.0105, Acc=99.54%
+Client 1 Epoch 2/8: Loss=0.0044, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0039, Acc=99.88%
+Client 1 Epoch 5/8: Loss=0.0034, Acc=99.79%
+Client 1 Epoch 6/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0116, Acc=99.54%
+Client 1 Epoch 8/8: Loss=0.0202, Acc=99.25%
+Client 2 Epoch 1/8: Loss=0.0126, Acc=99.62%
+Client 2 Epoch 2/8: Loss=0.0085, Acc=99.54%
+Client 2 Epoch 3/8: Loss=0.0015, Acc=99.96%
+Client 2 Epoch 4/8: Loss=0.0051, Acc=99.83%
+Client 2 Epoch 5/8: Loss=0.0020, Acc=99.83%
+Client 2 Epoch 6/8: Loss=0.0079, Acc=99.58%
+Client 2 Epoch 7/8: Loss=0.0021, Acc=99.88%
+Client 2 Epoch 8/8: Loss=0.0013, Acc=99.92%
+2025-09-03 16:04:07,579 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:04:08,197 - INFO - ?? MAE Debug - Reconstruction errors: min=0.362257, max=0.723859, mean=0.497045
+2025-09-03 16:04:08,197 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:04:08,197 - INFO - ?? MAE Debug - Detection values: [True, False, False, True, False]
+2025-09-03 16:04:08,197 - INFO - ?? MAE Debug - Detection sum: 15/32
+2025-09-03 16:04:56,913 - INFO - ?? Round 12 Clean Acc: 54.06% | Adv Acc: 47.81% | MAE Detection: 31.25% | Time: 361.4s
+2025-09-03 16:04:56,914 - INFO - ?? Total training time: 4377.7s
+2025-09-03 16:04:56,914 - INFO - ?? Round 13/25
+2025-09-03 16:04:56,914 - INFO - ?? Training client 1/3
+2025-09-03 16:06:37,063 - INFO - ? Client 1 completed in 100.1s
+2025-09-03 16:06:37,063 - INFO - ?? Training client 2/3
+2025-09-03 16:08:20,116 - INFO - ? Client 2 completed in 103.1s
+2025-09-03 16:08:20,116 - INFO - ?? Training client 3/3
+2025-09-03 16:10:02,745 - INFO - ? Client 3 completed in 102.6s
+2025-09-03 16:10:02,746 - INFO - ?? Aggregating models...
+2025-09-03 16:10:03,274 - INFO - ? Model aggregation completed
+2025-09-03 16:10:03,275 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0019, Acc=99.96%
+Client 0 Epoch 2/8: Loss=0.0140, Acc=99.67%
+Client 0 Epoch 3/8: Loss=0.0098, Acc=99.54%
+Client 0 Epoch 4/8: Loss=0.0056, Acc=99.83%
+Client 0 Epoch 5/8: Loss=0.0036, Acc=99.88%
+Client 0 Epoch 6/8: Loss=0.0012, Acc=99.88%
+Client 0 Epoch 7/8: Loss=0.0082, Acc=99.62%
+Client 0 Epoch 8/8: Loss=0.0015, Acc=99.96%
+Client 1 Epoch 1/8: Loss=0.0016, Acc=99.96%
+Client 1 Epoch 2/8: Loss=0.0027, Acc=99.83%
+Client 1 Epoch 3/8: Loss=0.0039, Acc=99.75%
+Client 1 Epoch 4/8: Loss=0.0018, Acc=99.96%
+Client 1 Epoch 5/8: Loss=0.0062, Acc=99.79%
+Client 1 Epoch 6/8: Loss=0.0003, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0006, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0057, Acc=99.79%
+Client 2 Epoch 2/8: Loss=0.0095, Acc=99.67%
+Client 2 Epoch 3/8: Loss=0.0058, Acc=99.75%
+Client 2 Epoch 4/8: Loss=0.0029, Acc=99.88%
+Client 2 Epoch 5/8: Loss=0.0045, Acc=99.79%
+Client 2 Epoch 6/8: Loss=0.0089, Acc=99.75%
+Client 2 Epoch 7/8: Loss=0.0016, Acc=99.92%
+Client 2 Epoch 8/8: Loss=0.0038, Acc=99.92%
+2025-09-03 16:10:08,213 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:10:08,830 - INFO - ?? MAE Debug - Reconstruction errors: min=0.363598, max=0.705610, mean=0.475957
+2025-09-03 16:10:08,830 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:10:08,830 - INFO - ?? MAE Debug - Detection values: [False, False, True, False, False]
+2025-09-03 16:10:08,831 - INFO - ?? MAE Debug - Detection sum: 11/32
+2025-09-03 16:10:57,523 - INFO - ?? Round 13 Clean Acc: 56.25% | Adv Acc: 51.56% | MAE Detection: 29.38% | Time: 360.6s
+2025-09-03 16:10:57,523 - INFO - ?? Total training time: 4738.3s
+2025-09-03 16:10:57,524 - INFO - ?? Round 14/25
+2025-09-03 16:10:57,524 - INFO - ?? Training client 1/3
+2025-09-03 16:12:37,325 - INFO - ? Client 1 completed in 99.8s
+2025-09-03 16:12:37,325 - INFO - ?? Training client 2/3
+2025-09-03 16:14:17,123 - INFO - ? Client 2 completed in 99.8s
+2025-09-03 16:14:17,124 - INFO - ?? Training client 3/3
+2025-09-03 16:15:59,663 - INFO - ? Client 3 completed in 102.5s
+2025-09-03 16:15:59,664 - INFO - ?? Aggregating models...
+2025-09-03 16:16:00,179 - INFO - ? Model aggregation completed
+2025-09-03 16:16:00,180 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0104, Acc=99.67%
+Client 0 Epoch 2/8: Loss=0.0134, Acc=99.88%
+Client 0 Epoch 3/8: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0068, Acc=99.83%
+Client 0 Epoch 5/8: Loss=0.0044, Acc=99.79%
+Client 0 Epoch 6/8: Loss=0.0075, Acc=99.83%
+Client 0 Epoch 7/8: Loss=0.0005, Acc=99.96%
+Client 0 Epoch 8/8: Loss=0.0060, Acc=99.75%
+Client 1 Epoch 1/8: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 2/8: Loss=0.0096, Acc=99.67%
+Client 1 Epoch 3/8: Loss=0.0027, Acc=99.88%
+Client 1 Epoch 4/8: Loss=0.0041, Acc=99.75%
+Client 1 Epoch 5/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0041, Acc=99.83%
+Client 1 Epoch 7/8: Loss=0.0057, Acc=99.79%
+Client 1 Epoch 8/8: Loss=0.0006, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0054, Acc=99.88%
+Client 2 Epoch 2/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0037, Acc=99.83%
+Client 2 Epoch 4/8: Loss=0.0073, Acc=99.67%
+Client 2 Epoch 5/8: Loss=0.0025, Acc=99.88%
+Client 2 Epoch 6/8: Loss=0.0067, Acc=99.83%
+Client 2 Epoch 7/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 8/8: Loss=0.0037, Acc=99.88%
+2025-09-03 16:16:05,142 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:16:05,760 - INFO - ?? MAE Debug - Reconstruction errors: min=0.361316, max=0.853817, mean=0.484309
+2025-09-03 16:16:05,760 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:16:05,760 - INFO - ?? MAE Debug - Detection values: [True, False, False, False, False]
+2025-09-03 16:16:05,760 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 16:16:54,468 - INFO - ?? Round 14 Clean Acc: 59.06% | Adv Acc: 53.75% | MAE Detection: 33.75% | Time: 356.9s
+2025-09-03 16:16:54,469 - INFO - ?? Total training time: 5095.3s
+2025-09-03 16:16:54,469 - INFO - ?? Round 15/25
+2025-09-03 16:16:54,469 - INFO - ?? Training client 1/3
+2025-09-03 16:18:35,786 - INFO - ? Client 1 completed in 101.3s
+2025-09-03 16:18:35,786 - INFO - ?? Training client 2/3
+2025-09-03 16:20:18,784 - INFO - ? Client 2 completed in 103.0s
+2025-09-03 16:20:18,784 - INFO - ?? Training client 3/3
+2025-09-03 16:22:04,955 - INFO - ? Client 3 completed in 106.2s
+2025-09-03 16:22:04,955 - INFO - ?? Aggregating models...
+2025-09-03 16:22:05,468 - INFO - ? Model aggregation completed
+2025-09-03 16:22:05,468 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0006, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0082, Acc=99.67%
+Client 0 Epoch 3/8: Loss=0.0173, Acc=99.25%
+Client 0 Epoch 4/8: Loss=0.0007, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0044, Acc=99.75%
+Client 0 Epoch 6/8: Loss=0.0130, Acc=99.46%
+Client 0 Epoch 7/8: Loss=0.0009, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0060, Acc=99.75%
+Client 1 Epoch 1/8: Loss=0.0102, Acc=99.75%
+Client 1 Epoch 2/8: Loss=0.0057, Acc=99.71%
+Client 1 Epoch 3/8: Loss=0.0005, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0036, Acc=99.75%
+Client 1 Epoch 5/8: Loss=0.0008, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0064, Acc=99.75%
+Client 1 Epoch 7/8: Loss=0.0104, Acc=99.58%
+Client 1 Epoch 8/8: Loss=0.0101, Acc=99.71%
+Client 2 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0047, Acc=99.83%
+Client 2 Epoch 3/8: Loss=0.0105, Acc=99.79%
+Client 2 Epoch 4/8: Loss=0.0078, Acc=99.62%
+Client 2 Epoch 5/8: Loss=0.0106, Acc=99.79%
+Client 2 Epoch 6/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0061, Acc=99.79%
+Client 2 Epoch 8/8: Loss=0.0109, Acc=99.54%
+2025-09-03 16:22:10,408 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:22:11,026 - INFO - ?? MAE Debug - Reconstruction errors: min=0.367045, max=0.819296, mean=0.515735
+2025-09-03 16:22:11,026 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:22:11,026 - INFO - ?? MAE Debug - Detection values: [True, False, False, False, True]
+2025-09-03 16:22:11,026 - INFO - ?? MAE Debug - Detection sum: 13/32
+2025-09-03 16:22:59,666 - INFO - ?? Round 15 Clean Acc: 50.00% | Adv Acc: 44.69% | MAE Detection: 29.69% | Time: 365.2s
+2025-09-03 16:22:59,666 - INFO - ?? Total training time: 5460.5s
+2025-09-03 16:22:59,666 - INFO - ?? Round 16/25
+2025-09-03 16:22:59,666 - INFO - ?? Training client 1/3
+2025-09-03 16:24:45,771 - INFO - ? Client 1 completed in 106.1s
+2025-09-03 16:24:45,771 - INFO - ?? Training client 2/3
+2025-09-03 16:26:30,956 - INFO - ? Client 2 completed in 105.2s
+2025-09-03 16:26:30,957 - INFO - ?? Training client 3/3
+2025-09-03 16:28:20,012 - INFO - ? Client 3 completed in 109.1s
+2025-09-03 16:28:20,012 - INFO - ?? Aggregating models...
+2025-09-03 16:28:20,527 - INFO - ? Model aggregation completed
+2025-09-03 16:28:20,528 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0063, Acc=99.71%
+Client 0 Epoch 2/8: Loss=0.0061, Acc=99.79%
+Client 0 Epoch 3/8: Loss=0.0053, Acc=99.71%
+Client 0 Epoch 4/8: Loss=0.0033, Acc=99.83%
+Client 0 Epoch 5/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0010, Acc=99.96%
+Client 0 Epoch 7/8: Loss=0.0054, Acc=99.79%
+Client 0 Epoch 8/8: Loss=0.0009, Acc=99.96%
+Client 1 Epoch 1/8: Loss=0.0026, Acc=99.96%
+Client 1 Epoch 2/8: Loss=0.0060, Acc=99.83%
+Client 1 Epoch 3/8: Loss=0.0127, Acc=99.46%
+Client 1 Epoch 4/8: Loss=0.0025, Acc=99.79%
+Client 1 Epoch 5/8: Loss=0.0008, Acc=99.96%
+Client 1 Epoch 6/8: Loss=0.0041, Acc=99.88%
+Client 1 Epoch 7/8: Loss=0.0191, Acc=99.54%
+Client 1 Epoch 8/8: Loss=0.0098, Acc=99.62%
+Client 2 Epoch 1/8: Loss=0.0026, Acc=99.83%
+Client 2 Epoch 2/8: Loss=0.0078, Acc=99.67%
+Client 2 Epoch 3/8: Loss=0.0041, Acc=99.88%
+Client 2 Epoch 4/8: Loss=0.0007, Acc=99.96%
+Client 2 Epoch 5/8: Loss=0.0041, Acc=99.79%
+Client 2 Epoch 6/8: Loss=0.0034, Acc=99.92%
+Client 2 Epoch 7/8: Loss=0.0054, Acc=99.79%
+Client 2 Epoch 8/8: Loss=0.0001, Acc=100.00%
+2025-09-03 16:28:25,481 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:28:26,100 - INFO - ?? MAE Debug - Reconstruction errors: min=0.369007, max=0.848882, mean=0.527444
+2025-09-03 16:28:26,100 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:28:26,101 - INFO - ?? MAE Debug - Detection values: [True, False, False, True, True]
+2025-09-03 16:28:26,101 - INFO - ?? MAE Debug - Detection sum: 14/32
+2025-09-03 16:29:14,823 - INFO - ?? Round 16 Clean Acc: 55.94% | Adv Acc: 51.25% | MAE Detection: 34.69% | Time: 375.2s
+2025-09-03 16:29:14,823 - INFO - ?? Total training time: 5835.6s
+2025-09-03 16:29:14,823 - INFO - ?? Round 17/25
+2025-09-03 16:29:14,823 - INFO - ?? Training client 1/3
+2025-09-03 16:31:01,291 - INFO - ? Client 1 completed in 106.5s
+2025-09-03 16:31:01,292 - INFO - ?? Training client 2/3
+2025-09-03 16:32:47,579 - INFO - ? Client 2 completed in 106.3s
+2025-09-03 16:32:47,579 - INFO - ?? Training client 3/3
+2025-09-03 16:34:30,088 - INFO - ? Client 3 completed in 102.5s
+2025-09-03 16:34:30,088 - INFO - ?? Aggregating models...
+2025-09-03 16:34:30,594 - INFO - ? Model aggregation completed
+2025-09-03 16:34:30,594 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0005, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0036, Acc=99.88%
+Client 0 Epoch 3/8: Loss=0.0039, Acc=99.79%
+Client 0 Epoch 4/8: Loss=0.0076, Acc=99.79%
+Client 0 Epoch 5/8: Loss=0.0061, Acc=99.75%
+Client 0 Epoch 6/8: Loss=0.0057, Acc=99.71%
+Client 0 Epoch 7/8: Loss=0.0070, Acc=99.62%
+Client 0 Epoch 8/8: Loss=0.0017, Acc=99.88%
+Client 1 Epoch 1/8: Loss=0.0018, Acc=99.88%
+Client 1 Epoch 2/8: Loss=0.0030, Acc=99.83%
+Client 1 Epoch 3/8: Loss=0.0034, Acc=99.88%
+Client 1 Epoch 4/8: Loss=0.0015, Acc=99.92%
+Client 1 Epoch 5/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0032, Acc=99.83%
+Client 1 Epoch 7/8: Loss=0.0114, Acc=99.75%
+Client 1 Epoch 8/8: Loss=0.0065, Acc=99.79%
+Client 2 Epoch 1/8: Loss=0.0104, Acc=99.75%
+Client 2 Epoch 2/8: Loss=0.0034, Acc=99.88%
+Client 2 Epoch 3/8: Loss=0.0021, Acc=99.92%
+Client 2 Epoch 4/8: Loss=0.0029, Acc=99.83%
+Client 2 Epoch 5/8: Loss=0.0012, Acc=99.96%
+Client 2 Epoch 6/8: Loss=0.0032, Acc=99.83%
+Client 2 Epoch 7/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 8/8: Loss=0.0008, Acc=100.00%
+2025-09-03 16:34:35,546 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:34:36,165 - INFO - ?? MAE Debug - Reconstruction errors: min=0.362247, max=0.785971, mean=0.467746
+2025-09-03 16:34:36,165 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:34:36,165 - INFO - ?? MAE Debug - Detection values: [False, False, True, True, False]
+2025-09-03 16:34:36,165 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 16:35:24,852 - INFO - ?? Round 17 Clean Acc: 58.12% | Adv Acc: 52.50% | MAE Detection: 32.81% | Time: 370.0s
+2025-09-03 16:35:24,852 - INFO - ?? Total training time: 6205.7s
+2025-09-03 16:35:24,852 - INFO - ?? Round 18/25
+2025-09-03 16:35:24,852 - INFO - ?? Training client 1/3
+2025-09-03 16:37:07,421 - INFO - ? Client 1 completed in 102.6s
+2025-09-03 16:37:07,421 - INFO - ?? Training client 2/3
+2025-09-03 16:38:47,464 - INFO - ? Client 2 completed in 100.0s
+2025-09-03 16:38:47,464 - INFO - ?? Training client 3/3
+2025-09-03 16:40:27,331 - INFO - ? Client 3 completed in 99.9s
+2025-09-03 16:40:27,332 - INFO - ?? Aggregating models...
+2025-09-03 16:40:28,016 - INFO - ? Model aggregation completed
+2025-09-03 16:40:28,016 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0041, Acc=99.75%
+Client 0 Epoch 2/8: Loss=0.0029, Acc=99.88%
+Client 0 Epoch 3/8: Loss=0.0053, Acc=99.88%
+Client 0 Epoch 4/8: Loss=0.0048, Acc=99.79%
+Client 0 Epoch 5/8: Loss=0.0111, Acc=99.71%
+Client 0 Epoch 6/8: Loss=0.0001, Acc=100.00%
+Client 0 Epoch 7/8: Loss=0.0036, Acc=99.92%
+Client 0 Epoch 8/8: Loss=0.0082, Acc=99.62%
+Client 1 Epoch 1/8: Loss=0.0068, Acc=99.58%
+Client 1 Epoch 2/8: Loss=0.0096, Acc=99.71%
+Client 1 Epoch 3/8: Loss=0.0088, Acc=99.75%
+Client 1 Epoch 4/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0044, Acc=99.79%
+Client 1 Epoch 6/8: Loss=0.0013, Acc=99.96%
+Client 1 Epoch 7/8: Loss=0.0097, Acc=99.71%
+Client 1 Epoch 8/8: Loss=0.0017, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0035, Acc=99.79%
+Client 2 Epoch 2/8: Loss=0.0023, Acc=99.92%
+Client 2 Epoch 3/8: Loss=0.0091, Acc=99.75%
+Client 2 Epoch 4/8: Loss=0.0101, Acc=99.67%
+Client 2 Epoch 5/8: Loss=0.0026, Acc=99.83%
+Client 2 Epoch 6/8: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0017, Acc=99.96%
+Client 2 Epoch 8/8: Loss=0.0118, Acc=99.50%
+2025-09-03 16:40:32,928 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:40:33,548 - INFO - ?? MAE Debug - Reconstruction errors: min=0.366885, max=0.848868, mean=0.487724
+2025-09-03 16:40:33,548 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:40:33,548 - INFO - ?? MAE Debug - Detection values: [False, True, True, False, False]
+2025-09-03 16:40:33,548 - INFO - ?? MAE Debug - Detection sum: 12/32
+2025-09-03 16:41:22,239 - INFO - ?? Round 18 Clean Acc: 51.56% | Adv Acc: 47.81% | MAE Detection: 35.00% | Time: 357.4s
+2025-09-03 16:41:22,239 - INFO - ?? Total training time: 6563.1s
+2025-09-03 16:41:22,240 - INFO - ?? Round 19/25
+2025-09-03 16:41:22,240 - INFO - ?? Training client 1/3
+2025-09-03 16:43:03,799 - INFO - ? Client 1 completed in 101.6s
+2025-09-03 16:43:03,800 - INFO - ?? Training client 2/3
+2025-09-03 16:44:43,955 - INFO - ? Client 2 completed in 100.2s
+2025-09-03 16:44:43,955 - INFO - ?? Training client 3/3
+2025-09-03 16:46:27,145 - INFO - ? Client 3 completed in 103.2s
+2025-09-03 16:46:27,145 - INFO - ?? Aggregating models...
+2025-09-03 16:46:27,685 - INFO - ? Model aggregation completed
+2025-09-03 16:46:27,685 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0148, Acc=99.38%
+Client 0 Epoch 3/8: Loss=0.0025, Acc=99.92%
+Client 0 Epoch 4/8: Loss=0.0023, Acc=99.92%
+Client 0 Epoch 5/8: Loss=0.0006, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 7/8: Loss=0.0005, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0039, Acc=99.88%
+Client 1 Epoch 1/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 2/8: Loss=0.0071, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0006, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0056, Acc=99.88%
+Client 1 Epoch 6/8: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0061, Acc=99.75%
+Client 2 Epoch 1/8: Loss=0.0051, Acc=99.88%
+Client 2 Epoch 2/8: Loss=0.0052, Acc=99.75%
+Client 2 Epoch 3/8: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 4/8: Loss=0.0030, Acc=99.88%
+Client 2 Epoch 5/8: Loss=0.0079, Acc=99.75%
+Client 2 Epoch 6/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0085, Acc=99.79%
+Client 2 Epoch 8/8: Loss=0.0000, Acc=100.00%
+2025-09-03 16:46:32,622 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:46:33,239 - INFO - ?? MAE Debug - Reconstruction errors: min=0.362270, max=0.689676, mean=0.447416
+2025-09-03 16:46:33,239 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:46:33,239 - INFO - ?? MAE Debug - Detection values: [False, False, False, True, False]
+2025-09-03 16:46:33,240 - INFO - ?? MAE Debug - Detection sum: 7/32
+2025-09-03 16:47:21,942 - INFO - ?? Round 19 Clean Acc: 52.19% | Adv Acc: 46.88% | MAE Detection: 33.44% | Time: 359.7s
+2025-09-03 16:47:21,942 - INFO - ?? Total training time: 6922.8s
+2025-09-03 16:47:21,942 - INFO - ?? Round 20/25
+2025-09-03 16:47:21,943 - INFO - ?? Training client 1/3
+2025-09-03 16:49:04,507 - INFO - ? Client 1 completed in 102.6s
+2025-09-03 16:49:04,507 - INFO - ?? Training client 2/3
+2025-09-03 16:50:45,683 - INFO - ? Client 2 completed in 101.2s
+2025-09-03 16:50:45,683 - INFO - ?? Training client 3/3
+2025-09-03 16:52:26,104 - INFO - ? Client 3 completed in 100.4s
+2025-09-03 16:52:26,104 - INFO - ?? Aggregating models...
+2025-09-03 16:52:26,599 - INFO - ? Model aggregation completed
+2025-09-03 16:52:26,599 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0040, Acc=99.79%
+Client 0 Epoch 2/8: Loss=0.0007, Acc=99.96%
+Client 0 Epoch 3/8: Loss=0.0046, Acc=99.75%
+Client 0 Epoch 4/8: Loss=0.0029, Acc=99.88%
+Client 0 Epoch 5/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0046, Acc=99.88%
+Client 0 Epoch 7/8: Loss=0.0052, Acc=99.79%
+Client 0 Epoch 8/8: Loss=0.0021, Acc=99.92%
+Client 1 Epoch 1/8: Loss=0.0081, Acc=99.58%
+Client 1 Epoch 2/8: Loss=0.0009, Acc=100.00%
+Client 1 Epoch 3/8: Loss=0.0005, Acc=99.96%
+Client 1 Epoch 4/8: Loss=0.0008, Acc=99.96%
+Client 1 Epoch 5/8: Loss=0.0040, Acc=99.83%
+Client 1 Epoch 6/8: Loss=0.0098, Acc=99.71%
+Client 1 Epoch 7/8: Loss=0.0050, Acc=99.71%
+Client 1 Epoch 8/8: Loss=0.0060, Acc=99.67%
+Client 2 Epoch 1/8: Loss=0.0017, Acc=99.92%
+Client 2 Epoch 2/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0011, Acc=99.96%
+Client 2 Epoch 4/8: Loss=0.0047, Acc=99.79%
+Client 2 Epoch 5/8: Loss=0.0056, Acc=99.75%
+Client 2 Epoch 6/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0008, Acc=99.96%
+Client 2 Epoch 8/8: Loss=0.0000, Acc=100.00%
+2025-09-03 16:52:31,536 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:52:32,156 - INFO - ?? MAE Debug - Reconstruction errors: min=0.364289, max=0.723798, mean=0.448930
+2025-09-03 16:52:32,157 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:52:32,157 - INFO - ?? MAE Debug - Detection values: [True, False, True, True, True]
+2025-09-03 16:52:32,157 - INFO - ?? MAE Debug - Detection sum: 9/32
+2025-09-03 16:53:20,857 - INFO - ?? Round 20 Clean Acc: 56.88% | Adv Acc: 51.56% | MAE Detection: 31.25% | Time: 358.9s
+2025-09-03 16:53:20,858 - INFO - ?? Total training time: 7281.7s
+2025-09-03 16:53:20,858 - INFO - ?? Round 21/25
+2025-09-03 16:53:20,858 - INFO - ?? Training client 1/3
+2025-09-03 16:55:00,305 - INFO - ? Client 1 completed in 99.4s
+2025-09-03 16:55:00,306 - INFO - ?? Training client 2/3
+2025-09-03 16:56:40,951 - INFO - ? Client 2 completed in 100.6s
+2025-09-03 16:56:40,951 - INFO - ?? Training client 3/3
+2025-09-03 16:58:23,426 - INFO - ? Client 3 completed in 102.5s
+2025-09-03 16:58:23,426 - INFO - ?? Aggregating models...
+2025-09-03 16:58:23,943 - INFO - ? Model aggregation completed
+2025-09-03 16:58:23,944 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0002, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0052, Acc=99.75%
+Client 0 Epoch 3/8: Loss=0.0060, Acc=99.75%
+Client 0 Epoch 4/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0016, Acc=99.92%
+Client 0 Epoch 6/8: Loss=0.0009, Acc=99.96%
+Client 0 Epoch 7/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0042, Acc=99.88%
+Client 1 Epoch 1/8: Loss=0.0032, Acc=99.88%
+Client 1 Epoch 2/8: Loss=0.0048, Acc=99.88%
+Client 1 Epoch 3/8: Loss=0.0050, Acc=99.88%
+Client 1 Epoch 4/8: Loss=0.0042, Acc=99.75%
+Client 1 Epoch 5/8: Loss=0.0007, Acc=99.96%
+Client 1 Epoch 6/8: Loss=0.0009, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0022, Acc=99.92%
+Client 1 Epoch 8/8: Loss=0.0006, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 4/8: Loss=0.0019, Acc=99.92%
+Client 2 Epoch 5/8: Loss=0.0103, Acc=99.67%
+Client 2 Epoch 6/8: Loss=0.0032, Acc=99.79%
+Client 2 Epoch 7/8: Loss=0.0048, Acc=99.79%
+Client 2 Epoch 8/8: Loss=0.0003, Acc=100.00%
+2025-09-03 16:58:28,859 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 16:58:29,479 - INFO - ?? MAE Debug - Reconstruction errors: min=0.365417, max=0.812159, mean=0.482067
+2025-09-03 16:58:29,479 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 16:58:29,479 - INFO - ?? MAE Debug - Detection values: [False, False, True, True, False]
+2025-09-03 16:58:29,479 - INFO - ?? MAE Debug - Detection sum: 13/32
+2025-09-03 16:59:18,111 - INFO - ?? Round 21 Clean Acc: 55.00% | Adv Acc: 51.25% | MAE Detection: 31.88% | Time: 357.3s
+2025-09-03 16:59:18,111 - INFO - ?? Total training time: 7638.9s
+2025-09-03 16:59:18,111 - INFO - ?? Round 22/25
+2025-09-03 16:59:18,111 - INFO - ?? Training client 1/3
+2025-09-03 17:00:58,227 - INFO - ? Client 1 completed in 100.1s
+2025-09-03 17:00:58,227 - INFO - ?? Training client 2/3
+2025-09-03 17:02:40,112 - INFO - ? Client 2 completed in 101.9s
+2025-09-03 17:02:40,112 - INFO - ?? Training client 3/3
+2025-09-03 17:04:25,699 - INFO - ? Client 3 completed in 105.6s
+2025-09-03 17:04:25,700 - INFO - ?? Aggregating models...
+2025-09-03 17:04:26,228 - INFO - ? Model aggregation completed
+2025-09-03 17:04:26,228 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0052, Acc=99.75%
+Client 0 Epoch 3/8: Loss=0.0011, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0084, Acc=99.83%
+Client 0 Epoch 5/8: Loss=0.0072, Acc=99.83%
+Client 0 Epoch 6/8: Loss=0.0033, Acc=99.83%
+Client 0 Epoch 7/8: Loss=0.0020, Acc=99.92%
+Client 0 Epoch 8/8: Loss=0.0037, Acc=99.83%
+Client 1 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 2/8: Loss=0.0062, Acc=99.58%
+Client 1 Epoch 3/8: Loss=0.0045, Acc=99.83%
+Client 1 Epoch 4/8: Loss=0.0064, Acc=99.71%
+Client 1 Epoch 5/8: Loss=0.0022, Acc=99.88%
+Client 1 Epoch 6/8: Loss=0.0024, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0064, Acc=99.75%
+Client 1 Epoch 8/8: Loss=0.0007, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0014, Acc=99.96%
+Client 2 Epoch 2/8: Loss=0.0010, Acc=99.96%
+Client 2 Epoch 3/8: Loss=0.0174, Acc=99.54%
+Client 2 Epoch 4/8: Loss=0.0008, Acc=100.00%
+Client 2 Epoch 5/8: Loss=0.0030, Acc=99.88%
+Client 2 Epoch 6/8: Loss=0.0023, Acc=99.92%
+Client 2 Epoch 7/8: Loss=0.0037, Acc=99.83%
+Client 2 Epoch 8/8: Loss=0.0008, Acc=99.96%
+2025-09-03 17:04:31,202 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 17:04:31,819 - INFO - ?? MAE Debug - Reconstruction errors: min=0.362317, max=0.730183, mean=0.454378
+2025-09-03 17:04:31,819 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 17:04:31,820 - INFO - ?? MAE Debug - Detection values: [False, False, False, False, False]
+2025-09-03 17:04:31,820 - INFO - ?? MAE Debug - Detection sum: 6/32
+2025-09-03 17:05:20,499 - INFO - ?? Round 22 Clean Acc: 54.06% | Adv Acc: 48.12% | MAE Detection: 31.56% | Time: 362.4s
+2025-09-03 17:05:20,500 - INFO - ?? Total training time: 8001.3s
+2025-09-03 17:05:20,500 - INFO - ?? Round 23/25
+2025-09-03 17:05:20,500 - INFO - ?? Training client 1/3
+2025-09-03 17:07:05,897 - INFO - ? Client 1 completed in 105.4s
+2025-09-03 17:07:05,898 - INFO - ?? Training client 2/3
+2025-09-03 17:08:48,356 - INFO - ? Client 2 completed in 102.5s
+2025-09-03 17:08:48,356 - INFO - ?? Training client 3/3
+2025-09-03 17:10:34,650 - INFO - ? Client 3 completed in 106.3s
+2025-09-03 17:10:34,650 - INFO - ?? Aggregating models...
+2025-09-03 17:10:35,169 - INFO - ? Model aggregation completed
+2025-09-03 17:10:35,169 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 3/8: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0020, Acc=99.92%
+Client 0 Epoch 5/8: Loss=0.0004, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0007, Acc=100.00%
+Client 0 Epoch 7/8: Loss=0.0037, Acc=99.88%
+Client 0 Epoch 8/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 1/8: Loss=0.0009, Acc=99.96%
+Client 1 Epoch 2/8: Loss=0.0020, Acc=99.92%
+Client 1 Epoch 3/8: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0032, Acc=99.92%
+Client 1 Epoch 5/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0004, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0002, Acc=100.00%
+Client 1 Epoch 8/8: Loss=0.0017, Acc=99.96%
+Client 2 Epoch 1/8: Loss=0.0003, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0074, Acc=99.83%
+Client 2 Epoch 4/8: Loss=0.0014, Acc=99.92%
+Client 2 Epoch 5/8: Loss=0.0031, Acc=99.83%
+Client 2 Epoch 6/8: Loss=0.0026, Acc=99.88%
+Client 2 Epoch 7/8: Loss=0.0008, Acc=99.96%
+Client 2 Epoch 8/8: Loss=0.0025, Acc=99.83%
+2025-09-03 17:10:40,120 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 17:10:40,738 - INFO - ?? MAE Debug - Reconstruction errors: min=0.363663, max=0.772208, mean=0.494844
+2025-09-03 17:10:40,739 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 17:10:40,739 - INFO - ?? MAE Debug - Detection values: [False, False, True, True, False]
+2025-09-03 17:10:40,739 - INFO - ?? MAE Debug - Detection sum: 12/32
+2025-09-03 17:11:29,394 - INFO - ?? Round 23 Clean Acc: 55.94% | Adv Acc: 50.31% | MAE Detection: 31.56% | Time: 368.9s
+2025-09-03 17:11:29,395 - INFO - ?? Total training time: 8370.2s
+2025-09-03 17:11:29,395 - INFO - ?? Round 24/25
+2025-09-03 17:11:29,395 - INFO - ?? Training client 1/3
+2025-09-03 17:13:10,390 - INFO - ? Client 1 completed in 101.0s
+2025-09-03 17:13:10,390 - INFO - ?? Training client 2/3
+2025-09-03 17:14:52,473 - INFO - ? Client 2 completed in 102.1s
+2025-09-03 17:14:52,473 - INFO - ?? Training client 3/3
+2025-09-03 17:16:34,238 - INFO - ? Client 3 completed in 101.8s
+2025-09-03 17:16:34,238 - INFO - ?? Aggregating models...
+2025-09-03 17:16:34,751 - INFO - ? Model aggregation completed
+2025-09-03 17:16:34,752 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 2/8: Loss=0.0077, Acc=99.71%
+Client 0 Epoch 3/8: Loss=0.0003, Acc=100.00%
+Client 0 Epoch 4/8: Loss=0.0000, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0008, Acc=100.00%
+Client 0 Epoch 6/8: Loss=0.0027, Acc=99.92%
+Client 0 Epoch 7/8: Loss=0.0012, Acc=100.00%
+Client 0 Epoch 8/8: Loss=0.0028, Acc=99.83%
+Client 1 Epoch 1/8: Loss=0.0072, Acc=99.79%
+Client 1 Epoch 2/8: Loss=0.0036, Acc=99.79%
+Client 1 Epoch 3/8: Loss=0.0021, Acc=99.92%
+Client 1 Epoch 4/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 6/8: Loss=0.0020, Acc=99.92%
+Client 1 Epoch 7/8: Loss=0.0038, Acc=99.92%
+Client 1 Epoch 8/8: Loss=0.0007, Acc=100.00%
+Client 2 Epoch 1/8: Loss=0.0002, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0001, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0025, Acc=99.92%
+Client 2 Epoch 4/8: Loss=0.0007, Acc=99.96%
+Client 2 Epoch 5/8: Loss=0.0025, Acc=99.88%
+Client 2 Epoch 6/8: Loss=0.0023, Acc=99.88%
+Client 2 Epoch 7/8: Loss=0.0025, Acc=99.92%
+Client 2 Epoch 8/8: Loss=0.0067, Acc=99.92%
+2025-09-03 17:16:39,689 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 17:16:40,308 - INFO - ?? MAE Debug - Reconstruction errors: min=0.360921, max=0.878336, mean=0.472671
+2025-09-03 17:16:40,308 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 17:16:40,309 - INFO - ?? MAE Debug - Detection values: [True, False, False, False, False]
+2025-09-03 17:16:40,309 - INFO - ?? MAE Debug - Detection sum: 6/32
+2025-09-03 17:17:29,034 - INFO - ?? Round 24 Clean Acc: 58.75% | Adv Acc: 54.06% | MAE Detection: 32.81% | Time: 359.6s
+2025-09-03 17:17:29,035 - INFO - ?? Total training time: 8729.9s
+2025-09-03 17:17:29,035 - INFO - ?? Round 25/25
+2025-09-03 17:17:29,035 - INFO - ?? Training client 1/3
+2025-09-03 17:19:09,472 - INFO - ? Client 1 completed in 100.4s
+2025-09-03 17:19:09,472 - INFO - ?? Training client 2/3
+2025-09-03 17:20:49,868 - INFO - ? Client 2 completed in 100.4s
+2025-09-03 17:20:49,869 - INFO - ?? Training client 3/3
+2025-09-03 17:22:32,164 - INFO - ? Client 3 completed in 102.3s
+2025-09-03 17:22:32,164 - INFO - ?? Aggregating models...
+2025-09-03 17:22:32,677 - INFO - ? Model aggregation completed
+2025-09-03 17:22:32,677 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/8: Loss=0.0132, Acc=99.62%
+Client 0 Epoch 2/8: Loss=0.0032, Acc=99.92%
+Client 0 Epoch 3/8: Loss=0.0043, Acc=99.75%
+Client 0 Epoch 4/8: Loss=0.0014, Acc=100.00%
+Client 0 Epoch 5/8: Loss=0.0043, Acc=99.83%
+Client 0 Epoch 6/8: Loss=0.0098, Acc=99.75%
+Client 0 Epoch 7/8: Loss=0.0047, Acc=99.79%
+Client 0 Epoch 8/8: Loss=0.0015, Acc=99.96%
+Client 1 Epoch 1/8: Loss=0.0012, Acc=99.96%
+Client 1 Epoch 2/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 3/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 4/8: Loss=0.0001, Acc=100.00%
+Client 1 Epoch 5/8: Loss=0.0018, Acc=99.92%
+Client 1 Epoch 6/8: Loss=0.0000, Acc=100.00%
+Client 1 Epoch 7/8: Loss=0.0035, Acc=99.83%
+Client 1 Epoch 8/8: Loss=0.0017, Acc=99.92%
+Client 2 Epoch 1/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 2/8: Loss=0.0000, Acc=100.00%
+Client 2 Epoch 3/8: Loss=0.0045, Acc=99.88%
+Client 2 Epoch 4/8: Loss=0.0064, Acc=99.71%
+Client 2 Epoch 5/8: Loss=0.0028, Acc=99.88%
+Client 2 Epoch 6/8: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 7/8: Loss=0.0044, Acc=99.88%
+Client 2 Epoch 8/8: Loss=0.0041, Acc=99.83%
+2025-09-03 17:22:37,599 - INFO - ?? MAE Debug - Threshold: 0.5
+2025-09-03 17:22:38,217 - INFO - ?? MAE Debug - Reconstruction errors: min=0.372086, max=0.722811, mean=0.500492
+2025-09-03 17:22:38,217 - INFO - ?? MAE Debug - Detection shape: torch.Size([32])
+2025-09-03 17:22:38,218 - INFO - ?? MAE Debug - Detection values: [False, False, False, False, False]
+2025-09-03 17:22:38,218 - INFO - ?? MAE Debug - Detection sum: 11/32
+2025-09-03 17:23:26,882 - INFO - ?? Round 25 Clean Acc: 53.12% | Adv Acc: 50.00% | MAE Detection: 31.25% | Time: 357.8s
+2025-09-03 17:23:26,883 - INFO - ?? Total training time: 9087.7s
+2025-09-03 17:23:26,883 - INFO - ?? Training completed in 9087.7s
+2025-09-03 17:23:26,885 - INFO - ?? Results saved to: experiment_results/results_br35h_20250903_172326.json
+2025-09-03 17:23:26,885 - INFO - ?? Latest results: experiment_results/latest_results_br35h.json
+2025-09-03 17:23:26,885 - INFO - ?? EXPERIMENT RESULTS SUMMARY
+2025-09-03 17:23:26,885 - INFO - Dataset: BR35H
+2025-09-03 17:23:26,885 - INFO - Clean Accuracy: 53.12%
+2025-09-03 17:23:26,885 - INFO - Adversarial Accuracy: 50.00%
+2025-09-03 17:23:26,885 - INFO - MAE Detection Rate: 31.25%
+2025-09-03 17:23:26,885 - INFO - Training Time: 9087.7 seconds
+2025-09-03 17:23:26,886 - INFO - Results File: experiment_results/results_br35h_20250903_172326.json
+2025-09-03 17:23:26,896 - INFO - ?? Training pipeline completed successfully!

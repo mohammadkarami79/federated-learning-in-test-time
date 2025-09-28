@@ -14,70 +14,58 @@ from pathlib import Path
 from config_fixed import get_debug_config
 from .client import Client
 from metrics.logger import MetricsLogger
-from models.pfeddef_model import pFedDefModel
 
 class FedServer:
     def __init__(self, cfg):
         self.cfg = cfg
         self.global_models = None  # Will be set during init_round
-        self.client_updates = defaultdict(list)
+        self.client_updates = {}  # Store client updates
         
     def init_round(self, model_template: nn.Module):
-        """Initialize a new round with fresh global models."""
+        """Initialize a new round with fresh global model."""
         if self.global_models is None:
-            # First round - clone the template N_LEARNERS times
-            n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
-            self.global_models = [
-                self._clone_model(model_template) 
-                for _ in range(n_learners)
-            ]
+            # Simple single model approach
+            self.global_models = [self._clone_model(model_template)]
         return self.global_models
         
     def receive_update(self, client_id: int, local_models: List[nn.Module]):
         """Receive and store client updates for later aggregation."""
-        n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
-        
         # Handle both single model and list of models
         if not isinstance(local_models, list):
             local_models = [local_models]
         
-        # If we have fewer models than expected learners, duplicate the model
-        while len(local_models) < n_learners:
-            local_models.append(local_models[0])
-        
-        # If we have more models than expected, truncate
-        if len(local_models) > n_learners:
-            local_models = local_models[:n_learners]
-            
-        assert len(local_models) == n_learners, "Mismatched number of learners"
-        self.client_updates[client_id] = local_models
+        # Store only the first model (simple approach)
+        self.client_updates[client_id] = [local_models[0]]
         
     def aggregate(self) -> List[nn.Module]:
-        """Perform FedEM aggregation - average each learner separately."""
+        """Perform simple averaging aggregation."""
         n_clients = len(self.client_updates)
         assert n_clients > 0, "No updates received"
         
-        n_learners = getattr(self.cfg, 'N_LEARNERS', 2)
+        # Get all client models (single model per client)
+        client_models = [
+            updates[0].state_dict()  # First (and only) model from each client
+            for updates in self.client_updates.values()
+        ]
         
-        # For each learner index
-        for learner_idx in range(n_learners):
-            # Get all client models for this learner
-            client_models = [
-                updates[learner_idx].state_dict() 
-                for updates in self.client_updates.values()
-            ]
-            
-            # Average the parameters (skip BatchNorm)
-            avg_state = self.global_models[learner_idx].state_dict()
-            for key in avg_state:
-                if 'bn' not in key.lower():  # Skip BN layers
-                    avg_state[key] = torch.stack([
+        # Average the parameters
+        avg_state = self.global_models[0].state_dict()
+        for key in avg_state:
+            # Skip BN layers for stability
+            if 'bn' not in key.lower():
+                # Check if all clients have this key
+                if all(key in client_state for client_state in client_models):
+                    stacked = torch.stack([
                         client_state[key] for client_state in client_models
-                    ]).mean(dim=0)
-                    
-            # Load averaged weights back
-            self.global_models[learner_idx].load_state_dict(avg_state)
-            
+                    ])
+                    # Convert to float if it's integer type
+                    if stacked.dtype in [torch.long, torch.int, torch.int64, torch.int32]:
+                        stacked = stacked.float()
+                    avg_state[key] = stacked.mean(dim=0)
+                
+        # Load averaged weights back
+        self.global_models[0].load_state_dict(avg_state)
+        
         # Clear updates and return new global models
         self.client_updates.clear()
         return self.global_models
@@ -85,15 +73,10 @@ class FedServer:
     @staticmethod
     def _clone_model(model: nn.Module) -> nn.Module:
         """Deep copy a model including parameters."""
-        if isinstance(model, pFedDefModel):
-            clone = pFedDefModel(model.cfg)
-        else:
-            clone = type(model)()
+        import copy
         
-        # Copy parameters manually to avoid state_dict issues
-        for param1, param2 in zip(model.parameters(), clone.parameters()):
-            param2.data.copy_(param1.data)
-        
+        # Use simple deepcopy for ResNet18
+        clone = copy.deepcopy(model)
         return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
 
 class Server:
@@ -150,20 +133,9 @@ class Server:
     @staticmethod
     def _clone_model(model: nn.Module) -> nn.Module:
         """Deep copy a model including parameters."""
-        if isinstance(model, pFedDefModel):
-            clone = pFedDefModel(model.cfg)
-        elif hasattr(model, 'fc'):
-            # For ResNet models
-            import torchvision.models as models
-            clone = models.resnet18(pretrained=False)
-            clone.fc = nn.Linear(clone.fc.in_features, model.fc.out_features)
-        else:
-            clone = type(model)()
-        
-        # Copy parameters manually to avoid state_dict issues
-        for param1, param2 in zip(model.parameters(), clone.parameters()):
-            param2.data.copy_(param1.data)
-        
+        import copy
+        # Use deepcopy for all models
+        clone = copy.deepcopy(model)
         return clone.to(torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
     
     def aggregate_parameters(self, parameters_list: List[Dict[str, torch.Tensor]]):

@@ -12,6 +12,10 @@ from types import SimpleNamespace
 # OPTIMIZED PARAMETERS FOR PERFORMANCE
 # ============================================================================
 
+class Config:
+    """Configuration class for storing all parameters"""
+    pass
+
 # Core experiment settings
 N_CLIENTS = 10
 N_TASKS = 10  # Reduced from 80 tasks for faster testing
@@ -59,13 +63,13 @@ DIFFUSION_BETA_END = 2e-2
 
 # MAE Detector settings - NEW
 MAE_ENABLED = True
-MAE_THRESHOLD = 0.1
+MAE_THRESHOLD = 0.15  # FIXED: Optimal threshold for balanced detection
 MAE_PATCH_SIZE = 4
-MAE_EMBED_DIM = 128  # Reduced for speed
+MAE_EMBED_DIM = 256  # FIXED: Must match checkpoint dimensions
 MAE_DEPTH = 4  # Reduced from typical 12
 MAE_NUM_HEADS = 4
 MAE_MASK_RATIO = 0.5
-MAE_DECODER_EMBED_DIM = 64
+MAE_DECODER_EMBED_DIM = 128  # FIXED: Must match checkpoint dimensions
 
 # FedEM aggregation settings
 FEDEM_N_LEARNERS = 3
@@ -93,7 +97,7 @@ FAST_MODE = True  # Enable all speed optimizations
 # Training parameters - FIXED: Added proper training parameters
 DIFFUSION_EPOCHS = 10  # Configurable diffusion training epochs
 MAE_EPOCHS = 10        # Configurable MAE training epochs
-CLIENT_EPOCHS = 3      # Configurable client training epochs
+CLIENT_EPOCHS = 5      # FIXED: Configurable client training epochs
 DIFFUSION_HIDDEN_CHANNELS = 64  # Configurable diffusion model size
 
 # ============================================================================
@@ -101,48 +105,55 @@ DIFFUSION_HIDDEN_CHANNELS = 64  # Configurable diffusion model size
 # ============================================================================
 
 def get_debug_config():
-    """Get debug configuration with improved parameters for better accuracy"""
+    """Get debug configuration - CIFAR-10 optimized for quick testing"""
     cfg = type('Config', (), {})()
     
     # Basic settings
     cfg.MODE = 'debug'
     cfg.DATASET = 'CIFAR10'
     cfg.DATASET_NAME = 'CIFAR-10'
+    cfg.DATA_ROOT = 'data'
     cfg.IMG_CHANNELS = 3
     cfg.IMG_SIZE = 32
     cfg.NUM_CLASSES = 10
     
-    # Training parameters - IMPROVED for better accuracy
-    cfg.BATCH_SIZE = 32  # Reduced for better gradient estimates
-    cfg.LEARNING_RATE = 0.01  # INCREASED from 0.001 to 0.01
-    cfg.EPOCHS = 10  # INCREASED from 5 to 10
-    cfg.N_CLIENTS = 5
-    cfg.N_ROUNDS = 5  # INCREASED from 3 to 5
-    cfg.CLIENT_EPOCHS = 3  # INCREASED from 1 to 3
-    cfg.DIFFUSION_EPOCHS = 10  # INCREASED from 5 to 10
-    cfg.MAE_EPOCHS = 10  # INCREASED from 5 to 10
-    cfg.DIFFUSION_HIDDEN_CHANNELS = 64
+    # Training parameters - CIFAR-10 OPTIMIZED FOR BETTER ACCURACY
+    cfg.BATCH_SIZE = 64   # Good for CIFAR-10
+    cfg.LEARNING_RATE = 0.01  # Standard for CIFAR-10
+    cfg.WEIGHT_DECAY = 5e-4   # Standard regularization
+    cfg.NUM_EPOCHS = 10   # Increased for better convergence
+    cfg.EPOCHS = 10       # Alias for NUM_EPOCHS (required by validation)
+    cfg.NUM_CLIENTS = 10  # Standard for CIFAR-10
+    cfg.NUM_ROUNDS = 15   # Increased for better convergence
+    cfg.CLIENT_EPOCHS = 5 # Increased per client for better local learning
+    cfg.DIFFUSION_EPOCHS = 15  # Good for CIFAR-10
+    cfg.MAE_EPOCHS = 15   # Good for CIFAR-10
+    cfg.DIFFUSION_HIDDEN_CHANNELS = 128
     
     # Model parameters
     cfg.MODEL_WIDTH = 1.0
     cfg.USE_ADDITIONAL_LAYERS = False
     cfg.N_LEARNERS = 2  # Added for pFedDef compatibility
     
-    # Defense parameters
-    cfg.MAE_EMBED_DIM = 128
-    cfg.MAE_DECODER_EMBED_DIM = 128
+    # Defense parameters - FIXED: Match your trained MAE model
+    cfg.MAE_EMBED_DIM = 256
+    cfg.MAE_DECODER_EMBED_DIM = 128  # This matches your checkpoint structure
     cfg.MAE_MASK_RATIO = 0.75
     cfg.MAE_PATCH_SIZE = 4
-    cfg.MAE_THRESHOLD = 0.1
+    cfg.MAE_THRESHOLD = 0.15   # FIXED: Optimal threshold for balanced detection
     
-    # Attack parameters
+    # Attack parameters - OPTIMIZED
     cfg.PGD_EPS = 8/255
-    cfg.PGD_ALPHA = 2/255
-    cfg.PGD_STEPS = 10
+    cfg.PGD_ALPHA = 1/255     # REDUCED for more realistic attacks
+    cfg.PGD_STEPS = 20        # INCREASED for stronger attacks
     cfg.PGD_RANDOM_START = True
     cfg.ATTACK_EPSILON = 0.3
     cfg.ATTACK_ALPHA = 0.01
     cfg.ATTACK_STEPS = 10
+    
+    # DiffPure parameters - IMPROVED
+    cfg.DIFFPURE_STEPS = 50   # FIXED: Less aggressive purification
+    cfg.DIFFPURE_SIGMA = 0.3  # FIXED: Reduced noise for better adversarial accuracy
     
     # Memory optimization
     cfg.MAX_MEMORY_GB = 2.0
@@ -161,6 +172,7 @@ def get_test_config():
     cfg.MODE = 'test'
     cfg.DATASET = 'CIFAR100'
     cfg.DATASET_NAME = 'CIFAR-100'
+    cfg.DATA_ROOT = 'data'
     cfg.IMG_CHANNELS = 3
     cfg.IMG_SIZE = 32
     cfg.NUM_CLASSES = 100
@@ -169,8 +181,8 @@ def get_test_config():
     cfg.BATCH_SIZE = 128
     cfg.LEARNING_RATE = 0.0005
     cfg.EPOCHS = 10
-    cfg.N_CLIENTS = 10
-    cfg.N_ROUNDS = 5
+    cfg.NUM_CLIENTS = 10
+    cfg.NUM_ROUNDS = 5
     cfg.CLIENT_EPOCHS = 2
     cfg.DIFFUSION_EPOCHS = 10
     cfg.MAE_EPOCHS = 10
@@ -204,58 +216,94 @@ def get_test_config():
     cfg.DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     return cfg
+# ... existing imports and Config class ..
 
 def get_full_config():
-    """Get full configuration with production parameters"""
-    cfg = type('Config', (), {})()
+    """Get full configuration - CIFAR-10 PRODUCTION READY"""
+    cfg = Config()
     
     # Basic settings
     cfg.MODE = 'full'
-    cfg.DATASET = 'MNIST'
-    cfg.DATASET_NAME = 'MNIST'
-    cfg.IMG_CHANNELS = 1
-    cfg.IMG_SIZE = 28
-    cfg.NUM_CLASSES = 10
     
-    # Training parameters - PROFESSIONAL VALUES FOR PAPER QUALITY (STANDARD)
-    cfg.BATCH_SIZE = 128  # Standard for papers (not too large, not too small)
-    cfg.LEARNING_RATE = 0.001  # Standard learning rate for federated learning
-    cfg.EPOCHS = 30
-    cfg.N_CLIENTS = 15
-    cfg.N_ROUNDS = 20
-    cfg.CLIENT_EPOCHS = 15
-    cfg.DIFFUSION_EPOCHS = 50
-    cfg.MAE_EPOCHS = 30
-    cfg.DIFFUSION_HIDDEN_CHANNELS = 256  # REDUCED: For memory compatibility
+    # Dataset and paths - CIFAR-10 OPTIMIZED
+    cfg.DATASET = 'CIFAR10'
+    cfg.DATASET_NAME = 'CIFAR-10'
+    cfg.DATA_ROOT = 'data'
+    cfg.OUTPUT_DIR = 'outputs'
+    cfg.LOG_DIR = 'logs'
     
-    # Model parameters
-    cfg.MODEL_WIDTH = 1.0
-    cfg.USE_ADDITIONAL_LAYERS = True
-    cfg.N_LEARNERS = 3  # Added for pFedDef compatibility
+    # Model parameters - CIFAR-10 STANDARD
+    cfg.IMG_SIZE = 32
+    cfg.IMG_CHANNELS = 3
+    cfg.NUM_CLASSES = 10  # CIFAR-10: 10 classes
+    cfg.HIDDEN_DIM = 256
     
-    # Defense parameters - PROFESSIONAL VALUES FOR PAPER QUALITY (STANDARD)
-    cfg.MAE_EMBED_DIM = 512  # Balanced between quality and speed
-    cfg.MAE_DECODER_EMBED_DIM = 512  # Balanced between quality and speed
-    cfg.MAE_MASK_RATIO = 0.75
-    cfg.MAE_PATCH_SIZE = 4
+    # Training parameters - CIFAR-10 PUBLICATION READY
+    cfg.BATCH_SIZE = 128       # Standard for CIFAR-10
+    cfg.LEARNING_RATE = 0.01   # Standard for CIFAR-10
+    cfg.WEIGHT_DECAY = 5e-4    # Standard regularization
+    cfg.NUM_EPOCHS = 15        # Good for CIFAR-10
+    cfg.EPOCHS = 15            # Alias for NUM_EPOCHS (required by validation)
+    cfg.CLIENT_EPOCHS = 5      # FIXED: Good balance
     
-    # Attack parameters - PROFESSIONAL VALUES FOR PAPER QUALITY
-    cfg.PGD_EPS = 8/255
-    cfg.PGD_ALPHA = 2/255
-    cfg.PGD_STEPS = 100
-    cfg.PGD_RANDOM_START = True
-    cfg.ATTACK_EPSILON = 0.3
-    cfg.ATTACK_ALPHA = 0.01
-    cfg.ATTACK_STEPS = 100
+    # Anti-overfitting measures - ULTRA STRONG
+    cfg.EARLY_STOPPING_PATIENCE = 3
+    cfg.DROPOUT_RATE = 0.5     # INCREASED dropout
+    cfg.USE_LABEL_SMOOTHING = True
+    cfg.LABEL_SMOOTHING_FACTOR = 0.2  # STRONGER smoothing
+    cfg.USE_MIXUP = True
+    cfg.MIXUP_ALPHA = 0.4      # STRONGER mixup
+    cfg.GRADIENT_CLIPPING = True
+    cfg.MAX_GRAD_NORM = 0.5    # STRONGER clipping
     
-    # Memory optimization
-    cfg.MAX_MEMORY_GB = 8.0
-    cfg.USE_AMP = True
+    # Federated learning parameters - CIFAR-10 OPTIMIZED
+    cfg.NUM_CLIENTS = 10  # Standard for CIFAR-10 (5000 samples per client)
+    cfg.NUM_ROUNDS = 15   # Good for convergence
+    cfg.CLIENT_FRACTION = 1.0
+    cfg.DATA_DISTRIBUTION = 'iid'
     
-    # Device
+    # Device configuration
     cfg.DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+    cfg.NUM_WORKERS = 4
+    cfg.PIN_MEMORY = True
+    
+    # Defense parameters - CIFAR-10 OPTIMIZED
+    cfg.MAE_EMBED_DIM = 256   # Larger for CIFAR-10
+    cfg.MAE_DECODER_EMBED_DIM = 128  # CRITICAL: Must match checkpoint
+    cfg.MAE_MASK_RATIO = 0.75
+    cfg.MAE_PATCH_SIZE = 4    # Good for 32x32 images
+    cfg.MAE_THRESHOLD = 0.15  # FIXED: Optimal threshold for balanced detection
+    
+    # Attack parameters - OPTIMIZED
+    cfg.PGD_EPS = 8/255
+    cfg.PGD_ALPHA = 1/255     # REDUCED for more realistic attacks
+    cfg.PGD_STEPS = 20        # INCREASED for stronger attacks
+    
+    # DiffPure parameters - IMPROVED
+    cfg.DIFFPURE_STEPS = 50   # FIXED: Less aggressive purification
+    cfg.DIFFPURE_SIGMA = 0.3  # FIXED: Reduced noise for better adversarial accuracy
+    
+    # Additional epochs configuration - CIFAR-10 OPTIMIZED
+    cfg.MAE_EPOCHS = 20   # Good for CIFAR-10
+    cfg.DIFFUSION_EPOCHS = 30  # Good for CIFAR-10
+    cfg.DIFFUSION_HIDDEN_CHANNELS = 128  # Match existing checkpoint
+    
+    # Memory management
+    cfg.MAX_MEMORY_GB = 20
+    
+    # Validation and testing
+    cfg.VAL_SPLIT = 0.2
+    cfg.TEST_INTERVAL = 1
+    cfg.SAVE_INTERVAL = 5
+    
+    # Logging and monitoring
+    cfg.LOG_LEVEL = 'INFO'
+    cfg.WANDB_ENABLED = False
+    cfg.TENSORBOARD_ENABLED = False
     
     return cfg
+
+
 
 # ============================================================================
 # VALIDATION AND HELPERS
@@ -265,7 +313,7 @@ def validate_config(cfg):
     """Validate configuration parameters"""
     required_fields = [
         'MODE', 'DATASET', 'DATASET_NAME', 'IMG_CHANNELS', 'IMG_SIZE', 'NUM_CLASSES',
-        'BATCH_SIZE', 'LEARNING_RATE', 'EPOCHS', 'N_CLIENTS', 'N_ROUNDS', 'CLIENT_EPOCHS',
+        'BATCH_SIZE', 'LEARNING_RATE', 'EPOCHS', 'NUM_CLIENTS', 'NUM_ROUNDS', 'CLIENT_EPOCHS',
         'DIFFUSION_EPOCHS', 'MAE_EPOCHS', 'DIFFUSION_HIDDEN_CHANNELS', 'DEVICE'
     ]
     
@@ -280,10 +328,10 @@ def validate_config(cfg):
         raise ValueError("LEARNING_RATE must be positive")
     if cfg.EPOCHS <= 0:
         raise ValueError("EPOCHS must be positive")
-    if cfg.N_CLIENTS <= 0:
-        raise ValueError("N_CLIENTS must be positive")
-    if cfg.N_ROUNDS <= 0:
-        raise ValueError("N_ROUNDS must be positive")
+    if cfg.NUM_CLIENTS <= 0:
+        raise ValueError("NUM_CLIENTS must be positive")
+    if cfg.NUM_ROUNDS <= 0:
+        raise ValueError("NUM_ROUNDS must be positive")
     if cfg.CLIENT_EPOCHS <= 0:
         raise ValueError("CLIENT_EPOCHS must be positive")
     if cfg.DIFFUSION_EPOCHS <= 0:

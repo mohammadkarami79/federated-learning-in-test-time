@@ -1,0 +1,21 @@
+{
+  "experiment_info": {
+    "dataset": "CIFAR10",
+    "mode": "full",
+    "timestamp": "2025-09-12T05:25:43.770424",
+    "rounds_completed": 15,
+    "total_training_time_seconds": 31944.907841920853
+  },
+  "final_metrics": {
+    "clean_accuracy": 83.36,
+    "adversarial_accuracy": 0.0,
+    "mae_detection_rate": 14.84
+  },
+  "model_info": {
+    "has_mae_detector": true,
+    "has_diffusion_purifier": true,
+    "img_size": 32,
+    "img_channels": 3,
+    "num_classes": 10
+  }
+}

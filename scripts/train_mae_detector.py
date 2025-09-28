@@ -3,7 +3,10 @@
 Train MAE Detector for Different Datasets
 """
 import sys
-sys.path.append('/teamspace/studios/this_studio/federated-learning-in-test-time')
+import os
+
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import torch
 import torch.nn as nn
@@ -55,9 +58,21 @@ def get_config_for_dataset(dataset):
     cfg.DATASET = dataset
     cfg.DATASET_NAME = dataset.upper()
     
+    # Add missing attributes for MAE detector
+    cfg.LR = getattr(cfg, 'LEARNING_RATE', 0.001)
+    cfg.EPOCHS = getattr(cfg, 'NUM_EPOCHS', 10)
+    cfg.DATA_ROOT = getattr(cfg, 'DATA_ROOT', 'data')
+    cfg.EVAL_BATCH_SIZE = getattr(cfg, 'EVAL_BATCH_SIZE', 32)
+
+    # Ensure MAE dims are consistent for BR35H
+    if dataset == 'br35h':
+        cfg.MAE_EMBED_DIM = 256
+        cfg.MAE_DECODER_EMBED_DIM = 256
+        cfg.MAE_NUM_HEADS = 8
+    
     return cfg
 
-def train_mae_detector(cfg, epochs=5):
+def train_mae_detector(cfg, epochs=5, batch_size=32):
     """Train MAE detector for the given dataset"""
     logger = logging.getLogger(__name__)
     
@@ -66,12 +81,16 @@ def train_mae_detector(cfg, epochs=5):
         from utils.data_utils import get_dataset
         import torch.utils.data as data_utils
         
-        # Load dataset
-        train_dataset, _ = get_dataset(cfg)
+        # Load dataset properly using cfg
+        train_dataset, _ = get_dataset(cfg, train=True)
+        
+        # Create DataLoader from dataset
         train_loader = data_utils.DataLoader(
-            train_dataset, 
-            batch_size=32, 
-            shuffle=True
+            train_dataset,
+            batch_size=batch_size,
+            shuffle=True,
+            num_workers=getattr(cfg, 'NUM_WORKERS', 2),
+            pin_memory=True
         )
         
         # Create MAE detector
@@ -100,9 +119,11 @@ def main():
     
     # Get configuration
     cfg = get_config_for_dataset(args.dataset)
+    # Honor CLI learning rate for MAE training
+    cfg.LR = args.lr
     
     # Train detector
-    success = train_mae_detector(cfg, args.epochs)
+    success = train_mae_detector(cfg, args.epochs, args.batch_size)
     
     if success:
         logger.info("🎉 MAE detector training completed successfully!")

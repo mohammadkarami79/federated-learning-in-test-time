@@ -75,7 +75,7 @@ class PGDAttack(nn.Module):
                 
                 # Project back to epsilon ball
                 delta = torch.clamp(adv - x, -self.epsilon, self.epsilon)
-                x_adv = torch.clamp(x + delta, 0, 1)
+                x_adv = torch.clamp(x + delta, 0, 1).requires_grad_(True)
             
             # Re-enable gradients for next iteration (except last)
             if step < self.steps - 1:

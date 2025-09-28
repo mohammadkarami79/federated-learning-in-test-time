@@ -1,0 +1,2410 @@
+nohup: ignoring input
+2025-09-27 04:27:55,555 - INFO - Configuration: full mode, CIFAR10 dataset
+2025-09-27 04:27:55,555 - INFO - Settings: 15 rounds, 5 epochs, 10 clients
+2025-09-27 04:27:55,555 - INFO - ?? Checking diffusion model for CIFAR10...
+2025-09-27 04:27:55,555 - INFO - ? Diffusion model already exists: checkpoints/diffuser_cifar10.pt
+2025-09-27 04:27:55,555 - INFO - ? MAE detector checkpoint exists: checkpoints/mae_detector_cifar10.pt
+2025-09-27 04:27:55,555 - INFO - ?? Skipping MAE detector training (checkpoint found)
+2025-09-27 04:27:55,556 - INFO - ?? Starting federated training with 10 clients, 15 rounds
+2025-09-27 04:27:55,556 - INFO - ?? Each client trains for 5 epochs per round
+2025-09-27 04:27:58,422 - INFO - ?? Loading components...
+2025-09-27 04:27:58,649 - INFO - ? All imports successful
+2025-09-27 04:27:58,649 - INFO - ?? Loading datasets...
+2025-09-27 04:28:00,254 - INFO - ? Dataset loaded: 50000 train, 10000 test
+2025-09-27 04:28:00,256 - INFO - ? Test loader created with 10000 samples
+2025-09-27 04:28:00,256 - INFO - ?? Loading diffusion model...
+2025-09-27 04:28:00,481 - INFO - ? Loaded diffusion model: checkpoints/diffuser_cifar10.pt
+2025-09-27 04:28:00,481 - INFO - ?? Initializing components...
+2025-09-27 04:28:17,931 - WARNING - Error loading user's MAE detector: embed_dim must be divisible by num_heads
+2025-09-27 04:28:17,934 - INFO - Using user's MAE detector implementation
+2025-09-27 04:28:17,937 - WARNING - Error loading user's MAE detector: embed_dim must be divisible by num_heads
+2025-09-27 04:28:17,939 - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-09-27 04:28:18,179 - INFO - ?? Server initialized with ResNet18 models
+2025-09-27 04:28:18,353 - INFO - ?? Round 1/15
+2025-09-27 04:28:18,384 - INFO - ?? Training client 1/10
+2025-09-27 04:30:15,067 - INFO - ? Client 1 completed in 116.7s
+2025-09-27 04:30:15,067 - INFO - ?? Training client 2/10
+2025-09-27 04:32:10,452 - INFO - ? Client 2 completed in 115.4s
+2025-09-27 04:32:10,453 - INFO - ?? Training client 3/10
+2025-09-27 04:34:08,262 - INFO - ? Client 3 completed in 117.8s
+2025-09-27 04:34:08,262 - INFO - ?? Training client 4/10
+2025-09-27 04:36:07,885 - INFO - ? Client 4 completed in 119.6s
+2025-09-27 04:36:07,885 - INFO - ?? Training client 5/10
+2025-09-27 04:38:06,286 - INFO - ? Client 5 completed in 118.4s
+2025-09-27 04:38:06,286 - INFO - ?? Training client 6/10
+2025-09-27 04:40:04,640 - INFO - ? Client 6 completed in 118.4s
+2025-09-27 04:40:04,640 - INFO - ?? Training client 7/10
+2025-09-27 04:42:02,071 - INFO - ? Client 7 completed in 117.4s
+2025-09-27 04:42:02,071 - INFO - ?? Training client 8/10
+2025-09-27 04:43:55,389 - INFO - ? Client 8 completed in 113.3s
+2025-09-27 04:43:55,389 - INFO - ?? Training client 9/10
+2025-09-27 04:45:50,033 - INFO - ? Client 9 completed in 114.6s
+2025-09-27 04:45:50,033 - INFO - ?? Training client 10/10
+2025-09-27 04:47:44,637 - INFO - ? Client 10 completed in 114.6s
+2025-09-27 04:47:44,637 - INFO - ?? Aggregating models...
+2025-09-27 04:47:44,654 - INFO - ? Model aggregation completed
+2025-09-27 04:47:44,654 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 04:47:49,103 - INFO - ?? Running evaluation...
+Complete Training Pipeline
+============================================================
+[PGD] Epsilon: 0.031000, Step size: 0.008000, Steps: 10
+Client 0 Epoch 1/5: Loss=1.8542, Acc=31.35%
+Client 0 Epoch 2/5: Loss=1.5161, Acc=44.30%
+Client 0 Epoch 3/5: Loss=1.3876, Acc=49.46%
+Client 0 Epoch 4/5: Loss=1.2876, Acc=53.37%
+Client 0 Epoch 5/5: Loss=1.2130, Acc=56.45%
+Client 1 Epoch 1/5: Loss=1.8566, Acc=31.97%
+Client 1 Epoch 2/5: Loss=1.5249, Acc=44.04%
+Client 1 Epoch 3/5: Loss=1.3921, Acc=49.37%
+Client 1 Epoch 4/5: Loss=1.2889, Acc=53.39%
+Client 1 Epoch 5/5: Loss=1.2103, Acc=56.44%
+Client 2 Epoch 1/5: Loss=1.8674, Acc=31.51%
+Client 2 Epoch 2/5: Loss=1.5281, Acc=44.02%
+Client 2 Epoch 3/5: Loss=1.3923, Acc=49.04%
+Client 2 Epoch 4/5: Loss=1.2870, Acc=53.29%
+Client 2 Epoch 5/5: Loss=1.2122, Acc=56.30%
+Client 3 Epoch 1/5: Loss=1.8642, Acc=31.79%
+Client 3 Epoch 2/5: Loss=1.5301, Acc=43.68%
+Client 3 Epoch 3/5: Loss=1.3825, Acc=49.59%
+Client 3 Epoch 4/5: Loss=1.2730, Acc=53.96%
+Client 3 Epoch 5/5: Loss=1.1921, Acc=56.86%
+Client 4 Epoch 1/5: Loss=1.8552, Acc=32.11%
+Client 4 Epoch 2/5: Loss=1.5192, Acc=44.16%
+Client 4 Epoch 3/5: Loss=1.3895, Acc=49.29%
+Client 4 Epoch 4/5: Loss=1.2890, Acc=53.20%
+Client 4 Epoch 5/5: Loss=1.2065, Acc=56.61%
+Client 5 Epoch 1/5: Loss=1.8814, Acc=30.89%
+Client 5 Epoch 2/5: Loss=1.5308, Acc=43.84%
+Client 5 Epoch 3/5: Loss=1.3962, Acc=49.01%
+Client 5 Epoch 4/5: Loss=1.2906, Acc=53.13%
+Client 5 Epoch 5/5: Loss=1.2051, Acc=56.42%
+Client 6 Epoch 1/5: Loss=1.8555, Acc=31.42%
+Client 6 Epoch 2/5: Loss=1.5175, Acc=43.92%
+Client 6 Epoch 3/5: Loss=1.3827, Acc=49.76%
+Client 6 Epoch 4/5: Loss=1.2719, Acc=54.00%
+Client 6 Epoch 5/5: Loss=1.1995, Acc=56.88%
+Client 7 Epoch 1/5: Loss=1.8586, Acc=31.26%
+Client 7 Epoch 2/5: Loss=1.5194, Acc=44.18%
+Client 7 Epoch 3/5: Loss=1.3841, Acc=49.50%
+Client 7 Epoch 4/5: Loss=1.2753, Acc=53.88%
+Client 7 Epoch 5/5: Loss=1.2036, Acc=56.45%
+Client 8 Epoch 1/5: Loss=1.8694, Acc=31.09%
+Client 8 Epoch 2/5: Loss=1.5349, Acc=43.57%
+Client 8 Epoch 3/5: Loss=1.3961, Acc=48.93%
+Client 8 Epoch 4/5: Loss=1.3050, Acc=52.66%
+Client 8 Epoch 5/5: Loss=1.2171, Acc=56.23%
+Client 9 Epoch 1/5: Loss=1.8554, Acc=31.90%
+Client 9 Epoch 2/5: Loss=1.5143, Acc=44.29%
+Client 9 Epoch 3/5: Loss=1.3685, Acc=50.23%
+Client 9 Epoch 4/5: Loss=1.2652, Acc=54.02%
+Client 9 Epoch 5/5: Loss=1.1883, Acc=57.00%
+2025-09-27 04:47:49,482 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 04:47:49,483 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 04:47:49,483 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 04:47:49,600 - INFO - Applied DiffPure to 8/11 selected of 11 detected
+2025-09-27 04:47:49,721 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 04:47:49,843 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 04:47:49,962 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 04:47:50,047 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 04:47:50,129 - INFO - Applied DiffPure to 5/5 selected of 5 detected
+2025-09-27 04:47:50,242 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 04:47:50,331 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 04:47:50,413 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 04:47:50,494 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:50,576 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 04:47:50,688 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 04:47:50,776 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 04:47:50,860 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 04:47:50,943 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 04:47:51,032 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 04:47:51,141 - INFO - Applied DiffPure to 2/2 selected of 2 detected
+2025-09-27 04:47:51,226 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 04:47:51,312 - INFO - Applied DiffPure to 5/5 selected of 5 detected
+2025-09-27 04:47:51,395 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 04:47:51,479 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 04:47:51,560 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 04:47:51,672 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 04:47:51,761 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 04:47:51,846 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 04:47:51,961 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 04:47:52,049 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 04:47:52,132 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 04:47:52,213 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 04:47:52,296 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 04:47:52,379 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 04:47:52,465 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 04:47:52,547 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 04:47:52,629 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 04:47:52,712 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:52,797 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 04:47:52,882 - INFO - Applied DiffPure to 0/8 selected of 8 detected
+2025-09-27 04:47:52,966 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 04:47:53,050 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 04:47:53,136 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 04:47:53,220 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:53,332 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 04:47:53,417 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 04:47:53,495 - INFO - Applied DiffPure to 7/9 selected of 9 detected
+2025-09-27 04:47:53,577 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 04:47:53,659 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 04:47:53,744 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 04:47:53,829 - INFO - Applied DiffPure to 7/8 selected of 8 detected
+2025-09-27 04:47:53,917 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 04:47:54,004 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:54,089 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 04:47:54,172 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 04:47:54,260 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 04:47:54,348 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 04:47:54,432 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 04:47:54,513 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 04:47:54,594 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:54,680 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 04:47:54,763 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 04:47:54,849 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 04:47:54,935 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 04:47:55,032 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 04:47:55,118 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 04:47:55,201 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:55,286 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 04:47:55,370 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 04:47:55,453 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 04:47:55,537 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 04:47:55,617 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 04:47:55,696 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 04:47:55,778 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 04:47:55,864 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 04:47:55,947 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 04:47:56,034 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 04:47:56,118 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 04:47:56,201 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 04:47:56,282 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 04:47:56,433 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 04:47:56,466 - INFO - ?? Round 1 Clean Acc: 46.05% | Adv Acc: 28.83% | MAE Detection: 5.13% | Time: 1178.1s
+2025-09-27 04:47:56,467 - INFO - ?? Total training time: 1198.0s
+2025-09-27 04:47:56,467 - INFO - ?? Round 2/15
+2025-09-27 04:47:56,503 - INFO - ?? Training client 1/10
+2025-09-27 04:49:54,874 - INFO - ? Client 1 completed in 118.4s
+2025-09-27 04:49:54,874 - INFO - ?? Training client 2/10
+2025-09-27 04:51:52,696 - INFO - ? Client 2 completed in 117.8s
+2025-09-27 04:51:52,696 - INFO - ?? Training client 3/10
+2025-09-27 04:53:49,072 - INFO - ? Client 3 completed in 116.4s
+2025-09-27 04:53:49,072 - INFO - ?? Training client 4/10
+2025-09-27 04:55:46,009 - INFO - ? Client 4 completed in 116.9s
+2025-09-27 04:55:46,010 - INFO - ?? Training client 5/10
+2025-09-27 04:57:45,512 - INFO - ? Client 5 completed in 119.5s
+2025-09-27 04:57:45,513 - INFO - ?? Training client 6/10
+2025-09-27 04:59:42,651 - INFO - ? Client 6 completed in 117.1s
+2025-09-27 04:59:42,651 - INFO - ?? Training client 7/10
+2025-09-27 05:01:40,750 - INFO - ? Client 7 completed in 118.1s
+2025-09-27 05:01:40,750 - INFO - ?? Training client 8/10
+2025-09-27 05:03:36,035 - INFO - ? Client 8 completed in 115.3s
+2025-09-27 05:03:36,035 - INFO - ?? Training client 9/10
+2025-09-27 05:05:32,229 - INFO - ? Client 9 completed in 116.2s
+2025-09-27 05:05:32,229 - INFO - ?? Training client 10/10
+2025-09-27 05:07:30,028 - INFO - ? Client 10 completed in 117.8s
+2025-09-27 05:07:30,028 - INFO - ?? Aggregating models...
+2025-09-27 05:07:30,043 - INFO - ? Model aggregation completed
+2025-09-27 05:07:30,043 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 05:07:34,673 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=1.4065, Acc=48.69%
+Client 0 Epoch 2/5: Loss=1.2432, Acc=55.18%
+Client 0 Epoch 3/5: Loss=1.1481, Acc=58.63%
+Client 0 Epoch 4/5: Loss=1.0699, Acc=61.92%
+Client 0 Epoch 5/5: Loss=1.0242, Acc=63.28%
+Client 1 Epoch 1/5: Loss=1.4069, Acc=48.72%
+Client 1 Epoch 2/5: Loss=1.2444, Acc=54.94%
+Client 1 Epoch 3/5: Loss=1.1481, Acc=58.53%
+Client 1 Epoch 4/5: Loss=1.0771, Acc=61.57%
+Client 1 Epoch 5/5: Loss=1.0247, Acc=63.42%
+Client 2 Epoch 1/5: Loss=1.3992, Acc=49.00%
+Client 2 Epoch 2/5: Loss=1.2470, Acc=54.95%
+Client 2 Epoch 3/5: Loss=1.1470, Acc=58.74%
+Client 2 Epoch 4/5: Loss=1.0796, Acc=61.33%
+Client 2 Epoch 5/5: Loss=1.0284, Acc=63.11%
+Client 3 Epoch 1/5: Loss=1.4077, Acc=48.65%
+Client 3 Epoch 2/5: Loss=1.2436, Acc=55.00%
+Client 3 Epoch 3/5: Loss=1.1486, Acc=58.91%
+Client 3 Epoch 4/5: Loss=1.0772, Acc=61.37%
+Client 3 Epoch 5/5: Loss=1.0275, Acc=63.23%
+Client 4 Epoch 1/5: Loss=1.4054, Acc=48.67%
+Client 4 Epoch 2/5: Loss=1.2465, Acc=54.95%
+Client 4 Epoch 3/5: Loss=1.1565, Acc=58.37%
+Client 4 Epoch 4/5: Loss=1.0791, Acc=61.39%
+Client 4 Epoch 5/5: Loss=1.0250, Acc=63.27%
+Client 5 Epoch 1/5: Loss=1.4064, Acc=48.87%
+Client 5 Epoch 2/5: Loss=1.2436, Acc=55.03%
+Client 5 Epoch 3/5: Loss=1.1458, Acc=58.68%
+Client 5 Epoch 4/5: Loss=1.0771, Acc=61.35%
+Client 5 Epoch 5/5: Loss=1.0257, Acc=63.36%
+Client 6 Epoch 1/5: Loss=1.4071, Acc=48.83%
+Client 6 Epoch 2/5: Loss=1.2441, Acc=55.01%
+Client 6 Epoch 3/5: Loss=1.1509, Acc=58.54%
+Client 6 Epoch 4/5: Loss=1.0785, Acc=61.42%
+Client 6 Epoch 5/5: Loss=1.0214, Acc=63.63%
+Client 7 Epoch 1/5: Loss=1.4068, Acc=48.90%
+Client 7 Epoch 2/5: Loss=1.2458, Acc=54.77%
+Client 7 Epoch 3/5: Loss=1.1472, Acc=58.68%
+Client 7 Epoch 4/5: Loss=1.0828, Acc=61.19%
+Client 7 Epoch 5/5: Loss=1.0271, Acc=63.22%
+Client 8 Epoch 1/5: Loss=1.4066, Acc=48.86%
+Client 8 Epoch 2/5: Loss=1.2497, Acc=54.88%
+Client 8 Epoch 3/5: Loss=1.1527, Acc=58.46%
+Client 8 Epoch 4/5: Loss=1.0827, Acc=61.08%
+Client 8 Epoch 5/5: Loss=1.0298, Acc=63.35%
+Client 9 Epoch 1/5: Loss=1.4071, Acc=48.87%
+Client 9 Epoch 2/5: Loss=1.2464, Acc=54.82%
+Client 9 Epoch 3/5: Loss=1.1555, Acc=58.45%
+Client 9 Epoch 4/5: Loss=1.0881, Acc=61.04%
+Client 9 Epoch 5/5: Loss=1.0292, Acc=62.85%
+2025-09-27 05:07:34,895 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 05:07:34,896 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 05:07:34,896 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 05:07:34,987 - INFO - Applied DiffPure to 6/11 selected of 11 detected
+2025-09-27 05:07:35,074 - INFO - Applied DiffPure to 7/9 selected of 9 detected
+2025-09-27 05:07:35,162 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:07:35,253 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:35,345 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:07:35,436 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:35,524 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:07:35,616 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:35,706 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 05:07:35,795 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:07:35,882 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:07:35,969 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:07:36,057 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:07:36,143 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:07:36,234 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:07:36,321 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:07:36,407 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 05:07:36,492 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:07:36,580 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:07:36,669 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:07:36,753 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 05:07:36,838 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:07:36,921 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:07:37,003 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 05:07:37,087 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:07:37,177 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:07:37,266 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:07:37,353 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:37,440 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 05:07:37,528 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:37,616 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 05:07:37,707 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:07:37,797 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:07:37,881 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 05:07:37,967 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:07:38,053 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:07:38,139 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:07:38,222 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:07:38,306 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 05:07:38,389 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:07:38,473 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:07:38,561 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 05:07:38,648 - INFO - Applied DiffPure to 7/10 selected of 10 detected
+2025-09-27 05:07:38,733 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 05:07:38,822 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:07:38,908 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:07:39,000 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 05:07:39,090 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 05:07:39,175 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:07:39,260 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:39,350 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:07:39,435 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:39,523 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:39,609 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:07:39,695 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:07:39,786 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:07:39,887 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:39,973 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 05:07:40,062 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 05:07:40,154 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 05:07:40,242 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 05:07:40,328 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:07:40,414 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:07:40,504 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:40,591 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:07:40,676 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:07:40,764 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:40,857 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:07:40,943 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:07:41,035 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:07:41,121 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:07:41,207 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:07:41,295 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:07:41,381 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:07:41,466 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 05:07:41,552 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 05:07:41,641 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:07:41,726 - INFO - Applied DiffPure to 1/1 selected of 1 detected
+2025-09-27 05:07:41,761 - INFO - ?? Round 2 Clean Acc: 65.55% | Adv Acc: 55.03% | MAE Detection: 5.13% | Time: 1185.3s
+2025-09-27 05:07:41,761 - INFO - ?? Total training time: 2383.3s
+2025-09-27 05:07:41,762 - INFO - ?? Round 3/15
+2025-09-27 05:07:41,799 - INFO - ?? Training client 1/10
+2025-09-27 05:09:38,847 - INFO - ? Client 1 completed in 117.0s
+2025-09-27 05:09:38,847 - INFO - ?? Training client 2/10
+2025-09-27 05:11:34,692 - INFO - ? Client 2 completed in 115.8s
+2025-09-27 05:11:34,692 - INFO - ?? Training client 3/10
+2025-09-27 05:13:31,388 - INFO - ? Client 3 completed in 116.7s
+2025-09-27 05:13:31,389 - INFO - ?? Training client 4/10
+2025-09-27 05:15:26,406 - INFO - ? Client 4 completed in 115.0s
+2025-09-27 05:15:26,406 - INFO - ?? Training client 5/10
+2025-09-27 05:17:20,649 - INFO - ? Client 5 completed in 114.2s
+2025-09-27 05:17:20,649 - INFO - ?? Training client 6/10
+2025-09-27 05:19:13,700 - INFO - ? Client 6 completed in 113.1s
+2025-09-27 05:19:13,701 - INFO - ?? Training client 7/10
+2025-09-27 05:21:09,036 - INFO - ? Client 7 completed in 115.3s
+2025-09-27 05:21:09,037 - INFO - ?? Training client 8/10
+2025-09-27 05:23:02,643 - INFO - ? Client 8 completed in 113.6s
+2025-09-27 05:23:02,643 - INFO - ?? Training client 9/10
+2025-09-27 05:24:56,217 - INFO - ? Client 9 completed in 113.6s
+2025-09-27 05:24:56,218 - INFO - ?? Training client 10/10
+2025-09-27 05:26:51,234 - INFO - ? Client 10 completed in 115.0s
+2025-09-27 05:26:51,235 - INFO - ?? Aggregating models...
+2025-09-27 05:26:51,250 - INFO - ? Model aggregation completed
+2025-09-27 05:26:51,251 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 05:26:55,722 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=1.0400, Acc=62.95%
+Client 0 Epoch 2/5: Loss=0.9846, Acc=64.93%
+Client 0 Epoch 3/5: Loss=0.9393, Acc=66.51%
+Client 0 Epoch 4/5: Loss=0.8962, Acc=68.17%
+Client 0 Epoch 5/5: Loss=0.8688, Acc=69.08%
+Client 1 Epoch 1/5: Loss=1.0395, Acc=62.83%
+Client 1 Epoch 2/5: Loss=0.9856, Acc=64.59%
+Client 1 Epoch 3/5: Loss=0.9409, Acc=66.55%
+Client 1 Epoch 4/5: Loss=0.9032, Acc=67.75%
+Client 1 Epoch 5/5: Loss=0.8629, Acc=69.07%
+Client 2 Epoch 1/5: Loss=1.0351, Acc=63.02%
+Client 2 Epoch 2/5: Loss=0.9891, Acc=64.89%
+Client 2 Epoch 3/5: Loss=0.9423, Acc=66.18%
+Client 2 Epoch 4/5: Loss=0.9024, Acc=67.84%
+Client 2 Epoch 5/5: Loss=0.8662, Acc=69.16%
+Client 3 Epoch 1/5: Loss=1.0407, Acc=62.91%
+Client 3 Epoch 2/5: Loss=0.9922, Acc=64.50%
+Client 3 Epoch 3/5: Loss=0.9407, Acc=66.62%
+Client 3 Epoch 4/5: Loss=0.9040, Acc=67.68%
+Client 3 Epoch 5/5: Loss=0.8686, Acc=69.11%
+Client 4 Epoch 1/5: Loss=1.0393, Acc=62.79%
+Client 4 Epoch 2/5: Loss=0.9879, Acc=64.58%
+Client 4 Epoch 3/5: Loss=0.9376, Acc=66.60%
+Client 4 Epoch 4/5: Loss=0.8960, Acc=68.20%
+Client 4 Epoch 5/5: Loss=0.8648, Acc=69.26%
+Client 5 Epoch 1/5: Loss=1.0410, Acc=62.68%
+Client 5 Epoch 2/5: Loss=0.9856, Acc=64.90%
+Client 5 Epoch 3/5: Loss=0.9407, Acc=66.47%
+Client 5 Epoch 4/5: Loss=0.9017, Acc=67.94%
+Client 5 Epoch 5/5: Loss=0.8669, Acc=69.06%
+Client 6 Epoch 1/5: Loss=1.0407, Acc=62.78%
+Client 6 Epoch 2/5: Loss=0.9908, Acc=64.50%
+Client 6 Epoch 3/5: Loss=0.9403, Acc=66.71%
+Client 6 Epoch 4/5: Loss=0.8992, Acc=68.03%
+Client 6 Epoch 5/5: Loss=0.8675, Acc=68.98%
+Client 7 Epoch 1/5: Loss=1.0395, Acc=62.78%
+Client 7 Epoch 2/5: Loss=0.9871, Acc=64.80%
+Client 7 Epoch 3/5: Loss=0.9450, Acc=66.47%
+Client 7 Epoch 4/5: Loss=0.8984, Acc=67.96%
+Client 7 Epoch 5/5: Loss=0.8670, Acc=69.07%
+Client 8 Epoch 1/5: Loss=1.0403, Acc=63.09%
+Client 8 Epoch 2/5: Loss=0.9897, Acc=64.66%
+Client 8 Epoch 3/5: Loss=0.9407, Acc=66.50%
+Client 8 Epoch 4/5: Loss=0.9001, Acc=67.80%
+Client 8 Epoch 5/5: Loss=0.8669, Acc=69.12%
+Client 9 Epoch 1/5: Loss=1.0414, Acc=62.75%
+Client 9 Epoch 2/5: Loss=0.9911, Acc=64.58%
+Client 9 Epoch 3/5: Loss=0.9422, Acc=66.47%
+Client 9 Epoch 4/5: Loss=0.9056, Acc=67.78%
+Client 9 Epoch 5/5: Loss=0.8667, Acc=69.10%
+2025-09-27 05:26:55,927 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 05:26:55,927 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 05:26:55,927 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 05:26:56,024 - INFO - Applied DiffPure to 7/11 selected of 11 detected
+2025-09-27 05:26:56,115 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 05:26:56,201 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:26:56,286 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:26:56,371 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:26:56,456 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:26:56,543 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:26:56,629 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:26:56,715 - INFO - Applied DiffPure to 2/9 selected of 9 detected
+2025-09-27 05:26:56,800 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:26:56,893 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:26:56,982 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:26:57,076 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:26:57,158 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:26:57,259 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 05:26:57,358 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:26:57,458 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 05:26:57,557 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 05:26:57,656 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:26:57,739 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:26:57,824 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 05:26:57,910 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 05:26:57,995 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 05:26:58,078 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:26:58,161 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 05:26:58,246 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:26:58,330 - INFO - Applied DiffPure to 0/8 selected of 8 detected
+2025-09-27 05:26:58,412 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 05:26:58,496 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 05:26:58,578 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:26:58,657 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 05:26:58,737 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:26:58,818 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:26:58,901 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 05:26:58,982 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:26:59,065 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:26:59,148 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:26:59,232 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:26:59,315 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:26:59,401 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:26:59,484 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:26:59,570 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 05:26:59,657 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 05:26:59,743 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 05:26:59,828 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:26:59,912 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 05:26:59,998 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:27:00,091 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:27:00,190 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:27:00,278 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:27:00,362 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:27:00,447 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:27:00,530 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:27:00,612 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:27:00,721 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:27:00,807 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:27:00,893 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:27:00,984 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:27:01,070 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 05:27:01,165 - INFO - Applied DiffPure to 7/8 selected of 8 detected
+2025-09-27 05:27:01,264 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:27:01,349 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:27:01,435 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 05:27:01,522 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:27:01,612 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:27:01,710 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:27:01,805 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:27:01,902 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:27:02,001 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:27:02,104 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:27:02,207 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:27:02,307 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 05:27:02,405 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:27:02,499 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:27:02,584 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 05:27:02,667 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:27:02,751 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:27:02,835 - INFO - Applied DiffPure to 1/1 selected of 1 detected
+2025-09-27 05:27:02,869 - INFO - ?? Round 3 Clean Acc: 71.92% | Adv Acc: 62.43% | MAE Detection: 5.13% | Time: 1161.1s
+2025-09-27 05:27:02,870 - INFO - ?? Total training time: 3544.4s
+2025-09-27 05:27:02,870 - INFO - ?? Round 4/15
+2025-09-27 05:27:02,905 - INFO - ?? Training client 1/10
+2025-09-27 05:28:59,337 - INFO - ? Client 1 completed in 116.4s
+2025-09-27 05:28:59,337 - INFO - ?? Training client 2/10
+2025-09-27 05:30:57,590 - INFO - ? Client 2 completed in 118.3s
+2025-09-27 05:30:57,591 - INFO - ?? Training client 3/10
+2025-09-27 05:32:54,214 - INFO - ? Client 3 completed in 116.6s
+2025-09-27 05:32:54,215 - INFO - ?? Training client 4/10
+2025-09-27 05:34:49,489 - INFO - ? Client 4 completed in 115.3s
+2025-09-27 05:34:49,489 - INFO - ?? Training client 5/10
+2025-09-27 05:36:44,631 - INFO - ? Client 5 completed in 115.1s
+2025-09-27 05:36:44,631 - INFO - ?? Training client 6/10
+2025-09-27 05:38:40,256 - INFO - ? Client 6 completed in 115.6s
+2025-09-27 05:38:40,256 - INFO - ?? Training client 7/10
+2025-09-27 05:40:36,598 - INFO - ? Client 7 completed in 116.3s
+2025-09-27 05:40:36,599 - INFO - ?? Training client 8/10
+2025-09-27 05:42:35,091 - INFO - ? Client 8 completed in 118.5s
+2025-09-27 05:42:35,092 - INFO - ?? Training client 9/10
+2025-09-27 05:44:32,542 - INFO - ? Client 9 completed in 117.5s
+2025-09-27 05:44:32,543 - INFO - ?? Training client 10/10
+2025-09-27 05:46:26,440 - INFO - ? Client 10 completed in 113.9s
+2025-09-27 05:46:26,441 - INFO - ?? Aggregating models...
+2025-09-27 05:46:26,455 - INFO - ? Model aggregation completed
+2025-09-27 05:46:26,455 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 05:46:30,852 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.8663, Acc=68.96%
+Client 0 Epoch 2/5: Loss=0.8419, Acc=69.97%
+Client 0 Epoch 3/5: Loss=0.8118, Acc=70.99%
+Client 0 Epoch 4/5: Loss=0.7830, Acc=72.33%
+Client 0 Epoch 5/5: Loss=0.7511, Acc=73.30%
+Client 1 Epoch 1/5: Loss=0.8676, Acc=69.17%
+Client 1 Epoch 2/5: Loss=0.8367, Acc=70.42%
+Client 1 Epoch 3/5: Loss=0.8071, Acc=71.32%
+Client 1 Epoch 4/5: Loss=0.7837, Acc=72.34%
+Client 1 Epoch 5/5: Loss=0.7540, Acc=73.25%
+Client 2 Epoch 1/5: Loss=0.8728, Acc=69.04%
+Client 2 Epoch 2/5: Loss=0.8394, Acc=70.12%
+Client 2 Epoch 3/5: Loss=0.8116, Acc=71.18%
+Client 2 Epoch 4/5: Loss=0.7794, Acc=72.37%
+Client 2 Epoch 5/5: Loss=0.7565, Acc=73.31%
+Client 3 Epoch 1/5: Loss=0.8693, Acc=69.13%
+Client 3 Epoch 2/5: Loss=0.8447, Acc=69.98%
+Client 3 Epoch 3/5: Loss=0.8105, Acc=71.06%
+Client 3 Epoch 4/5: Loss=0.7796, Acc=72.13%
+Client 3 Epoch 5/5: Loss=0.7513, Acc=73.41%
+Client 4 Epoch 1/5: Loss=0.8679, Acc=69.12%
+Client 4 Epoch 2/5: Loss=0.8372, Acc=70.39%
+Client 4 Epoch 3/5: Loss=0.8089, Acc=71.42%
+Client 4 Epoch 4/5: Loss=0.7809, Acc=72.49%
+Client 4 Epoch 5/5: Loss=0.7569, Acc=73.05%
+Client 5 Epoch 1/5: Loss=0.8693, Acc=69.16%
+Client 5 Epoch 2/5: Loss=0.8390, Acc=70.10%
+Client 5 Epoch 3/5: Loss=0.8118, Acc=71.19%
+Client 5 Epoch 4/5: Loss=0.7853, Acc=72.10%
+Client 5 Epoch 5/5: Loss=0.7544, Acc=73.17%
+Client 6 Epoch 1/5: Loss=0.8650, Acc=69.39%
+Client 6 Epoch 2/5: Loss=0.8454, Acc=69.86%
+Client 6 Epoch 3/5: Loss=0.8080, Acc=71.27%
+Client 6 Epoch 4/5: Loss=0.7825, Acc=72.35%
+Client 6 Epoch 5/5: Loss=0.7534, Acc=73.21%
+Client 7 Epoch 1/5: Loss=0.8680, Acc=69.05%
+Client 7 Epoch 2/5: Loss=0.8424, Acc=70.13%
+Client 7 Epoch 3/5: Loss=0.8085, Acc=71.18%
+Client 7 Epoch 4/5: Loss=0.7815, Acc=72.17%
+Client 7 Epoch 5/5: Loss=0.7543, Acc=73.20%
+Client 8 Epoch 1/5: Loss=0.8648, Acc=69.23%
+Client 8 Epoch 2/5: Loss=0.8405, Acc=70.02%
+Client 8 Epoch 3/5: Loss=0.8054, Acc=71.34%
+Client 8 Epoch 4/5: Loss=0.7788, Acc=72.57%
+Client 8 Epoch 5/5: Loss=0.7541, Acc=73.41%
+Client 9 Epoch 1/5: Loss=0.8706, Acc=69.10%
+Client 9 Epoch 2/5: Loss=0.8377, Acc=70.23%
+Client 9 Epoch 3/5: Loss=0.8098, Acc=71.01%
+Client 9 Epoch 4/5: Loss=0.7786, Acc=72.41%
+Client 9 Epoch 5/5: Loss=0.7514, Acc=73.38%
+2025-09-27 05:46:31,056 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 05:46:31,056 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 05:46:31,056 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 05:46:31,144 - INFO - Applied DiffPure to 7/11 selected of 11 detected
+2025-09-27 05:46:31,229 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 05:46:31,311 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:46:31,394 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:46:31,477 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:46:31,562 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:46:31,650 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:46:31,731 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:46:31,811 - INFO - Applied DiffPure to 2/9 selected of 9 detected
+2025-09-27 05:46:31,901 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:31,983 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:46:32,071 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:46:32,160 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:46:32,244 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:46:32,328 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 05:46:32,410 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 05:46:32,495 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 05:46:32,578 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 05:46:32,659 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:46:32,742 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 05:46:32,857 - INFO - Applied DiffPure to 7/13 selected of 13 detected
+2025-09-27 05:46:32,944 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:33,033 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:46:33,120 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:46:33,203 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:46:33,288 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 05:46:33,373 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:46:33,460 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:46:33,546 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 05:46:33,633 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:46:33,717 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:33,805 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:46:33,890 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:46:33,983 - INFO - Applied DiffPure to 8/12 selected of 12 detected
+2025-09-27 05:46:34,077 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:34,184 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:46:34,284 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:46:34,382 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:46:34,479 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 05:46:34,580 - INFO - Applied DiffPure to 0/4 selected of 4 detected
+2025-09-27 05:46:34,678 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:34,776 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 05:46:34,877 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 05:46:34,975 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 05:46:35,084 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:46:35,185 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 05:46:35,282 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:46:35,365 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:46:35,448 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 05:46:35,534 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 05:46:35,619 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:46:35,703 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 05:46:35,788 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 05:46:35,872 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 05:46:35,959 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 05:46:36,045 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:46:36,136 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:46:36,226 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 05:46:36,314 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 05:46:36,402 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 05:46:36,490 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:46:36,576 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 05:46:36,663 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 05:46:36,749 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 05:46:36,837 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 05:46:36,925 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 05:46:37,016 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 05:46:37,108 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 05:46:37,196 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:46:37,284 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:46:37,374 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 05:46:37,468 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 05:46:37,556 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 05:46:37,647 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 05:46:37,735 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 05:46:37,820 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 05:46:37,909 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 05:46:37,995 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 05:46:38,034 - INFO - ?? Round 4 Clean Acc: 74.86% | Adv Acc: 65.50% | MAE Detection: 5.14% | Time: 1175.2s
+2025-09-27 05:46:38,034 - INFO - ?? Total training time: 4719.6s
+2025-09-27 05:46:38,034 - INFO - ?? Round 5/15
+2025-09-27 05:46:38,072 - INFO - ?? Training client 1/10
+2025-09-27 05:48:37,413 - INFO - ? Client 1 completed in 119.3s
+2025-09-27 05:48:37,414 - INFO - ?? Training client 2/10
+2025-09-27 05:50:33,884 - INFO - ? Client 2 completed in 116.5s
+2025-09-27 05:50:33,884 - INFO - ?? Training client 3/10
+2025-09-27 05:52:29,533 - INFO - ? Client 3 completed in 115.6s
+2025-09-27 05:52:29,533 - INFO - ?? Training client 4/10
+2025-09-27 05:54:25,633 - INFO - ? Client 4 completed in 116.1s
+2025-09-27 05:54:25,633 - INFO - ?? Training client 5/10
+2025-09-27 05:56:22,299 - INFO - ? Client 5 completed in 116.7s
+2025-09-27 05:56:22,299 - INFO - ?? Training client 6/10
+2025-09-27 05:58:21,681 - INFO - ? Client 6 completed in 119.4s
+2025-09-27 05:58:21,682 - INFO - ?? Training client 7/10
+2025-09-27 06:00:21,244 - INFO - ? Client 7 completed in 119.6s
+2025-09-27 06:00:21,244 - INFO - ?? Training client 8/10
+2025-09-27 06:02:19,127 - INFO - ? Client 8 completed in 117.9s
+2025-09-27 06:02:19,127 - INFO - ?? Training client 9/10
+2025-09-27 06:04:17,455 - INFO - ? Client 9 completed in 118.3s
+2025-09-27 06:04:17,455 - INFO - ?? Training client 10/10
+2025-09-27 06:06:19,062 - INFO - ? Client 10 completed in 121.6s
+2025-09-27 06:06:19,063 - INFO - ?? Aggregating models...
+2025-09-27 06:06:19,077 - INFO - ? Model aggregation completed
+2025-09-27 06:06:19,077 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 06:06:23,573 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.7544, Acc=73.18%
+Client 0 Epoch 2/5: Loss=0.7434, Acc=73.68%
+Client 0 Epoch 3/5: Loss=0.7162, Acc=74.57%
+Client 0 Epoch 4/5: Loss=0.6894, Acc=75.53%
+Client 0 Epoch 5/5: Loss=0.6679, Acc=76.32%
+Client 1 Epoch 1/5: Loss=0.7515, Acc=73.04%
+Client 1 Epoch 2/5: Loss=0.7452, Acc=73.56%
+Client 1 Epoch 3/5: Loss=0.7147, Acc=74.25%
+Client 1 Epoch 4/5: Loss=0.6903, Acc=75.50%
+Client 1 Epoch 5/5: Loss=0.6747, Acc=76.00%
+Client 2 Epoch 1/5: Loss=0.7507, Acc=73.39%
+Client 2 Epoch 2/5: Loss=0.7446, Acc=73.59%
+Client 2 Epoch 3/5: Loss=0.7147, Acc=74.65%
+Client 2 Epoch 4/5: Loss=0.6951, Acc=75.31%
+Client 2 Epoch 5/5: Loss=0.6653, Acc=76.44%
+Client 3 Epoch 1/5: Loss=0.7569, Acc=73.33%
+Client 3 Epoch 2/5: Loss=0.7384, Acc=73.86%
+Client 3 Epoch 3/5: Loss=0.7149, Acc=74.62%
+Client 3 Epoch 4/5: Loss=0.6928, Acc=75.32%
+Client 3 Epoch 5/5: Loss=0.6674, Acc=76.38%
+Client 4 Epoch 1/5: Loss=0.7575, Acc=73.26%
+Client 4 Epoch 2/5: Loss=0.7464, Acc=73.61%
+Client 4 Epoch 3/5: Loss=0.7156, Acc=74.52%
+Client 4 Epoch 4/5: Loss=0.6914, Acc=75.48%
+Client 4 Epoch 5/5: Loss=0.6708, Acc=76.26%
+Client 5 Epoch 1/5: Loss=0.7573, Acc=73.15%
+Client 5 Epoch 2/5: Loss=0.7392, Acc=73.86%
+Client 5 Epoch 3/5: Loss=0.7170, Acc=74.74%
+Client 5 Epoch 4/5: Loss=0.6930, Acc=75.43%
+Client 5 Epoch 5/5: Loss=0.6699, Acc=76.39%
+Client 6 Epoch 1/5: Loss=0.7515, Acc=73.41%
+Client 6 Epoch 2/5: Loss=0.7385, Acc=73.74%
+Client 6 Epoch 3/5: Loss=0.7170, Acc=74.48%
+Client 6 Epoch 4/5: Loss=0.6831, Acc=75.65%
+Client 6 Epoch 5/5: Loss=0.6659, Acc=76.45%
+Client 7 Epoch 1/5: Loss=0.7545, Acc=73.13%
+Client 7 Epoch 2/5: Loss=0.7435, Acc=73.77%
+Client 7 Epoch 3/5: Loss=0.7199, Acc=74.36%
+Client 7 Epoch 4/5: Loss=0.6989, Acc=75.11%
+Client 7 Epoch 5/5: Loss=0.6738, Acc=76.06%
+Client 8 Epoch 1/5: Loss=0.7551, Acc=73.20%
+Client 8 Epoch 2/5: Loss=0.7435, Acc=73.61%
+Client 8 Epoch 3/5: Loss=0.7133, Acc=74.71%
+Client 8 Epoch 4/5: Loss=0.6873, Acc=75.61%
+Client 8 Epoch 5/5: Loss=0.6661, Acc=76.51%
+Client 9 Epoch 1/5: Loss=0.7505, Acc=73.19%
+Client 9 Epoch 2/5: Loss=0.7441, Acc=73.55%
+Client 9 Epoch 3/5: Loss=0.7148, Acc=74.50%
+Client 9 Epoch 4/5: Loss=0.6929, Acc=75.48%
+Client 9 Epoch 5/5: Loss=0.6706, Acc=76.22%
+2025-09-27 06:06:23,782 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 06:06:23,782 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 06:06:23,782 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 06:06:23,874 - INFO - Applied DiffPure to 6/11 selected of 11 detected
+2025-09-27 06:06:23,963 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 06:06:24,058 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:06:24,153 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:24,241 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:06:24,330 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:24,420 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:06:24,506 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:06:24,591 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 06:06:24,679 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:24,767 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 06:06:24,856 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 06:06:24,943 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:25,030 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:25,120 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 06:06:25,210 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:06:25,299 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 06:06:25,383 - INFO - Applied DiffPure to 7/9 selected of 9 detected
+2025-09-27 06:06:25,469 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:06:25,556 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:06:25,641 - INFO - Applied DiffPure to 6/13 selected of 13 detected
+2025-09-27 06:06:25,727 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:06:25,813 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 06:06:25,899 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:06:25,986 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:06:26,074 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:06:26,169 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 06:06:26,254 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:06:26,339 - INFO - Applied DiffPure to 9/12 selected of 12 detected
+2025-09-27 06:06:26,425 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:26,512 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:06:26,601 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 06:06:26,693 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:06:26,781 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 06:06:26,866 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:06:26,955 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:06:27,042 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:06:27,128 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:06:27,213 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 06:06:27,300 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:06:27,386 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:27,476 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 06:06:27,563 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 06:06:27,647 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:06:27,732 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:27,820 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:06:27,909 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 06:06:27,996 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 06:06:28,086 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:28,173 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 06:06:28,257 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:06:28,344 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:28,431 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:28,518 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:06:28,606 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:06:28,693 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:06:28,782 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:28,868 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 06:06:28,955 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 06:06:29,041 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:06:29,128 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:06:29,215 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 06:06:29,304 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 06:06:29,391 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:29,475 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:06:29,560 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 06:06:29,649 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 06:06:29,743 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:06:29,833 - INFO - Applied DiffPure to 6/7 selected of 7 detected
+2025-09-27 06:06:29,919 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 06:06:30,006 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 06:06:30,108 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:06:30,202 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:06:30,294 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:06:30,384 - INFO - Applied DiffPure to 2/10 selected of 10 detected
+2025-09-27 06:06:30,476 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:06:30,572 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 06:06:30,664 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 06:06:30,697 - INFO - ?? Round 5 Clean Acc: 77.23% | Adv Acc: 67.59% | MAE Detection: 5.14% | Time: 1192.7s
+2025-09-27 06:06:30,697 - INFO - ?? Total training time: 5912.3s
+2025-09-27 06:06:30,697 - INFO - ?? Round 6/15
+2025-09-27 06:06:30,736 - INFO - ?? Training client 1/10
+2025-09-27 06:08:28,082 - INFO - ? Client 1 completed in 117.3s
+2025-09-27 06:08:28,083 - INFO - ?? Training client 2/10
+2025-09-27 06:10:24,255 - INFO - ? Client 2 completed in 116.2s
+2025-09-27 06:10:24,256 - INFO - ?? Training client 3/10
+2025-09-27 06:12:20,757 - INFO - ? Client 3 completed in 116.5s
+2025-09-27 06:12:20,758 - INFO - ?? Training client 4/10
+2025-09-27 06:14:16,216 - INFO - ? Client 4 completed in 115.5s
+2025-09-27 06:14:16,216 - INFO - ?? Training client 5/10
+2025-09-27 06:16:12,037 - INFO - ? Client 5 completed in 115.8s
+2025-09-27 06:16:12,038 - INFO - ?? Training client 6/10
+2025-09-27 06:18:06,237 - INFO - ? Client 6 completed in 114.2s
+2025-09-27 06:18:06,237 - INFO - ?? Training client 7/10
+2025-09-27 06:20:01,736 - INFO - ? Client 7 completed in 115.5s
+2025-09-27 06:20:01,737 - INFO - ?? Training client 8/10
+2025-09-27 06:21:58,740 - INFO - ? Client 8 completed in 117.0s
+2025-09-27 06:21:58,740 - INFO - ?? Training client 9/10
+2025-09-27 06:23:54,337 - INFO - ? Client 9 completed in 115.6s
+2025-09-27 06:23:54,337 - INFO - ?? Training client 10/10
+2025-09-27 06:25:49,391 - INFO - ? Client 10 completed in 115.1s
+2025-09-27 06:25:49,391 - INFO - ?? Aggregating models...
+2025-09-27 06:25:49,404 - INFO - ? Model aggregation completed
+2025-09-27 06:25:49,405 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 06:25:53,806 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.6690, Acc=76.25%
+Client 0 Epoch 2/5: Loss=0.6621, Acc=76.47%
+Client 0 Epoch 3/5: Loss=0.6404, Acc=77.42%
+Client 0 Epoch 4/5: Loss=0.6175, Acc=78.01%
+Client 0 Epoch 5/5: Loss=0.5985, Acc=78.86%
+Client 1 Epoch 1/5: Loss=0.6676, Acc=76.55%
+Client 1 Epoch 2/5: Loss=0.6633, Acc=76.57%
+Client 1 Epoch 3/5: Loss=0.6424, Acc=77.27%
+Client 1 Epoch 4/5: Loss=0.6199, Acc=78.10%
+Client 1 Epoch 5/5: Loss=0.5995, Acc=78.72%
+Client 2 Epoch 1/5: Loss=0.6720, Acc=76.05%
+Client 2 Epoch 2/5: Loss=0.6630, Acc=76.62%
+Client 2 Epoch 3/5: Loss=0.6366, Acc=77.43%
+Client 2 Epoch 4/5: Loss=0.6173, Acc=78.15%
+Client 2 Epoch 5/5: Loss=0.5970, Acc=78.86%
+Client 3 Epoch 1/5: Loss=0.6780, Acc=76.00%
+Client 3 Epoch 2/5: Loss=0.6642, Acc=76.59%
+Client 3 Epoch 3/5: Loss=0.6388, Acc=77.13%
+Client 3 Epoch 4/5: Loss=0.6210, Acc=78.08%
+Client 3 Epoch 5/5: Loss=0.6024, Acc=78.66%
+Client 4 Epoch 1/5: Loss=0.6678, Acc=76.34%
+Client 4 Epoch 2/5: Loss=0.6677, Acc=76.25%
+Client 4 Epoch 3/5: Loss=0.6434, Acc=77.13%
+Client 4 Epoch 4/5: Loss=0.6228, Acc=77.99%
+Client 4 Epoch 5/5: Loss=0.5989, Acc=78.78%
+Client 5 Epoch 1/5: Loss=0.6692, Acc=76.17%
+Client 5 Epoch 2/5: Loss=0.6601, Acc=76.50%
+Client 5 Epoch 3/5: Loss=0.6440, Acc=77.23%
+Client 5 Epoch 4/5: Loss=0.6196, Acc=77.78%
+Client 5 Epoch 5/5: Loss=0.6012, Acc=78.70%
+Client 6 Epoch 1/5: Loss=0.6698, Acc=76.31%
+Client 6 Epoch 2/5: Loss=0.6693, Acc=76.37%
+Client 6 Epoch 3/5: Loss=0.6479, Acc=77.14%
+Client 6 Epoch 4/5: Loss=0.6199, Acc=78.06%
+Client 6 Epoch 5/5: Loss=0.5952, Acc=78.86%
+Client 7 Epoch 1/5: Loss=0.6729, Acc=76.07%
+Client 7 Epoch 2/5: Loss=0.6676, Acc=76.41%
+Client 7 Epoch 3/5: Loss=0.6421, Acc=77.29%
+Client 7 Epoch 4/5: Loss=0.6229, Acc=77.67%
+Client 7 Epoch 5/5: Loss=0.5981, Acc=78.63%
+Client 8 Epoch 1/5: Loss=0.6761, Acc=76.25%
+Client 8 Epoch 2/5: Loss=0.6650, Acc=76.22%
+Client 8 Epoch 3/5: Loss=0.6449, Acc=77.16%
+Client 8 Epoch 4/5: Loss=0.6226, Acc=77.98%
+Client 8 Epoch 5/5: Loss=0.5997, Acc=78.87%
+Client 9 Epoch 1/5: Loss=0.6703, Acc=76.13%
+Client 9 Epoch 2/5: Loss=0.6679, Acc=76.20%
+Client 9 Epoch 3/5: Loss=0.6453, Acc=77.03%
+Client 9 Epoch 4/5: Loss=0.6199, Acc=78.10%
+Client 9 Epoch 5/5: Loss=0.6009, Acc=78.63%
+2025-09-27 06:25:54,032 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 06:25:54,033 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 06:25:54,033 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 06:25:54,120 - INFO - Applied DiffPure to 4/11 selected of 11 detected
+2025-09-27 06:25:54,204 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 06:25:54,291 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:25:54,379 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:25:54,465 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:25:54,552 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:25:54,636 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:25:54,720 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:54,804 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 06:25:54,886 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:25:54,969 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 06:25:55,050 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:25:55,134 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:25:55,218 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:55,304 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 06:25:55,386 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 06:25:55,472 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 06:25:55,558 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:25:55,642 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 06:25:55,729 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:25:55,812 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 06:25:55,895 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:25:55,981 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 06:25:56,066 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:25:56,163 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:25:56,248 - INFO - Applied DiffPure to 6/7 selected of 7 detected
+2025-09-27 06:25:56,333 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 06:25:56,419 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:25:56,504 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 06:25:56,587 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:56,672 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:25:56,757 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:25:56,841 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:25:56,923 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 06:25:57,007 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:25:57,091 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:25:57,177 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 06:25:57,260 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:25:57,343 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 06:25:57,428 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:25:57,513 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:25:57,598 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 06:25:57,681 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 06:25:57,764 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:25:57,847 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:25:57,932 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:25:58,018 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 06:25:58,100 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 06:25:58,195 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:25:58,281 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:25:58,364 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:25:58,449 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:58,535 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:58,618 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 06:25:58,699 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:25:58,779 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:25:58,861 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:25:58,943 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 06:25:59,025 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 06:25:59,107 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 06:25:59,190 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:25:59,278 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:25:59,360 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:25:59,443 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:25:59,526 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:25:59,610 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 06:25:59,692 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:25:59,772 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:25:59,853 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:25:59,936 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 06:26:00,020 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 06:26:00,103 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:26:00,186 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:26:00,269 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:26:00,351 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 06:26:00,430 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:26:00,510 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:26:00,591 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 06:26:00,627 - INFO - ?? Round 6 Clean Acc: 78.24% | Adv Acc: 69.13% | MAE Detection: 5.13% | Time: 1169.9s
+2025-09-27 06:26:00,627 - INFO - ?? Total training time: 7082.2s
+2025-09-27 06:26:00,628 - INFO - ?? Round 7/15
+2025-09-27 06:26:00,661 - INFO - ?? Training client 1/10
+2025-09-27 06:27:56,684 - INFO - ? Client 1 completed in 116.0s
+2025-09-27 06:27:56,684 - INFO - ?? Training client 2/10
+2025-09-27 06:29:52,582 - INFO - ? Client 2 completed in 115.9s
+2025-09-27 06:29:52,582 - INFO - ?? Training client 3/10
+2025-09-27 06:31:50,915 - INFO - ? Client 3 completed in 118.3s
+2025-09-27 06:31:50,915 - INFO - ?? Training client 4/10
+2025-09-27 06:33:46,917 - INFO - ? Client 4 completed in 116.0s
+2025-09-27 06:33:46,918 - INFO - ?? Training client 5/10
+2025-09-27 06:35:45,265 - INFO - ? Client 5 completed in 118.3s
+2025-09-27 06:35:45,266 - INFO - ?? Training client 6/10
+2025-09-27 06:37:41,685 - INFO - ? Client 6 completed in 116.4s
+2025-09-27 06:37:41,685 - INFO - ?? Training client 7/10
+2025-09-27 06:39:40,296 - INFO - ? Client 7 completed in 118.6s
+2025-09-27 06:39:40,296 - INFO - ?? Training client 8/10
+2025-09-27 06:41:35,881 - INFO - ? Client 8 completed in 115.6s
+2025-09-27 06:41:35,882 - INFO - ?? Training client 9/10
+2025-09-27 06:43:30,034 - INFO - ? Client 9 completed in 114.2s
+2025-09-27 06:43:30,034 - INFO - ?? Training client 10/10
+2025-09-27 06:45:23,622 - INFO - ? Client 10 completed in 113.6s
+2025-09-27 06:45:23,622 - INFO - ?? Aggregating models...
+2025-09-27 06:45:23,636 - INFO - ? Model aggregation completed
+2025-09-27 06:45:23,636 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 06:45:28,043 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.6047, Acc=78.46%
+Client 0 Epoch 2/5: Loss=0.6042, Acc=78.44%
+Client 0 Epoch 3/5: Loss=0.5846, Acc=79.30%
+Client 0 Epoch 4/5: Loss=0.5599, Acc=80.26%
+Client 0 Epoch 5/5: Loss=0.5411, Acc=80.86%
+Client 1 Epoch 1/5: Loss=0.6040, Acc=78.70%
+Client 1 Epoch 2/5: Loss=0.6000, Acc=78.82%
+Client 1 Epoch 3/5: Loss=0.5838, Acc=79.26%
+Client 1 Epoch 4/5: Loss=0.5595, Acc=80.16%
+Client 1 Epoch 5/5: Loss=0.5443, Acc=80.68%
+Client 2 Epoch 1/5: Loss=0.6020, Acc=78.55%
+Client 2 Epoch 2/5: Loss=0.6039, Acc=78.48%
+Client 2 Epoch 3/5: Loss=0.5790, Acc=79.39%
+Client 2 Epoch 4/5: Loss=0.5592, Acc=80.22%
+Client 2 Epoch 5/5: Loss=0.5423, Acc=80.73%
+Client 3 Epoch 1/5: Loss=0.6063, Acc=78.35%
+Client 3 Epoch 2/5: Loss=0.6006, Acc=78.59%
+Client 3 Epoch 3/5: Loss=0.5823, Acc=79.30%
+Client 3 Epoch 4/5: Loss=0.5629, Acc=79.96%
+Client 3 Epoch 5/5: Loss=0.5388, Acc=80.94%
+Client 4 Epoch 1/5: Loss=0.6035, Acc=78.53%
+Client 4 Epoch 2/5: Loss=0.6051, Acc=78.69%
+Client 4 Epoch 3/5: Loss=0.5870, Acc=79.23%
+Client 4 Epoch 4/5: Loss=0.5643, Acc=79.83%
+Client 4 Epoch 5/5: Loss=0.5391, Acc=80.94%
+Client 5 Epoch 1/5: Loss=0.6058, Acc=78.48%
+Client 5 Epoch 2/5: Loss=0.6041, Acc=78.39%
+Client 5 Epoch 3/5: Loss=0.5819, Acc=79.28%
+Client 5 Epoch 4/5: Loss=0.5620, Acc=79.97%
+Client 5 Epoch 5/5: Loss=0.5367, Acc=80.89%
+Client 6 Epoch 1/5: Loss=0.6033, Acc=78.52%
+Client 6 Epoch 2/5: Loss=0.5998, Acc=78.54%
+Client 6 Epoch 3/5: Loss=0.5867, Acc=79.15%
+Client 6 Epoch 4/5: Loss=0.5618, Acc=79.90%
+Client 6 Epoch 5/5: Loss=0.5398, Acc=81.00%
+Client 7 Epoch 1/5: Loss=0.5992, Acc=78.84%
+Client 7 Epoch 2/5: Loss=0.6000, Acc=78.62%
+Client 7 Epoch 3/5: Loss=0.5833, Acc=79.36%
+Client 7 Epoch 4/5: Loss=0.5632, Acc=79.96%
+Client 7 Epoch 5/5: Loss=0.5410, Acc=80.68%
+Client 8 Epoch 1/5: Loss=0.6045, Acc=78.41%
+Client 8 Epoch 2/5: Loss=0.6011, Acc=78.52%
+Client 8 Epoch 3/5: Loss=0.5869, Acc=79.24%
+Client 8 Epoch 4/5: Loss=0.5588, Acc=80.11%
+Client 8 Epoch 5/5: Loss=0.5390, Acc=80.86%
+Client 9 Epoch 1/5: Loss=0.6027, Acc=78.57%
+Client 9 Epoch 2/5: Loss=0.6016, Acc=78.61%
+Client 9 Epoch 3/5: Loss=0.5820, Acc=79.14%
+Client 9 Epoch 4/5: Loss=0.5584, Acc=80.20%
+Client 9 Epoch 5/5: Loss=0.5395, Acc=80.92%
+2025-09-27 06:45:28,248 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 06:45:28,248 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 06:45:28,249 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 06:45:28,336 - INFO - Applied DiffPure to 5/11 selected of 11 detected
+2025-09-27 06:45:28,421 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:45:28,503 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:45:28,591 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:45:28,674 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:45:28,756 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:45:28,837 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:28,919 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:45:29,003 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:45:29,084 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:45:29,175 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 06:45:29,262 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 06:45:29,343 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:29,425 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:45:29,508 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 06:45:29,593 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:45:29,677 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 06:45:29,760 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 06:45:29,844 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:45:29,930 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 06:45:30,014 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 06:45:30,099 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:45:30,196 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 06:45:30,279 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:45:30,362 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:45:30,448 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:45:30,529 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:45:30,609 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:45:30,692 - INFO - Applied DiffPure to 10/12 selected of 12 detected
+2025-09-27 06:45:30,774 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:45:30,854 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:30,936 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:45:31,018 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:45:31,100 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 06:45:31,184 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:31,267 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:45:31,351 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:45:31,437 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 06:45:31,522 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 06:45:31,608 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 06:45:31,693 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:31,779 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 06:45:31,860 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 06:45:31,941 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 06:45:32,027 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:45:32,110 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:45:32,192 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 06:45:32,276 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 06:45:32,358 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:45:32,439 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 06:45:32,520 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:45:32,603 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:45:32,686 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 06:45:32,765 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 06:45:32,843 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 06:45:32,924 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:45:33,005 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:45:33,086 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 06:45:33,167 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 06:45:33,252 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 06:45:33,335 - INFO - Applied DiffPure to 0/7 selected of 7 detected
+2025-09-27 06:45:33,417 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 06:45:33,499 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 06:45:33,583 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 06:45:33,665 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 06:45:33,749 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 06:45:33,832 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 06:45:33,913 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 06:45:33,995 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:45:34,076 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:45:34,157 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 06:45:34,241 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 06:45:34,326 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 06:45:34,410 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:45:34,492 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 06:45:34,575 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 06:45:34,660 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 06:45:34,745 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 06:45:34,782 - INFO - ?? Round 7 Clean Acc: 79.83% | Adv Acc: 70.45% | MAE Detection: 5.13% | Time: 1174.2s
+2025-09-27 06:45:34,782 - INFO - ?? Total training time: 8256.4s
+2025-09-27 06:45:34,782 - INFO - ?? Round 8/15
+2025-09-27 06:45:34,818 - INFO - ?? Training client 1/10
+2025-09-27 06:47:29,493 - INFO - ? Client 1 completed in 114.7s
+2025-09-27 06:47:29,493 - INFO - ?? Training client 2/10
+2025-09-27 06:49:25,271 - INFO - ? Client 2 completed in 115.8s
+2025-09-27 06:49:25,271 - INFO - ?? Training client 3/10
+2025-09-27 06:51:20,122 - INFO - ? Client 3 completed in 114.9s
+2025-09-27 06:51:20,122 - INFO - ?? Training client 4/10
+2025-09-27 06:53:15,503 - INFO - ? Client 4 completed in 115.4s
+2025-09-27 06:53:15,503 - INFO - ?? Training client 5/10
+2025-09-27 06:55:09,843 - INFO - ? Client 5 completed in 114.3s
+2025-09-27 06:55:09,844 - INFO - ?? Training client 6/10
+2025-09-27 06:57:06,689 - INFO - ? Client 6 completed in 116.8s
+2025-09-27 06:57:06,689 - INFO - ?? Training client 7/10
+2025-09-27 06:59:01,508 - INFO - ? Client 7 completed in 114.8s
+2025-09-27 06:59:01,508 - INFO - ?? Training client 8/10
+2025-09-27 07:00:56,401 - INFO - ? Client 8 completed in 114.9s
+2025-09-27 07:00:56,401 - INFO - ?? Training client 9/10
+2025-09-27 07:02:52,973 - INFO - ? Client 9 completed in 116.6s
+2025-09-27 07:02:52,974 - INFO - ?? Training client 10/10
+2025-09-27 07:04:49,075 - INFO - ? Client 10 completed in 116.1s
+2025-09-27 07:04:49,076 - INFO - ?? Aggregating models...
+2025-09-27 07:04:49,090 - INFO - ? Model aggregation completed
+2025-09-27 07:04:49,090 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 07:04:53,575 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.5467, Acc=80.55%
+Client 0 Epoch 2/5: Loss=0.5461, Acc=80.55%
+Client 0 Epoch 3/5: Loss=0.5335, Acc=80.97%
+Client 0 Epoch 4/5: Loss=0.5112, Acc=81.74%
+Client 0 Epoch 5/5: Loss=0.4884, Acc=82.67%
+Client 1 Epoch 1/5: Loss=0.5470, Acc=80.44%
+Client 1 Epoch 2/5: Loss=0.5457, Acc=80.58%
+Client 1 Epoch 3/5: Loss=0.5300, Acc=81.07%
+Client 1 Epoch 4/5: Loss=0.5070, Acc=81.89%
+Client 1 Epoch 5/5: Loss=0.4863, Acc=82.53%
+Client 2 Epoch 1/5: Loss=0.5473, Acc=80.42%
+Client 2 Epoch 2/5: Loss=0.5488, Acc=80.52%
+Client 2 Epoch 3/5: Loss=0.5297, Acc=81.18%
+Client 2 Epoch 4/5: Loss=0.5057, Acc=81.98%
+Client 2 Epoch 5/5: Loss=0.4863, Acc=82.71%
+Client 3 Epoch 1/5: Loss=0.5400, Acc=80.88%
+Client 3 Epoch 2/5: Loss=0.5507, Acc=80.24%
+Client 3 Epoch 3/5: Loss=0.5270, Acc=81.30%
+Client 3 Epoch 4/5: Loss=0.5119, Acc=81.77%
+Client 3 Epoch 5/5: Loss=0.4869, Acc=82.58%
+Client 4 Epoch 1/5: Loss=0.5503, Acc=80.34%
+Client 4 Epoch 2/5: Loss=0.5467, Acc=80.60%
+Client 4 Epoch 3/5: Loss=0.5286, Acc=81.15%
+Client 4 Epoch 4/5: Loss=0.5070, Acc=81.98%
+Client 4 Epoch 5/5: Loss=0.4907, Acc=82.67%
+Client 5 Epoch 1/5: Loss=0.5503, Acc=80.35%
+Client 5 Epoch 2/5: Loss=0.5486, Acc=80.41%
+Client 5 Epoch 3/5: Loss=0.5314, Acc=81.04%
+Client 5 Epoch 4/5: Loss=0.5105, Acc=81.92%
+Client 5 Epoch 5/5: Loss=0.4909, Acc=82.46%
+Client 6 Epoch 1/5: Loss=0.5505, Acc=80.24%
+Client 6 Epoch 2/5: Loss=0.5497, Acc=80.51%
+Client 6 Epoch 3/5: Loss=0.5309, Acc=81.17%
+Client 6 Epoch 4/5: Loss=0.5103, Acc=81.91%
+Client 6 Epoch 5/5: Loss=0.4907, Acc=82.59%
+Client 7 Epoch 1/5: Loss=0.5482, Acc=80.45%
+Client 7 Epoch 2/5: Loss=0.5449, Acc=80.57%
+Client 7 Epoch 3/5: Loss=0.5276, Acc=81.34%
+Client 7 Epoch 4/5: Loss=0.5061, Acc=81.87%
+Client 7 Epoch 5/5: Loss=0.4889, Acc=82.60%
+Client 8 Epoch 1/5: Loss=0.5493, Acc=80.35%
+Client 8 Epoch 2/5: Loss=0.5502, Acc=80.55%
+Client 8 Epoch 3/5: Loss=0.5335, Acc=81.08%
+Client 8 Epoch 4/5: Loss=0.5086, Acc=81.84%
+Client 8 Epoch 5/5: Loss=0.4892, Acc=82.71%
+Client 9 Epoch 1/5: Loss=0.5433, Acc=80.53%
+Client 9 Epoch 2/5: Loss=0.5479, Acc=80.51%
+Client 9 Epoch 3/5: Loss=0.5321, Acc=81.13%
+Client 9 Epoch 4/5: Loss=0.5093, Acc=81.92%
+Client 9 Epoch 5/5: Loss=0.4899, Acc=82.54%
+2025-09-27 07:04:53,795 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 07:04:53,796 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 07:04:53,796 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 07:04:53,884 - INFO - Applied DiffPure to 5/11 selected of 11 detected
+2025-09-27 07:04:53,975 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 07:04:54,066 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:04:54,152 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:04:54,237 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:04:54,334 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:04:54,433 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:04:54,528 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:04:54,625 - INFO - Applied DiffPure to 2/9 selected of 9 detected
+2025-09-27 07:04:54,720 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:04:54,813 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 07:04:54,902 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:04:54,992 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:04:55,082 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:04:55,180 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 07:04:55,265 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:04:55,351 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 07:04:55,436 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 07:04:55,521 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:04:55,605 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:04:55,688 - INFO - Applied DiffPure to 3/12 selected of 12 detected
+2025-09-27 07:04:55,773 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:04:55,858 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:04:55,941 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:04:56,025 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:04:56,112 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 07:04:56,198 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 07:04:56,286 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 07:04:56,373 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 07:04:56,458 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:04:56,544 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:04:56,629 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 07:04:56,714 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:04:56,800 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 07:04:56,885 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:04:56,972 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 07:04:57,058 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:04:57,147 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:04:57,245 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 07:04:57,333 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:04:57,423 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:04:57,509 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 07:04:57,595 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 07:04:57,688 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 07:04:57,774 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:04:57,860 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:04:57,953 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:04:58,040 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:04:58,125 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 07:04:58,221 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:04:58,308 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:04:58,397 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:04:58,486 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:04:58,572 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 07:04:58,656 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:04:58,741 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:04:58,827 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:04:58,916 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:04:59,004 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 07:04:59,088 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:04:59,173 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 07:04:59,259 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 07:04:59,342 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:04:59,427 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:04:59,512 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:04:59,594 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 07:04:59,679 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:04:59,764 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:04:59,850 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:04:59,936 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:05:00,032 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 07:05:00,118 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:05:00,202 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:05:00,295 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 07:05:00,382 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 07:05:00,464 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:05:00,548 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 07:05:00,632 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 07:05:00,669 - INFO - ?? Round 8 Clean Acc: 80.87% | Adv Acc: 71.54% | MAE Detection: 5.13% | Time: 1165.9s
+2025-09-27 07:05:00,670 - INFO - ?? Total training time: 9422.2s
+2025-09-27 07:05:00,670 - INFO - ?? Round 9/15
+2025-09-27 07:05:00,706 - INFO - ?? Training client 1/10
+2025-09-27 07:06:57,456 - INFO - ? Client 1 completed in 116.7s
+2025-09-27 07:06:57,456 - INFO - ?? Training client 2/10
+2025-09-27 07:08:55,299 - INFO - ? Client 2 completed in 117.8s
+2025-09-27 07:08:55,300 - INFO - ?? Training client 3/10
+2025-09-27 07:10:52,857 - INFO - ? Client 3 completed in 117.6s
+2025-09-27 07:10:52,857 - INFO - ?? Training client 4/10
+2025-09-27 07:12:51,284 - INFO - ? Client 4 completed in 118.4s
+2025-09-27 07:12:51,284 - INFO - ?? Training client 5/10
+2025-09-27 07:14:50,332 - INFO - ? Client 5 completed in 119.0s
+2025-09-27 07:14:50,332 - INFO - ?? Training client 6/10
+2025-09-27 07:16:48,970 - INFO - ? Client 6 completed in 118.6s
+2025-09-27 07:16:48,970 - INFO - ?? Training client 7/10
+2025-09-27 07:18:48,332 - INFO - ? Client 7 completed in 119.4s
+2025-09-27 07:18:48,332 - INFO - ?? Training client 8/10
+2025-09-27 07:20:46,955 - INFO - ? Client 8 completed in 118.6s
+2025-09-27 07:20:46,955 - INFO - ?? Training client 9/10
+2025-09-27 07:22:45,844 - INFO - ? Client 9 completed in 118.9s
+2025-09-27 07:22:45,844 - INFO - ?? Training client 10/10
+2025-09-27 07:24:44,970 - INFO - ? Client 10 completed in 119.1s
+2025-09-27 07:24:44,970 - INFO - ?? Aggregating models...
+2025-09-27 07:24:44,985 - INFO - ? Model aggregation completed
+2025-09-27 07:24:44,985 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 07:24:50,485 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.4977, Acc=82.30%
+Client 0 Epoch 2/5: Loss=0.4999, Acc=82.17%
+Client 0 Epoch 3/5: Loss=0.4827, Acc=82.92%
+Client 0 Epoch 4/5: Loss=0.4668, Acc=83.23%
+Client 0 Epoch 5/5: Loss=0.4429, Acc=84.13%
+Client 1 Epoch 1/5: Loss=0.4969, Acc=82.21%
+Client 1 Epoch 2/5: Loss=0.5013, Acc=82.17%
+Client 1 Epoch 3/5: Loss=0.4828, Acc=82.71%
+Client 1 Epoch 4/5: Loss=0.4644, Acc=83.48%
+Client 1 Epoch 5/5: Loss=0.4506, Acc=84.04%
+Client 2 Epoch 1/5: Loss=0.4944, Acc=82.28%
+Client 2 Epoch 2/5: Loss=0.5018, Acc=82.17%
+Client 2 Epoch 3/5: Loss=0.4869, Acc=82.55%
+Client 2 Epoch 4/5: Loss=0.4672, Acc=83.38%
+Client 2 Epoch 5/5: Loss=0.4454, Acc=83.97%
+Client 3 Epoch 1/5: Loss=0.5011, Acc=82.11%
+Client 3 Epoch 2/5: Loss=0.5003, Acc=82.24%
+Client 3 Epoch 3/5: Loss=0.4846, Acc=82.65%
+Client 3 Epoch 4/5: Loss=0.4632, Acc=83.68%
+Client 3 Epoch 5/5: Loss=0.4447, Acc=84.13%
+Client 4 Epoch 1/5: Loss=0.4985, Acc=82.20%
+Client 4 Epoch 2/5: Loss=0.5008, Acc=82.20%
+Client 4 Epoch 3/5: Loss=0.4872, Acc=82.58%
+Client 4 Epoch 4/5: Loss=0.4612, Acc=83.49%
+Client 4 Epoch 5/5: Loss=0.4433, Acc=84.26%
+Client 5 Epoch 1/5: Loss=0.4993, Acc=82.09%
+Client 5 Epoch 2/5: Loss=0.5037, Acc=82.12%
+Client 5 Epoch 3/5: Loss=0.4834, Acc=82.99%
+Client 5 Epoch 4/5: Loss=0.4643, Acc=83.54%
+Client 5 Epoch 5/5: Loss=0.4418, Acc=84.47%
+Client 6 Epoch 1/5: Loss=0.5046, Acc=82.03%
+Client 6 Epoch 2/5: Loss=0.5006, Acc=82.19%
+Client 6 Epoch 3/5: Loss=0.4817, Acc=82.87%
+Client 6 Epoch 4/5: Loss=0.4631, Acc=83.60%
+Client 6 Epoch 5/5: Loss=0.4428, Acc=84.21%
+Client 7 Epoch 1/5: Loss=0.4991, Acc=82.19%
+Client 7 Epoch 2/5: Loss=0.5027, Acc=82.12%
+Client 7 Epoch 3/5: Loss=0.4816, Acc=82.78%
+Client 7 Epoch 4/5: Loss=0.4608, Acc=83.42%
+Client 7 Epoch 5/5: Loss=0.4460, Acc=84.12%
+Client 8 Epoch 1/5: Loss=0.4950, Acc=82.30%
+Client 8 Epoch 2/5: Loss=0.5018, Acc=82.16%
+Client 8 Epoch 3/5: Loss=0.4780, Acc=82.96%
+Client 8 Epoch 4/5: Loss=0.4654, Acc=83.31%
+Client 8 Epoch 5/5: Loss=0.4437, Acc=84.11%
+Client 9 Epoch 1/5: Loss=0.4951, Acc=82.38%
+Client 9 Epoch 2/5: Loss=0.5001, Acc=82.17%
+Client 9 Epoch 3/5: Loss=0.4830, Acc=83.00%
+Client 9 Epoch 4/5: Loss=0.4655, Acc=83.32%
+Client 9 Epoch 5/5: Loss=0.4511, Acc=84.06%
+2025-09-27 07:24:50,706 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 07:24:50,706 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 07:24:50,707 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 07:24:50,807 - INFO - Applied DiffPure to 6/11 selected of 11 detected
+2025-09-27 07:24:50,906 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 07:24:51,005 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 07:24:51,106 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 07:24:51,207 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:24:51,307 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:24:51,408 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:51,506 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:24:51,603 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 07:24:51,702 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:24:51,803 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 07:24:51,905 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:24:52,003 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:24:52,103 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:24:52,202 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 07:24:52,300 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 07:24:52,400 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 07:24:52,500 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 07:24:52,600 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:24:52,700 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:24:52,799 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 07:24:52,900 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:53,002 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:24:53,103 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 07:24:53,208 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:24:53,308 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:24:53,412 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 07:24:53,512 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 07:24:53,618 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 07:24:53,703 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:24:53,789 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:53,875 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:24:53,968 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:24:54,062 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 07:24:54,154 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:24:54,244 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 07:24:54,330 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 07:24:54,422 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:24:54,510 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 07:24:54,595 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 07:24:54,679 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:54,765 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 07:24:54,850 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 07:24:54,935 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 07:24:55,021 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:24:55,107 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:24:55,195 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:24:55,280 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:24:55,364 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 07:24:55,446 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:55,528 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:24:55,610 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:24:55,696 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:24:55,787 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:24:55,876 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 07:24:55,961 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:24:56,050 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:56,139 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:24:56,231 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 07:24:56,317 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:24:56,405 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 07:24:56,489 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 07:24:56,576 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:24:56,665 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:24:56,758 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:24:56,850 - INFO - Applied DiffPure to 2/9 selected of 9 detected
+2025-09-27 07:24:56,941 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:24:57,033 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:24:57,120 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:24:57,208 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:24:57,296 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 07:24:57,385 - INFO - Applied DiffPure to 6/7 selected of 7 detected
+2025-09-27 07:24:57,468 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:24:57,556 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:24:57,640 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 07:24:57,725 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:24:57,807 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 07:24:57,893 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 07:24:57,926 - INFO - ?? Round 9 Clean Acc: 81.61% | Adv Acc: 72.39% | MAE Detection: 5.13% | Time: 1197.3s
+2025-09-27 07:24:57,927 - INFO - ?? Total training time: 10619.5s
+2025-09-27 07:24:57,927 - INFO - ?? Round 10/15
+2025-09-27 07:24:57,962 - INFO - ?? Training client 1/10
+2025-09-27 07:26:55,217 - INFO - ? Client 1 completed in 117.3s
+2025-09-27 07:26:55,217 - INFO - ?? Training client 2/10
+2025-09-27 07:28:51,142 - INFO - ? Client 2 completed in 115.9s
+2025-09-27 07:28:51,142 - INFO - ?? Training client 3/10
+2025-09-27 07:30:48,219 - INFO - ? Client 3 completed in 117.1s
+2025-09-27 07:30:48,219 - INFO - ?? Training client 4/10
+2025-09-27 07:32:43,097 - INFO - ? Client 4 completed in 114.9s
+2025-09-27 07:32:43,097 - INFO - ?? Training client 5/10
+2025-09-27 07:34:38,935 - INFO - ? Client 5 completed in 115.8s
+2025-09-27 07:34:38,935 - INFO - ?? Training client 6/10
+2025-09-27 07:36:37,939 - INFO - ? Client 6 completed in 119.0s
+2025-09-27 07:36:37,939 - INFO - ?? Training client 7/10
+2025-09-27 07:38:35,664 - INFO - ? Client 7 completed in 117.7s
+2025-09-27 07:38:35,664 - INFO - ?? Training client 8/10
+2025-09-27 07:40:32,341 - INFO - ? Client 8 completed in 116.7s
+2025-09-27 07:40:32,341 - INFO - ?? Training client 9/10
+2025-09-27 07:42:29,675 - INFO - ? Client 9 completed in 117.3s
+2025-09-27 07:42:29,676 - INFO - ?? Training client 10/10
+2025-09-27 07:44:25,196 - INFO - ? Client 10 completed in 115.5s
+2025-09-27 07:44:25,197 - INFO - ?? Aggregating models...
+2025-09-27 07:44:25,212 - INFO - ? Model aggregation completed
+2025-09-27 07:44:25,212 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 07:44:29,616 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.4522, Acc=83.72%
+Client 0 Epoch 2/5: Loss=0.4553, Acc=83.82%
+Client 0 Epoch 3/5: Loss=0.4419, Acc=84.28%
+Client 0 Epoch 4/5: Loss=0.4261, Acc=84.73%
+Client 0 Epoch 5/5: Loss=0.4094, Acc=85.41%
+Client 1 Epoch 1/5: Loss=0.4527, Acc=83.85%
+Client 1 Epoch 2/5: Loss=0.4624, Acc=83.44%
+Client 1 Epoch 3/5: Loss=0.4453, Acc=84.15%
+Client 1 Epoch 4/5: Loss=0.4260, Acc=84.82%
+Client 1 Epoch 5/5: Loss=0.4053, Acc=85.58%
+Client 2 Epoch 1/5: Loss=0.4525, Acc=83.98%
+Client 2 Epoch 2/5: Loss=0.4638, Acc=83.38%
+Client 2 Epoch 3/5: Loss=0.4458, Acc=84.08%
+Client 2 Epoch 4/5: Loss=0.4263, Acc=84.86%
+Client 2 Epoch 5/5: Loss=0.4078, Acc=85.63%
+Client 3 Epoch 1/5: Loss=0.4523, Acc=83.62%
+Client 3 Epoch 2/5: Loss=0.4609, Acc=83.56%
+Client 3 Epoch 3/5: Loss=0.4415, Acc=84.30%
+Client 3 Epoch 4/5: Loss=0.4276, Acc=84.69%
+Client 3 Epoch 5/5: Loss=0.4101, Acc=85.25%
+Client 4 Epoch 1/5: Loss=0.4497, Acc=84.06%
+Client 4 Epoch 2/5: Loss=0.4624, Acc=83.48%
+Client 4 Epoch 3/5: Loss=0.4489, Acc=83.84%
+Client 4 Epoch 4/5: Loss=0.4281, Acc=84.75%
+Client 4 Epoch 5/5: Loss=0.4008, Acc=85.78%
+Client 5 Epoch 1/5: Loss=0.4553, Acc=83.71%
+Client 5 Epoch 2/5: Loss=0.4575, Acc=83.58%
+Client 5 Epoch 3/5: Loss=0.4472, Acc=83.90%
+Client 5 Epoch 4/5: Loss=0.4250, Acc=84.80%
+Client 5 Epoch 5/5: Loss=0.4065, Acc=85.55%
+Client 6 Epoch 1/5: Loss=0.4520, Acc=83.83%
+Client 6 Epoch 2/5: Loss=0.4636, Acc=83.66%
+Client 6 Epoch 3/5: Loss=0.4450, Acc=84.19%
+Client 6 Epoch 4/5: Loss=0.4268, Acc=84.77%
+Client 6 Epoch 5/5: Loss=0.4032, Acc=85.57%
+Client 7 Epoch 1/5: Loss=0.4492, Acc=83.81%
+Client 7 Epoch 2/5: Loss=0.4579, Acc=83.68%
+Client 7 Epoch 3/5: Loss=0.4478, Acc=84.03%
+Client 7 Epoch 4/5: Loss=0.4251, Acc=84.77%
+Client 7 Epoch 5/5: Loss=0.4063, Acc=85.67%
+Client 8 Epoch 1/5: Loss=0.4529, Acc=83.79%
+Client 8 Epoch 2/5: Loss=0.4589, Acc=83.51%
+Client 8 Epoch 3/5: Loss=0.4416, Acc=84.26%
+Client 8 Epoch 4/5: Loss=0.4272, Acc=84.74%
+Client 8 Epoch 5/5: Loss=0.4056, Acc=85.56%
+Client 9 Epoch 1/5: Loss=0.4563, Acc=83.76%
+Client 9 Epoch 2/5: Loss=0.4629, Acc=83.47%
+Client 9 Epoch 3/5: Loss=0.4417, Acc=84.10%
+Client 9 Epoch 4/5: Loss=0.4270, Acc=84.73%
+Client 9 Epoch 5/5: Loss=0.4050, Acc=85.49%
+2025-09-27 07:44:29,804 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 07:44:29,804 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 07:44:29,804 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 07:44:29,888 - INFO - Applied DiffPure to 5/11 selected of 11 detected
+2025-09-27 07:44:29,972 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 07:44:30,055 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:44:30,138 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 07:44:30,222 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:44:30,305 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:44:30,386 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:44:30,472 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:44:30,553 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 07:44:30,637 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:44:30,723 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 07:44:30,807 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 07:44:30,891 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:44:30,972 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:44:31,055 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 07:44:31,137 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:44:31,219 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 07:44:31,303 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 07:44:31,386 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:44:31,467 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 07:44:31,548 - INFO - Applied DiffPure to 5/13 selected of 13 detected
+2025-09-27 07:44:31,628 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:44:31,709 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:44:31,789 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 07:44:31,870 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:44:31,952 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:44:32,033 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:44:32,115 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 07:44:32,197 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 07:44:32,279 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:44:32,364 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:44:32,447 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:44:32,529 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:44:32,616 - INFO - Applied DiffPure to 9/12 selected of 12 detected
+2025-09-27 07:44:32,705 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:44:32,786 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 07:44:32,870 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:44:32,952 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 07:44:33,033 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 07:44:33,113 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 07:44:33,197 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:44:33,280 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 07:44:33,360 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 07:44:33,442 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 07:44:33,525 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 07:44:33,609 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:44:33,692 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 07:44:33,777 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:44:33,859 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 07:44:33,943 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:44:34,029 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:44:34,116 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:44:34,199 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:44:34,283 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 07:44:34,378 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 07:44:34,462 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 07:44:34,545 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:44:34,628 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 07:44:34,710 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 07:44:34,791 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 07:44:34,874 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 07:44:34,956 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 07:44:35,036 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 07:44:35,120 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 07:44:35,202 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 07:44:35,283 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 07:44:35,365 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 07:44:35,449 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 07:44:35,533 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 07:44:35,616 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:44:35,698 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 07:44:35,784 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 07:44:35,867 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 07:44:35,948 - INFO - Applied DiffPure to 6/7 selected of 7 detected
+2025-09-27 07:44:36,030 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 07:44:36,115 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 07:44:36,196 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 07:44:36,278 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 07:44:36,317 - INFO - ?? Round 10 Clean Acc: 81.82% | Adv Acc: 72.82% | MAE Detection: 5.14% | Time: 1178.4s
+2025-09-27 07:44:36,317 - INFO - ?? Total training time: 11797.9s
+2025-09-27 07:44:36,317 - INFO - ?? Round 11/15
+2025-09-27 07:44:36,353 - INFO - ?? Training client 1/10
+2025-09-27 07:46:33,239 - INFO - ? Client 1 completed in 116.9s
+2025-09-27 07:46:33,240 - INFO - ?? Training client 2/10
+2025-09-27 07:48:29,726 - INFO - ? Client 2 completed in 116.5s
+2025-09-27 07:48:29,726 - INFO - ?? Training client 3/10
+2025-09-27 07:50:27,063 - INFO - ? Client 3 completed in 117.3s
+2025-09-27 07:50:27,064 - INFO - ?? Training client 4/10
+2025-09-27 07:52:24,715 - INFO - ? Client 4 completed in 117.7s
+2025-09-27 07:52:24,715 - INFO - ?? Training client 5/10
+2025-09-27 07:54:23,047 - INFO - ? Client 5 completed in 118.3s
+2025-09-27 07:54:23,048 - INFO - ?? Training client 6/10
+2025-09-27 07:56:21,737 - INFO - ? Client 6 completed in 118.7s
+2025-09-27 07:56:21,737 - INFO - ?? Training client 7/10
+2025-09-27 07:58:22,707 - INFO - ? Client 7 completed in 121.0s
+2025-09-27 07:58:22,707 - INFO - ?? Training client 8/10
+2025-09-27 08:00:19,901 - INFO - ? Client 8 completed in 117.2s
+2025-09-27 08:00:19,902 - INFO - ?? Training client 9/10
+2025-09-27 08:02:17,078 - INFO - ? Client 9 completed in 117.2s
+2025-09-27 08:02:17,078 - INFO - ?? Training client 10/10
+2025-09-27 08:04:13,557 - INFO - ? Client 10 completed in 116.5s
+2025-09-27 08:04:13,558 - INFO - ?? Aggregating models...
+2025-09-27 08:04:13,574 - INFO - ? Model aggregation completed
+2025-09-27 08:04:13,575 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 08:04:18,102 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.4186, Acc=84.90%
+Client 0 Epoch 2/5: Loss=0.4262, Acc=84.88%
+Client 0 Epoch 3/5: Loss=0.4114, Acc=85.10%
+Client 0 Epoch 4/5: Loss=0.3920, Acc=86.06%
+Client 0 Epoch 5/5: Loss=0.3695, Acc=86.92%
+Client 1 Epoch 1/5: Loss=0.4198, Acc=84.89%
+Client 1 Epoch 2/5: Loss=0.4228, Acc=85.01%
+Client 1 Epoch 3/5: Loss=0.4092, Acc=85.51%
+Client 1 Epoch 4/5: Loss=0.3867, Acc=86.18%
+Client 1 Epoch 5/5: Loss=0.3711, Acc=86.75%
+Client 2 Epoch 1/5: Loss=0.4171, Acc=84.90%
+Client 2 Epoch 2/5: Loss=0.4271, Acc=84.79%
+Client 2 Epoch 3/5: Loss=0.4089, Acc=85.53%
+Client 2 Epoch 4/5: Loss=0.3890, Acc=86.05%
+Client 2 Epoch 5/5: Loss=0.3752, Acc=86.71%
+Client 3 Epoch 1/5: Loss=0.4109, Acc=85.16%
+Client 3 Epoch 2/5: Loss=0.4239, Acc=84.84%
+Client 3 Epoch 3/5: Loss=0.4079, Acc=85.51%
+Client 3 Epoch 4/5: Loss=0.3881, Acc=86.03%
+Client 3 Epoch 5/5: Loss=0.3723, Acc=86.58%
+Client 4 Epoch 1/5: Loss=0.4160, Acc=85.05%
+Client 4 Epoch 2/5: Loss=0.4293, Acc=84.82%
+Client 4 Epoch 3/5: Loss=0.4092, Acc=85.27%
+Client 4 Epoch 4/5: Loss=0.3918, Acc=86.01%
+Client 4 Epoch 5/5: Loss=0.3715, Acc=86.74%
+Client 5 Epoch 1/5: Loss=0.4158, Acc=85.18%
+Client 5 Epoch 2/5: Loss=0.4269, Acc=84.71%
+Client 5 Epoch 3/5: Loss=0.4066, Acc=85.49%
+Client 5 Epoch 4/5: Loss=0.3910, Acc=86.11%
+Client 5 Epoch 5/5: Loss=0.3719, Acc=86.64%
+Client 6 Epoch 1/5: Loss=0.4131, Acc=85.26%
+Client 6 Epoch 2/5: Loss=0.4242, Acc=84.84%
+Client 6 Epoch 3/5: Loss=0.4123, Acc=85.30%
+Client 6 Epoch 4/5: Loss=0.3883, Acc=86.15%
+Client 6 Epoch 5/5: Loss=0.3676, Acc=87.00%
+Client 7 Epoch 1/5: Loss=0.4220, Acc=84.93%
+Client 7 Epoch 2/5: Loss=0.4242, Acc=84.87%
+Client 7 Epoch 3/5: Loss=0.4073, Acc=85.49%
+Client 7 Epoch 4/5: Loss=0.3940, Acc=85.88%
+Client 7 Epoch 5/5: Loss=0.3691, Acc=86.86%
+Client 8 Epoch 1/5: Loss=0.4176, Acc=84.95%
+Client 8 Epoch 2/5: Loss=0.4303, Acc=84.73%
+Client 8 Epoch 3/5: Loss=0.4110, Acc=85.20%
+Client 8 Epoch 4/5: Loss=0.3965, Acc=85.86%
+Client 8 Epoch 5/5: Loss=0.3674, Acc=86.94%
+Client 9 Epoch 1/5: Loss=0.4158, Acc=84.93%
+Client 9 Epoch 2/5: Loss=0.4253, Acc=84.56%
+Client 9 Epoch 3/5: Loss=0.4076, Acc=85.63%
+Client 9 Epoch 4/5: Loss=0.3929, Acc=85.83%
+Client 9 Epoch 5/5: Loss=0.3705, Acc=86.79%
+2025-09-27 08:04:18,304 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 08:04:18,305 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 08:04:18,305 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 08:04:18,390 - INFO - Applied DiffPure to 4/11 selected of 11 detected
+2025-09-27 08:04:18,475 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:04:18,558 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:04:18,648 - INFO - Applied DiffPure to 0/5 selected of 5 detected
+2025-09-27 08:04:18,731 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:04:18,815 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:04:18,903 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 08:04:18,986 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:04:19,072 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:04:19,160 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:19,246 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:04:19,337 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:04:19,421 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 08:04:19,507 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:04:19,596 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:04:19,683 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 08:04:19,768 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:04:19,854 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:04:19,940 - INFO - Applied DiffPure to 0/5 selected of 5 detected
+2025-09-27 08:04:20,028 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:04:20,123 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 08:04:20,219 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:04:20,308 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:04:20,398 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 08:04:20,488 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:04:20,576 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:04:20,663 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 08:04:20,753 - INFO - Applied DiffPure to 6/6 selected of 6 detected
+2025-09-27 08:04:20,843 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 08:04:20,933 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:04:21,023 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:04:21,113 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:21,203 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:04:21,295 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 08:04:21,382 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 08:04:21,470 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 08:04:21,560 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:04:21,648 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:04:21,737 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 08:04:21,826 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:04:21,919 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:04:22,008 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 08:04:22,098 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 08:04:22,186 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:04:22,278 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:04:22,364 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:04:22,449 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:04:22,536 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:04:22,622 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:04:22,710 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:04:22,807 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:04:22,910 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:04:23,006 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:04:23,093 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 08:04:23,177 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:04:23,261 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 08:04:23,345 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:23,427 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:04:23,510 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:04:23,596 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 08:04:23,680 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 08:04:23,763 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 08:04:23,845 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 08:04:23,925 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:24,010 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:04:24,094 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:04:24,180 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:24,264 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:04:24,347 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:04:24,432 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 08:04:24,516 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 08:04:24,601 - INFO - Applied DiffPure to 6/7 selected of 7 detected
+2025-09-27 08:04:24,684 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:04:24,767 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:04:24,849 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 08:04:24,933 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:04:25,018 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:04:25,100 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 08:04:25,135 - INFO - ?? Round 11 Clean Acc: 82.42% | Adv Acc: 73.04% | MAE Detection: 5.13% | Time: 1188.8s
+2025-09-27 08:04:25,135 - INFO - ?? Total training time: 12986.7s
+2025-09-27 08:04:25,135 - INFO - ?? Round 12/15
+2025-09-27 08:04:25,168 - INFO - ?? Training client 1/10
+2025-09-27 08:06:23,250 - INFO - ? Client 1 completed in 118.1s
+2025-09-27 08:06:23,250 - INFO - ?? Training client 2/10
+2025-09-27 08:08:21,267 - INFO - ? Client 2 completed in 118.0s
+2025-09-27 08:08:21,267 - INFO - ?? Training client 3/10
+2025-09-27 08:10:20,196 - INFO - ? Client 3 completed in 118.9s
+2025-09-27 08:10:20,197 - INFO - ?? Training client 4/10
+2025-09-27 08:12:17,076 - INFO - ? Client 4 completed in 116.9s
+2025-09-27 08:12:17,076 - INFO - ?? Training client 5/10
+2025-09-27 08:14:13,054 - INFO - ? Client 5 completed in 116.0s
+2025-09-27 08:14:13,054 - INFO - ?? Training client 6/10
+2025-09-27 08:16:09,783 - INFO - ? Client 6 completed in 116.7s
+2025-09-27 08:16:09,783 - INFO - ?? Training client 7/10
+2025-09-27 08:18:06,312 - INFO - ? Client 7 completed in 116.5s
+2025-09-27 08:18:06,312 - INFO - ?? Training client 8/10
+2025-09-27 08:20:04,610 - INFO - ? Client 8 completed in 118.3s
+2025-09-27 08:20:04,610 - INFO - ?? Training client 9/10
+2025-09-27 08:22:01,247 - INFO - ? Client 9 completed in 116.6s
+2025-09-27 08:22:01,247 - INFO - ?? Training client 10/10
+2025-09-27 08:23:57,515 - INFO - ? Client 10 completed in 116.3s
+2025-09-27 08:23:57,515 - INFO - ?? Aggregating models...
+2025-09-27 08:23:57,532 - INFO - ? Model aggregation completed
+2025-09-27 08:23:57,532 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 08:24:02,315 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.3792, Acc=86.41%
+Client 0 Epoch 2/5: Loss=0.3933, Acc=85.97%
+Client 0 Epoch 3/5: Loss=0.3786, Acc=86.50%
+Client 0 Epoch 4/5: Loss=0.3604, Acc=87.00%
+Client 0 Epoch 5/5: Loss=0.3447, Acc=87.69%
+Client 1 Epoch 1/5: Loss=0.3752, Acc=86.56%
+Client 1 Epoch 2/5: Loss=0.3975, Acc=85.69%
+Client 1 Epoch 3/5: Loss=0.3765, Acc=86.50%
+Client 1 Epoch 4/5: Loss=0.3581, Acc=87.24%
+Client 1 Epoch 5/5: Loss=0.3436, Acc=87.83%
+Client 2 Epoch 1/5: Loss=0.3798, Acc=86.36%
+Client 2 Epoch 2/5: Loss=0.3985, Acc=85.58%
+Client 2 Epoch 3/5: Loss=0.3852, Acc=86.37%
+Client 2 Epoch 4/5: Loss=0.3627, Acc=87.05%
+Client 2 Epoch 5/5: Loss=0.3388, Acc=87.82%
+Client 3 Epoch 1/5: Loss=0.3799, Acc=86.41%
+Client 3 Epoch 2/5: Loss=0.3974, Acc=85.85%
+Client 3 Epoch 3/5: Loss=0.3793, Acc=86.39%
+Client 3 Epoch 4/5: Loss=0.3642, Acc=86.98%
+Client 3 Epoch 5/5: Loss=0.3390, Acc=87.95%
+Client 4 Epoch 1/5: Loss=0.3834, Acc=86.15%
+Client 4 Epoch 2/5: Loss=0.3970, Acc=85.78%
+Client 4 Epoch 3/5: Loss=0.3772, Acc=86.42%
+Client 4 Epoch 4/5: Loss=0.3623, Acc=86.82%
+Client 4 Epoch 5/5: Loss=0.3403, Acc=87.81%
+Client 5 Epoch 1/5: Loss=0.3852, Acc=86.26%
+Client 5 Epoch 2/5: Loss=0.3895, Acc=85.90%
+Client 5 Epoch 3/5: Loss=0.3805, Acc=86.21%
+Client 5 Epoch 4/5: Loss=0.3582, Acc=87.12%
+Client 5 Epoch 5/5: Loss=0.3416, Acc=87.92%
+Client 6 Epoch 1/5: Loss=0.3826, Acc=86.34%
+Client 6 Epoch 2/5: Loss=0.3941, Acc=85.94%
+Client 6 Epoch 3/5: Loss=0.3759, Acc=86.54%
+Client 6 Epoch 4/5: Loss=0.3613, Acc=86.89%
+Client 6 Epoch 5/5: Loss=0.3410, Acc=87.79%
+Client 7 Epoch 1/5: Loss=0.3833, Acc=86.16%
+Client 7 Epoch 2/5: Loss=0.3964, Acc=85.87%
+Client 7 Epoch 3/5: Loss=0.3844, Acc=86.20%
+Client 7 Epoch 4/5: Loss=0.3636, Acc=87.02%
+Client 7 Epoch 5/5: Loss=0.3438, Acc=87.79%
+Client 8 Epoch 1/5: Loss=0.3805, Acc=86.31%
+Client 8 Epoch 2/5: Loss=0.3946, Acc=85.72%
+Client 8 Epoch 3/5: Loss=0.3825, Acc=86.36%
+Client 8 Epoch 4/5: Loss=0.3594, Acc=87.13%
+Client 8 Epoch 5/5: Loss=0.3375, Acc=88.03%
+Client 9 Epoch 1/5: Loss=0.3836, Acc=86.40%
+Client 9 Epoch 2/5: Loss=0.3950, Acc=85.80%
+Client 9 Epoch 3/5: Loss=0.3769, Acc=86.53%
+Client 9 Epoch 4/5: Loss=0.3633, Acc=87.18%
+Client 9 Epoch 5/5: Loss=0.3466, Acc=87.51%
+2025-09-27 08:24:02,530 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 08:24:02,530 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 08:24:02,530 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 08:24:02,624 - INFO - Applied DiffPure to 4/11 selected of 11 detected
+2025-09-27 08:24:02,722 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 08:24:02,809 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:24:02,897 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:24:02,983 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:24:03,070 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:24:03,159 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:03,246 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:24:03,340 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:24:03,427 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:24:03,510 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:24:03,594 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:24:03,679 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:24:03,761 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:24:03,843 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 08:24:03,926 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 08:24:04,010 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:24:04,091 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:24:04,173 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:24:04,264 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:24:04,347 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 08:24:04,427 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:04,509 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:24:04,592 - INFO - Applied DiffPure to 0/4 selected of 4 detected
+2025-09-27 08:24:04,676 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:24:04,756 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:24:04,836 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:24:04,916 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 08:24:04,998 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 08:24:05,084 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:24:05,169 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:05,254 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:05,335 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:24:05,417 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 08:24:05,499 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:24:05,584 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 08:24:05,670 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:24:05,757 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:24:05,845 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 08:24:05,930 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 08:24:06,017 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:24:06,105 - INFO - Applied DiffPure to 3/10 selected of 10 detected
+2025-09-27 08:24:06,194 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 08:24:06,281 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:24:06,366 - INFO - Applied DiffPure to 5/5 selected of 5 detected
+2025-09-27 08:24:06,454 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:24:06,538 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:24:06,623 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:24:06,707 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 08:24:06,792 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:24:06,876 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:24:06,959 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:24:07,043 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:24:07,129 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:24:07,212 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:24:07,296 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 08:24:07,378 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:07,460 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:24:07,542 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:24:07,624 - INFO - Applied DiffPure to 6/8 selected of 8 detected
+2025-09-27 08:24:07,708 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 08:24:07,788 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 08:24:07,867 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 08:24:07,948 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:08,028 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 08:24:08,112 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:24:08,193 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:24:08,281 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:24:08,362 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:24:08,445 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:24:08,526 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:24:08,608 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:24:08,690 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:24:08,771 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:24:08,848 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 08:24:08,925 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:24:09,002 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:24:09,081 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 08:24:09,116 - INFO - ?? Round 12 Clean Acc: 82.74% | Adv Acc: 73.39% | MAE Detection: 5.13% | Time: 1184.0s
+2025-09-27 08:24:09,116 - INFO - ?? Total training time: 14170.7s
+2025-09-27 08:24:09,116 - INFO - ?? Round 13/15
+2025-09-27 08:24:09,149 - INFO - ?? Training client 1/10
+2025-09-27 08:26:05,767 - INFO - ? Client 1 completed in 116.6s
+2025-09-27 08:26:05,767 - INFO - ?? Training client 2/10
+2025-09-27 08:28:00,301 - INFO - ? Client 2 completed in 114.5s
+2025-09-27 08:28:00,302 - INFO - ?? Training client 3/10
+2025-09-27 08:29:56,377 - INFO - ? Client 3 completed in 116.1s
+2025-09-27 08:29:56,377 - INFO - ?? Training client 4/10
+2025-09-27 08:31:51,151 - INFO - ? Client 4 completed in 114.8s
+2025-09-27 08:31:51,152 - INFO - ?? Training client 5/10
+2025-09-27 08:33:46,515 - INFO - ? Client 5 completed in 115.4s
+2025-09-27 08:33:46,516 - INFO - ?? Training client 6/10
+2025-09-27 08:35:41,202 - INFO - ? Client 6 completed in 114.7s
+2025-09-27 08:35:41,203 - INFO - ?? Training client 7/10
+2025-09-27 08:37:35,660 - INFO - ? Client 7 completed in 114.5s
+2025-09-27 08:37:35,661 - INFO - ?? Training client 8/10
+2025-09-27 08:39:30,177 - INFO - ? Client 8 completed in 114.5s
+2025-09-27 08:39:30,177 - INFO - ?? Training client 9/10
+2025-09-27 08:41:25,715 - INFO - ? Client 9 completed in 115.5s
+2025-09-27 08:41:25,715 - INFO - ?? Training client 10/10
+2025-09-27 08:43:20,120 - INFO - ? Client 10 completed in 114.4s
+2025-09-27 08:43:20,120 - INFO - ?? Aggregating models...
+2025-09-27 08:43:20,136 - INFO - ? Model aggregation completed
+2025-09-27 08:43:20,136 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 08:43:24,459 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.3501, Acc=87.37%
+Client 0 Epoch 2/5: Loss=0.3617, Acc=86.87%
+Client 0 Epoch 3/5: Loss=0.3522, Acc=87.36%
+Client 0 Epoch 4/5: Loss=0.3354, Acc=87.89%
+Client 0 Epoch 5/5: Loss=0.3149, Acc=88.78%
+Client 1 Epoch 1/5: Loss=0.3519, Acc=87.38%
+Client 1 Epoch 2/5: Loss=0.3714, Acc=86.69%
+Client 1 Epoch 3/5: Loss=0.3556, Acc=87.25%
+Client 1 Epoch 4/5: Loss=0.3327, Acc=88.07%
+Client 1 Epoch 5/5: Loss=0.3160, Acc=88.75%
+Client 2 Epoch 1/5: Loss=0.3535, Acc=87.28%
+Client 2 Epoch 2/5: Loss=0.3669, Acc=86.67%
+Client 2 Epoch 3/5: Loss=0.3550, Acc=87.20%
+Client 2 Epoch 4/5: Loss=0.3394, Acc=87.84%
+Client 2 Epoch 5/5: Loss=0.3182, Acc=88.65%
+Client 3 Epoch 1/5: Loss=0.3488, Acc=87.39%
+Client 3 Epoch 2/5: Loss=0.3714, Acc=86.78%
+Client 3 Epoch 3/5: Loss=0.3560, Acc=87.15%
+Client 3 Epoch 4/5: Loss=0.3346, Acc=87.94%
+Client 3 Epoch 5/5: Loss=0.3134, Acc=88.94%
+Client 4 Epoch 1/5: Loss=0.3503, Acc=87.61%
+Client 4 Epoch 2/5: Loss=0.3701, Acc=86.62%
+Client 4 Epoch 3/5: Loss=0.3544, Acc=87.35%
+Client 4 Epoch 4/5: Loss=0.3331, Acc=88.16%
+Client 4 Epoch 5/5: Loss=0.3140, Acc=88.88%
+Client 5 Epoch 1/5: Loss=0.3506, Acc=87.32%
+Client 5 Epoch 2/5: Loss=0.3672, Acc=86.86%
+Client 5 Epoch 3/5: Loss=0.3536, Acc=87.37%
+Client 5 Epoch 4/5: Loss=0.3366, Acc=87.97%
+Client 5 Epoch 5/5: Loss=0.3120, Acc=88.80%
+Client 6 Epoch 1/5: Loss=0.3511, Acc=87.44%
+Client 6 Epoch 2/5: Loss=0.3697, Acc=86.71%
+Client 6 Epoch 3/5: Loss=0.3461, Acc=87.51%
+Client 6 Epoch 4/5: Loss=0.3359, Acc=87.98%
+Client 6 Epoch 5/5: Loss=0.3151, Acc=88.71%
+Client 7 Epoch 1/5: Loss=0.3478, Acc=87.56%
+Client 7 Epoch 2/5: Loss=0.3680, Acc=86.69%
+Client 7 Epoch 3/5: Loss=0.3511, Acc=87.35%
+Client 7 Epoch 4/5: Loss=0.3333, Acc=88.08%
+Client 7 Epoch 5/5: Loss=0.3126, Acc=88.99%
+Client 8 Epoch 1/5: Loss=0.3509, Acc=87.33%
+Client 8 Epoch 2/5: Loss=0.3681, Acc=86.63%
+Client 8 Epoch 3/5: Loss=0.3522, Acc=87.31%
+Client 8 Epoch 4/5: Loss=0.3332, Acc=88.22%
+Client 8 Epoch 5/5: Loss=0.3194, Acc=88.43%
+Client 9 Epoch 1/5: Loss=0.3576, Acc=87.14%
+Client 9 Epoch 2/5: Loss=0.3640, Acc=87.04%
+Client 9 Epoch 3/5: Loss=0.3559, Acc=87.34%
+Client 9 Epoch 4/5: Loss=0.3320, Acc=88.01%
+Client 9 Epoch 5/5: Loss=0.3158, Acc=88.68%
+2025-09-27 08:43:24,670 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 08:43:24,671 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 08:43:24,671 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 08:43:24,755 - INFO - Applied DiffPure to 5/11 selected of 11 detected
+2025-09-27 08:43:24,844 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 08:43:24,928 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:43:25,014 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:43:25,096 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:43:25,177 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:43:25,262 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:43:25,347 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:43:25,428 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:43:25,511 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:43:25,594 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:43:25,676 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:43:25,760 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:43:25,842 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 08:43:25,925 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 08:43:26,008 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 08:43:26,095 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:43:26,178 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 08:43:26,261 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 08:43:26,345 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 08:43:26,428 - INFO - Applied DiffPure to 3/12 selected of 12 detected
+2025-09-27 08:43:26,508 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:26,589 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:43:26,668 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 08:43:26,750 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 08:43:26,838 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:43:26,922 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:43:27,006 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 08:43:27,089 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 08:43:27,173 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:43:27,256 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:43:27,340 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:27,422 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:43:27,505 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 08:43:27,586 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 08:43:27,668 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 08:43:27,749 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:43:27,830 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:43:27,911 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 08:43:27,992 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 08:43:28,076 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:28,161 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 08:43:28,248 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 08:43:28,334 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:43:28,418 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:43:28,505 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:43:28,590 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:43:28,671 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 08:43:28,752 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 08:43:28,835 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:28,916 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:43:28,994 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:43:29,077 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 08:43:29,158 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:43:29,244 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 08:43:29,328 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 08:43:29,417 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:43:29,507 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 08:43:29,596 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 08:43:29,697 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 08:43:29,805 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 08:43:29,906 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 08:43:30,004 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 08:43:30,098 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 08:43:30,195 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 08:43:30,294 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 08:43:30,390 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:30,486 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 08:43:30,577 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:43:30,671 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:43:30,767 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 08:43:30,865 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 08:43:30,960 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:43:31,055 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 08:43:31,149 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 08:43:31,246 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 08:43:31,346 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 08:43:31,446 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 08:43:31,480 - INFO - ?? Round 13 Clean Acc: 83.34% | Adv Acc: 73.95% | MAE Detection: 5.13% | Time: 1162.4s
+2025-09-27 08:43:31,480 - INFO - ?? Total training time: 15333.1s
+2025-09-27 08:43:31,480 - INFO - ?? Round 14/15
+2025-09-27 08:43:31,517 - INFO - ?? Training client 1/10
+2025-09-27 08:45:26,181 - INFO - ? Client 1 completed in 114.7s
+2025-09-27 08:45:26,181 - INFO - ?? Training client 2/10
+2025-09-27 08:47:20,252 - INFO - ? Client 2 completed in 114.1s
+2025-09-27 08:47:20,252 - INFO - ?? Training client 3/10
+2025-09-27 08:49:12,615 - INFO - ? Client 3 completed in 112.4s
+2025-09-27 08:49:12,615 - INFO - ?? Training client 4/10
+2025-09-27 08:51:05,088 - INFO - ? Client 4 completed in 112.5s
+2025-09-27 08:51:05,088 - INFO - ?? Training client 5/10
+2025-09-27 08:52:57,027 - INFO - ? Client 5 completed in 111.9s
+2025-09-27 08:52:57,027 - INFO - ?? Training client 6/10
+2025-09-27 08:54:50,748 - INFO - ? Client 6 completed in 113.7s
+2025-09-27 08:54:50,749 - INFO - ?? Training client 7/10
+2025-09-27 08:56:46,788 - INFO - ? Client 7 completed in 116.0s
+2025-09-27 08:56:46,788 - INFO - ?? Training client 8/10
+2025-09-27 08:58:42,784 - INFO - ? Client 8 completed in 116.0s
+2025-09-27 08:58:42,784 - INFO - ?? Training client 9/10
+2025-09-27 09:00:36,663 - INFO - ? Client 9 completed in 113.9s
+2025-09-27 09:00:36,663 - INFO - ?? Training client 10/10
+2025-09-27 09:02:32,215 - INFO - ? Client 10 completed in 115.6s
+2025-09-27 09:02:32,215 - INFO - ?? Aggregating models...
+2025-09-27 09:02:32,232 - INFO - ? Model aggregation completed
+2025-09-27 09:02:32,232 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 09:02:37,315 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.3304, Acc=88.11%
+Client 0 Epoch 2/5: Loss=0.3451, Acc=87.56%
+Client 0 Epoch 3/5: Loss=0.3320, Acc=88.13%
+Client 0 Epoch 4/5: Loss=0.3098, Acc=89.11%
+Client 0 Epoch 5/5: Loss=0.2938, Acc=89.53%
+Client 1 Epoch 1/5: Loss=0.3272, Acc=88.16%
+Client 1 Epoch 2/5: Loss=0.3488, Acc=87.41%
+Client 1 Epoch 3/5: Loss=0.3346, Acc=87.97%
+Client 1 Epoch 4/5: Loss=0.3141, Acc=88.59%
+Client 1 Epoch 5/5: Loss=0.2893, Acc=89.65%
+Client 2 Epoch 1/5: Loss=0.3266, Acc=88.36%
+Client 2 Epoch 2/5: Loss=0.3459, Acc=87.61%
+Client 2 Epoch 3/5: Loss=0.3290, Acc=88.19%
+Client 2 Epoch 4/5: Loss=0.3089, Acc=88.88%
+Client 2 Epoch 5/5: Loss=0.2925, Acc=89.49%
+Client 3 Epoch 1/5: Loss=0.3272, Acc=88.23%
+Client 3 Epoch 2/5: Loss=0.3443, Acc=87.52%
+Client 3 Epoch 3/5: Loss=0.3323, Acc=88.13%
+Client 3 Epoch 4/5: Loss=0.3130, Acc=88.86%
+Client 3 Epoch 5/5: Loss=0.2917, Acc=89.49%
+Client 4 Epoch 1/5: Loss=0.3260, Acc=88.43%
+Client 4 Epoch 2/5: Loss=0.3460, Acc=87.55%
+Client 4 Epoch 3/5: Loss=0.3301, Acc=88.22%
+Client 4 Epoch 4/5: Loss=0.3107, Acc=88.87%
+Client 4 Epoch 5/5: Loss=0.2912, Acc=89.58%
+Client 5 Epoch 1/5: Loss=0.3277, Acc=88.10%
+Client 5 Epoch 2/5: Loss=0.3430, Acc=87.59%
+Client 5 Epoch 3/5: Loss=0.3280, Acc=88.14%
+Client 5 Epoch 4/5: Loss=0.3105, Acc=88.90%
+Client 5 Epoch 5/5: Loss=0.2938, Acc=89.47%
+Client 6 Epoch 1/5: Loss=0.3276, Acc=88.30%
+Client 6 Epoch 2/5: Loss=0.3486, Acc=87.44%
+Client 6 Epoch 3/5: Loss=0.3317, Acc=88.09%
+Client 6 Epoch 4/5: Loss=0.3084, Acc=88.79%
+Client 6 Epoch 5/5: Loss=0.2951, Acc=89.36%
+Client 7 Epoch 1/5: Loss=0.3225, Acc=88.59%
+Client 7 Epoch 2/5: Loss=0.3507, Acc=87.33%
+Client 7 Epoch 3/5: Loss=0.3259, Acc=88.27%
+Client 7 Epoch 4/5: Loss=0.3122, Acc=88.87%
+Client 7 Epoch 5/5: Loss=0.2915, Acc=89.39%
+Client 8 Epoch 1/5: Loss=0.3237, Acc=88.29%
+Client 8 Epoch 2/5: Loss=0.3498, Acc=87.47%
+Client 8 Epoch 3/5: Loss=0.3327, Acc=88.06%
+Client 8 Epoch 4/5: Loss=0.3110, Acc=88.92%
+Client 8 Epoch 5/5: Loss=0.2931, Acc=89.47%
+Client 9 Epoch 1/5: Loss=0.3292, Acc=88.15%
+Client 9 Epoch 2/5: Loss=0.3394, Acc=87.65%
+Client 9 Epoch 3/5: Loss=0.3319, Acc=88.23%
+Client 9 Epoch 4/5: Loss=0.3140, Acc=88.66%
+Client 9 Epoch 5/5: Loss=0.2929, Acc=89.51%
+2025-09-27 09:02:37,518 - INFO - Applied DiffPure to 8/12 selected of 12 detected
+2025-09-27 09:02:37,518 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 09:02:37,519 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 09:02:37,614 - INFO - Applied DiffPure to 4/11 selected of 11 detected
+2025-09-27 09:02:37,709 - INFO - Applied DiffPure to 6/9 selected of 9 detected
+2025-09-27 09:02:37,805 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 09:02:37,902 - INFO - Applied DiffPure to 0/5 selected of 5 detected
+2025-09-27 09:02:37,986 - INFO - Applied DiffPure to 0/5 selected of 5 detected
+2025-09-27 09:02:38,069 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:02:38,151 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:02:38,232 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:02:38,314 - INFO - Applied DiffPure to 3/9 selected of 9 detected
+2025-09-27 09:02:38,393 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:02:38,473 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 09:02:38,553 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:02:38,631 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:02:38,712 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 09:02:38,790 - INFO - Applied DiffPure to 0/6 selected of 6 detected
+2025-09-27 09:02:38,870 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 09:02:38,950 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 09:02:39,030 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 09:02:39,110 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 09:02:39,189 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:02:39,276 - INFO - Applied DiffPure to 4/12 selected of 12 detected
+2025-09-27 09:02:39,357 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 09:02:39,437 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 09:02:39,518 - INFO - Applied DiffPure to 0/4 selected of 4 detected
+2025-09-27 09:02:39,599 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 09:02:39,679 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:02:39,761 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 09:02:39,842 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 09:02:39,925 - INFO - Applied DiffPure to 6/12 selected of 12 detected
+2025-09-27 09:02:40,006 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:02:40,086 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:02:40,168 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:02:40,250 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 09:02:40,331 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 09:02:40,413 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:02:40,491 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 09:02:40,572 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:02:40,653 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:02:40,734 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 09:02:40,817 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 09:02:40,899 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 09:02:40,980 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 09:02:41,061 - INFO - Applied DiffPure to 6/10 selected of 10 detected
+2025-09-27 09:02:41,141 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 09:02:41,226 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:02:41,308 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:02:41,395 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 09:02:41,481 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 09:02:41,561 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:02:41,641 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 09:02:41,722 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:02:41,800 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:02:41,879 - INFO - Applied DiffPure to 5/5 selected of 5 detected
+2025-09-27 09:02:41,959 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:02:42,040 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:02:42,123 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 09:02:42,202 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:02:42,282 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 09:02:42,362 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 09:02:42,444 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 09:02:42,528 - INFO - Applied DiffPure to 0/7 selected of 7 detected
+2025-09-27 09:02:42,609 - INFO - Applied DiffPure to 3/8 selected of 8 detected
+2025-09-27 09:02:42,693 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 09:02:42,774 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:02:42,856 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:02:42,937 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 09:02:43,021 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:02:43,103 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:02:43,187 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:02:43,270 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:02:43,354 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 09:02:43,438 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 09:02:43,521 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:02:43,604 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 09:02:43,681 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 09:02:43,760 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:02:43,838 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 09:02:43,916 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 09:02:43,954 - INFO - ?? Round 14 Clean Acc: 84.02% | Adv Acc: 74.54% | MAE Detection: 5.13% | Time: 1152.5s
+2025-09-27 09:02:43,954 - INFO - ?? Total training time: 16485.5s
+2025-09-27 09:02:43,955 - INFO - ?? Round 15/15
+2025-09-27 09:02:43,991 - INFO - ?? Training client 1/10
+2025-09-27 09:04:37,567 - INFO - ? Client 1 completed in 113.6s
+2025-09-27 09:04:37,567 - INFO - ?? Training client 2/10
+2025-09-27 09:06:34,504 - INFO - ? Client 2 completed in 116.9s
+2025-09-27 09:06:34,505 - INFO - ?? Training client 3/10
+2025-09-27 09:08:28,110 - INFO - ? Client 3 completed in 113.6s
+2025-09-27 09:08:28,111 - INFO - ?? Training client 4/10
+2025-09-27 09:10:21,504 - INFO - ? Client 4 completed in 113.4s
+2025-09-27 09:10:21,505 - INFO - ?? Training client 5/10
+2025-09-27 09:12:15,833 - INFO - ? Client 5 completed in 114.3s
+2025-09-27 09:12:15,834 - INFO - ?? Training client 6/10
+2025-09-27 09:14:13,536 - INFO - ? Client 6 completed in 117.7s
+2025-09-27 09:14:13,537 - INFO - ?? Training client 7/10
+2025-09-27 09:16:10,014 - INFO - ? Client 7 completed in 116.5s
+2025-09-27 09:16:10,014 - INFO - ?? Training client 8/10
+2025-09-27 09:18:05,684 - INFO - ? Client 8 completed in 115.7s
+2025-09-27 09:18:05,684 - INFO - ?? Training client 9/10
+2025-09-27 09:20:00,788 - INFO - ? Client 9 completed in 115.1s
+2025-09-27 09:20:00,789 - INFO - ?? Training client 10/10
+2025-09-27 09:21:55,827 - INFO - ? Client 10 completed in 115.0s
+2025-09-27 09:21:55,827 - INFO - ?? Aggregating models...
+2025-09-27 09:21:55,841 - INFO - ? Model aggregation completed
+2025-09-27 09:21:55,841 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-27 09:22:00,305 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/5: Loss=0.3064, Acc=89.03%
+Client 0 Epoch 2/5: Loss=0.3268, Acc=88.23%
+Client 0 Epoch 3/5: Loss=0.3123, Acc=88.77%
+Client 0 Epoch 4/5: Loss=0.2916, Acc=89.50%
+Client 0 Epoch 5/5: Loss=0.2686, Acc=90.43%
+Client 1 Epoch 1/5: Loss=0.3076, Acc=88.93%
+Client 1 Epoch 2/5: Loss=0.3279, Acc=88.13%
+Client 1 Epoch 3/5: Loss=0.3090, Acc=88.89%
+Client 1 Epoch 4/5: Loss=0.2956, Acc=89.49%
+Client 1 Epoch 5/5: Loss=0.2660, Acc=90.51%
+Client 2 Epoch 1/5: Loss=0.3015, Acc=89.12%
+Client 2 Epoch 2/5: Loss=0.3271, Acc=88.23%
+Client 2 Epoch 3/5: Loss=0.3082, Acc=88.97%
+Client 2 Epoch 4/5: Loss=0.2948, Acc=89.38%
+Client 2 Epoch 5/5: Loss=0.2741, Acc=90.18%
+Client 3 Epoch 1/5: Loss=0.3076, Acc=88.92%
+Client 3 Epoch 2/5: Loss=0.3297, Acc=88.13%
+Client 3 Epoch 3/5: Loss=0.3137, Acc=88.65%
+Client 3 Epoch 4/5: Loss=0.2921, Acc=89.62%
+Client 3 Epoch 5/5: Loss=0.2675, Acc=90.42%
+Client 4 Epoch 1/5: Loss=0.3054, Acc=88.90%
+Client 4 Epoch 2/5: Loss=0.3253, Acc=88.20%
+Client 4 Epoch 3/5: Loss=0.3137, Acc=88.83%
+Client 4 Epoch 4/5: Loss=0.2921, Acc=89.49%
+Client 4 Epoch 5/5: Loss=0.2725, Acc=90.28%
+Client 5 Epoch 1/5: Loss=0.3032, Acc=89.04%
+Client 5 Epoch 2/5: Loss=0.3252, Acc=88.36%
+Client 5 Epoch 3/5: Loss=0.3087, Acc=88.79%
+Client 5 Epoch 4/5: Loss=0.2852, Acc=89.82%
+Client 5 Epoch 5/5: Loss=0.2752, Acc=90.27%
+Client 6 Epoch 1/5: Loss=0.3059, Acc=88.92%
+Client 6 Epoch 2/5: Loss=0.3224, Acc=88.31%
+Client 6 Epoch 3/5: Loss=0.3117, Acc=88.71%
+Client 6 Epoch 4/5: Loss=0.2885, Acc=89.53%
+Client 6 Epoch 5/5: Loss=0.2696, Acc=90.31%
+Client 7 Epoch 1/5: Loss=0.3090, Acc=88.74%
+Client 7 Epoch 2/5: Loss=0.3214, Acc=88.39%
+Client 7 Epoch 3/5: Loss=0.3137, Acc=88.64%
+Client 7 Epoch 4/5: Loss=0.2899, Acc=89.65%
+Client 7 Epoch 5/5: Loss=0.2705, Acc=90.35%
+Client 8 Epoch 1/5: Loss=0.3042, Acc=88.97%
+Client 8 Epoch 2/5: Loss=0.3275, Acc=88.21%
+Client 8 Epoch 3/5: Loss=0.3112, Acc=88.81%
+Client 8 Epoch 4/5: Loss=0.2939, Acc=89.51%
+Client 8 Epoch 5/5: Loss=0.2692, Acc=90.44%
+Client 9 Epoch 1/5: Loss=0.3059, Acc=89.02%
+Client 9 Epoch 2/5: Loss=0.3301, Acc=88.16%
+Client 9 Epoch 3/5: Loss=0.3132, Acc=88.63%
+Client 9 Epoch 4/5: Loss=0.2969, Acc=89.49%
+Client 9 Epoch 5/5: Loss=0.2708, Acc=90.46%
+2025-09-27 09:22:00,502 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 09:22:00,503 - INFO - MAE Debug - Detection: 12/128
+2025-09-27 09:22:00,503 - INFO - MAE Debug - Recon errors range: [0.0079, 0.1864]
+2025-09-27 09:22:00,589 - INFO - Applied DiffPure to 4/11 selected of 11 detected
+2025-09-27 09:22:00,674 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 09:22:00,757 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 09:22:00,840 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 09:22:00,930 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 09:22:01,012 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:01,097 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:22:01,181 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:22:01,263 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 09:22:01,345 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:22:01,428 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 09:22:01,509 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:22:01,591 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:22:01,674 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:01,758 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:22:01,842 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 09:22:01,929 - INFO - Applied DiffPure to 1/2 selected of 2 detected
+2025-09-27 09:22:02,015 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 09:22:02,099 - INFO - Applied DiffPure to 1/5 selected of 5 detected
+2025-09-27 09:22:02,183 - INFO - Applied DiffPure to 2/5 selected of 5 detected
+2025-09-27 09:22:02,267 - INFO - Applied DiffPure to 3/12 selected of 12 detected
+2025-09-27 09:22:02,352 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:22:02,435 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 09:22:02,516 - INFO - Applied DiffPure to 1/4 selected of 4 detected
+2025-09-27 09:22:02,601 - INFO - Applied DiffPure to 3/4 selected of 4 detected
+2025-09-27 09:22:02,687 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:22:02,773 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 09:22:02,856 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:22:02,940 - INFO - Applied DiffPure to 5/12 selected of 12 detected
+2025-09-27 09:22:03,021 - INFO - Applied DiffPure to 4/5 selected of 5 detected
+2025-09-27 09:22:03,104 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:22:03,191 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:22:03,274 - INFO - Applied DiffPure to 1/8 selected of 8 detected
+2025-09-27 09:22:03,366 - INFO - Applied DiffPure to 7/12 selected of 12 detected
+2025-09-27 09:22:03,451 - INFO - Applied DiffPure to 1/6 selected of 6 detected
+2025-09-27 09:22:03,538 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 09:22:03,619 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:22:03,701 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:22:03,784 - INFO - Applied DiffPure to 0/3 selected of 3 detected
+2025-09-27 09:22:03,866 - INFO - Applied DiffPure to 2/4 selected of 4 detected
+2025-09-27 09:22:03,951 - INFO - Applied DiffPure to 4/6 selected of 6 detected
+2025-09-27 09:22:04,035 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 09:22:04,120 - INFO - Applied DiffPure to 5/10 selected of 10 detected
+2025-09-27 09:22:04,204 - INFO - Applied DiffPure to 4/9 selected of 9 detected
+2025-09-27 09:22:04,288 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:04,372 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 09:22:04,465 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 09:22:04,557 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 09:22:04,643 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:22:04,724 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:22:04,807 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:22:04,895 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:04,980 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:05,063 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:22:05,146 - INFO - Applied DiffPure to 5/8 selected of 8 detected
+2025-09-27 09:22:05,229 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 09:22:05,313 - INFO - Applied DiffPure to 3/6 selected of 6 detected
+2025-09-27 09:22:05,393 - INFO - Applied DiffPure to 2/3 selected of 3 detected
+2025-09-27 09:22:05,474 - INFO - Applied DiffPure to 0/2 selected of 2 detected
+2025-09-27 09:22:05,555 - INFO - Applied DiffPure to 4/8 selected of 8 detected
+2025-09-27 09:22:05,638 - INFO - Applied DiffPure to 1/7 selected of 7 detected
+2025-09-27 09:22:05,721 - INFO - Applied DiffPure to 2/8 selected of 8 detected
+2025-09-27 09:22:05,805 - INFO - Applied DiffPure to 4/4 selected of 4 detected
+2025-09-27 09:22:05,887 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:22:05,969 - INFO - Applied DiffPure to 3/5 selected of 5 detected
+2025-09-27 09:22:06,052 - INFO - Applied DiffPure to 5/9 selected of 9 detected
+2025-09-27 09:22:06,136 - INFO - Applied DiffPure to 5/6 selected of 6 detected
+2025-09-27 09:22:06,218 - INFO - Applied DiffPure to 2/6 selected of 6 detected
+2025-09-27 09:22:06,301 - INFO - Applied DiffPure to 2/7 selected of 7 detected
+2025-09-27 09:22:06,383 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:22:06,465 - INFO - Applied DiffPure to 1/3 selected of 3 detected
+2025-09-27 09:22:06,548 - INFO - Applied DiffPure to 5/7 selected of 7 detected
+2025-09-27 09:22:06,629 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:22:06,716 - INFO - Applied DiffPure to 3/7 selected of 7 detected
+2025-09-27 09:22:06,799 - INFO - Applied DiffPure to 4/10 selected of 10 detected
+2025-09-27 09:22:06,877 - INFO - Applied DiffPure to 4/7 selected of 7 detected
+2025-09-27 09:22:06,957 - INFO - Applied DiffPure to 1/9 selected of 9 detected
+2025-09-27 09:22:07,040 - INFO - Applied DiffPure to 0/1 selected of 1 detected
+2025-09-27 09:22:07,075 - INFO - ?? Round 15 Clean Acc: 83.81% | Adv Acc: 74.74% | MAE Detection: 5.13% | Time: 1163.1s
+2025-09-27 09:22:07,075 - INFO - ?? Total training time: 17648.7s
+2025-09-27 09:22:07,076 - INFO - ?? Training completed in 17648.7s
+2025-09-27 09:22:07,077 - INFO - ?? Results saved to: experiment_results/results_cifar10_20250927_092207.json
+2025-09-27 09:22:07,077 - INFO - ?? Latest results: experiment_results/latest_results_cifar10.json
+2025-09-27 09:22:07,077 - INFO - ?? EXPERIMENT RESULTS SUMMARY
+2025-09-27 09:22:07,077 - INFO - Dataset: CIFAR10
+2025-09-27 09:22:07,077 - INFO - Clean Accuracy: 83.81%
+2025-09-27 09:22:07,077 - INFO - Adversarial Accuracy: 74.74%
+2025-09-27 09:22:07,077 - INFO - MAE Detection Rate: 5.13%
+2025-09-27 09:22:07,077 - INFO - Training Time: 17648.7 seconds
+2025-09-27 09:22:07,077 - INFO - Results File: experiment_results/results_cifar10_20250927_092207.json
+2025-09-27 09:22:07,095 - INFO - ?? Training pipeline completed successfully!

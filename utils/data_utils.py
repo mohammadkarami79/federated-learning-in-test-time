@@ -11,6 +11,41 @@ from typing import Tuple, List, Optional
 from pathlib import Path
 import torch.utils.data as data_utils
 from utils.datasets import Br35HDataset, get_br35h_transforms, get_br35h_info
+import glob
+
+def _resolve_br35h_root(base_path: str) -> str:
+    """Resolve the BR35H dataset root robustly.
+    Tries:
+      - If base_path already points to a folder with 'no' and 'yes' → use it
+      - base_path/Br35H
+      - base_path/BR35H
+      - base_path/br35h
+    Returns the first match; otherwise returns base_path/Br35H (default).
+    """
+    candidates = []
+    # If base_path itself contains class dirs, use it
+    if os.path.isdir(os.path.join(base_path, 'no')) and os.path.isdir(os.path.join(base_path, 'yes')):
+        candidates.append(base_path)
+    # Common variants
+    for name in ['Br35H', 'BR35H', 'br35h']:
+        candidates.append(os.path.join(base_path, name))
+    # Also check parent directory variants if base_path itself seems like a br35h folder
+    parent = os.path.dirname(base_path.rstrip('/\\')) or '.'
+    for name in ['Br35H', 'BR35H', 'br35h']:
+        candidates.append(os.path.join(parent, name))
+    # Case-insensitive scan of parent directory for a folder named like br35h
+    if os.path.isdir(parent):
+        try:
+            for entry in os.listdir(parent):
+                if entry.lower() == 'br35h':
+                    candidates.append(os.path.join(parent, entry))
+        except Exception:
+            pass
+    for cand in candidates:
+        if os.path.isdir(os.path.join(cand, 'no')) and os.path.isdir(os.path.join(cand, 'yes')):
+            return cand
+    # Fallback to base_path/Br35H
+    return os.path.join(base_path, 'Br35H')
 
 def get_dataloader(cfg, split="train"):
     """
@@ -122,8 +157,9 @@ def get_dataset(
                 root=data_path, train=False, download=True, transform=test_transform
             )
         elif dataset_name == 'br35h':
+            br_root = _resolve_br35h_root(data_path)
             full_dataset = Br35HDataset(
-                root_dir=os.path.join(data_path, 'Br35H'),
+                root_dir=br_root,
                 transform=train_transform
             )
             train_size = int(0.8 * len(full_dataset))
@@ -161,8 +197,10 @@ def get_dataset(
                 root='./data', train=train, download=True, transform=transform
             )
         elif dataset_name == 'br35h':
+            base_path = './data'
+            br_root = _resolve_br35h_root(base_path)
             dataset = Br35HDataset(
-                root_dir='./data/Br35H',
+                root_dir=br_root,
                 transform=transform
             )
         else:
@@ -479,3 +517,35 @@ def create_non_iid_loaders(
         loaders.append(loader)
         
     return loaders
+
+def create_federated_datasets(dataset, num_clients, distribution='non_iid', batch_size=32, alpha=0.3):
+    """Create federated datasets for multiple clients
+    
+    Args:
+        dataset: PyTorch dataset to partition
+        num_clients: Number of federated clients
+        distribution: 'iid' or 'non_iid' distribution type
+        batch_size: Batch size for data loaders
+        alpha: Dirichlet alpha parameter for non-IID (lower = more non-IID)
+    
+    Returns:
+        List of DataLoaders for each client
+    """
+    if distribution.lower() == 'iid':
+        # Simple IID partitioning
+        dataset_size = len(dataset)
+        client_size = dataset_size // num_clients
+        
+        client_datasets = []
+        for i in range(num_clients):
+            start_idx = i * client_size
+            end_idx = start_idx + client_size if i < num_clients - 1 else dataset_size
+            indices = list(range(start_idx, end_idx))
+            client_dataset = Subset(dataset, indices)
+            loader = DataLoader(client_dataset, batch_size=batch_size, shuffle=True)
+            client_datasets.append(loader)
+        
+        return client_datasets
+    else:
+        # Use existing non-IID function
+        return create_non_iid_loaders(dataset, num_clients, alpha, batch_size)

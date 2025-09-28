@@ -22,12 +22,18 @@ import torch.nn.functional as F
 from diffusion.diffuser import UNet
 from utils.data_utils import get_dataset
 import torch.utils.data as data_utils
+import logging as _logging
+
+# Ensure a module-level logger is available for helper functions
+logger = _logging.getLogger(__name__)
 
 def setup_logging():
     """Setup logging"""
+    # Force reconfigure logging in case something configured it earlier (e.g., notebooks)
     logging.basicConfig(
         level=logging.INFO,
-        format='%(asctime)s - %(levelname)s - %(message)s'
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        force=True
     )
     return logging.getLogger(__name__)
 
@@ -37,10 +43,14 @@ def parse_args():
     parser.add_argument('--dataset', type=str, default='cifar10', 
                        choices=['cifar10', 'cifar100', 'mnist', 'br35h'])
     parser.add_argument('--epochs', type=int, default=50)  # PROFESSIONAL: Increased for paper quality
-    parser.add_argument('--batch-size', type=int, default=64)  # REDUCED: For memory compatibility
+    parser.add_argument('--batch-size', type=int, default=16)  # Optimized: Better than 8
+    parser.add_argument('--gradient-accumulation-steps', type=int, default=4,
+                       help='Accumulate gradients over multiple steps')
+    parser.add_argument('--mixed-precision', action='store_true', 
+                       help='Use mixed precision training')
     parser.add_argument('--lr', type=float, default=1e-4)
     parser.add_argument('--sigma', type=float, default=0.04)
-    parser.add_argument('--hidden-channels', type=int, default=256,  # REDUCED: For memory compatibility 
+    parser.add_argument('--hidden-channels', type=int, default=256,  # Compatible with existing checkpoint
                        help='Number of hidden channels in UNet')
     parser.add_argument('--resume', type=str, default=None,
                        help='Path to checkpoint to resume from')
@@ -165,23 +175,65 @@ def load_checkpoint(model, optimizer, scheduler, checkpoint_path):
     return start_epoch, best_loss
 
 def save_checkpoint(model, optimizer, scheduler, epoch, best_loss, save_path):
-    """Save checkpoint for resuming training"""
+    """Save checkpoint atomically with legacy serialization to avoid zip writer issues."""
+    import os, tempfile
+    from pathlib import Path
+
+    save_path = Path(save_path)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+
     checkpoint = {
         'epoch': epoch,
+        'best_loss': best_loss,
+        # keep only state_dicts to reduce file size
         'model_state_dict': model.state_dict(),
-        'optimizer_state_dict': optimizer.state_dict(),
-        'scheduler_state_dict': scheduler.state_dict(),
-        'best_loss': best_loss
+        'optimizer_state_dict': optimizer.state_dict() if optimizer is not None else None,
+        'scheduler_state_dict': scheduler.state_dict() if scheduler is not None else None,
     }
-    torch.save(checkpoint, save_path)
 
-def train_epoch(model, train_loader, optimizer, device, cfg, epoch):
+    # atomic write: write to temp file then replace
+    fd, tmp_path = tempfile.mkstemp(prefix='.tmp_ckpt_', dir=str(save_path.parent))
+    os.close(fd)
+    try:
+        torch.save(checkpoint, tmp_path, _use_new_zipfile_serialization=False)
+        os.replace(tmp_path, str(save_path))
+    except Exception:
+        try:
+            os.remove(tmp_path)
+        except Exception:
+            pass
+        raise
+
+def save_state_dict_atomic(state_dict, save_path):
+    """Atomically save a state_dict with legacy serialization to avoid zip writer issues."""
+    import os, tempfile
+    from pathlib import Path
+    save_path = Path(save_path)
+    save_path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp_path = tempfile.mkstemp(prefix='.tmp_sd_', dir=str(save_path.parent))
+    os.close(fd)
+    try:
+        torch.save(state_dict, tmp_path, _use_new_zipfile_serialization=False)
+        os.replace(tmp_path, str(save_path))
+    except Exception:
+        try:
+            os.remove(tmp_path)
+        except Exception:
+            pass
+        raise
+
+def train_epoch(model, train_loader, optimizer, device, cfg, epoch, args=None):
+    from torch.cuda.amp import autocast, GradScaler
+    
     model.train()
     total_loss = 0.0
     
+    # Initialize gradient scaler for mixed precision
+    scaler = GradScaler() if args and args.mixed_precision else None
+    accumulation_steps = getattr(args, 'gradient_accumulation_steps', 1)
+    
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
         
         batch_size = data.shape[0]
         t = torch.rand(batch_size, device=device)
@@ -197,24 +249,42 @@ def train_epoch(model, train_loader, optimizer, device, cfg, epoch):
         if getattr(cfg, 'ANATOMICAL_CONSTRAINTS', False):
             noisy_data = apply_anatomical_constraints(noisy_data)
         
-        # Predict noise
-        predicted_noise = model(noisy_data, t)
-        
-        # Compute loss
-        if getattr(cfg, 'RICIAN_NOISE', False):
-            # Rician noise loss
-            loss = F.mse_loss(predicted_noise, (data - noisy_data))
+        # Mixed precision training
+        if scaler:
+            with autocast():
+                predicted_noise = model(noisy_data, t)
+                if getattr(cfg, 'RICIAN_NOISE', False):
+                    loss = F.mse_loss(predicted_noise, (data - noisy_data))
+                else:
+                    loss = F.mse_loss(predicted_noise, (data - noisy_data))
+                loss = loss / accumulation_steps  # Scale loss for accumulation
+            
+            scaler.scale(loss).backward()
+            
+            if (batch_idx + 1) % accumulation_steps == 0:
+                scaler.step(optimizer)
+                scaler.update()
+                optimizer.zero_grad()
         else:
-            # Standard MSE loss
-            loss = F.mse_loss(predicted_noise, (data - noisy_data))
+            # Standard training
+            predicted_noise = model(noisy_data, t)
+            if getattr(cfg, 'RICIAN_NOISE', False):
+                loss = F.mse_loss(predicted_noise, (data - noisy_data))
+            else:
+                loss = F.mse_loss(predicted_noise, (data - noisy_data))
+            
+            loss = loss / accumulation_steps  # Scale loss for accumulation
+            loss.backward()
+            
+            if (batch_idx + 1) % accumulation_steps == 0:
+                optimizer.step()
+                optimizer.zero_grad()
         
-        loss.backward()
-        optimizer.step()
+        total_loss += loss.item() * accumulation_steps  # Unscale for logging
         
-        total_loss += loss.item()
-        
-        if batch_idx % 100 == 0:
-            print(f'Epoch {epoch}, Batch {batch_idx}, Loss: {loss.item():.6f}')
+        if batch_idx % (100 * accumulation_steps) == 0:
+            effective_batch_size = data.shape[0] * accumulation_steps
+            print(f'Epoch {epoch}, Batch {batch_idx}, Loss: {loss.item() * accumulation_steps:.6f}, Eff. Batch Size: {effective_batch_size}')
     
     return total_loss / len(train_loader)
 
@@ -363,7 +433,7 @@ def main():
         logger.info(f"Epoch {epoch + 1}/{n_epochs}")
         
         # Train
-        train_loss = train_epoch(model, train_loader, optimizer, device, cfg, epoch)
+        train_loss = train_epoch(model, train_loader, optimizer, device, cfg, epoch, args)
         logger.info(f"Training Loss: {train_loss:.6f}")
         
         # Evaluate
@@ -381,12 +451,12 @@ def main():
         if val_loss < best_loss:
             best_loss = val_loss
             best_model_path = checkpoints_dir / f'diffuser_{cfg.DATASET.lower()}.pt'
-            torch.save(model.state_dict(), best_model_path)
+            save_state_dict_atomic(model.state_dict(), best_model_path)
             logger.info(f"Saved best model with loss: {best_loss:.6f} to {best_model_path}")
     
     # Save final model (FIXED: Issue 8)
     final_model_path = checkpoints_dir / f'diffuser_{cfg.DATASET.lower()}_final.pt'
-    torch.save(model.state_dict(), final_model_path)
+    save_state_dict_atomic(model.state_dict(), final_model_path)
     logger.info(f"Saved final model to {final_model_path}")
     
     logger.info("Training complete!")

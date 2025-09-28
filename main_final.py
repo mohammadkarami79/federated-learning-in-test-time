@@ -56,7 +56,7 @@ def test_basic_components(cfg):
         # Test diffusion model loading
         logger.info("🔄 Loading diffusion model...")
         from diffusion.diffuser import UNet
-        diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=64)
+        diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=256)
         diffusion_path = Path(f'checkpoints/diffuser_{cfg.DATASET.lower()}.pt')
         
         if diffusion_path.exists():
@@ -131,7 +131,7 @@ def run_final_training(cfg):
         
         # Load diffusion model
         logger.info("🔄 Loading diffusion model...")
-        diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=64)
+        diffuser = UNet(in_channels=cfg.IMG_CHANNELS, hidden_channels=256)
         diffusion_path = Path(f'checkpoints/diffuser_{cfg.DATASET.lower()}.pt')
         saved_model = torch.load(diffusion_path, map_location=cfg.DEVICE)
         diffuser.load_state_dict(saved_model)

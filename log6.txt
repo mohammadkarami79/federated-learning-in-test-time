@@ -1,0 +1,699 @@
+nohup: ignoring input
+2025-09-10 13:00:38,146 - INFO - Starting ULTIMATE CIFAR-10 Training (MAE Training Disabled)...
+2025-09-10 13:00:39,542 - INFO - Creating ULTIMATE optimized config...
+2025-09-10 13:00:39,790 - INFO - ULTIMATE config created
+2025-09-10 13:00:39,790 - INFO - ULTIMATE OPTIMIZATIONS:
+2025-09-10 13:00:39,790 - INFO -    - MAE training: DISABLED (avoids dimension errors)
+2025-09-10 13:00:39,790 - INFO -    - MAE threshold: 0.8 (reduces over-detection)
+2025-09-10 13:00:39,790 - INFO -    - DiffPure steps: 200 (stronger purification)
+2025-09-10 13:00:39,790 - INFO -    - Attack strength: 2/255 (weaker attacks)
+2025-09-10 13:00:39,790 - INFO -    - Expected: Clean 70%+, Adv 50%+, MAE 20-30%
+Complete Training Pipeline
+============================================================
+2025-09-10 13:00:39,792 - INFO - Configuration: full mode, CIFAR10 dataset
+2025-09-10 13:00:39,792 - INFO - Settings: 15 rounds, 5 epochs, 10 clients
+2025-09-10 13:00:39,820 - INFO - ??? GPU Memory: 23.6 GB
+2025-09-10 13:00:39,820 - INFO - Training diffusion model for BR35H...
+2025-09-10 13:00:39,820 - INFO - Diffusion model already exists: checkpoints/diffuser_cifar10.pt
+2025-09-10 13:00:39,820 - INFO - ?? Training MAE detector (required for small dataset)...
+2025-09-10 13:00:39,820 - INFO - Training MAE detector for Cifar10...
+2025-09-10 13:04:21,230 - ERROR - ? MAE detector training failed: 2025-09-10 13:00:41,244 - INFO - ?? Training MAE detector for CIFAR10
+2025-09-10 13:00:41,244 - INFO - ?? Settings: 20 epochs, batch size 64
+2025-09-10 13:04:20,490 - ERROR - ? MAE detector training failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:04:20,493 - ERROR - ? MAE detector training failed!
+
+2025-09-10 13:04:21,230 - WARNING - ?? MAE detector training failed, continuing with default threshold
+2025-09-10 13:04:21,231 - INFO - ?? Starting federated training with 10 clients, 15 rounds
+2025-09-10 13:04:21,231 - INFO - ?? Each client trains for 5 epochs per round
+2025-09-10 13:04:23,225 - INFO - ?? Loading components...
+2025-09-10 13:04:23,407 - INFO - ? All imports successful
+2025-09-10 13:04:23,407 - INFO - ?? Loading datasets...
+2025-09-10 13:04:24,885 - INFO - ? Dataset loaded: 50000 train, 10000 test
+2025-09-10 13:04:24,886 - INFO - ? Test loader created with 10000 samples
+2025-09-10 13:04:24,886 - INFO - ?? Loading diffusion model...
+2025-09-10 13:04:26,325 - INFO - ? Loaded diffusion model: checkpoints/diffuser_cifar10.pt
+2025-09-10 13:04:26,325 - INFO - ?? Initializing components...
+2025-09-10 13:04:42,620 - INFO - ? Using user's MAE detector implementation
+2025-09-10 13:04:42,622 - INFO - Using user's MAE detector implementation
+2025-09-10 13:04:42,741 - INFO - ? Using user's MAE detector implementation
+2025-09-10 13:04:42,743 - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-09-10 13:04:43,028 - INFO - ?? Server initialized with global models
+2025-09-10 13:04:43,179 - INFO - ?? Round 1/15
+2025-09-10 13:04:43,206 - INFO - ?? Training client 1/10
+Client 0 Epoch 1/5: Loss=1.8840, Acc=30.91%
+Client 0 Epoch 2/5: Loss=1.5354, Acc=43.81%
+Client 0 Epoch 3/5: Loss=1.3887, Acc=49.56%
+Client 0 Epoch 4/5: Loss=1.2752, Acc=53.80%
+Client 0 Epoch 5/5: Loss=1.1949, Acc=56.91%
+2025-09-10 13:06:35,187 - INFO - ? Client 1 completed in 112.0s
+2025-09-10 13:06:35,188 - INFO - ?? Training client 2/10
+Client 1 Epoch 1/5: Loss=1.8757, Acc=30.76%
+Client 1 Epoch 2/5: Loss=1.5227, Acc=44.14%
+Client 1 Epoch 3/5: Loss=1.3699, Acc=50.08%
+Client 1 Epoch 4/5: Loss=1.2610, Acc=54.31%
+Client 1 Epoch 5/5: Loss=1.1899, Acc=57.17%
+2025-09-10 13:08:27,963 - INFO - ? Client 2 completed in 112.8s
+2025-09-10 13:08:27,963 - INFO - ?? Training client 3/10
+Client 2 Epoch 1/5: Loss=1.8948, Acc=29.94%
+Client 2 Epoch 2/5: Loss=1.5360, Acc=43.33%
+Client 2 Epoch 3/5: Loss=1.3925, Acc=49.38%
+Client 2 Epoch 4/5: Loss=1.2870, Acc=53.62%
+Client 2 Epoch 5/5: Loss=1.2014, Acc=56.73%
+2025-09-10 13:10:17,814 - INFO - ? Client 3 completed in 109.9s
+2025-09-10 13:10:17,814 - INFO - ?? Training client 4/10
+Client 3 Epoch 1/5: Loss=1.8777, Acc=30.97%
+Client 3 Epoch 2/5: Loss=1.5327, Acc=43.45%
+Client 3 Epoch 3/5: Loss=1.3880, Acc=49.30%
+Client 3 Epoch 4/5: Loss=1.2748, Acc=53.95%
+Client 3 Epoch 5/5: Loss=1.2023, Acc=56.47%
+2025-09-10 13:12:07,624 - INFO - ? Client 4 completed in 109.8s
+2025-09-10 13:12:07,642 - INFO - ?? Training client 5/10
+Client 4 Epoch 1/5: Loss=1.8810, Acc=30.69%
+Client 4 Epoch 2/5: Loss=1.5196, Acc=44.37%
+Client 4 Epoch 3/5: Loss=1.3688, Acc=50.15%
+Client 4 Epoch 4/5: Loss=1.2666, Acc=54.07%
+Client 4 Epoch 5/5: Loss=1.1943, Acc=57.00%
+2025-09-10 13:13:57,802 - INFO - ? Client 5 completed in 110.2s
+2025-09-10 13:13:57,803 - INFO - ?? Training client 6/10
+Client 5 Epoch 1/5: Loss=1.8840, Acc=30.68%
+Client 5 Epoch 2/5: Loss=1.5398, Acc=43.21%
+Client 5 Epoch 3/5: Loss=1.3917, Acc=49.37%
+Client 5 Epoch 4/5: Loss=1.2821, Acc=53.44%
+Client 5 Epoch 5/5: Loss=1.2063, Acc=56.57%
+2025-09-10 13:15:47,329 - INFO - ? Client 6 completed in 109.5s
+2025-09-10 13:15:47,329 - INFO - ?? Training client 7/10
+Client 6 Epoch 1/5: Loss=1.8726, Acc=31.02%
+Client 6 Epoch 2/5: Loss=1.5243, Acc=44.02%
+Client 6 Epoch 3/5: Loss=1.3797, Acc=49.94%
+Client 6 Epoch 4/5: Loss=1.2738, Acc=53.92%
+Client 6 Epoch 5/5: Loss=1.1973, Acc=56.60%
+2025-09-10 13:17:36,333 - INFO - ? Client 7 completed in 109.0s
+2025-09-10 13:17:36,333 - INFO - ?? Training client 8/10
+Client 7 Epoch 1/5: Loss=1.8657, Acc=31.29%
+Client 7 Epoch 2/5: Loss=1.5282, Acc=43.66%
+Client 7 Epoch 3/5: Loss=1.3822, Acc=49.60%
+Client 7 Epoch 4/5: Loss=1.2711, Acc=53.85%
+Client 7 Epoch 5/5: Loss=1.1906, Acc=57.19%
+2025-09-10 13:19:27,127 - INFO - ? Client 8 completed in 110.8s
+2025-09-10 13:19:27,127 - INFO - ?? Training client 9/10
+Client 8 Epoch 1/5: Loss=1.8950, Acc=30.49%
+Client 8 Epoch 2/5: Loss=1.5308, Acc=44.18%
+Client 8 Epoch 3/5: Loss=1.3765, Acc=49.73%
+Client 8 Epoch 4/5: Loss=1.2693, Acc=54.16%
+Client 8 Epoch 5/5: Loss=1.1899, Acc=57.15%
+2025-09-10 13:21:19,393 - INFO - ? Client 9 completed in 112.3s
+2025-09-10 13:21:19,393 - INFO - ?? Training client 10/10
+Client 9 Epoch 1/5: Loss=1.8754, Acc=30.99%
+Client 9 Epoch 2/5: Loss=1.5194, Acc=44.24%
+Client 9 Epoch 3/5: Loss=1.3633, Acc=50.32%
+Client 9 Epoch 4/5: Loss=1.2602, Acc=54.70%
+Client 9 Epoch 5/5: Loss=1.1848, Acc=57.39%
+2025-09-10 13:23:09,333 - INFO - ? Client 10 completed in 109.9s
+2025-09-10 13:23:09,334 - INFO - ?? Aggregating models...
+2025-09-10 13:23:09,357 - INFO - ? Model aggregation completed
+2025-09-10 13:23:09,357 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-10 13:23:13,528 - INFO - ?? Running evaluation...
+2025-09-10 13:23:13,999 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:14,000 - INFO - ?? MAE Debug - Threshold: 0.15
+2025-09-10 13:23:14,001 - INFO - ?? MAE Debug - Reconstruction errors: min=0.064224, max=0.246477, mean=0.207446
+2025-09-10 13:23:14,002 - INFO - ?? MAE Debug - Detection shape: torch.Size([128])
+2025-09-10 13:23:14,002 - INFO - ?? MAE Debug - Detection values: [1, 1, 1, 1, 1]
+2025-09-10 13:23:14,002 - INFO - ?? MAE Debug - Detection sum: 126/128
+2025-09-10 13:23:14,225 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:14,457 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:14,683 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:14,915 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:15,169 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:15,428 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:15,676 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:15,928 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:16,182 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:16,445 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:16,695 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:16,950 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:17,175 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:17,400 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:17,623 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:17,847 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:18,078 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:18,311 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:18,547 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:18,778 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:19,005 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:19,231 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:19,462 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:19,692 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:19,925 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:20,158 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:20,384 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:20,614 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:20,847 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:21,072 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:21,310 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:21,538 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:21,767 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:21,994 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:22,219 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:22,442 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:22,667 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:22,898 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:23,151 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:23,390 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:23,619 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:23,848 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:24,074 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:24,302 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:24,536 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:24,765 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:25,011 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:25,244 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:25,495 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:25,736 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:25,973 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:26,212 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:26,443 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:26,687 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:26,916 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:27,162 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:27,389 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:27,641 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:27,884 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:28,138 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:28,382 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:28,619 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:28,870 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:29,111 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:29,338 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:29,563 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:29,788 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:30,017 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:30,252 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:30,482 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:30,717 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:30,956 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:31,188 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:31,422 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:31,649 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:31,879 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:32,112 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:32,357 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:23:32,390 - INFO - ?? Round 1 Clean Acc: 48.42% | Adv Acc: 15.65% | MAE Detection: 97.89% | Time: 1129.2s
+2025-09-10 13:23:32,390 - INFO - ?? Total training time: 1149.2s
+2025-09-10 13:23:32,390 - INFO - ?? Round 2/15
+2025-09-10 13:23:32,422 - INFO - ?? Training client 1/10
+Client 0 Epoch 1/5: Loss=1.3761, Acc=50.12%
+Client 0 Epoch 2/5: Loss=1.2229, Acc=55.87%
+Client 0 Epoch 3/5: Loss=1.1330, Acc=59.19%
+Client 0 Epoch 4/5: Loss=1.0623, Acc=62.06%
+Client 0 Epoch 5/5: Loss=1.0093, Acc=64.09%
+2025-09-10 13:25:25,308 - INFO - ? Client 1 completed in 112.9s
+2025-09-10 13:25:25,308 - INFO - ?? Training client 2/10
+Client 1 Epoch 1/5: Loss=1.3779, Acc=49.79%
+Client 1 Epoch 2/5: Loss=1.2205, Acc=55.73%
+Client 1 Epoch 3/5: Loss=1.1295, Acc=59.49%
+Client 1 Epoch 4/5: Loss=1.0643, Acc=61.93%
+Client 1 Epoch 5/5: Loss=1.0149, Acc=63.61%
+2025-09-10 13:27:18,542 - INFO - ? Client 2 completed in 113.2s
+2025-09-10 13:27:18,543 - INFO - ?? Training client 3/10
+Client 2 Epoch 1/5: Loss=1.3721, Acc=50.44%
+Client 2 Epoch 2/5: Loss=1.2229, Acc=56.00%
+Client 2 Epoch 3/5: Loss=1.1366, Acc=59.15%
+Client 2 Epoch 4/5: Loss=1.0619, Acc=61.95%
+Client 2 Epoch 5/5: Loss=1.0119, Acc=64.05%
+2025-09-10 13:29:08,677 - INFO - ? Client 3 completed in 110.1s
+2025-09-10 13:29:08,678 - INFO - ?? Training client 4/10
+Client 3 Epoch 1/5: Loss=1.3743, Acc=49.94%
+Client 3 Epoch 2/5: Loss=1.2204, Acc=55.83%
+Client 3 Epoch 3/5: Loss=1.1264, Acc=59.48%
+Client 3 Epoch 4/5: Loss=1.0615, Acc=61.95%
+Client 3 Epoch 5/5: Loss=1.0084, Acc=64.11%
+2025-09-10 13:30:59,111 - INFO - ? Client 4 completed in 110.4s
+2025-09-10 13:30:59,111 - INFO - ?? Training client 5/10
+Client 4 Epoch 1/5: Loss=1.3750, Acc=49.97%
+Client 4 Epoch 2/5: Loss=1.2154, Acc=55.91%
+Client 4 Epoch 3/5: Loss=1.1271, Acc=59.27%
+Client 4 Epoch 4/5: Loss=1.0680, Acc=61.64%
+Client 4 Epoch 5/5: Loss=1.0087, Acc=64.02%
+2025-09-10 13:32:50,014 - INFO - ? Client 5 completed in 110.9s
+2025-09-10 13:32:50,014 - INFO - ?? Training client 6/10
+Client 5 Epoch 1/5: Loss=1.3785, Acc=49.79%
+Client 5 Epoch 2/5: Loss=1.2252, Acc=55.73%
+Client 5 Epoch 3/5: Loss=1.1322, Acc=59.43%
+Client 5 Epoch 4/5: Loss=1.0627, Acc=61.94%
+Client 5 Epoch 5/5: Loss=1.0073, Acc=64.20%
+2025-09-10 13:34:40,740 - INFO - ? Client 6 completed in 110.7s
+2025-09-10 13:34:40,740 - INFO - ?? Training client 7/10
+Client 6 Epoch 1/5: Loss=1.3786, Acc=49.75%
+Client 6 Epoch 2/5: Loss=1.2258, Acc=55.72%
+Client 6 Epoch 3/5: Loss=1.1282, Acc=59.29%
+Client 6 Epoch 4/5: Loss=1.0638, Acc=61.99%
+Client 6 Epoch 5/5: Loss=1.0073, Acc=63.95%
+2025-09-10 13:36:30,203 - INFO - ? Client 7 completed in 109.5s
+2025-09-10 13:36:30,203 - INFO - ?? Training client 8/10
+Client 7 Epoch 1/5: Loss=1.3816, Acc=49.90%
+Client 7 Epoch 2/5: Loss=1.2246, Acc=55.63%
+Client 7 Epoch 3/5: Loss=1.1353, Acc=59.07%
+Client 7 Epoch 4/5: Loss=1.0666, Acc=61.85%
+Client 7 Epoch 5/5: Loss=1.0127, Acc=63.83%
+2025-09-10 13:38:21,721 - INFO - ? Client 8 completed in 111.5s
+2025-09-10 13:38:21,721 - INFO - ?? Training client 9/10
+Client 8 Epoch 1/5: Loss=1.3740, Acc=49.93%
+Client 8 Epoch 2/5: Loss=1.2209, Acc=55.91%
+Client 8 Epoch 3/5: Loss=1.1302, Acc=59.47%
+Client 8 Epoch 4/5: Loss=1.0573, Acc=62.30%
+Client 8 Epoch 5/5: Loss=1.0102, Acc=63.84%
+2025-09-10 13:40:12,044 - INFO - ? Client 9 completed in 110.3s
+2025-09-10 13:40:12,045 - INFO - ?? Training client 10/10
+Client 9 Epoch 1/5: Loss=1.3770, Acc=49.77%
+Client 9 Epoch 2/5: Loss=1.2275, Acc=55.70%
+Client 9 Epoch 3/5: Loss=1.1250, Acc=59.41%
+Client 9 Epoch 4/5: Loss=1.0591, Acc=62.00%
+Client 9 Epoch 5/5: Loss=1.0129, Acc=63.70%
+2025-09-10 13:42:03,359 - INFO - ? Client 10 completed in 111.3s
+2025-09-10 13:42:03,359 - INFO - ?? Aggregating models...
+2025-09-10 13:42:03,382 - INFO - ? Model aggregation completed
+2025-09-10 13:42:03,382 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-10 13:42:07,728 - INFO - ?? Running evaluation...
+2025-09-10 13:42:08,080 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:08,081 - INFO - ?? MAE Debug - Threshold: 0.15
+2025-09-10 13:42:08,083 - INFO - ?? MAE Debug - Reconstruction errors: min=0.063192, max=0.246342, mean=0.207419
+2025-09-10 13:42:08,083 - INFO - ?? MAE Debug - Detection shape: torch.Size([128])
+2025-09-10 13:42:08,083 - INFO - ?? MAE Debug - Detection values: [1, 1, 1, 1, 1]
+2025-09-10 13:42:08,083 - INFO - ?? MAE Debug - Detection sum: 126/128
+2025-09-10 13:42:08,324 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:08,585 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:08,837 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:09,090 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:09,342 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:09,596 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:09,851 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:10,104 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:10,337 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:10,566 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:10,792 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:11,023 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:11,281 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:11,533 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:11,784 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:12,040 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:12,295 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:12,550 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:12,803 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:13,063 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:13,309 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:13,553 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:13,783 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:14,016 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:14,246 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:14,476 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:14,703 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:14,937 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:15,175 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:15,427 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:15,670 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:15,914 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:16,160 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:16,403 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:16,655 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:16,890 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:17,149 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:17,389 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:17,647 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:17,885 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:18,118 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:18,353 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:18,581 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:18,810 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:19,040 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:19,266 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:19,498 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:19,733 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:19,974 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:20,217 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:20,454 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:20,711 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:20,944 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:21,178 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:21,453 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:21,707 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:21,947 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:22,183 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:22,433 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:22,687 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:22,918 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:23,145 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:23,380 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:23,607 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:23,846 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:24,089 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:24,332 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:24,571 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:24,810 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:25,042 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:25,287 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:25,524 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:25,766 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:25,997 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:26,236 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:26,472 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:26,709 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:26,891 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 13:42:26,925 - INFO - ?? Round 2 Clean Acc: 67.12% | Adv Acc: 13.99% | MAE Detection: 97.93% | Time: 1134.5s
+2025-09-10 13:42:26,925 - INFO - ?? Total training time: 2283.7s
+2025-09-10 13:42:26,925 - INFO - ?? Round 3/15
+2025-09-10 13:42:26,962 - INFO - ?? Training client 1/10
+Client 0 Epoch 1/5: Loss=1.0218, Acc=63.58%
+Client 0 Epoch 2/5: Loss=0.9696, Acc=65.46%
+Client 0 Epoch 3/5: Loss=0.9263, Acc=66.87%
+Client 0 Epoch 4/5: Loss=0.8861, Acc=68.31%
+Client 0 Epoch 5/5: Loss=0.8544, Acc=69.46%
+2025-09-10 13:44:18,368 - INFO - ? Client 1 completed in 111.4s
+2025-09-10 13:44:18,369 - INFO - ?? Training client 2/10
+Client 1 Epoch 1/5: Loss=1.0257, Acc=63.26%
+Client 1 Epoch 2/5: Loss=0.9711, Acc=65.32%
+Client 1 Epoch 3/5: Loss=0.9314, Acc=66.80%
+Client 1 Epoch 4/5: Loss=0.8924, Acc=68.40%
+Client 1 Epoch 5/5: Loss=0.8601, Acc=69.33%
+2025-09-10 13:46:09,851 - INFO - ? Client 2 completed in 111.5s
+2025-09-10 13:46:09,851 - INFO - ?? Training client 3/10
+Client 2 Epoch 1/5: Loss=1.0196, Acc=63.55%
+Client 2 Epoch 2/5: Loss=0.9731, Acc=65.10%
+Client 2 Epoch 3/5: Loss=0.9231, Acc=67.02%
+Client 2 Epoch 4/5: Loss=0.8844, Acc=68.62%
+Client 2 Epoch 5/5: Loss=0.8508, Acc=69.73%
+2025-09-10 13:48:03,939 - INFO - ? Client 3 completed in 114.1s
+2025-09-10 13:48:03,940 - INFO - ?? Training client 4/10
+Client 3 Epoch 1/5: Loss=1.0227, Acc=63.18%
+Client 3 Epoch 2/5: Loss=0.9757, Acc=65.01%
+Client 3 Epoch 3/5: Loss=0.9311, Acc=66.81%
+Client 3 Epoch 4/5: Loss=0.8890, Acc=68.22%
+Client 3 Epoch 5/5: Loss=0.8557, Acc=69.56%
+2025-09-10 13:49:55,632 - INFO - ? Client 4 completed in 111.7s
+2025-09-10 13:49:55,632 - INFO - ?? Training client 5/10
+Client 4 Epoch 1/5: Loss=1.0256, Acc=63.08%
+Client 4 Epoch 2/5: Loss=0.9740, Acc=65.29%
+Client 4 Epoch 3/5: Loss=0.9271, Acc=66.96%
+Client 4 Epoch 4/5: Loss=0.8837, Acc=68.51%
+Client 4 Epoch 5/5: Loss=0.8553, Acc=69.37%
+2025-09-10 13:51:46,913 - INFO - ? Client 5 completed in 111.3s
+2025-09-10 13:51:46,914 - INFO - ?? Training client 6/10
+Client 5 Epoch 1/5: Loss=1.0190, Acc=63.62%
+Client 5 Epoch 2/5: Loss=0.9728, Acc=65.23%
+Client 5 Epoch 3/5: Loss=0.9305, Acc=66.71%
+Client 5 Epoch 4/5: Loss=0.8875, Acc=68.49%
+Client 5 Epoch 5/5: Loss=0.8600, Acc=69.35%
+2025-09-10 13:53:37,739 - INFO - ? Client 6 completed in 110.8s
+2025-09-10 13:53:37,739 - INFO - ?? Training client 7/10
+Client 6 Epoch 1/5: Loss=1.0306, Acc=63.30%
+Client 6 Epoch 2/5: Loss=0.9770, Acc=65.27%
+Client 6 Epoch 3/5: Loss=0.9250, Acc=67.19%
+Client 6 Epoch 4/5: Loss=0.8870, Acc=68.59%
+Client 6 Epoch 5/5: Loss=0.8525, Acc=69.90%
+2025-09-10 13:55:29,456 - INFO - ? Client 7 completed in 111.7s
+2025-09-10 13:55:29,456 - INFO - ?? Training client 8/10
+Client 7 Epoch 1/5: Loss=1.0240, Acc=63.44%
+Client 7 Epoch 2/5: Loss=0.9726, Acc=65.27%
+Client 7 Epoch 3/5: Loss=0.9296, Acc=66.97%
+Client 7 Epoch 4/5: Loss=0.8924, Acc=68.21%
+Client 7 Epoch 5/5: Loss=0.8594, Acc=69.43%
+2025-09-10 13:57:20,678 - INFO - ? Client 8 completed in 111.2s
+2025-09-10 13:57:20,678 - INFO - ?? Training client 9/10
+Client 8 Epoch 1/5: Loss=1.0219, Acc=63.26%
+Client 8 Epoch 2/5: Loss=0.9755, Acc=65.30%
+Client 8 Epoch 3/5: Loss=0.9285, Acc=66.89%
+Client 8 Epoch 4/5: Loss=0.8896, Acc=68.21%
+Client 8 Epoch 5/5: Loss=0.8560, Acc=69.58%
+2025-09-10 13:59:11,392 - INFO - ? Client 9 completed in 110.7s
+2025-09-10 13:59:11,393 - INFO - ?? Training client 10/10
+Client 9 Epoch 1/5: Loss=1.0236, Acc=63.36%
+Client 9 Epoch 2/5: Loss=0.9729, Acc=65.23%
+Client 9 Epoch 3/5: Loss=0.9308, Acc=66.68%
+Client 9 Epoch 4/5: Loss=0.8822, Acc=68.62%
+Client 9 Epoch 5/5: Loss=0.8586, Acc=69.37%
+2025-09-10 14:01:01,949 - INFO - ? Client 10 completed in 110.6s
+2025-09-10 14:01:01,949 - INFO - ?? Aggregating models...
+2025-09-10 14:01:01,981 - INFO - ? Model aggregation completed
+2025-09-10 14:01:01,981 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-10 14:01:06,281 - INFO - ?? Running evaluation...
+2025-09-10 14:01:06,651 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:06,653 - INFO - ?? MAE Debug - Threshold: 0.15
+2025-09-10 14:01:06,655 - INFO - ?? MAE Debug - Reconstruction errors: min=0.063126, max=0.246400, mean=0.207468
+2025-09-10 14:01:06,655 - INFO - ?? MAE Debug - Detection shape: torch.Size([128])
+2025-09-10 14:01:06,655 - INFO - ?? MAE Debug - Detection values: [1, 1, 1, 1, 1]
+2025-09-10 14:01:06,655 - INFO - ?? MAE Debug - Detection sum: 126/128
+2025-09-10 14:01:06,907 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:07,159 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:07,397 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:07,627 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:07,858 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:08,099 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:08,336 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:08,569 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:08,802 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:09,035 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:09,267 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:09,494 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:09,723 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:09,958 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:10,188 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:10,423 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:10,655 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:10,882 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:11,121 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:11,365 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:11,603 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:11,844 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:12,089 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:12,326 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:12,562 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:12,794 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:13,029 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:13,261 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:13,496 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:13,731 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:13,978 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:14,217 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:14,464 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:14,698 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:14,927 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:15,168 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:15,404 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:15,647 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:15,886 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:16,125 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:16,369 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:16,624 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:16,868 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:17,102 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:17,342 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:17,590 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:17,830 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:18,097 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:18,335 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:18,590 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:18,832 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:19,083 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:19,334 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:19,572 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:19,812 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:20,068 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:20,308 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:20,544 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:20,788 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:21,027 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:21,264 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:21,501 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:21,741 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:21,984 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:22,223 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:22,457 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:22,693 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:22,937 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:23,188 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:23,435 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:23,672 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:23,910 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:24,164 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:24,412 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:24,650 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:24,889 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:25,128 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:25,308 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:01:25,344 - INFO - ?? Round 3 Clean Acc: 72.87% | Adv Acc: 13.86% | MAE Detection: 97.90% | Time: 1138.4s
+2025-09-10 14:01:25,344 - INFO - ?? Total training time: 3422.1s
+2025-09-10 14:01:25,345 - INFO - ?? Round 4/15
+2025-09-10 14:01:25,379 - INFO - ?? Training client 1/10
+Client 0 Epoch 1/5: Loss=0.8537, Acc=69.55%
+Client 0 Epoch 2/5: Loss=0.8305, Acc=70.48%
+Client 0 Epoch 3/5: Loss=0.7966, Acc=71.69%
+Client 0 Epoch 4/5: Loss=0.7726, Acc=72.78%
+Client 0 Epoch 5/5: Loss=0.7412, Acc=73.64%
+2025-09-10 14:03:15,759 - INFO - ? Client 1 completed in 110.4s
+2025-09-10 14:03:15,759 - INFO - ?? Training client 2/10
+Client 1 Epoch 1/5: Loss=0.8568, Acc=69.52%
+Client 1 Epoch 2/5: Loss=0.8318, Acc=70.46%
+Client 1 Epoch 3/5: Loss=0.7971, Acc=71.77%
+Client 1 Epoch 4/5: Loss=0.7689, Acc=72.62%
+Client 1 Epoch 5/5: Loss=0.7428, Acc=73.57%
+2025-09-10 14:05:07,272 - INFO - ? Client 2 completed in 111.5s
+2025-09-10 14:05:07,273 - INFO - ?? Training client 3/10
+Client 2 Epoch 1/5: Loss=0.8584, Acc=69.50%
+Client 2 Epoch 2/5: Loss=0.8329, Acc=70.37%
+Client 2 Epoch 3/5: Loss=0.7981, Acc=71.60%
+Client 2 Epoch 4/5: Loss=0.7699, Acc=72.51%
+Client 2 Epoch 5/5: Loss=0.7458, Acc=73.34%
+2025-09-10 14:06:59,819 - INFO - ? Client 3 completed in 112.5s
+2025-09-10 14:06:59,820 - INFO - ?? Training client 4/10
+Client 3 Epoch 1/5: Loss=0.8564, Acc=69.69%
+Client 3 Epoch 2/5: Loss=0.8302, Acc=70.51%
+Client 3 Epoch 3/5: Loss=0.7940, Acc=71.82%
+Client 3 Epoch 4/5: Loss=0.7726, Acc=72.32%
+Client 3 Epoch 5/5: Loss=0.7382, Acc=74.00%
+2025-09-10 14:08:51,937 - INFO - ? Client 4 completed in 112.1s
+2025-09-10 14:08:51,938 - INFO - ?? Training client 5/10
+Client 4 Epoch 1/5: Loss=0.8561, Acc=69.58%
+Client 4 Epoch 2/5: Loss=0.8325, Acc=70.61%
+Client 4 Epoch 3/5: Loss=0.7988, Acc=71.62%
+Client 4 Epoch 4/5: Loss=0.7708, Acc=72.69%
+Client 4 Epoch 5/5: Loss=0.7421, Acc=73.59%
+2025-09-10 14:10:43,193 - INFO - ? Client 5 completed in 111.3s
+2025-09-10 14:10:43,193 - INFO - ?? Training client 6/10
+Client 5 Epoch 1/5: Loss=0.8570, Acc=69.53%
+Client 5 Epoch 2/5: Loss=0.8296, Acc=70.46%
+Client 5 Epoch 3/5: Loss=0.7975, Acc=71.55%
+Client 5 Epoch 4/5: Loss=0.7708, Acc=72.55%
+Client 5 Epoch 5/5: Loss=0.7433, Acc=73.53%
+2025-09-10 14:12:36,386 - INFO - ? Client 6 completed in 113.2s
+2025-09-10 14:12:36,386 - INFO - ?? Training client 7/10
+Client 6 Epoch 1/5: Loss=0.8555, Acc=69.56%
+Client 6 Epoch 2/5: Loss=0.8325, Acc=70.31%
+Client 6 Epoch 3/5: Loss=0.7963, Acc=71.70%
+Client 6 Epoch 4/5: Loss=0.7696, Acc=72.52%
+Client 6 Epoch 5/5: Loss=0.7475, Acc=73.61%
+2025-09-10 14:14:27,111 - INFO - ? Client 7 completed in 110.7s
+2025-09-10 14:14:27,111 - INFO - ?? Training client 8/10
+Client 7 Epoch 1/5: Loss=0.8493, Acc=69.64%
+Client 7 Epoch 2/5: Loss=0.8268, Acc=70.74%
+Client 7 Epoch 3/5: Loss=0.8010, Acc=71.44%
+Client 7 Epoch 4/5: Loss=0.7677, Acc=72.77%
+Client 7 Epoch 5/5: Loss=0.7447, Acc=73.58%
+2025-09-10 14:16:20,738 - INFO - ? Client 8 completed in 113.6s
+2025-09-10 14:16:20,739 - INFO - ?? Training client 9/10
+Client 8 Epoch 1/5: Loss=0.8504, Acc=69.77%
+Client 8 Epoch 2/5: Loss=0.8301, Acc=70.62%
+Client 8 Epoch 3/5: Loss=0.7990, Acc=71.68%
+Client 8 Epoch 4/5: Loss=0.7709, Acc=72.65%
+Client 8 Epoch 5/5: Loss=0.7399, Acc=73.76%
+2025-09-10 14:18:13,755 - INFO - ? Client 9 completed in 113.0s
+2025-09-10 14:18:13,755 - INFO - ?? Training client 10/10
+Client 9 Epoch 1/5: Loss=0.8568, Acc=69.40%
+Client 9 Epoch 2/5: Loss=0.8311, Acc=70.58%
+Client 9 Epoch 3/5: Loss=0.8019, Acc=71.52%
+Client 9 Epoch 4/5: Loss=0.7688, Acc=72.73%
+Client 9 Epoch 5/5: Loss=0.7412, Acc=73.77%
+2025-09-10 14:20:06,741 - INFO - ? Client 10 completed in 113.0s
+2025-09-10 14:20:06,741 - INFO - ?? Aggregating models...
+2025-09-10 14:20:06,763 - INFO - ? Model aggregation completed
+2025-09-10 14:20:06,764 - INFO - ?? Recomputing BatchNorm running stats...
+2025-09-10 14:20:10,959 - INFO - ?? Running evaluation...
+2025-09-10 14:20:11,301 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:11,302 - INFO - ?? MAE Debug - Threshold: 0.15
+2025-09-10 14:20:11,305 - INFO - ?? MAE Debug - Reconstruction errors: min=0.063435, max=0.246288, mean=0.207483
+2025-09-10 14:20:11,305 - INFO - ?? MAE Debug - Detection shape: torch.Size([128])
+2025-09-10 14:20:11,305 - INFO - ?? MAE Debug - Detection values: [1, 1, 1, 1, 1]
+2025-09-10 14:20:11,305 - INFO - ?? MAE Debug - Detection sum: 126/128
+2025-09-10 14:20:11,534 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:11,763 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:11,997 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:12,234 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:12,461 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:12,693 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:12,926 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:13,170 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:13,409 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:13,658 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:13,887 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:14,126 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:14,370 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:14,603 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:14,842 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:15,078 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:15,318 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:15,555 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:15,801 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:16,046 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:16,284 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:16,522 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:16,754 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:16,997 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:17,237 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:17,473 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:17,708 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:17,939 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:18,176 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:18,421 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:18,662 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:18,900 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:19,137 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:19,370 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:19,605 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:19,837 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:20,070 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:20,305 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:20,539 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:20,781 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:21,014 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:21,249 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:21,480 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:21,738 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:21,968 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:22,202 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:22,428 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:22,663 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:22,903 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:23,136 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:23,385 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:23,628 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:23,867 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:24,116 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:24,364 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:24,611 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:24,862 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:25,110 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:25,351 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:25,586 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:25,829 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:26,072 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:26,312 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:26,545 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:26,787 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:27,019 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:27,253 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:27,498 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:27,732 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:27,979 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:28,232 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:28,468 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:28,708 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:28,948 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:29,184 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:29,416 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:29,650 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:29,824 - WARNING - User's MAE detector failed: The size of tensor a (256) must match the size of tensor b (128) at non-singleton dimension 2
+2025-09-10 14:20:29,857 - INFO - ?? Round 4 Clean Acc: 75.56% | Adv Acc: 12.87% | MAE Detection: 97.90% | Time: 1144.5s
+2025-09-10 14:20:29,857 - INFO - ?? Total training time: 4566.6s
+2025-09-10 14:20:29,857 - INFO - ?? Round 5/15
+2025-09-10 14:20:29,891 - INFO - ?? Training client 1/10
+Client 0 Epoch 1/5: Loss=0.7469, Acc=73.58%
+Client 0 Epoch 2/5: Loss=0.7303, Acc=74.26%
+Client 0 Epoch 3/5: Loss=0.7060, Acc=74.88%
+Client 0 Epoch 4/5: Loss=0.6829, Acc=75.68%
+Client 0 Epoch 5/5: Loss=0.6597, Acc=76.49%
+2025-09-10 14:22:20,882 - INFO - ? Client 1 completed in 111.0s
+2025-09-10 14:22:20,882 - INFO - ?? Training client 2/10
+Client 1 Epoch 1/5: Loss=0.7464, Acc=73.67%
+Client 1 Epoch 2/5: Loss=0.7318, Acc=74.00%

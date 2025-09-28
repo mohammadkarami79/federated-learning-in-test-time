@@ -1,0 +1,1501 @@
+nohup: ignoring input
+2025-08-31 05:43:37,763 - INFO - Configuration: full mode, BR35H dataset
+2025-08-31 05:43:37,763 - INFO - Settings: 20 rounds, 3 epochs, 15 clients
+2025-08-31 05:43:37,763 - INFO - Training diffusion model for BR35H...
+2025-08-31 05:43:37,763 - INFO - Diffusion model already exists: checkpoints/diffuser_br35h.pt
+2025-08-31 05:43:37,763 - INFO - ?? Starting federated training with 15 clients, 20 rounds
+2025-08-31 05:43:37,763 - INFO - ?? Each client trains for 3 epochs per round
+2025-08-31 05:43:38,962 - INFO - ?? Loading components...
+2025-08-31 05:43:39,205 - INFO - ? All imports successful
+2025-08-31 05:43:39,205 - INFO - ?? Loading datasets...
+2025-08-31 05:43:39,210 - INFO - ? Dataset loaded: 94 samples
+2025-08-31 05:43:39,211 - INFO - ?? Loading diffusion model...
+2025-08-31 05:43:45,122 - INFO - ? Loaded diffusion model: checkpoints/diffuser_br35h.pt
+2025-08-31 05:43:45,122 - INFO - ?? Initializing components...
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+2025-08-31 05:43:48,325 - INFO - Using user's MAE detector implementation
+2025-08-31 05:43:48,325 - INFO - ? All components initialized successfully
+/home/gpu/miniconda3/envs/br35h_env/lib/python3.10/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+2025-08-31 05:43:48,541 - INFO - ?? Server initialized with global models
+2025-08-31 05:43:48,541 - INFO - ?? Round 1/20
+2025-08-31 05:43:48,541 - INFO - ?? Training client 1/15
+2025-08-31 05:44:23,310 - INFO - ? Client 1 completed in 34.8s
+2025-08-31 05:44:23,311 - INFO - ?? Training client 2/15
+2025-08-31 05:44:56,155 - INFO - ? Client 2 completed in 32.8s
+2025-08-31 05:44:56,155 - INFO - ?? Training client 3/15
+2025-08-31 05:45:28,510 - INFO - ? Client 3 completed in 32.4s
+2025-08-31 05:45:28,511 - INFO - ?? Training client 4/15
+2025-08-31 05:46:01,962 - INFO - ? Client 4 completed in 33.5s
+2025-08-31 05:46:01,962 - INFO - ?? Training client 5/15
+2025-08-31 05:46:34,873 - INFO - ? Client 5 completed in 32.9s
+2025-08-31 05:46:34,873 - INFO - ?? Training client 6/15
+2025-08-31 05:47:08,015 - INFO - ? Client 6 completed in 33.1s
+2025-08-31 05:47:08,016 - INFO - ?? Training client 7/15
+2025-08-31 05:47:40,131 - INFO - ? Client 7 completed in 32.1s
+2025-08-31 05:47:40,131 - INFO - ?? Training client 8/15
+2025-08-31 05:48:13,910 - INFO - ? Client 8 completed in 33.8s
+2025-08-31 05:48:13,910 - INFO - ?? Training client 9/15
+2025-08-31 05:48:47,732 - INFO - ? Client 9 completed in 33.8s
+2025-08-31 05:48:47,733 - INFO - ?? Training client 10/15
+2025-08-31 05:49:21,717 - INFO - ? Client 10 completed in 34.0s
+2025-08-31 05:49:21,717 - INFO - ?? Training client 11/15
+2025-08-31 05:49:55,120 - INFO - ? Client 11 completed in 33.4s
+2025-08-31 05:49:55,120 - INFO - ?? Training client 12/15
+2025-08-31 05:50:28,781 - INFO - ? Client 12 completed in 33.7s
+2025-08-31 05:50:28,781 - INFO - ?? Training client 13/15
+2025-08-31 05:51:02,986 - INFO - ? Client 13 completed in 34.2s
+2025-08-31 05:51:02,986 - INFO - ?? Training client 14/15
+2025-08-31 05:51:36,348 - INFO - ? Client 14 completed in 33.4s
+2025-08-31 05:51:36,349 - INFO - ?? Training client 15/15
+2025-08-31 05:52:10,691 - INFO - ? Client 15 completed in 34.3s
+2025-08-31 05:52:10,691 - INFO - ?? Aggregating models...
+2025-08-31 05:52:13,363 - INFO - ? Model aggregation completed
+2025-08-31 05:52:13,364 - INFO - ?? Running evaluation...
+Complete Training Pipeline
+============================================================
+Client 0 Epoch 1/3: Loss=0.6432, Acc=66.46%
+Client 0 Epoch 2/3: Loss=0.3504, Acc=88.25%
+Client 0 Epoch 3/3: Loss=0.2214, Acc=93.62%
+Client 1 Epoch 1/3: Loss=0.5590, Acc=72.54%
+Client 1 Epoch 2/3: Loss=0.2930, Acc=90.88%
+Client 1 Epoch 3/3: Loss=0.1807, Acc=95.25%
+Client 2 Epoch 1/3: Loss=0.5900, Acc=68.21%
+Client 2 Epoch 2/3: Loss=0.3187, Acc=89.21%
+Client 2 Epoch 3/3: Loss=0.1967, Acc=94.33%
+Client 3 Epoch 1/3: Loss=0.5684, Acc=71.33%
+Client 3 Epoch 2/3: Loss=0.3007, Acc=91.08%
+Client 3 Epoch 3/3: Loss=0.1748, Acc=95.33%
+Client 4 Epoch 1/3: Loss=0.6899, Acc=63.79%
+Client 4 Epoch 2/3: Loss=0.3895, Acc=86.00%
+Client 4 Epoch 3/3: Loss=0.2456, Acc=92.71%
+Client 5 Epoch 1/3: Loss=0.5533, Acc=72.33%
+Client 5 Epoch 2/3: Loss=0.2992, Acc=90.04%
+Client 5 Epoch 3/3: Loss=0.1768, Acc=95.00%
+Client 6 Epoch 1/3: Loss=0.5408, Acc=72.67%
+Client 6 Epoch 2/3: Loss=0.2906, Acc=90.75%
+Client 6 Epoch 3/3: Loss=0.1843, Acc=94.67%
+Client 7 Epoch 1/3: Loss=0.5475, Acc=73.50%
+Client 7 Epoch 2/3: Loss=0.2914, Acc=91.21%
+Client 7 Epoch 3/3: Loss=0.1924, Acc=93.96%
+Client 8 Epoch 1/3: Loss=0.5654, Acc=71.79%
+Client 8 Epoch 2/3: Loss=0.2891, Acc=90.33%
+Client 8 Epoch 3/3: Loss=0.1739, Acc=95.38%
+Client 9 Epoch 1/3: Loss=0.6594, Acc=64.21%
+Client 9 Epoch 2/3: Loss=0.3573, Acc=87.50%
+Client 9 Epoch 3/3: Loss=0.2212, Acc=93.38%
+Client 10 Epoch 1/3: Loss=0.5489, Acc=72.42%
+Client 10 Epoch 2/3: Loss=0.3023, Acc=90.83%
+Client 10 Epoch 3/3: Loss=0.1800, Acc=95.33%
+Client 11 Epoch 1/3: Loss=0.5373, Acc=74.83%
+Client 11 Epoch 2/3: Loss=0.2853, Acc=91.08%
+Client 11 Epoch 3/3: Loss=0.1659, Acc=95.04%
+Client 12 Epoch 1/3: Loss=0.5633, Acc=71.12%
+Client 12 Epoch 2/3: Loss=0.2906, Acc=91.21%
+Client 12 Epoch 3/3: Loss=0.1721, Acc=95.42%
+Client 13 Epoch 1/3: Loss=0.5537, Acc=71.46%
+Client 13 Epoch 2/3: Loss=0.3108, Acc=89.46%
+Client 13 Epoch 3/3: Loss=0.1923, Acc=94.71%
+Client 14 Epoch 1/3: Loss=0.5402, Acc=73.67%
+Client 14 Epoch 2/3: Loss=0.2997, Acc=90.12%
+Client 14 Epoch 3/3: Loss=0.1848, Acc=95.50%
+2025-08-31 05:53:12,761 - INFO - ?? Round 1 Clean Acc: 49.38% | Adv Acc: 42.81% | MAE Detection: 99.38% | Time: 564.2s
+2025-08-31 05:53:12,762 - INFO - ?? Total training time: 573.8s
+2025-08-31 05:53:12,762 - INFO - ?? Round 2/20
+2025-08-31 05:53:12,762 - INFO - ?? Training client 1/15
+2025-08-31 05:53:45,983 - INFO - ? Client 1 completed in 33.2s
+2025-08-31 05:53:45,983 - INFO - ?? Training client 2/15
+2025-08-31 05:54:17,630 - INFO - ? Client 2 completed in 31.6s
+2025-08-31 05:54:17,631 - INFO - ?? Training client 3/15
+2025-08-31 05:54:48,830 - INFO - ? Client 3 completed in 31.2s
+2025-08-31 05:54:48,831 - INFO - ?? Training client 4/15
+2025-08-31 05:55:20,487 - INFO - ? Client 4 completed in 31.7s
+2025-08-31 05:55:20,487 - INFO - ?? Training client 5/15
+2025-08-31 05:55:53,350 - INFO - ? Client 5 completed in 32.9s
+2025-08-31 05:55:53,351 - INFO - ?? Training client 6/15
+2025-08-31 05:56:28,195 - INFO - ? Client 6 completed in 34.8s
+2025-08-31 05:56:28,195 - INFO - ?? Training client 7/15
+2025-08-31 05:57:00,720 - INFO - ? Client 7 completed in 32.5s
+2025-08-31 05:57:00,720 - INFO - ?? Training client 8/15
+2025-08-31 05:57:32,870 - INFO - ? Client 8 completed in 32.2s
+2025-08-31 05:57:32,870 - INFO - ?? Training client 9/15
+2025-08-31 05:58:04,510 - INFO - ? Client 9 completed in 31.6s
+2025-08-31 05:58:04,511 - INFO - ?? Training client 10/15
+2025-08-31 05:58:35,998 - INFO - ? Client 10 completed in 31.5s
+2025-08-31 05:58:35,998 - INFO - ?? Training client 11/15
+2025-08-31 05:59:08,444 - INFO - ? Client 11 completed in 32.4s
+2025-08-31 05:59:08,444 - INFO - ?? Training client 12/15
+2025-08-31 05:59:41,542 - INFO - ? Client 12 completed in 33.1s
+2025-08-31 05:59:41,543 - INFO - ?? Training client 13/15
+2025-08-31 06:00:15,077 - INFO - ? Client 13 completed in 33.5s
+2025-08-31 06:00:15,078 - INFO - ?? Training client 14/15
+2025-08-31 06:00:48,480 - INFO - ? Client 14 completed in 33.4s
+2025-08-31 06:00:48,481 - INFO - ?? Training client 15/15
+2025-08-31 06:01:20,967 - INFO - ? Client 15 completed in 32.5s
+2025-08-31 06:01:20,967 - INFO - ?? Aggregating models...
+2025-08-31 06:01:23,732 - INFO - ? Model aggregation completed
+2025-08-31 06:01:23,732 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.4631, Acc=83.29%
+Client 0 Epoch 2/3: Loss=0.2936, Acc=89.38%
+Client 0 Epoch 3/3: Loss=0.2241, Acc=91.92%
+Client 1 Epoch 1/3: Loss=0.4589, Acc=83.71%
+Client 1 Epoch 2/3: Loss=0.2909, Acc=89.21%
+Client 1 Epoch 3/3: Loss=0.2132, Acc=92.62%
+Client 2 Epoch 1/3: Loss=0.4630, Acc=83.21%
+Client 2 Epoch 2/3: Loss=0.3035, Acc=88.58%
+Client 2 Epoch 3/3: Loss=0.2233, Acc=92.08%
+Client 3 Epoch 1/3: Loss=0.4540, Acc=83.83%
+Client 3 Epoch 2/3: Loss=0.2989, Acc=88.58%
+Client 3 Epoch 3/3: Loss=0.2192, Acc=92.12%
+Client 4 Epoch 1/3: Loss=0.4611, Acc=84.00%
+Client 4 Epoch 2/3: Loss=0.3033, Acc=88.67%
+Client 4 Epoch 3/3: Loss=0.2231, Acc=92.38%
+Client 5 Epoch 1/3: Loss=0.4540, Acc=84.12%
+Client 5 Epoch 2/3: Loss=0.2980, Acc=88.54%
+Client 5 Epoch 3/3: Loss=0.2173, Acc=92.50%
+Client 6 Epoch 1/3: Loss=0.4476, Acc=84.46%
+Client 6 Epoch 2/3: Loss=0.2916, Acc=89.29%
+Client 6 Epoch 3/3: Loss=0.2166, Acc=92.25%
+Client 7 Epoch 1/3: Loss=0.4559, Acc=83.25%
+Client 7 Epoch 2/3: Loss=0.2970, Acc=88.83%
+Client 7 Epoch 3/3: Loss=0.2260, Acc=92.08%
+Client 8 Epoch 1/3: Loss=0.4486, Acc=83.54%
+Client 8 Epoch 2/3: Loss=0.2975, Acc=89.08%
+Client 8 Epoch 3/3: Loss=0.2286, Acc=91.75%
+Client 9 Epoch 1/3: Loss=0.4515, Acc=84.12%
+Client 9 Epoch 2/3: Loss=0.2962, Acc=88.42%
+Client 9 Epoch 3/3: Loss=0.2109, Acc=92.88%
+Client 10 Epoch 1/3: Loss=0.4497, Acc=84.71%
+Client 10 Epoch 2/3: Loss=0.2982, Acc=88.92%
+Client 10 Epoch 3/3: Loss=0.2156, Acc=92.75%
+Client 11 Epoch 1/3: Loss=0.4561, Acc=83.83%
+Client 11 Epoch 2/3: Loss=0.2927, Acc=88.79%
+Client 11 Epoch 3/3: Loss=0.2175, Acc=92.04%
+Client 12 Epoch 1/3: Loss=0.4479, Acc=84.38%
+Client 12 Epoch 2/3: Loss=0.2928, Acc=88.92%
+Client 12 Epoch 3/3: Loss=0.2215, Acc=92.00%
+Client 13 Epoch 1/3: Loss=0.4639, Acc=82.67%
+Client 13 Epoch 2/3: Loss=0.3086, Acc=88.58%
+Client 13 Epoch 3/3: Loss=0.2382, Acc=91.71%
+Client 14 Epoch 1/3: Loss=0.4502, Acc=84.46%
+Client 14 Epoch 2/3: Loss=0.2989, Acc=88.67%
+Client 14 Epoch 3/3: Loss=0.2272, Acc=91.83%
+2025-08-31 06:02:22,995 - INFO - ?? Round 2 Clean Acc: 58.44% | Adv Acc: 47.19% | MAE Detection: 99.69% | Time: 550.2s
+2025-08-31 06:02:22,996 - INFO - ?? Total training time: 1124.0s
+2025-08-31 06:02:22,996 - INFO - ?? Round 3/20
+2025-08-31 06:02:22,996 - INFO - ?? Training client 1/15
+2025-08-31 06:02:57,642 - INFO - ? Client 1 completed in 34.6s
+2025-08-31 06:02:57,643 - INFO - ?? Training client 2/15
+2025-08-31 06:03:30,115 - INFO - ? Client 2 completed in 32.5s
+2025-08-31 06:03:30,115 - INFO - ?? Training client 3/15
+2025-08-31 06:04:01,643 - INFO - ? Client 3 completed in 31.5s
+2025-08-31 06:04:01,643 - INFO - ?? Training client 4/15
+2025-08-31 06:04:33,924 - INFO - ? Client 4 completed in 32.3s
+2025-08-31 06:04:33,924 - INFO - ?? Training client 5/15
+2025-08-31 06:05:05,825 - INFO - ? Client 5 completed in 31.9s
+2025-08-31 06:05:05,825 - INFO - ?? Training client 6/15
+2025-08-31 06:05:38,057 - INFO - ? Client 6 completed in 32.2s
+2025-08-31 06:05:38,058 - INFO - ?? Training client 7/15
+2025-08-31 06:06:09,834 - INFO - ? Client 7 completed in 31.8s
+2025-08-31 06:06:09,834 - INFO - ?? Training client 8/15
+2025-08-31 06:06:41,370 - INFO - ? Client 8 completed in 31.5s
+2025-08-31 06:06:41,371 - INFO - ?? Training client 9/15
+2025-08-31 06:07:13,930 - INFO - ? Client 9 completed in 32.6s
+2025-08-31 06:07:13,930 - INFO - ?? Training client 10/15
+2025-08-31 06:07:45,996 - INFO - ? Client 10 completed in 32.1s
+2025-08-31 06:07:45,996 - INFO - ?? Training client 11/15
+2025-08-31 06:08:18,592 - INFO - ? Client 11 completed in 32.6s
+2025-08-31 06:08:18,592 - INFO - ?? Training client 12/15
+2025-08-31 06:08:51,083 - INFO - ? Client 12 completed in 32.5s
+2025-08-31 06:08:51,083 - INFO - ?? Training client 13/15
+2025-08-31 06:09:26,527 - INFO - ? Client 13 completed in 35.4s
+2025-08-31 06:09:26,528 - INFO - ?? Training client 14/15
+2025-08-31 06:10:00,304 - INFO - ? Client 14 completed in 33.8s
+2025-08-31 06:10:00,305 - INFO - ?? Training client 15/15
+2025-08-31 06:10:35,477 - INFO - ? Client 15 completed in 35.2s
+2025-08-31 06:10:35,477 - INFO - ?? Aggregating models...
+2025-08-31 06:10:38,084 - INFO - ? Model aggregation completed
+2025-08-31 06:10:38,084 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.1844, Acc=93.58%
+Client 0 Epoch 2/3: Loss=0.1381, Acc=96.00%
+Client 0 Epoch 3/3: Loss=0.1146, Acc=96.46%
+Client 1 Epoch 1/3: Loss=0.1851, Acc=93.96%
+Client 1 Epoch 2/3: Loss=0.1436, Acc=95.83%
+Client 1 Epoch 3/3: Loss=0.1037, Acc=97.38%
+Client 2 Epoch 1/3: Loss=0.1859, Acc=93.75%
+Client 2 Epoch 2/3: Loss=0.1429, Acc=95.83%
+Client 2 Epoch 3/3: Loss=0.1089, Acc=97.17%
+Client 3 Epoch 1/3: Loss=0.1818, Acc=94.00%
+Client 3 Epoch 2/3: Loss=0.1389, Acc=96.00%
+Client 3 Epoch 3/3: Loss=0.1071, Acc=97.17%
+Client 4 Epoch 1/3: Loss=0.1841, Acc=93.67%
+Client 4 Epoch 2/3: Loss=0.1336, Acc=96.38%
+Client 4 Epoch 3/3: Loss=0.0995, Acc=97.54%
+Client 5 Epoch 1/3: Loss=0.1888, Acc=93.46%
+Client 5 Epoch 2/3: Loss=0.1366, Acc=96.25%
+Client 5 Epoch 3/3: Loss=0.1047, Acc=97.17%
+Client 6 Epoch 1/3: Loss=0.1902, Acc=93.58%
+Client 6 Epoch 2/3: Loss=0.1392, Acc=96.21%
+Client 6 Epoch 3/3: Loss=0.1048, Acc=97.29%
+Client 7 Epoch 1/3: Loss=0.1908, Acc=93.96%
+Client 7 Epoch 2/3: Loss=0.1399, Acc=96.29%
+Client 7 Epoch 3/3: Loss=0.1077, Acc=97.04%
+Client 8 Epoch 1/3: Loss=0.1825, Acc=94.12%
+Client 8 Epoch 2/3: Loss=0.1441, Acc=95.62%
+Client 8 Epoch 3/3: Loss=0.1117, Acc=96.79%
+Client 9 Epoch 1/3: Loss=0.1900, Acc=93.54%
+Client 9 Epoch 2/3: Loss=0.1370, Acc=96.50%
+Client 9 Epoch 3/3: Loss=0.1009, Acc=97.54%
+Client 10 Epoch 1/3: Loss=0.1814, Acc=94.33%
+Client 10 Epoch 2/3: Loss=0.1458, Acc=94.92%
+Client 10 Epoch 3/3: Loss=0.1030, Acc=97.25%
+Client 11 Epoch 1/3: Loss=0.1869, Acc=93.75%
+Client 11 Epoch 2/3: Loss=0.1395, Acc=96.12%
+Client 11 Epoch 3/3: Loss=0.1082, Acc=97.29%
+Client 12 Epoch 1/3: Loss=0.1873, Acc=93.83%
+Client 12 Epoch 2/3: Loss=0.1404, Acc=95.62%
+Client 12 Epoch 3/3: Loss=0.1111, Acc=97.17%
+Client 13 Epoch 1/3: Loss=0.1826, Acc=93.92%
+Client 13 Epoch 2/3: Loss=0.1297, Acc=96.79%
+Client 13 Epoch 3/3: Loss=0.1012, Acc=97.38%
+Client 14 Epoch 1/3: Loss=0.1892, Acc=93.79%
+Client 14 Epoch 2/3: Loss=0.1418, Acc=95.88%
+Client 14 Epoch 3/3: Loss=0.1066, Acc=96.88%
+2025-08-31 06:11:37,475 - INFO - ?? Round 3 Clean Acc: 63.12% | Adv Acc: 45.94% | MAE Detection: 100.00% | Time: 554.5s
+2025-08-31 06:11:37,476 - INFO - ?? Total training time: 1678.5s
+2025-08-31 06:11:37,476 - INFO - ?? Round 4/20
+2025-08-31 06:11:37,476 - INFO - ?? Training client 1/15
+2025-08-31 06:12:10,787 - INFO - ? Client 1 completed in 33.3s
+2025-08-31 06:12:10,788 - INFO - ?? Training client 2/15
+2025-08-31 06:12:43,138 - INFO - ? Client 2 completed in 32.4s
+2025-08-31 06:12:43,139 - INFO - ?? Training client 3/15
+2025-08-31 06:13:15,904 - INFO - ? Client 3 completed in 32.8s
+2025-08-31 06:13:15,904 - INFO - ?? Training client 4/15
+2025-08-31 06:13:48,861 - INFO - ? Client 4 completed in 33.0s
+2025-08-31 06:13:48,862 - INFO - ?? Training client 5/15
+2025-08-31 06:14:23,512 - INFO - ? Client 5 completed in 34.7s
+2025-08-31 06:14:23,512 - INFO - ?? Training client 6/15
+2025-08-31 06:14:56,507 - INFO - ? Client 6 completed in 33.0s
+2025-08-31 06:14:56,507 - INFO - ?? Training client 7/15
+2025-08-31 06:15:29,462 - INFO - ? Client 7 completed in 33.0s
+2025-08-31 06:15:29,462 - INFO - ?? Training client 8/15
+2025-08-31 06:16:01,344 - INFO - ? Client 8 completed in 31.9s
+2025-08-31 06:16:01,344 - INFO - ?? Training client 9/15
+2025-08-31 06:16:33,936 - INFO - ? Client 9 completed in 32.6s
+2025-08-31 06:16:33,936 - INFO - ?? Training client 10/15
+2025-08-31 06:17:07,895 - INFO - ? Client 10 completed in 34.0s
+2025-08-31 06:17:07,896 - INFO - ?? Training client 11/15
+2025-08-31 06:17:41,367 - INFO - ? Client 11 completed in 33.5s
+2025-08-31 06:17:41,368 - INFO - ?? Training client 12/15
+2025-08-31 06:18:13,539 - INFO - ? Client 12 completed in 32.2s
+2025-08-31 06:18:13,539 - INFO - ?? Training client 13/15
+2025-08-31 06:18:46,461 - INFO - ? Client 13 completed in 32.9s
+2025-08-31 06:18:46,462 - INFO - ?? Training client 14/15
+2025-08-31 06:19:19,401 - INFO - ? Client 14 completed in 32.9s
+2025-08-31 06:19:19,401 - INFO - ?? Training client 15/15
+2025-08-31 06:19:53,134 - INFO - ? Client 15 completed in 33.7s
+2025-08-31 06:19:53,134 - INFO - ?? Aggregating models...
+2025-08-31 06:19:55,744 - INFO - ? Model aggregation completed
+2025-08-31 06:19:55,744 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0896, Acc=97.67%
+Client 0 Epoch 2/3: Loss=0.0683, Acc=98.58%
+Client 0 Epoch 3/3: Loss=0.0488, Acc=99.00%
+Client 1 Epoch 1/3: Loss=0.0831, Acc=97.83%
+Client 1 Epoch 2/3: Loss=0.0654, Acc=98.67%
+Client 1 Epoch 3/3: Loss=0.0419, Acc=99.25%
+Client 2 Epoch 1/3: Loss=0.0890, Acc=97.42%
+Client 2 Epoch 2/3: Loss=0.0765, Acc=98.21%
+Client 2 Epoch 3/3: Loss=0.0470, Acc=99.21%
+Client 3 Epoch 1/3: Loss=0.0778, Acc=98.25%
+Client 3 Epoch 2/3: Loss=0.0680, Acc=98.29%
+Client 3 Epoch 3/3: Loss=0.0398, Acc=99.33%
+Client 4 Epoch 1/3: Loss=0.0792, Acc=98.29%
+Client 4 Epoch 2/3: Loss=0.0671, Acc=98.62%
+Client 4 Epoch 3/3: Loss=0.0475, Acc=98.83%
+Client 5 Epoch 1/3: Loss=0.0796, Acc=98.12%
+Client 5 Epoch 2/3: Loss=0.0683, Acc=98.08%
+Client 5 Epoch 3/3: Loss=0.0447, Acc=99.00%
+Client 6 Epoch 1/3: Loss=0.0768, Acc=98.21%
+Client 6 Epoch 2/3: Loss=0.0609, Acc=98.71%
+Client 6 Epoch 3/3: Loss=0.0487, Acc=99.00%
+Client 7 Epoch 1/3: Loss=0.0829, Acc=97.92%
+Client 7 Epoch 2/3: Loss=0.0678, Acc=98.33%
+Client 7 Epoch 3/3: Loss=0.0503, Acc=98.88%
+Client 8 Epoch 1/3: Loss=0.0855, Acc=98.17%
+Client 8 Epoch 2/3: Loss=0.0664, Acc=98.33%
+Client 8 Epoch 3/3: Loss=0.0548, Acc=98.71%
+Client 9 Epoch 1/3: Loss=0.0821, Acc=97.92%
+Client 9 Epoch 2/3: Loss=0.0679, Acc=98.21%
+Client 9 Epoch 3/3: Loss=0.0561, Acc=98.92%
+Client 10 Epoch 1/3: Loss=0.0763, Acc=98.29%
+Client 10 Epoch 2/3: Loss=0.0615, Acc=98.75%
+Client 10 Epoch 3/3: Loss=0.0496, Acc=98.83%
+Client 11 Epoch 1/3: Loss=0.0797, Acc=98.21%
+Client 11 Epoch 2/3: Loss=0.0628, Acc=98.62%
+Client 11 Epoch 3/3: Loss=0.0480, Acc=98.96%
+Client 12 Epoch 1/3: Loss=0.0851, Acc=98.08%
+Client 12 Epoch 2/3: Loss=0.0694, Acc=98.46%
+Client 12 Epoch 3/3: Loss=0.0556, Acc=99.00%
+Client 13 Epoch 1/3: Loss=0.0855, Acc=97.88%
+Client 13 Epoch 2/3: Loss=0.0648, Acc=98.33%
+Client 13 Epoch 3/3: Loss=0.0495, Acc=98.67%
+Client 14 Epoch 1/3: Loss=0.0822, Acc=98.04%
+Client 14 Epoch 2/3: Loss=0.0714, Acc=98.12%
+Client 14 Epoch 3/3: Loss=0.0456, Acc=99.17%
+2025-08-31 06:20:55,045 - INFO - ?? Round 4 Clean Acc: 61.25% | Adv Acc: 45.94% | MAE Detection: 99.69% | Time: 557.6s
+2025-08-31 06:20:55,045 - INFO - ?? Total training time: 2236.1s
+2025-08-31 06:20:55,046 - INFO - ?? Round 5/20
+2025-08-31 06:20:55,046 - INFO - ?? Training client 1/15
+2025-08-31 06:21:26,671 - INFO - ? Client 1 completed in 31.6s
+2025-08-31 06:21:26,671 - INFO - ?? Training client 2/15
+2025-08-31 06:21:59,251 - INFO - ? Client 2 completed in 32.6s
+2025-08-31 06:21:59,251 - INFO - ?? Training client 3/15
+2025-08-31 06:22:30,810 - INFO - ? Client 3 completed in 31.6s
+2025-08-31 06:22:30,811 - INFO - ?? Training client 4/15
+2025-08-31 06:23:02,640 - INFO - ? Client 4 completed in 31.8s
+2025-08-31 06:23:02,640 - INFO - ?? Training client 5/15
+2025-08-31 06:23:34,794 - INFO - ? Client 5 completed in 32.2s
+2025-08-31 06:23:34,794 - INFO - ?? Training client 6/15
+2025-08-31 06:24:06,554 - INFO - ? Client 6 completed in 31.8s
+2025-08-31 06:24:06,554 - INFO - ?? Training client 7/15
+2025-08-31 06:24:37,419 - INFO - ? Client 7 completed in 30.9s
+2025-08-31 06:24:37,419 - INFO - ?? Training client 8/15
+2025-08-31 06:25:11,088 - INFO - ? Client 8 completed in 33.7s
+2025-08-31 06:25:11,088 - INFO - ?? Training client 9/15
+2025-08-31 06:25:42,531 - INFO - ? Client 9 completed in 31.4s
+2025-08-31 06:25:42,531 - INFO - ?? Training client 10/15
+2025-08-31 06:26:14,616 - INFO - ? Client 10 completed in 32.1s
+2025-08-31 06:26:14,617 - INFO - ?? Training client 11/15
+2025-08-31 06:26:47,493 - INFO - ? Client 11 completed in 32.9s
+2025-08-31 06:26:47,494 - INFO - ?? Training client 12/15
+2025-08-31 06:27:21,783 - INFO - ? Client 12 completed in 34.3s
+2025-08-31 06:27:21,784 - INFO - ?? Training client 13/15
+2025-08-31 06:27:56,258 - INFO - ? Client 13 completed in 34.5s
+2025-08-31 06:27:56,259 - INFO - ?? Training client 14/15
+2025-08-31 06:28:30,887 - INFO - ? Client 14 completed in 34.6s
+2025-08-31 06:28:30,887 - INFO - ?? Training client 15/15
+2025-08-31 06:29:05,479 - INFO - ? Client 15 completed in 34.6s
+2025-08-31 06:29:05,479 - INFO - ?? Aggregating models...
+2025-08-31 06:29:08,140 - INFO - ? Model aggregation completed
+2025-08-31 06:29:08,140 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0400, Acc=98.88%
+Client 0 Epoch 2/3: Loss=0.0326, Acc=99.21%
+Client 0 Epoch 3/3: Loss=0.0256, Acc=99.46%
+Client 1 Epoch 1/3: Loss=0.0350, Acc=99.29%
+Client 1 Epoch 2/3: Loss=0.0321, Acc=99.21%
+Client 1 Epoch 3/3: Loss=0.0230, Acc=99.58%
+Client 2 Epoch 1/3: Loss=0.0343, Acc=99.29%
+Client 2 Epoch 2/3: Loss=0.0350, Acc=99.21%
+Client 2 Epoch 3/3: Loss=0.0224, Acc=99.42%
+Client 3 Epoch 1/3: Loss=0.0381, Acc=99.08%
+Client 3 Epoch 2/3: Loss=0.0331, Acc=99.29%
+Client 3 Epoch 3/3: Loss=0.0228, Acc=99.58%
+Client 4 Epoch 1/3: Loss=0.0452, Acc=98.79%
+Client 4 Epoch 2/3: Loss=0.0306, Acc=99.42%
+Client 4 Epoch 3/3: Loss=0.0242, Acc=99.38%
+Client 5 Epoch 1/3: Loss=0.0424, Acc=98.92%
+Client 5 Epoch 2/3: Loss=0.0336, Acc=99.17%
+Client 5 Epoch 3/3: Loss=0.0249, Acc=99.62%
+Client 6 Epoch 1/3: Loss=0.0396, Acc=99.04%
+Client 6 Epoch 2/3: Loss=0.0342, Acc=99.12%
+Client 6 Epoch 3/3: Loss=0.0245, Acc=99.50%
+Client 7 Epoch 1/3: Loss=0.0405, Acc=99.12%
+Client 7 Epoch 2/3: Loss=0.0262, Acc=99.42%
+Client 7 Epoch 3/3: Loss=0.0215, Acc=99.62%
+Client 8 Epoch 1/3: Loss=0.0356, Acc=99.17%
+Client 8 Epoch 2/3: Loss=0.0303, Acc=99.46%
+Client 8 Epoch 3/3: Loss=0.0280, Acc=99.50%
+Client 9 Epoch 1/3: Loss=0.0373, Acc=99.17%
+Client 9 Epoch 2/3: Loss=0.0394, Acc=98.96%
+Client 9 Epoch 3/3: Loss=0.0209, Acc=99.54%
+Client 10 Epoch 1/3: Loss=0.0367, Acc=99.38%
+Client 10 Epoch 2/3: Loss=0.0315, Acc=99.08%
+Client 10 Epoch 3/3: Loss=0.0222, Acc=99.62%
+Client 11 Epoch 1/3: Loss=0.0400, Acc=99.21%
+Client 11 Epoch 2/3: Loss=0.0373, Acc=98.92%
+Client 11 Epoch 3/3: Loss=0.0240, Acc=99.50%
+Client 12 Epoch 1/3: Loss=0.0382, Acc=99.17%
+Client 12 Epoch 2/3: Loss=0.0324, Acc=99.29%
+Client 12 Epoch 3/3: Loss=0.0294, Acc=99.12%
+Client 13 Epoch 1/3: Loss=0.0397, Acc=99.12%
+Client 13 Epoch 2/3: Loss=0.0308, Acc=99.50%
+Client 13 Epoch 3/3: Loss=0.0229, Acc=99.54%
+Client 14 Epoch 1/3: Loss=0.0390, Acc=99.29%
+Client 14 Epoch 2/3: Loss=0.0354, Acc=99.08%
+Client 14 Epoch 3/3: Loss=0.0219, Acc=99.54%
+2025-08-31 06:30:07,448 - INFO - ?? Round 5 Clean Acc: 57.50% | Adv Acc: 47.81% | MAE Detection: 99.38% | Time: 552.4s
+2025-08-31 06:30:07,448 - INFO - ?? Total training time: 2788.5s
+2025-08-31 06:30:07,448 - INFO - ?? Round 6/20
+2025-08-31 06:30:07,448 - INFO - ?? Training client 1/15
+2025-08-31 06:30:38,878 - INFO - ? Client 1 completed in 31.4s
+2025-08-31 06:30:38,879 - INFO - ?? Training client 2/15
+2025-08-31 06:31:13,310 - INFO - ? Client 2 completed in 34.4s
+2025-08-31 06:31:13,310 - INFO - ?? Training client 3/15
+2025-08-31 06:31:46,753 - INFO - ? Client 3 completed in 33.4s
+2025-08-31 06:31:46,753 - INFO - ?? Training client 4/15
+2025-08-31 06:32:19,230 - INFO - ? Client 4 completed in 32.5s
+2025-08-31 06:32:19,230 - INFO - ?? Training client 5/15
+2025-08-31 06:32:51,001 - INFO - ? Client 5 completed in 31.8s
+2025-08-31 06:32:51,002 - INFO - ?? Training client 6/15
+2025-08-31 06:33:23,418 - INFO - ? Client 6 completed in 32.4s
+2025-08-31 06:33:23,419 - INFO - ?? Training client 7/15
+2025-08-31 06:33:54,631 - INFO - ? Client 7 completed in 31.2s
+2025-08-31 06:33:54,632 - INFO - ?? Training client 8/15
+2025-08-31 06:34:26,202 - INFO - ? Client 8 completed in 31.6s
+2025-08-31 06:34:26,202 - INFO - ?? Training client 9/15
+2025-08-31 06:34:58,395 - INFO - ? Client 9 completed in 32.2s
+2025-08-31 06:34:58,396 - INFO - ?? Training client 10/15
+2025-08-31 06:35:29,990 - INFO - ? Client 10 completed in 31.6s
+2025-08-31 06:35:29,990 - INFO - ?? Training client 11/15
+2025-08-31 06:36:01,761 - INFO - ? Client 11 completed in 31.8s
+2025-08-31 06:36:01,761 - INFO - ?? Training client 12/15
+2025-08-31 06:36:33,348 - INFO - ? Client 12 completed in 31.6s
+2025-08-31 06:36:33,348 - INFO - ?? Training client 13/15
+2025-08-31 06:37:05,945 - INFO - ? Client 13 completed in 32.6s
+2025-08-31 06:37:05,945 - INFO - ?? Training client 14/15
+2025-08-31 06:37:38,614 - INFO - ? Client 14 completed in 32.7s
+2025-08-31 06:37:38,614 - INFO - ?? Training client 15/15
+2025-08-31 06:38:12,312 - INFO - ? Client 15 completed in 33.7s
+2025-08-31 06:38:12,312 - INFO - ?? Aggregating models...
+2025-08-31 06:38:14,994 - INFO - ? Model aggregation completed
+2025-08-31 06:38:14,994 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0205, Acc=99.62%
+Client 0 Epoch 2/3: Loss=0.0170, Acc=99.67%
+Client 0 Epoch 3/3: Loss=0.0087, Acc=99.92%
+Client 1 Epoch 1/3: Loss=0.0229, Acc=99.46%
+Client 1 Epoch 2/3: Loss=0.0164, Acc=99.67%
+Client 1 Epoch 3/3: Loss=0.0099, Acc=99.88%
+Client 2 Epoch 1/3: Loss=0.0192, Acc=99.58%
+Client 2 Epoch 2/3: Loss=0.0146, Acc=99.75%
+Client 2 Epoch 3/3: Loss=0.0141, Acc=99.67%
+Client 3 Epoch 1/3: Loss=0.0187, Acc=99.67%
+Client 3 Epoch 2/3: Loss=0.0171, Acc=99.54%
+Client 3 Epoch 3/3: Loss=0.0125, Acc=99.79%
+Client 4 Epoch 1/3: Loss=0.0146, Acc=99.79%
+Client 4 Epoch 2/3: Loss=0.0135, Acc=99.79%
+Client 4 Epoch 3/3: Loss=0.0134, Acc=99.75%
+Client 5 Epoch 1/3: Loss=0.0166, Acc=99.67%
+Client 5 Epoch 2/3: Loss=0.0143, Acc=99.75%
+Client 5 Epoch 3/3: Loss=0.0151, Acc=99.71%
+Client 6 Epoch 1/3: Loss=0.0209, Acc=99.50%
+Client 6 Epoch 2/3: Loss=0.0140, Acc=99.83%
+Client 6 Epoch 3/3: Loss=0.0136, Acc=99.62%
+Client 7 Epoch 1/3: Loss=0.0174, Acc=99.75%
+Client 7 Epoch 2/3: Loss=0.0169, Acc=99.75%
+Client 7 Epoch 3/3: Loss=0.0146, Acc=99.83%
+Client 8 Epoch 1/3: Loss=0.0239, Acc=99.38%
+Client 8 Epoch 2/3: Loss=0.0170, Acc=99.54%
+Client 8 Epoch 3/3: Loss=0.0131, Acc=99.71%
+Client 9 Epoch 1/3: Loss=0.0231, Acc=99.58%
+Client 9 Epoch 2/3: Loss=0.0156, Acc=99.67%
+Client 9 Epoch 3/3: Loss=0.0141, Acc=99.75%
+Client 10 Epoch 1/3: Loss=0.0187, Acc=99.71%
+Client 10 Epoch 2/3: Loss=0.0159, Acc=99.71%
+Client 10 Epoch 3/3: Loss=0.0090, Acc=99.88%
+Client 11 Epoch 1/3: Loss=0.0157, Acc=99.75%
+Client 11 Epoch 2/3: Loss=0.0162, Acc=99.71%
+Client 11 Epoch 3/3: Loss=0.0097, Acc=99.92%
+Client 12 Epoch 1/3: Loss=0.0193, Acc=99.67%
+Client 12 Epoch 2/3: Loss=0.0171, Acc=99.67%
+Client 12 Epoch 3/3: Loss=0.0157, Acc=99.67%
+Client 13 Epoch 1/3: Loss=0.0158, Acc=99.79%
+Client 13 Epoch 2/3: Loss=0.0168, Acc=99.67%
+Client 13 Epoch 3/3: Loss=0.0131, Acc=99.83%
+Client 14 Epoch 1/3: Loss=0.0139, Acc=99.92%
+Client 14 Epoch 2/3: Loss=0.0179, Acc=99.62%
+Client 14 Epoch 3/3: Loss=0.0130, Acc=99.79%
+2025-08-31 06:39:14,361 - INFO - ?? Round 6 Clean Acc: 60.94% | Adv Acc: 49.69% | MAE Detection: 99.06% | Time: 546.9s
+2025-08-31 06:39:14,361 - INFO - ?? Total training time: 3335.4s
+2025-08-31 06:39:14,361 - INFO - ?? Round 7/20
+2025-08-31 06:39:14,361 - INFO - ?? Training client 1/15
+2025-08-31 06:39:46,605 - INFO - ? Client 1 completed in 32.2s
+2025-08-31 06:39:46,605 - INFO - ?? Training client 2/15
+2025-08-31 06:40:19,869 - INFO - ? Client 2 completed in 33.3s
+2025-08-31 06:40:19,869 - INFO - ?? Training client 3/15
+2025-08-31 06:40:51,437 - INFO - ? Client 3 completed in 31.6s
+2025-08-31 06:40:51,437 - INFO - ?? Training client 4/15
+2025-08-31 06:41:23,193 - INFO - ? Client 4 completed in 31.8s
+2025-08-31 06:41:23,194 - INFO - ?? Training client 5/15
+2025-08-31 06:41:54,888 - INFO - ? Client 5 completed in 31.7s
+2025-08-31 06:41:54,888 - INFO - ?? Training client 6/15
+2025-08-31 06:42:26,745 - INFO - ? Client 6 completed in 31.9s
+2025-08-31 06:42:26,745 - INFO - ?? Training client 7/15
+2025-08-31 06:42:59,260 - INFO - ? Client 7 completed in 32.5s
+2025-08-31 06:42:59,261 - INFO - ?? Training client 8/15
+2025-08-31 06:43:31,898 - INFO - ? Client 8 completed in 32.6s
+2025-08-31 06:43:31,899 - INFO - ?? Training client 9/15
+2025-08-31 06:44:04,371 - INFO - ? Client 9 completed in 32.5s
+2025-08-31 06:44:04,372 - INFO - ?? Training client 10/15
+2025-08-31 06:44:37,765 - INFO - ? Client 10 completed in 33.4s
+2025-08-31 06:44:37,766 - INFO - ?? Training client 11/15
+2025-08-31 06:45:11,059 - INFO - ? Client 11 completed in 33.3s
+2025-08-31 06:45:11,059 - INFO - ?? Training client 12/15
+2025-08-31 06:45:44,118 - INFO - ? Client 12 completed in 33.1s
+2025-08-31 06:45:44,118 - INFO - ?? Training client 13/15
+2025-08-31 06:46:17,246 - INFO - ? Client 13 completed in 33.1s
+2025-08-31 06:46:17,246 - INFO - ?? Training client 14/15
+2025-08-31 06:46:50,565 - INFO - ? Client 14 completed in 33.3s
+2025-08-31 06:46:50,565 - INFO - ?? Training client 15/15
+2025-08-31 06:47:25,420 - INFO - ? Client 15 completed in 34.9s
+2025-08-31 06:47:25,420 - INFO - ?? Aggregating models...
+2025-08-31 06:47:28,173 - INFO - ? Model aggregation completed
+2025-08-31 06:47:28,173 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0105, Acc=99.83%
+Client 0 Epoch 2/3: Loss=0.0088, Acc=99.83%
+Client 0 Epoch 3/3: Loss=0.0074, Acc=99.92%
+Client 1 Epoch 1/3: Loss=0.0104, Acc=99.88%
+Client 1 Epoch 2/3: Loss=0.0087, Acc=99.92%
+Client 1 Epoch 3/3: Loss=0.0067, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0113, Acc=99.92%
+Client 2 Epoch 2/3: Loss=0.0103, Acc=99.79%
+Client 2 Epoch 3/3: Loss=0.0069, Acc=99.83%
+Client 3 Epoch 1/3: Loss=0.0151, Acc=99.62%
+Client 3 Epoch 2/3: Loss=0.0073, Acc=99.88%
+Client 3 Epoch 3/3: Loss=0.0101, Acc=99.79%
+Client 4 Epoch 1/3: Loss=0.0100, Acc=99.88%
+Client 4 Epoch 2/3: Loss=0.0122, Acc=99.75%
+Client 4 Epoch 3/3: Loss=0.0079, Acc=99.96%
+Client 5 Epoch 1/3: Loss=0.0096, Acc=99.79%
+Client 5 Epoch 2/3: Loss=0.0088, Acc=99.88%
+Client 5 Epoch 3/3: Loss=0.0099, Acc=99.83%
+Client 6 Epoch 1/3: Loss=0.0085, Acc=99.96%
+Client 6 Epoch 2/3: Loss=0.0094, Acc=99.79%
+Client 6 Epoch 3/3: Loss=0.0059, Acc=99.92%
+Client 7 Epoch 1/3: Loss=0.0101, Acc=99.83%
+Client 7 Epoch 2/3: Loss=0.0087, Acc=99.96%
+Client 7 Epoch 3/3: Loss=0.0038, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0117, Acc=99.67%
+Client 8 Epoch 2/3: Loss=0.0093, Acc=99.75%
+Client 8 Epoch 3/3: Loss=0.0077, Acc=99.92%
+Client 9 Epoch 1/3: Loss=0.0118, Acc=99.88%
+Client 9 Epoch 2/3: Loss=0.0106, Acc=99.75%
+Client 9 Epoch 3/3: Loss=0.0064, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0091, Acc=99.79%
+Client 10 Epoch 2/3: Loss=0.0111, Acc=99.75%
+Client 10 Epoch 3/3: Loss=0.0076, Acc=99.92%
+Client 11 Epoch 1/3: Loss=0.0084, Acc=99.79%
+Client 11 Epoch 2/3: Loss=0.0069, Acc=99.92%
+Client 11 Epoch 3/3: Loss=0.0053, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0116, Acc=99.67%
+Client 12 Epoch 2/3: Loss=0.0095, Acc=99.88%
+Client 12 Epoch 3/3: Loss=0.0069, Acc=99.92%
+Client 13 Epoch 1/3: Loss=0.0121, Acc=99.75%
+Client 13 Epoch 2/3: Loss=0.0084, Acc=99.83%
+Client 13 Epoch 3/3: Loss=0.0083, Acc=99.96%
+Client 14 Epoch 1/3: Loss=0.0130, Acc=99.75%
+Client 14 Epoch 2/3: Loss=0.0076, Acc=99.92%
+Client 14 Epoch 3/3: Loss=0.0067, Acc=99.92%
+2025-08-31 06:48:27,447 - INFO - ?? Round 7 Clean Acc: 58.44% | Adv Acc: 50.62% | MAE Detection: 100.00% | Time: 553.1s
+2025-08-31 06:48:27,448 - INFO - ?? Total training time: 3888.5s
+2025-08-31 06:48:27,448 - INFO - ?? Round 8/20
+2025-08-31 06:48:27,448 - INFO - ?? Training client 1/15
+2025-08-31 06:49:00,478 - INFO - ? Client 1 completed in 33.0s
+2025-08-31 06:49:00,478 - INFO - ?? Training client 2/15
+2025-08-31 06:49:33,328 - INFO - ? Client 2 completed in 32.9s
+2025-08-31 06:49:33,329 - INFO - ?? Training client 3/15
+2025-08-31 06:50:05,639 - INFO - ? Client 3 completed in 32.3s
+2025-08-31 06:50:05,639 - INFO - ?? Training client 4/15
+2025-08-31 06:50:37,990 - INFO - ? Client 4 completed in 32.4s
+2025-08-31 06:50:37,990 - INFO - ?? Training client 5/15
+2025-08-31 06:51:10,058 - INFO - ? Client 5 completed in 32.1s
+2025-08-31 06:51:10,059 - INFO - ?? Training client 6/15
+2025-08-31 06:51:42,583 - INFO - ? Client 6 completed in 32.5s
+2025-08-31 06:51:42,583 - INFO - ?? Training client 7/15
+2025-08-31 06:52:15,970 - INFO - ? Client 7 completed in 33.4s
+2025-08-31 06:52:15,970 - INFO - ?? Training client 8/15
+2025-08-31 06:52:48,273 - INFO - ? Client 8 completed in 32.3s
+2025-08-31 06:52:48,273 - INFO - ?? Training client 9/15
+2025-08-31 06:53:21,591 - INFO - ? Client 9 completed in 33.3s
+2025-08-31 06:53:21,591 - INFO - ?? Training client 10/15
+2025-08-31 06:53:56,196 - INFO - ? Client 10 completed in 34.6s
+2025-08-31 06:53:56,196 - INFO - ?? Training client 11/15
+2025-08-31 06:54:30,169 - INFO - ? Client 11 completed in 34.0s
+2025-08-31 06:54:30,169 - INFO - ?? Training client 12/15
+2025-08-31 06:55:04,404 - INFO - ? Client 12 completed in 34.2s
+2025-08-31 06:55:04,405 - INFO - ?? Training client 13/15
+2025-08-31 06:55:37,808 - INFO - ? Client 13 completed in 33.4s
+2025-08-31 06:55:37,808 - INFO - ?? Training client 14/15
+2025-08-31 06:56:12,193 - INFO - ? Client 14 completed in 34.4s
+2025-08-31 06:56:12,193 - INFO - ?? Training client 15/15
+2025-08-31 06:56:45,794 - INFO - ? Client 15 completed in 33.6s
+2025-08-31 06:56:45,794 - INFO - ?? Aggregating models...
+2025-08-31 06:56:48,501 - INFO - ? Model aggregation completed
+2025-08-31 06:56:48,502 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0061, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0057, Acc=99.92%
+Client 0 Epoch 3/3: Loss=0.0054, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0074, Acc=99.88%
+Client 1 Epoch 2/3: Loss=0.0059, Acc=99.92%
+Client 1 Epoch 3/3: Loss=0.0036, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0079, Acc=99.88%
+Client 2 Epoch 2/3: Loss=0.0058, Acc=99.88%
+Client 2 Epoch 3/3: Loss=0.0047, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0063, Acc=99.88%
+Client 3 Epoch 2/3: Loss=0.0055, Acc=99.92%
+Client 3 Epoch 3/3: Loss=0.0027, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0044, Acc=99.96%
+Client 4 Epoch 2/3: Loss=0.0051, Acc=99.96%
+Client 4 Epoch 3/3: Loss=0.0041, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0071, Acc=99.83%
+Client 5 Epoch 2/3: Loss=0.0039, Acc=99.96%
+Client 5 Epoch 3/3: Loss=0.0063, Acc=99.83%
+Client 6 Epoch 1/3: Loss=0.0073, Acc=99.88%
+Client 6 Epoch 2/3: Loss=0.0062, Acc=99.92%
+Client 6 Epoch 3/3: Loss=0.0060, Acc=99.92%
+Client 7 Epoch 1/3: Loss=0.0069, Acc=99.92%
+Client 7 Epoch 2/3: Loss=0.0059, Acc=99.92%
+Client 7 Epoch 3/3: Loss=0.0046, Acc=99.96%
+Client 8 Epoch 1/3: Loss=0.0045, Acc=99.96%
+Client 8 Epoch 2/3: Loss=0.0082, Acc=99.75%
+Client 8 Epoch 3/3: Loss=0.0059, Acc=99.92%
+Client 9 Epoch 1/3: Loss=0.0055, Acc=99.96%
+Client 9 Epoch 2/3: Loss=0.0066, Acc=99.92%
+Client 9 Epoch 3/3: Loss=0.0027, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0048, Acc=99.96%
+Client 10 Epoch 2/3: Loss=0.0041, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0042, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0079, Acc=99.83%
+Client 11 Epoch 2/3: Loss=0.0062, Acc=99.92%
+Client 11 Epoch 3/3: Loss=0.0050, Acc=99.92%
+Client 12 Epoch 1/3: Loss=0.0061, Acc=99.92%
+Client 12 Epoch 2/3: Loss=0.0058, Acc=99.96%
+Client 12 Epoch 3/3: Loss=0.0049, Acc=99.96%
+Client 13 Epoch 1/3: Loss=0.0065, Acc=99.88%
+Client 13 Epoch 2/3: Loss=0.0058, Acc=99.96%
+Client 13 Epoch 3/3: Loss=0.0066, Acc=99.88%
+Client 14 Epoch 1/3: Loss=0.0055, Acc=99.92%
+Client 14 Epoch 2/3: Loss=0.0076, Acc=99.88%
+Client 14 Epoch 3/3: Loss=0.0055, Acc=99.92%
+2025-08-31 06:57:47,906 - INFO - ?? Round 8 Clean Acc: 55.31% | Adv Acc: 50.00% | MAE Detection: 99.69% | Time: 560.5s
+2025-08-31 06:57:47,907 - INFO - ?? Total training time: 4448.9s
+2025-08-31 06:57:47,907 - INFO - ?? Round 9/20
+2025-08-31 06:57:47,907 - INFO - ?? Training client 1/15
+2025-08-31 06:58:20,862 - INFO - ? Client 1 completed in 33.0s
+2025-08-31 06:58:20,862 - INFO - ?? Training client 2/15
+2025-08-31 06:58:53,441 - INFO - ? Client 2 completed in 32.6s
+2025-08-31 06:58:53,441 - INFO - ?? Training client 3/15
+2025-08-31 06:59:26,041 - INFO - ? Client 3 completed in 32.6s
+2025-08-31 06:59:26,041 - INFO - ?? Training client 4/15
+2025-08-31 06:59:58,328 - INFO - ? Client 4 completed in 32.3s
+2025-08-31 06:59:58,328 - INFO - ?? Training client 5/15
+2025-08-31 07:00:30,490 - INFO - ? Client 5 completed in 32.2s
+2025-08-31 07:00:30,491 - INFO - ?? Training client 6/15
+2025-08-31 07:01:02,242 - INFO - ? Client 6 completed in 31.8s
+2025-08-31 07:01:02,242 - INFO - ?? Training client 7/15
+2025-08-31 07:01:35,016 - INFO - ? Client 7 completed in 32.8s
+2025-08-31 07:01:35,016 - INFO - ?? Training client 8/15
+2025-08-31 07:02:07,533 - INFO - ? Client 8 completed in 32.5s
+2025-08-31 07:02:07,533 - INFO - ?? Training client 9/15
+2025-08-31 07:02:40,377 - INFO - ? Client 9 completed in 32.8s
+2025-08-31 07:02:40,378 - INFO - ?? Training client 10/15
+2025-08-31 07:03:13,580 - INFO - ? Client 10 completed in 33.2s
+2025-08-31 07:03:13,580 - INFO - ?? Training client 11/15
+2025-08-31 07:03:47,287 - INFO - ? Client 11 completed in 33.7s
+2025-08-31 07:03:47,287 - INFO - ?? Training client 12/15
+2025-08-31 07:04:21,668 - INFO - ? Client 12 completed in 34.4s
+2025-08-31 07:04:21,668 - INFO - ?? Training client 13/15
+2025-08-31 07:04:56,305 - INFO - ? Client 13 completed in 34.6s
+2025-08-31 07:04:56,305 - INFO - ?? Training client 14/15
+2025-08-31 07:05:29,815 - INFO - ? Client 14 completed in 33.5s
+2025-08-31 07:05:29,816 - INFO - ?? Training client 15/15
+2025-08-31 07:06:03,764 - INFO - ? Client 15 completed in 33.9s
+2025-08-31 07:06:03,764 - INFO - ?? Aggregating models...
+2025-08-31 07:06:06,421 - INFO - ? Model aggregation completed
+2025-08-31 07:06:06,421 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0034, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0034, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0025, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0032, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0032, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0027, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0034, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0046, Acc=99.96%
+Client 2 Epoch 3/3: Loss=0.0044, Acc=99.96%
+Client 3 Epoch 1/3: Loss=0.0080, Acc=99.83%
+Client 3 Epoch 2/3: Loss=0.0028, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0032, Acc=99.96%
+Client 4 Epoch 1/3: Loss=0.0057, Acc=99.88%
+Client 4 Epoch 2/3: Loss=0.0041, Acc=99.96%
+Client 4 Epoch 3/3: Loss=0.0043, Acc=99.92%
+Client 5 Epoch 1/3: Loss=0.0058, Acc=99.92%
+Client 5 Epoch 2/3: Loss=0.0030, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0039, Acc=99.96%
+Client 6 Epoch 1/3: Loss=0.0028, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0041, Acc=99.96%
+Client 6 Epoch 3/3: Loss=0.0024, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0037, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0028, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0034, Acc=99.96%
+Client 8 Epoch 1/3: Loss=0.0036, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0038, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0030, Acc=99.96%
+Client 9 Epoch 1/3: Loss=0.0030, Acc=99.96%
+Client 9 Epoch 2/3: Loss=0.0062, Acc=99.83%
+Client 9 Epoch 3/3: Loss=0.0043, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0038, Acc=99.92%
+Client 10 Epoch 2/3: Loss=0.0030, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0025, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0038, Acc=99.96%
+Client 11 Epoch 2/3: Loss=0.0034, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0060, Acc=99.83%
+Client 12 Epoch 1/3: Loss=0.0047, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0053, Acc=99.83%
+Client 12 Epoch 3/3: Loss=0.0022, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0035, Acc=99.96%
+Client 13 Epoch 2/3: Loss=0.0030, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0028, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0041, Acc=99.96%
+Client 14 Epoch 2/3: Loss=0.0038, Acc=99.96%
+Client 14 Epoch 3/3: Loss=0.0025, Acc=100.00%
+2025-08-31 07:07:05,731 - INFO - ?? Round 9 Clean Acc: 61.25% | Adv Acc: 49.06% | MAE Detection: 99.38% | Time: 557.8s
+2025-08-31 07:07:05,731 - INFO - ?? Total training time: 5006.8s
+2025-08-31 07:07:05,732 - INFO - ?? Round 10/20
+2025-08-31 07:07:05,732 - INFO - ?? Training client 1/15
+2025-08-31 07:07:42,019 - INFO - ? Client 1 completed in 36.3s
+2025-08-31 07:07:42,019 - INFO - ?? Training client 2/15
+2025-08-31 07:08:25,737 - INFO - ? Client 2 completed in 43.7s
+2025-08-31 07:08:25,738 - INFO - ?? Training client 3/15
+2025-08-31 07:09:00,675 - INFO - ? Client 3 completed in 34.9s
+2025-08-31 07:09:00,675 - INFO - ?? Training client 4/15
+2025-08-31 07:09:33,432 - INFO - ? Client 4 completed in 32.8s
+2025-08-31 07:09:33,432 - INFO - ?? Training client 5/15
+2025-08-31 07:10:05,690 - INFO - ? Client 5 completed in 32.3s
+2025-08-31 07:10:05,690 - INFO - ?? Training client 6/15
+2025-08-31 07:10:38,229 - INFO - ? Client 6 completed in 32.5s
+2025-08-31 07:10:38,230 - INFO - ?? Training client 7/15
+2025-08-31 07:11:10,273 - INFO - ? Client 7 completed in 32.0s
+2025-08-31 07:11:10,273 - INFO - ?? Training client 8/15
+2025-08-31 07:11:41,716 - INFO - ? Client 8 completed in 31.4s
+2025-08-31 07:11:41,717 - INFO - ?? Training client 9/15
+2025-08-31 07:12:14,843 - INFO - ? Client 9 completed in 33.1s
+2025-08-31 07:12:14,843 - INFO - ?? Training client 10/15
+2025-08-31 07:12:47,308 - INFO - ? Client 10 completed in 32.5s
+2025-08-31 07:12:47,308 - INFO - ?? Training client 11/15
+2025-08-31 07:13:20,893 - INFO - ? Client 11 completed in 33.6s
+2025-08-31 07:13:20,893 - INFO - ?? Training client 12/15
+2025-08-31 07:13:55,439 - INFO - ? Client 12 completed in 34.5s
+2025-08-31 07:13:55,439 - INFO - ?? Training client 13/15
+2025-08-31 07:14:29,565 - INFO - ? Client 13 completed in 34.1s
+2025-08-31 07:14:29,565 - INFO - ?? Training client 14/15
+2025-08-31 07:15:05,158 - INFO - ? Client 14 completed in 35.6s
+2025-08-31 07:15:05,158 - INFO - ?? Training client 15/15
+2025-08-31 07:15:39,414 - INFO - ? Client 15 completed in 34.3s
+2025-08-31 07:15:39,414 - INFO - ?? Aggregating models...
+2025-08-31 07:15:42,122 - INFO - ? Model aggregation completed
+2025-08-31 07:15:42,123 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0020, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0025, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0025, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0029, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0023, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0050, Acc=99.96%
+Client 2 Epoch 2/3: Loss=0.0050, Acc=99.96%
+Client 2 Epoch 3/3: Loss=0.0024, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0024, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0042, Acc=99.92%
+Client 3 Epoch 3/3: Loss=0.0019, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0030, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0024, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0019, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0038, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0026, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0029, Acc=99.96%
+Client 6 Epoch 1/3: Loss=0.0043, Acc=99.96%
+Client 6 Epoch 2/3: Loss=0.0036, Acc=99.96%
+Client 6 Epoch 3/3: Loss=0.0024, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0027, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0036, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0021, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0025, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0023, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0019, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0030, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0028, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0028, Acc=99.92%
+Client 11 Epoch 1/3: Loss=0.0037, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0026, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0023, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0058, Acc=99.88%
+Client 12 Epoch 2/3: Loss=0.0029, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0033, Acc=99.96%
+Client 13 Epoch 2/3: Loss=0.0048, Acc=99.88%
+Client 13 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0039, Acc=99.92%
+Client 14 Epoch 2/3: Loss=0.0026, Acc=99.96%
+Client 14 Epoch 3/3: Loss=0.0025, Acc=100.00%
+2025-08-31 07:16:41,368 - INFO - ?? Round 10 Clean Acc: 56.56% | Adv Acc: 49.69% | MAE Detection: 99.38% | Time: 575.6s
+2025-08-31 07:16:41,368 - INFO - ?? Total training time: 5582.4s
+2025-08-31 07:16:41,369 - INFO - ?? Round 11/20
+2025-08-31 07:16:41,369 - INFO - ?? Training client 1/15
+2025-08-31 07:17:14,564 - INFO - ? Client 1 completed in 33.2s
+2025-08-31 07:17:14,564 - INFO - ?? Training client 2/15
+2025-08-31 07:17:46,444 - INFO - ? Client 2 completed in 31.9s
+2025-08-31 07:17:46,445 - INFO - ?? Training client 3/15
+2025-08-31 07:18:18,199 - INFO - ? Client 3 completed in 31.8s
+2025-08-31 07:18:18,199 - INFO - ?? Training client 4/15
+2025-08-31 07:18:49,773 - INFO - ? Client 4 completed in 31.6s
+2025-08-31 07:18:49,774 - INFO - ?? Training client 5/15
+2025-08-31 07:19:22,228 - INFO - ? Client 5 completed in 32.5s
+2025-08-31 07:19:22,228 - INFO - ?? Training client 6/15
+2025-08-31 07:19:55,077 - INFO - ? Client 6 completed in 32.8s
+2025-08-31 07:19:55,077 - INFO - ?? Training client 7/15
+2025-08-31 07:20:27,692 - INFO - ? Client 7 completed in 32.6s
+2025-08-31 07:20:27,692 - INFO - ?? Training client 8/15
+2025-08-31 07:20:59,557 - INFO - ? Client 8 completed in 31.9s
+2025-08-31 07:20:59,557 - INFO - ?? Training client 9/15
+2025-08-31 07:21:33,450 - INFO - ? Client 9 completed in 33.9s
+2025-08-31 07:21:33,450 - INFO - ?? Training client 10/15
+2025-08-31 07:22:06,923 - INFO - ? Client 10 completed in 33.5s
+2025-08-31 07:22:06,923 - INFO - ?? Training client 11/15
+2025-08-31 07:22:40,041 - INFO - ? Client 11 completed in 33.1s
+2025-08-31 07:22:40,041 - INFO - ?? Training client 12/15
+2025-08-31 07:23:13,174 - INFO - ? Client 12 completed in 33.1s
+2025-08-31 07:23:13,174 - INFO - ?? Training client 13/15
+2025-08-31 07:23:46,523 - INFO - ? Client 13 completed in 33.3s
+2025-08-31 07:23:46,523 - INFO - ?? Training client 14/15
+2025-08-31 07:24:20,047 - INFO - ? Client 14 completed in 33.5s
+2025-08-31 07:24:20,048 - INFO - ?? Training client 15/15
+2025-08-31 07:24:55,223 - INFO - ? Client 15 completed in 35.2s
+2025-08-31 07:24:55,223 - INFO - ?? Aggregating models...
+2025-08-31 07:24:57,902 - INFO - ? Model aggregation completed
+2025-08-31 07:24:57,903 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0023, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0023, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0032, Acc=99.96%
+Client 1 Epoch 1/3: Loss=0.0025, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0018, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0019, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0022, Acc=99.96%
+Client 2 Epoch 2/3: Loss=0.0027, Acc=99.92%
+Client 2 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0020, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0026, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0022, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0032, Acc=99.96%
+Client 4 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0022, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0021, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0022, Acc=99.96%
+Client 6 Epoch 3/3: Loss=0.0023, Acc=99.96%
+Client 7 Epoch 1/3: Loss=0.0025, Acc=99.96%
+Client 7 Epoch 2/3: Loss=0.0027, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0014, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0018, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0017, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0022, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0026, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0023, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0024, Acc=99.96%
+Client 11 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0018, Acc=99.96%
+Client 12 Epoch 1/3: Loss=0.0017, Acc=99.96%
+Client 12 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0022, Acc=99.96%
+Client 13 Epoch 1/3: Loss=0.0024, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0021, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0026, Acc=99.96%
+Client 14 Epoch 1/3: Loss=0.0030, Acc=99.96%
+Client 14 Epoch 2/3: Loss=0.0028, Acc=100.00%
+Client 14 Epoch 3/3: Loss=0.0018, Acc=100.00%
+2025-08-31 07:25:57,126 - INFO - ?? Round 11 Clean Acc: 61.25% | Adv Acc: 44.06% | MAE Detection: 99.69% | Time: 555.8s
+2025-08-31 07:25:57,127 - INFO - ?? Total training time: 6138.2s
+2025-08-31 07:25:57,127 - INFO - ?? Round 12/20
+2025-08-31 07:25:57,127 - INFO - ?? Training client 1/15
+2025-08-31 07:26:29,004 - INFO - ? Client 1 completed in 31.9s
+2025-08-31 07:26:29,004 - INFO - ?? Training client 2/15
+2025-08-31 07:27:01,684 - INFO - ? Client 2 completed in 32.7s
+2025-08-31 07:27:01,684 - INFO - ?? Training client 3/15
+2025-08-31 07:27:35,022 - INFO - ? Client 3 completed in 33.3s
+2025-08-31 07:27:35,022 - INFO - ?? Training client 4/15
+2025-08-31 07:28:07,625 - INFO - ? Client 4 completed in 32.6s
+2025-08-31 07:28:07,626 - INFO - ?? Training client 5/15
+2025-08-31 07:28:40,790 - INFO - ? Client 5 completed in 33.2s
+2025-08-31 07:28:40,791 - INFO - ?? Training client 6/15
+2025-08-31 07:29:14,499 - INFO - ? Client 6 completed in 33.7s
+2025-08-31 07:29:14,500 - INFO - ?? Training client 7/15
+2025-08-31 07:29:46,999 - INFO - ? Client 7 completed in 32.5s
+2025-08-31 07:29:46,999 - INFO - ?? Training client 8/15
+2025-08-31 07:30:19,605 - INFO - ? Client 8 completed in 32.6s
+2025-08-31 07:30:19,605 - INFO - ?? Training client 9/15
+2025-08-31 07:30:52,242 - INFO - ? Client 9 completed in 32.6s
+2025-08-31 07:30:52,242 - INFO - ?? Training client 10/15
+2025-08-31 07:31:24,586 - INFO - ? Client 10 completed in 32.3s
+2025-08-31 07:31:24,586 - INFO - ?? Training client 11/15
+2025-08-31 07:31:56,709 - INFO - ? Client 11 completed in 32.1s
+2025-08-31 07:31:56,709 - INFO - ?? Training client 12/15
+2025-08-31 07:32:28,854 - INFO - ? Client 12 completed in 32.1s
+2025-08-31 07:32:28,854 - INFO - ?? Training client 13/15
+2025-08-31 07:33:01,606 - INFO - ? Client 13 completed in 32.8s
+2025-08-31 07:33:01,606 - INFO - ?? Training client 14/15
+2025-08-31 07:33:36,363 - INFO - ? Client 14 completed in 34.8s
+2025-08-31 07:33:36,363 - INFO - ?? Training client 15/15
+2025-08-31 07:34:10,485 - INFO - ? Client 15 completed in 34.1s
+2025-08-31 07:34:10,485 - INFO - ?? Aggregating models...
+2025-08-31 07:34:13,262 - INFO - ? Model aggregation completed
+2025-08-31 07:34:13,262 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0019, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0027, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0020, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0021, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0022, Acc=99.96%
+Client 1 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0023, Acc=99.96%
+Client 2 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 2 Epoch 3/3: Loss=0.0028, Acc=99.92%
+Client 3 Epoch 1/3: Loss=0.0018, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0021, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0021, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0022, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0017, Acc=99.96%
+Client 5 Epoch 2/3: Loss=0.0020, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0040, Acc=99.88%
+Client 6 Epoch 1/3: Loss=0.0015, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0018, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0039, Acc=99.88%
+Client 9 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0019, Acc=99.96%
+Client 10 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0016, Acc=99.96%
+Client 11 Epoch 2/3: Loss=0.0022, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0014, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0010, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0024, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0023, Acc=99.92%
+Client 13 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0020, Acc=99.96%
+Client 14 Epoch 2/3: Loss=0.0018, Acc=99.96%
+Client 14 Epoch 3/3: Loss=0.0041, Acc=99.92%
+2025-08-31 07:35:12,681 - INFO - ?? Round 12 Clean Acc: 53.12% | Adv Acc: 52.81% | MAE Detection: 100.00% | Time: 555.6s
+2025-08-31 07:35:12,682 - INFO - ?? Total training time: 6693.7s
+2025-08-31 07:35:12,682 - INFO - ?? Round 13/20
+2025-08-31 07:35:12,682 - INFO - ?? Training client 1/15
+2025-08-31 07:35:46,279 - INFO - ? Client 1 completed in 33.6s
+2025-08-31 07:35:46,279 - INFO - ?? Training client 2/15
+2025-08-31 07:36:18,726 - INFO - ? Client 2 completed in 32.4s
+2025-08-31 07:36:18,726 - INFO - ?? Training client 3/15
+2025-08-31 07:36:50,516 - INFO - ? Client 3 completed in 31.8s
+2025-08-31 07:36:50,516 - INFO - ?? Training client 4/15
+2025-08-31 07:37:23,143 - INFO - ? Client 4 completed in 32.6s
+2025-08-31 07:37:23,143 - INFO - ?? Training client 5/15
+2025-08-31 07:37:55,270 - INFO - ? Client 5 completed in 32.1s
+2025-08-31 07:37:55,270 - INFO - ?? Training client 6/15
+2025-08-31 07:38:27,537 - INFO - ? Client 6 completed in 32.3s
+2025-08-31 07:38:27,537 - INFO - ?? Training client 7/15
+2025-08-31 07:38:59,383 - INFO - ? Client 7 completed in 31.8s
+2025-08-31 07:38:59,384 - INFO - ?? Training client 8/15
+2025-08-31 07:39:31,042 - INFO - ? Client 8 completed in 31.7s
+2025-08-31 07:39:31,043 - INFO - ?? Training client 9/15
+2025-08-31 07:40:03,373 - INFO - ? Client 9 completed in 32.3s
+2025-08-31 07:40:03,373 - INFO - ?? Training client 10/15
+2025-08-31 07:40:35,681 - INFO - ? Client 10 completed in 32.3s
+2025-08-31 07:40:35,681 - INFO - ?? Training client 11/15
+2025-08-31 07:41:08,559 - INFO - ? Client 11 completed in 32.9s
+2025-08-31 07:41:08,559 - INFO - ?? Training client 12/15
+2025-08-31 07:41:40,738 - INFO - ? Client 12 completed in 32.2s
+2025-08-31 07:41:40,738 - INFO - ?? Training client 13/15
+2025-08-31 07:42:14,660 - INFO - ? Client 13 completed in 33.9s
+2025-08-31 07:42:14,660 - INFO - ?? Training client 14/15
+2025-08-31 07:42:47,178 - INFO - ? Client 14 completed in 32.5s
+2025-08-31 07:42:47,179 - INFO - ?? Training client 15/15
+2025-08-31 07:43:22,096 - INFO - ? Client 15 completed in 34.9s
+2025-08-31 07:43:22,096 - INFO - ?? Aggregating models...
+2025-08-31 07:43:24,726 - INFO - ? Model aggregation completed
+2025-08-31 07:43:24,726 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0021, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0020, Acc=99.96%
+Client 0 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0020, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0023, Acc=99.96%
+Client 2 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0010, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0019, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0018, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0020, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0027, Acc=99.96%
+Client 5 Epoch 3/3: Loss=0.0014, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0076, Acc=99.79%
+Client 6 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0014, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0020, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0015, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0018, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0016, Acc=99.96%
+Client 9 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0028, Acc=99.92%
+Client 10 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0013, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 14 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 14 Epoch 3/3: Loss=0.0013, Acc=100.00%
+2025-08-31 07:44:24,058 - INFO - ?? Round 13 Clean Acc: 56.56% | Adv Acc: 50.62% | MAE Detection: 100.00% | Time: 551.4s
+2025-08-31 07:44:24,059 - INFO - ?? Total training time: 7245.1s
+2025-08-31 07:44:24,059 - INFO - ?? Round 14/20
+2025-08-31 07:44:24,059 - INFO - ?? Training client 1/15
+2025-08-31 07:44:56,440 - INFO - ? Client 1 completed in 32.4s
+2025-08-31 07:44:56,441 - INFO - ?? Training client 2/15
+2025-08-31 07:45:29,018 - INFO - ? Client 2 completed in 32.6s
+2025-08-31 07:45:29,018 - INFO - ?? Training client 3/15
+2025-08-31 07:46:01,118 - INFO - ? Client 3 completed in 32.1s
+2025-08-31 07:46:01,118 - INFO - ?? Training client 4/15
+2025-08-31 07:46:33,735 - INFO - ? Client 4 completed in 32.6s
+2025-08-31 07:46:33,735 - INFO - ?? Training client 5/15
+2025-08-31 07:47:05,578 - INFO - ? Client 5 completed in 31.8s
+2025-08-31 07:47:05,578 - INFO - ?? Training client 6/15
+2025-08-31 07:47:38,205 - INFO - ? Client 6 completed in 32.6s
+2025-08-31 07:47:38,205 - INFO - ?? Training client 7/15
+2025-08-31 07:48:10,194 - INFO - ? Client 7 completed in 32.0s
+2025-08-31 07:48:10,194 - INFO - ?? Training client 8/15
+2025-08-31 07:48:41,380 - INFO - ? Client 8 completed in 31.2s
+2025-08-31 07:48:41,380 - INFO - ?? Training client 9/15
+2025-08-31 07:49:13,122 - INFO - ? Client 9 completed in 31.7s
+2025-08-31 07:49:13,122 - INFO - ?? Training client 10/15
+2025-08-31 07:49:45,385 - INFO - ? Client 10 completed in 32.3s
+2025-08-31 07:49:45,386 - INFO - ?? Training client 11/15
+2025-08-31 07:50:17,373 - INFO - ? Client 11 completed in 32.0s
+2025-08-31 07:50:17,373 - INFO - ?? Training client 12/15
+2025-08-31 07:50:49,432 - INFO - ? Client 12 completed in 32.1s
+2025-08-31 07:50:49,433 - INFO - ?? Training client 13/15
+2025-08-31 07:51:22,229 - INFO - ? Client 13 completed in 32.8s
+2025-08-31 07:51:22,229 - INFO - ?? Training client 14/15
+2025-08-31 07:51:53,847 - INFO - ? Client 14 completed in 31.6s
+2025-08-31 07:51:53,847 - INFO - ?? Training client 15/15
+2025-08-31 07:52:26,056 - INFO - ? Client 15 completed in 32.2s
+2025-08-31 07:52:26,056 - INFO - ?? Aggregating models...
+2025-08-31 07:52:28,763 - INFO - ? Model aggregation completed
+2025-08-31 07:52:28,763 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0012, Acc=99.96%
+Client 0 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 2 Epoch 3/3: Loss=0.0019, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0018, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0015, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0010, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0013, Acc=99.96%
+Client 7 Epoch 1/3: Loss=0.0023, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0013, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0018, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0016, Acc=99.96%
+Client 11 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0016, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0019, Acc=99.96%
+Client 13 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0019, Acc=100.00%
+Client 14 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 14 Epoch 3/3: Loss=0.0020, Acc=100.00%
+2025-08-31 07:53:28,080 - INFO - ?? Round 14 Clean Acc: 53.44% | Adv Acc: 47.19% | MAE Detection: 100.00% | Time: 544.0s
+2025-08-31 07:53:28,081 - INFO - ?? Total training time: 7789.1s
+2025-08-31 07:53:28,081 - INFO - ?? Round 15/20
+2025-08-31 07:53:28,081 - INFO - ?? Training client 1/15
+2025-08-31 07:54:00,704 - INFO - ? Client 1 completed in 32.6s
+2025-08-31 07:54:00,704 - INFO - ?? Training client 2/15
+2025-08-31 07:54:32,614 - INFO - ? Client 2 completed in 31.9s
+2025-08-31 07:54:32,614 - INFO - ?? Training client 3/15
+2025-08-31 07:55:04,152 - INFO - ? Client 3 completed in 31.5s
+2025-08-31 07:55:04,152 - INFO - ?? Training client 4/15
+2025-08-31 07:55:35,731 - INFO - ? Client 4 completed in 31.6s
+2025-08-31 07:55:35,731 - INFO - ?? Training client 5/15
+2025-08-31 07:56:08,054 - INFO - ? Client 5 completed in 32.3s
+2025-08-31 07:56:08,054 - INFO - ?? Training client 6/15
+2025-08-31 07:56:40,736 - INFO - ? Client 6 completed in 32.7s
+2025-08-31 07:56:40,736 - INFO - ?? Training client 7/15
+2025-08-31 07:57:12,534 - INFO - ? Client 7 completed in 31.8s
+2025-08-31 07:57:12,534 - INFO - ?? Training client 8/15
+2025-08-31 07:57:44,276 - INFO - ? Client 8 completed in 31.7s
+2025-08-31 07:57:44,276 - INFO - ?? Training client 9/15
+2025-08-31 07:58:16,139 - INFO - ? Client 9 completed in 31.9s
+2025-08-31 07:58:16,140 - INFO - ?? Training client 10/15
+2025-08-31 07:58:47,786 - INFO - ? Client 10 completed in 31.6s
+2025-08-31 07:58:47,786 - INFO - ?? Training client 11/15
+2025-08-31 07:59:19,450 - INFO - ? Client 11 completed in 31.7s
+2025-08-31 07:59:19,450 - INFO - ?? Training client 12/15
+2025-08-31 07:59:52,273 - INFO - ? Client 12 completed in 32.8s
+2025-08-31 07:59:52,274 - INFO - ?? Training client 13/15
+2025-08-31 08:00:23,808 - INFO - ? Client 13 completed in 31.5s
+2025-08-31 08:00:23,808 - INFO - ?? Training client 14/15
+2025-08-31 08:00:55,281 - INFO - ? Client 14 completed in 31.5s
+2025-08-31 08:00:55,282 - INFO - ?? Training client 15/15
+2025-08-31 08:01:26,982 - INFO - ? Client 15 completed in 31.7s
+2025-08-31 08:01:26,982 - INFO - ?? Aggregating models...
+2025-08-31 08:01:29,566 - INFO - ? Model aggregation completed
+2025-08-31 08:01:29,566 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0020, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0016, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0016, Acc=99.96%
+Client 1 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0030, Acc=99.92%
+Client 2 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0012, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0018, Acc=99.96%
+Client 6 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0029, Acc=99.96%
+Client 9 Epoch 1/3: Loss=0.0013, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0020, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0013, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0010, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0005, Acc=100.00%
+Client 14 Epoch 2/3: Loss=0.0012, Acc=99.96%
+Client 14 Epoch 3/3: Loss=0.0025, Acc=99.96%
+2025-08-31 08:02:28,848 - INFO - ?? Round 15 Clean Acc: 60.94% | Adv Acc: 51.25% | MAE Detection: 99.38% | Time: 540.8s
+2025-08-31 08:02:28,848 - INFO - ?? Total training time: 8329.9s
+2025-08-31 08:02:28,849 - INFO - ?? Round 16/20
+2025-08-31 08:02:28,849 - INFO - ?? Training client 1/15
+2025-08-31 08:02:59,777 - INFO - ? Client 1 completed in 30.9s
+2025-08-31 08:02:59,777 - INFO - ?? Training client 2/15
+2025-08-31 08:03:31,050 - INFO - ? Client 2 completed in 31.3s
+2025-08-31 08:03:31,050 - INFO - ?? Training client 3/15
+2025-08-31 08:04:02,146 - INFO - ? Client 3 completed in 31.1s
+2025-08-31 08:04:02,146 - INFO - ?? Training client 4/15
+2025-08-31 08:04:33,031 - INFO - ? Client 4 completed in 30.9s
+2025-08-31 08:04:33,032 - INFO - ?? Training client 5/15
+2025-08-31 08:05:04,487 - INFO - ? Client 5 completed in 31.5s
+2025-08-31 08:05:04,488 - INFO - ?? Training client 6/15
+2025-08-31 08:05:35,965 - INFO - ? Client 6 completed in 31.5s
+2025-08-31 08:05:35,965 - INFO - ?? Training client 7/15
+2025-08-31 08:06:06,682 - INFO - ? Client 7 completed in 30.7s
+2025-08-31 08:06:06,682 - INFO - ?? Training client 8/15
+2025-08-31 08:06:37,597 - INFO - ? Client 8 completed in 30.9s
+2025-08-31 08:06:37,598 - INFO - ?? Training client 9/15
+2025-08-31 08:07:08,871 - INFO - ? Client 9 completed in 31.3s
+2025-08-31 08:07:08,872 - INFO - ?? Training client 10/15
+2025-08-31 08:07:39,863 - INFO - ? Client 10 completed in 31.0s
+2025-08-31 08:07:39,863 - INFO - ?? Training client 11/15
+2025-08-31 08:08:12,560 - INFO - ? Client 11 completed in 32.7s
+2025-08-31 08:08:12,560 - INFO - ?? Training client 12/15
+2025-08-31 08:08:43,337 - INFO - ? Client 12 completed in 30.8s
+2025-08-31 08:08:43,338 - INFO - ?? Training client 13/15
+2025-08-31 08:09:15,461 - INFO - ? Client 13 completed in 32.1s
+2025-08-31 08:09:15,461 - INFO - ?? Training client 14/15
+2025-08-31 08:09:47,474 - INFO - ? Client 14 completed in 32.0s
+2025-08-31 08:09:47,474 - INFO - ?? Training client 15/15
+2025-08-31 08:10:20,352 - INFO - ? Client 15 completed in 32.9s
+2025-08-31 08:10:20,352 - INFO - ?? Aggregating models...
+2025-08-31 08:10:23,082 - INFO - ? Model aggregation completed
+2025-08-31 08:10:23,082 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 2 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0017, Acc=99.96%
+Client 4 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0014, Acc=99.96%
+Client 5 Epoch 2/3: Loss=0.0019, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0009, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0013, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0009, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0017, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0005, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0013, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0009, Acc=100.00%
+Client 9 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0017, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 14 Epoch 2/3: Loss=0.0012, Acc=100.00%
+Client 14 Epoch 3/3: Loss=0.0010, Acc=100.00%
+2025-08-31 08:11:22,440 - INFO - ?? Round 16 Clean Acc: 54.69% | Adv Acc: 46.88% | MAE Detection: 99.69% | Time: 533.6s
+2025-08-31 08:11:22,440 - INFO - ?? Total training time: 8863.5s
+2025-08-31 08:11:22,440 - INFO - ?? Round 17/20
+2025-08-31 08:11:22,441 - INFO - ?? Training client 1/15
+2025-08-31 08:11:55,267 - INFO - ? Client 1 completed in 32.8s
+2025-08-31 08:11:55,268 - INFO - ?? Training client 2/15
+2025-08-31 08:12:27,701 - INFO - ? Client 2 completed in 32.4s
+2025-08-31 08:12:27,701 - INFO - ?? Training client 3/15
+2025-08-31 08:12:59,822 - INFO - ? Client 3 completed in 32.1s
+2025-08-31 08:12:59,822 - INFO - ?? Training client 4/15
+2025-08-31 08:13:31,767 - INFO - ? Client 4 completed in 31.9s
+2025-08-31 08:13:31,767 - INFO - ?? Training client 5/15
+2025-08-31 08:14:03,788 - INFO - ? Client 5 completed in 32.0s
+2025-08-31 08:14:03,789 - INFO - ?? Training client 6/15
+2025-08-31 08:14:35,153 - INFO - ? Client 6 completed in 31.4s
+2025-08-31 08:14:35,153 - INFO - ?? Training client 7/15
+2025-08-31 08:15:08,746 - INFO - ? Client 7 completed in 33.6s
+2025-08-31 08:15:08,746 - INFO - ?? Training client 8/15
+2025-08-31 08:15:42,574 - INFO - ? Client 8 completed in 33.8s
+2025-08-31 08:15:42,574 - INFO - ?? Training client 9/15
+2025-08-31 08:16:14,907 - INFO - ? Client 9 completed in 32.3s
+2025-08-31 08:16:14,907 - INFO - ?? Training client 10/15
+2025-08-31 08:16:47,022 - INFO - ? Client 10 completed in 32.1s
+2025-08-31 08:16:47,022 - INFO - ?? Training client 11/15
+2025-08-31 08:17:21,058 - INFO - ? Client 11 completed in 34.0s
+2025-08-31 08:17:21,058 - INFO - ?? Training client 12/15
+2025-08-31 08:17:54,953 - INFO - ? Client 12 completed in 33.9s
+2025-08-31 08:17:54,953 - INFO - ?? Training client 13/15
+2025-08-31 08:18:28,524 - INFO - ? Client 13 completed in 33.6s
+2025-08-31 08:18:28,525 - INFO - ?? Training client 14/15
+2025-08-31 08:19:02,692 - INFO - ? Client 14 completed in 34.2s
+2025-08-31 08:19:02,692 - INFO - ?? Training client 15/15
+2025-08-31 08:19:36,507 - INFO - ? Client 15 completed in 33.8s
+2025-08-31 08:19:36,507 - INFO - ?? Aggregating models...
+2025-08-31 08:19:39,347 - INFO - ? Model aggregation completed
+2025-08-31 08:19:39,347 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0005, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 1 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0005, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0014, Acc=99.96%
+Client 2 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0014, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0010, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0006, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0011, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0008, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0016, Acc=99.96%
+Client 9 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0012, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0011, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0017, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0016, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0014, Acc=100.00%
+Client 12 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0015, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0018, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0011, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0017, Acc=99.96%
+Client 14 Epoch 2/3: Loss=0.0031, Acc=99.88%
+Client 14 Epoch 3/3: Loss=0.0011, Acc=100.00%
+2025-08-31 08:20:38,592 - INFO - ?? Round 17 Clean Acc: 55.62% | Adv Acc: 52.81% | MAE Detection: 99.38% | Time: 556.2s
+2025-08-31 08:20:38,592 - INFO - ?? Total training time: 9419.6s
+2025-08-31 08:20:38,593 - INFO - ?? Round 18/20
+2025-08-31 08:20:38,593 - INFO - ?? Training client 1/15
+2025-08-31 08:21:10,493 - INFO - ? Client 1 completed in 31.9s
+2025-08-31 08:21:10,494 - INFO - ?? Training client 2/15
+2025-08-31 08:21:42,978 - INFO - ? Client 2 completed in 32.5s
+2025-08-31 08:21:42,978 - INFO - ?? Training client 3/15
+2025-08-31 08:22:14,750 - INFO - ? Client 3 completed in 31.8s
+2025-08-31 08:22:14,750 - INFO - ?? Training client 4/15
+2025-08-31 08:22:46,235 - INFO - ? Client 4 completed in 31.5s
+2025-08-31 08:22:46,235 - INFO - ?? Training client 5/15
+2025-08-31 08:23:18,314 - INFO - ? Client 5 completed in 32.1s
+2025-08-31 08:23:18,315 - INFO - ?? Training client 6/15
+2025-08-31 08:23:51,259 - INFO - ? Client 6 completed in 32.9s
+2025-08-31 08:23:51,260 - INFO - ?? Training client 7/15
+2025-08-31 08:24:23,361 - INFO - ? Client 7 completed in 32.1s
+2025-08-31 08:24:23,361 - INFO - ?? Training client 8/15
+2025-08-31 08:24:56,850 - INFO - ? Client 8 completed in 33.5s
+2025-08-31 08:24:56,850 - INFO - ?? Training client 9/15
+2025-08-31 08:25:28,510 - INFO - ? Client 9 completed in 31.7s
+2025-08-31 08:25:28,510 - INFO - ?? Training client 10/15
+2025-08-31 08:25:59,863 - INFO - ? Client 10 completed in 31.4s
+2025-08-31 08:25:59,864 - INFO - ?? Training client 11/15
+2025-08-31 08:26:30,819 - INFO - ? Client 11 completed in 31.0s
+2025-08-31 08:26:30,819 - INFO - ?? Training client 12/15
+2025-08-31 08:27:03,051 - INFO - ? Client 12 completed in 32.2s
+2025-08-31 08:27:03,051 - INFO - ?? Training client 13/15
+2025-08-31 08:27:35,021 - INFO - ? Client 13 completed in 32.0s
+2025-08-31 08:27:35,021 - INFO - ?? Training client 14/15
+2025-08-31 08:28:07,971 - INFO - ? Client 14 completed in 32.9s
+2025-08-31 08:28:07,971 - INFO - ?? Training client 15/15
+2025-08-31 08:28:42,164 - INFO - ? Client 15 completed in 34.2s
+2025-08-31 08:28:42,164 - INFO - ?? Aggregating models...
+2025-08-31 08:28:44,817 - INFO - ? Model aggregation completed
+2025-08-31 08:28:44,817 - INFO - ?? Running evaluation...
+Client 0 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 0 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 0 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 1/3: Loss=0.0022, Acc=99.96%
+Client 1 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 1 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 2 Epoch 1/3: Loss=0.0004, Acc=100.00%
+Client 2 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 2 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 3 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 3 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 3 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 4 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 4 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 4 Epoch 3/3: Loss=0.0004, Acc=100.00%
+Client 5 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 5 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 5 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 6 Epoch 1/3: Loss=0.0007, Acc=100.00%
+Client 6 Epoch 2/3: Loss=0.0005, Acc=100.00%
+Client 6 Epoch 3/3: Loss=0.0009, Acc=100.00%
+Client 7 Epoch 1/3: Loss=0.0006, Acc=100.00%
+Client 7 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 7 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 8 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 2/3: Loss=0.0008, Acc=100.00%
+Client 8 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 9 Epoch 1/3: Loss=0.0022, Acc=99.96%
+Client 9 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 9 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 10 Epoch 1/3: Loss=0.0009, Acc=100.00%
+Client 10 Epoch 2/3: Loss=0.0009, Acc=100.00%
+Client 10 Epoch 3/3: Loss=0.0011, Acc=100.00%
+Client 11 Epoch 1/3: Loss=0.0014, Acc=100.00%
+Client 11 Epoch 2/3: Loss=0.0007, Acc=100.00%
+Client 11 Epoch 3/3: Loss=0.0010, Acc=99.96%
+Client 12 Epoch 1/3: Loss=0.0005, Acc=100.00%
+Client 12 Epoch 2/3: Loss=0.0010, Acc=100.00%
+Client 12 Epoch 3/3: Loss=0.0007, Acc=100.00%
+Client 13 Epoch 1/3: Loss=0.0008, Acc=100.00%
+Client 13 Epoch 2/3: Loss=0.0006, Acc=100.00%
+Client 13 Epoch 3/3: Loss=0.0005, Acc=100.00%
+Client 14 Epoch 1/3: Loss=0.0025, Acc=99.83%
+Client 14 Epoch 2/3: Loss=0.0005, Acc=100.00%
+Client 14 Epoch 3/3: Loss=0.0010, Acc=100.00%
+2025-08-31 08:29:44,139 - INFO - ?? Round 18 Clean Acc: 56.25% | Adv Acc: 47.19% | MAE Detection: 99.69% | Time: 545.5s
+2025-08-31 08:29:44,140 - INFO - ?? Total training time: 9965.2s
+2025-08-31 08:29:44,140 - INFO - ?? Round 19/20
+2025-08-31 08:29:44,140 - INFO - ?? Training client 1/15
+2025-08-31 08:30:17,620 - INFO - ? Client 1 completed in 33.5s
+2025-08-31 08:30:17,621 - INFO - ?? Training client 2/15
+2025-08-31 08:30:52,234 - INFO - ? Client 2 completed in 34.6s
+2025-08-31 08:30:52,234 - INFO - ?? Training client 3/15
+2025-08-31 08:31:24,359 - INFO - ? Client 3 completed in 32.1s
+2025-08-31 08:31:24,359 - INFO - ?? Training client 4/15
+2025-08-31 08:31:55,615 - INFO - ? Client 4 completed in 31.3s
+2025-08-31 08:31:55,615 - INFO - ?? Training client 5/15
+2025-08-31 08:32:27,367 - INFO - ? Client 5 completed in 31.8s
+2025-08-31 08:32:27,368 - INFO - ?? Training client 6/15
+2025-08-31 08:32:59,328 - INFO - ? Client 6 completed in 32.0s
+2025-08-31 08:32:59,328 - INFO - ?? Training client 7/15
+2025-08-31 08:33:30,633 - INFO - ? Client 7 completed in 31.3s
+2025-08-31 08:33:30,634 - INFO - ?? Training client 8/15
+2025-08-31 08:34:01,590 - INFO - ? Client 8 completed in 31.0s
+2025-08-31 08:34:01,590 - INFO - ?? Training client 9/15

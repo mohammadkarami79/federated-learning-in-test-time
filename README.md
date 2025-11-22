@@ -459,10 +459,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **For academic use, please cite:**
 ```bibtex
-@software{pfeddef_diffpure_2024,
-  title={pFedDef + DiffPure: Complete Federated Learning Defense System},
-  author={Research Team},
-  year={2024},
-  url={https://github.com/your-repo/pFedDef_v1_kaggle}
+@misc{karami2025medfedpuremedicalfederatedframework,
+      title={MedFedPure: A Medical Federated Framework with MAE-based Detection and Diffusion Purification for Inference-Time Attacks}, 
+      author={Mohammad Karami and Mohammad Reza Nemati and Aidin Kazemi and Ali Mikaeili Barzili and Hamid Azadegan and Behzad Moshiri},
+      year={2025},
+      eprint={2511.11625},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2511.11625}, 
 }
 ``` 

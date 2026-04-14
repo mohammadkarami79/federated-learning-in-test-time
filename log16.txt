@@ -1,0 +1,556 @@
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ pkill -f "main_kim2023"
+[1]+  Terminated              nohup python main_kim2023_reproduction.py > kim2023_clean_$(date +%Y%m%d_%H%M%S).log 2>&1
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ nohup python main_kim2023_reproduction.py > kim2023_clean_$(date +%Y%m%d_%H%M%S).log 2>&1 & echo $! > kim2023_pid.txt
+[1] 3109650
+(br35h_env) gpu@gpu:~/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time$ tail -f "/home/gpu/FLBrain/federeated_learning_in_test_time/federated-learning-in-test-time/kim2023_clean_20250928_172342.log"
+2025-09-28 17:23:46,432 - __main__ - WARNING - Failed to load diffusion checkpoint: Error(s) in loading state_dict for UNet:
+        Missing key(s) in state_dict: "conv1.weight", "conv1.bias", "conv2.weight", "conv2.bias", "conv3.weight", "conv3.bias".
+        Unexpected key(s) in state_dict: "time_embed.0.weight", "time_embed.0.bias", "time_embed.2.weight", "time_embed.2.bias", "time_embed.4.weight", "time_embed.4.bias", "enc1.0.weight", "enc1.0.bias", "enc1.2.weight", "enc1.2.bias", "enc2.1.weight", "enc2.1.bias", "enc2.3.weight", "enc2.3.bias", "bottleneck.1.weight", "bottleneck.1.bias", "bottleneck.3.weight", "bottleneck.3.bias", "up1.weight", "up1.bias", "dec1.0.weight", "dec1.0.bias", "dec1.2.weight", "dec1.2.bias", "up2.weight", "up2.bias", "dec2.0.weight", "dec2.0.bias", "dec2.2.weight", "dec2.2.bias", "final.weight", "final.bias".
+2025-09-28 17:23:47,246 - __main__ - INFO - Creating Non-IID data split with Dirichlet distribution...
+2025-09-28 17:23:55,830 - __main__ - INFO - Client 1 data distribution: [3, 78, 183, 12, 108, 3, 84, 18, 252, 832]
+2025-09-28 17:23:55,955 - __main__ - INFO - Client 2 data distribution: [54, 19, 17, 1, 3, 1, 202, 198, 232, 0]
+2025-09-28 17:23:56,174 - __main__ - INFO - Client 3 data distribution: [4, 0, 16, 14, 1, 64, 608, 489, 78, 0]
+2025-09-28 17:23:56,466 - __main__ - INFO - Client 4 data distribution: [224, 70, 119, 18, 131, 754, 176, 12, 8, 216]
+2025-09-28 17:23:56,633 - __main__ - INFO - Client 5 data distribution: [407, 135, 175, 9, 40, 18, 181, 2, 2, 1]
+2025-09-28 17:23:56,633 - __main__ - INFO - Initializing server and clients...
+2025-09-28 17:24:42,715 - __main__ - INFO - ========================================
+2025-09-28 17:24:42,715 - __main__ - INFO - ATTACK CONFIGURATION (Kim et al., 2023)
+2025-09-28 17:24:42,715 - __main__ - INFO - ========================================
+2025-09-28 17:24:42,715 - __main__ - INFO - Attack Type: L2-norm PGD (Untargeted)
+2025-09-28 17:24:42,715 - __main__ - INFO - Epsilon (ε): 4.5
+2025-09-28 17:24:42,715 - __main__ - INFO - Alpha (α): 0.01
+2025-09-28 17:24:42,715 - __main__ - INFO - Steps (K): 10
+2025-09-28 17:24:42,715 - __main__ - INFO - Random Start: True
+2025-09-28 17:24:42,715 - __main__ - INFO - Formula: x_{t+1} = Π_{x+S}(x_t + α·∇_x L(h_θ, x, y))
+2025-09-28 17:24:42,715 - __main__ - INFO - ========================================
+2025-09-28 17:24:42,715 - __main__ - INFO - Starting federated training: 15 rounds, 8 local epochs
+2025-09-28 17:24:42,715 - __main__ - INFO - Round 1/15
+[L2-PGD Attack] ε=4.5, α=0.01, steps=10, random_start=True
+2025-09-28 17:24:48,976 - __main__ - INFO - Client 1/40 completed in 6.0s
+2025-09-28 17:24:52,494 - __main__ - INFO - Client 2/40 completed in 3.5s
+2025-09-28 17:24:57,324 - __main__ - INFO - Client 3/40 completed in 4.8s
+2025-09-28 17:25:03,240 - __main__ - INFO - Client 4/40 completed in 5.9s
+2025-09-28 17:25:07,373 - __main__ - INFO - Client 5/40 completed in 4.1s
+2025-09-28 17:25:09,920 - __main__ - INFO - Client 6/40 completed in 2.5s
+2025-09-28 17:25:14,282 - __main__ - INFO - Client 7/40 completed in 4.4s
+2025-09-28 17:25:17,670 - __main__ - INFO - Client 8/40 completed in 3.4s
+2025-09-28 17:25:21,537 - __main__ - INFO - Client 9/40 completed in 3.9s
+2025-09-28 17:25:26,380 - __main__ - INFO - Client 10/40 completed in 4.8s
+2025-09-28 17:25:30,296 - __main__ - INFO - Client 11/40 completed in 3.9s
+2025-09-28 17:25:34,390 - __main__ - INFO - Client 12/40 completed in 4.1s
+2025-09-28 17:25:39,994 - __main__ - INFO - Client 13/40 completed in 5.6s
+2025-09-28 17:25:45,605 - __main__ - INFO - Client 14/40 completed in 5.6s
+2025-09-28 17:25:49,833 - __main__ - INFO - Client 15/40 completed in 4.2s
+2025-09-28 17:25:55,454 - __main__ - INFO - Client 16/40 completed in 5.6s
+2025-09-28 17:26:01,152 - __main__ - INFO - Client 17/40 completed in 5.7s
+2025-09-28 17:26:06,264 - __main__ - INFO - Client 18/40 completed in 5.1s
+2025-09-28 17:26:14,510 - __main__ - INFO - Client 19/40 completed in 8.2s
+2025-09-28 17:26:28,381 - __main__ - INFO - Client 20/40 completed in 13.9s
+2025-09-28 17:26:32,687 - __main__ - INFO - Client 21/40 completed in 4.3s
+2025-09-28 17:26:36,169 - __main__ - INFO - Client 22/40 completed in 3.5s
+2025-09-28 17:26:39,935 - __main__ - INFO - Client 23/40 completed in 3.8s
+2025-09-28 17:26:45,355 - __main__ - INFO - Client 24/40 completed in 5.4s
+2025-09-28 17:26:51,927 - __main__ - INFO - Client 25/40 completed in 6.6s
+2025-09-28 17:26:54,987 - __main__ - INFO - Client 26/40 completed in 3.1s
+2025-09-28 17:26:59,076 - __main__ - INFO - Client 27/40 completed in 4.1s
+2025-09-28 17:27:04,160 - __main__ - INFO - Client 28/40 completed in 5.1s
+2025-09-28 17:27:08,362 - __main__ - INFO - Client 29/40 completed in 4.2s
+2025-09-28 17:27:13,490 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 17:27:18,192 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 17:27:21,498 - __main__ - INFO - Client 32/40 completed in 3.3s
+2025-09-28 17:27:31,302 - __main__ - INFO - Client 33/40 completed in 9.8s
+2025-09-28 17:27:36,391 - __main__ - INFO - Client 34/40 completed in 5.1s
+2025-09-28 17:27:40,759 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:27:46,870 - __main__ - INFO - Client 36/40 completed in 6.1s
+2025-09-28 17:27:51,905 - __main__ - INFO - Client 37/40 completed in 5.0s
+2025-09-28 17:27:57,083 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 17:28:00,558 - __main__ - INFO - Client 39/40 completed in 3.5s
+2025-09-28 17:28:03,102 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:28:03,102 - __main__ - INFO - Aggregating models...
+2025-09-28 17:28:03,314 - __main__ - INFO - Running evaluation...
+2025-09-28 17:28:15,679 - __main__ - INFO - Round 1 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 213.0s
+2025-09-28 17:28:15,679 - __main__ - INFO - Round 2/15
+2025-09-28 17:28:22,054 - __main__ - INFO - Client 1/40 completed in 6.0s
+2025-09-28 17:28:25,808 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:28:31,005 - __main__ - INFO - Client 3/40 completed in 5.2s
+2025-09-28 17:28:37,720 - __main__ - INFO - Client 4/40 completed in 6.7s
+2025-09-28 17:28:42,201 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 17:28:44,980 - __main__ - INFO - Client 6/40 completed in 2.8s
+2025-09-28 17:28:49,595 - __main__ - INFO - Client 7/40 completed in 4.6s
+2025-09-28 17:28:53,256 - __main__ - INFO - Client 8/40 completed in 3.7s
+2025-09-28 17:28:57,352 - __main__ - INFO - Client 9/40 completed in 4.1s
+2025-09-28 17:29:02,514 - __main__ - INFO - Client 10/40 completed in 5.2s
+2025-09-28 17:29:06,796 - __main__ - INFO - Client 11/40 completed in 4.3s
+2025-09-28 17:29:11,348 - __main__ - INFO - Client 12/40 completed in 4.6s
+2025-09-28 17:29:17,220 - __main__ - INFO - Client 13/40 completed in 5.9s
+2025-09-28 17:29:22,821 - __main__ - INFO - Client 14/40 completed in 5.6s
+2025-09-28 17:29:27,226 - __main__ - INFO - Client 15/40 completed in 4.4s
+2025-09-28 17:29:33,069 - __main__ - INFO - Client 16/40 completed in 5.8s
+2025-09-28 17:29:39,062 - __main__ - INFO - Client 17/40 completed in 6.0s
+2025-09-28 17:29:44,340 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 17:29:52,941 - __main__ - INFO - Client 19/40 completed in 8.6s
+2025-09-28 17:30:06,206 - __main__ - INFO - Client 20/40 completed in 13.3s
+2025-09-28 17:30:10,561 - __main__ - INFO - Client 21/40 completed in 4.4s
+2025-09-28 17:30:14,094 - __main__ - INFO - Client 22/40 completed in 3.5s
+2025-09-28 17:30:18,042 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:30:23,590 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 17:30:30,334 - __main__ - INFO - Client 25/40 completed in 6.7s
+2025-09-28 17:30:33,536 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 17:30:38,050 - __main__ - INFO - Client 27/40 completed in 4.5s
+2025-09-28 17:30:43,123 - __main__ - INFO - Client 28/40 completed in 5.1s
+2025-09-28 17:30:47,587 - __main__ - INFO - Client 29/40 completed in 4.5s
+2025-09-28 17:30:52,562 - __main__ - INFO - Client 30/40 completed in 5.0s
+2025-09-28 17:30:57,275 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 17:31:00,816 - __main__ - INFO - Client 32/40 completed in 3.5s
+2025-09-28 17:31:10,767 - __main__ - INFO - Client 33/40 completed in 10.0s
+2025-09-28 17:31:16,060 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 17:31:20,475 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:31:26,651 - __main__ - INFO - Client 36/40 completed in 6.2s
+2025-09-28 17:31:31,558 - __main__ - INFO - Client 37/40 completed in 4.9s
+2025-09-28 17:31:36,594 - __main__ - INFO - Client 38/40 completed in 5.0s
+2025-09-28 17:31:40,151 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 17:31:42,633 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:31:42,634 - __main__ - INFO - Aggregating models...
+2025-09-28 17:31:42,837 - __main__ - INFO - Running evaluation...
+2025-09-28 17:31:55,592 - __main__ - INFO - Round 2 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 219.9s
+2025-09-28 17:31:55,592 - __main__ - INFO - Round 3/15
+2025-09-28 17:32:02,405 - __main__ - INFO - Client 1/40 completed in 6.5s
+2025-09-28 17:32:06,202 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:32:11,490 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 17:32:18,002 - __main__ - INFO - Client 4/40 completed in 6.5s
+2025-09-28 17:32:22,496 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 17:32:25,159 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:32:29,671 - __main__ - INFO - Client 7/40 completed in 4.5s
+2025-09-28 17:32:33,293 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 17:32:37,474 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 17:32:42,611 - __main__ - INFO - Client 10/40 completed in 5.1s
+2025-09-28 17:32:46,720 - __main__ - INFO - Client 11/40 completed in 4.1s
+2025-09-28 17:32:51,363 - __main__ - INFO - Client 12/40 completed in 4.6s
+2025-09-28 17:32:57,327 - __main__ - INFO - Client 13/40 completed in 6.0s
+2025-09-28 17:33:03,011 - __main__ - INFO - Client 14/40 completed in 5.7s
+2025-09-28 17:33:07,483 - __main__ - INFO - Client 15/40 completed in 4.5s
+2025-09-28 17:33:13,287 - __main__ - INFO - Client 16/40 completed in 5.8s
+2025-09-28 17:33:19,387 - __main__ - INFO - Client 17/40 completed in 6.1s
+2025-09-28 17:33:24,750 - __main__ - INFO - Client 18/40 completed in 5.4s
+2025-09-28 17:33:33,017 - __main__ - INFO - Client 19/40 completed in 8.3s
+2025-09-28 17:33:46,178 - __main__ - INFO - Client 20/40 completed in 13.2s
+2025-09-28 17:33:50,807 - __main__ - INFO - Client 21/40 completed in 4.6s
+2025-09-28 17:33:54,377 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:33:58,285 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:34:03,738 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 17:34:10,321 - __main__ - INFO - Client 25/40 completed in 6.6s
+2025-09-28 17:34:13,593 - __main__ - INFO - Client 26/40 completed in 3.3s
+2025-09-28 17:34:17,941 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 17:34:23,095 - __main__ - INFO - Client 28/40 completed in 5.2s
+2025-09-28 17:34:27,452 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 17:34:32,440 - __main__ - INFO - Client 30/40 completed in 5.0s
+2025-09-28 17:34:37,106 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 17:34:40,489 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 17:34:50,776 - __main__ - INFO - Client 33/40 completed in 10.3s
+2025-09-28 17:34:55,950 - __main__ - INFO - Client 34/40 completed in 5.2s
+2025-09-28 17:35:00,313 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:35:06,506 - __main__ - INFO - Client 36/40 completed in 6.2s
+2025-09-28 17:35:11,563 - __main__ - INFO - Client 37/40 completed in 5.1s
+2025-09-28 17:35:16,770 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 17:35:20,381 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 17:35:22,894 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:35:22,895 - __main__ - INFO - Aggregating models...
+2025-09-28 17:35:23,097 - __main__ - INFO - Running evaluation...
+2025-09-28 17:35:35,587 - __main__ - INFO - Round 3 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 220.0s
+2025-09-28 17:35:35,587 - __main__ - INFO - Round 4/15
+2025-09-28 17:35:42,073 - __main__ - INFO - Client 1/40 completed in 6.2s
+2025-09-28 17:35:45,911 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:35:51,226 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 17:35:58,088 - __main__ - INFO - Client 4/40 completed in 6.9s
+2025-09-28 17:36:02,676 - __main__ - INFO - Client 5/40 completed in 4.6s
+2025-09-28 17:36:05,429 - __main__ - INFO - Client 6/40 completed in 2.8s
+2025-09-28 17:36:09,971 - __main__ - INFO - Client 7/40 completed in 4.5s
+2025-09-28 17:36:13,623 - __main__ - INFO - Client 8/40 completed in 3.7s
+2025-09-28 17:36:17,809 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 17:36:23,186 - __main__ - INFO - Client 10/40 completed in 5.4s
+2025-09-28 17:36:27,531 - __main__ - INFO - Client 11/40 completed in 4.3s
+2025-09-28 17:36:31,983 - __main__ - INFO - Client 12/40 completed in 4.5s
+2025-09-28 17:36:37,741 - __main__ - INFO - Client 13/40 completed in 5.8s
+2025-09-28 17:36:43,388 - __main__ - INFO - Client 14/40 completed in 5.6s
+2025-09-28 17:36:47,803 - __main__ - INFO - Client 15/40 completed in 4.4s
+2025-09-28 17:36:53,605 - __main__ - INFO - Client 16/40 completed in 5.8s
+2025-09-28 17:36:59,738 - __main__ - INFO - Client 17/40 completed in 6.1s
+2025-09-28 17:37:05,065 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 17:37:13,380 - __main__ - INFO - Client 19/40 completed in 8.3s
+2025-09-28 17:37:27,133 - __main__ - INFO - Client 20/40 completed in 13.8s
+2025-09-28 17:37:31,579 - __main__ - INFO - Client 21/40 completed in 4.4s
+2025-09-28 17:37:35,179 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:37:39,130 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:37:44,585 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 17:37:51,009 - __main__ - INFO - Client 25/40 completed in 6.4s
+2025-09-28 17:37:54,312 - __main__ - INFO - Client 26/40 completed in 3.3s
+2025-09-28 17:37:58,572 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 17:38:03,803 - __main__ - INFO - Client 28/40 completed in 5.2s
+2025-09-28 17:38:08,220 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 17:38:13,438 - __main__ - INFO - Client 30/40 completed in 5.2s
+2025-09-28 17:38:18,280 - __main__ - INFO - Client 31/40 completed in 4.8s
+2025-09-28 17:38:21,802 - __main__ - INFO - Client 32/40 completed in 3.5s
+2025-09-28 17:38:31,638 - __main__ - INFO - Client 33/40 completed in 9.8s
+2025-09-28 17:38:37,034 - __main__ - INFO - Client 34/40 completed in 5.4s
+2025-09-28 17:38:41,451 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:38:47,578 - __main__ - INFO - Client 36/40 completed in 6.1s
+2025-09-28 17:38:52,723 - __main__ - INFO - Client 37/40 completed in 5.1s
+2025-09-28 17:38:57,751 - __main__ - INFO - Client 38/40 completed in 5.0s
+2025-09-28 17:39:01,301 - __main__ - INFO - Client 39/40 completed in 3.5s
+2025-09-28 17:39:03,850 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:39:03,850 - __main__ - INFO - Aggregating models...
+2025-09-28 17:39:04,052 - __main__ - INFO - Running evaluation...
+2025-09-28 17:39:16,409 - __main__ - INFO - Round 4 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 220.8s
+2025-09-28 17:39:16,409 - __main__ - INFO - Round 5/15
+2025-09-28 17:39:23,048 - __main__ - INFO - Client 1/40 completed in 6.3s
+2025-09-28 17:39:26,891 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:39:32,428 - __main__ - INFO - Client 3/40 completed in 5.5s
+2025-09-28 17:39:39,159 - __main__ - INFO - Client 4/40 completed in 6.7s
+2025-09-28 17:39:43,707 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 17:39:46,545 - __main__ - INFO - Client 6/40 completed in 2.8s
+2025-09-28 17:39:51,152 - __main__ - INFO - Client 7/40 completed in 4.6s
+2025-09-28 17:39:54,762 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 17:39:58,928 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 17:40:04,511 - __main__ - INFO - Client 10/40 completed in 5.6s
+2025-09-28 17:40:08,737 - __main__ - INFO - Client 11/40 completed in 4.2s
+2025-09-28 17:40:13,235 - __main__ - INFO - Client 12/40 completed in 4.5s
+2025-09-28 17:40:19,164 - __main__ - INFO - Client 13/40 completed in 5.9s
+2025-09-28 17:40:25,167 - __main__ - INFO - Client 14/40 completed in 6.0s
+2025-09-28 17:40:29,759 - __main__ - INFO - Client 15/40 completed in 4.6s
+2025-09-28 17:40:35,730 - __main__ - INFO - Client 16/40 completed in 6.0s
+2025-09-28 17:40:41,954 - __main__ - INFO - Client 17/40 completed in 6.2s
+2025-09-28 17:40:47,379 - __main__ - INFO - Client 18/40 completed in 5.4s
+2025-09-28 17:40:55,860 - __main__ - INFO - Client 19/40 completed in 8.5s
+2025-09-28 17:41:09,543 - __main__ - INFO - Client 20/40 completed in 13.7s
+2025-09-28 17:41:14,278 - __main__ - INFO - Client 21/40 completed in 4.7s
+2025-09-28 17:41:18,948 - __main__ - INFO - Client 22/40 completed in 4.7s
+2025-09-28 17:41:23,063 - __main__ - INFO - Client 23/40 completed in 4.1s
+2025-09-28 17:41:28,554 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 17:41:35,030 - __main__ - INFO - Client 25/40 completed in 6.5s
+2025-09-28 17:41:38,219 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 17:41:42,426 - __main__ - INFO - Client 27/40 completed in 4.2s
+2025-09-28 17:41:47,558 - __main__ - INFO - Client 28/40 completed in 5.1s
+2025-09-28 17:41:52,079 - __main__ - INFO - Client 29/40 completed in 4.5s
+2025-09-28 17:41:57,365 - __main__ - INFO - Client 30/40 completed in 5.3s
+2025-09-28 17:42:02,396 - __main__ - INFO - Client 31/40 completed in 5.0s
+2025-09-28 17:42:05,763 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 17:42:15,574 - __main__ - INFO - Client 33/40 completed in 9.8s
+2025-09-28 17:42:20,852 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 17:42:25,270 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:42:31,426 - __main__ - INFO - Client 36/40 completed in 6.2s
+2025-09-28 17:42:36,460 - __main__ - INFO - Client 37/40 completed in 5.0s
+2025-09-28 17:42:41,589 - __main__ - INFO - Client 38/40 completed in 5.1s
+2025-09-28 17:42:45,186 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 17:42:47,701 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:42:47,702 - __main__ - INFO - Aggregating models...
+2025-09-28 17:42:47,901 - __main__ - INFO - Running evaluation...
+2025-09-28 17:43:00,448 - __main__ - INFO - Round 5 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 224.0s
+2025-09-28 17:43:00,449 - __main__ - INFO - Round 6/15
+2025-09-28 17:43:07,030 - __main__ - INFO - Client 1/40 completed in 6.3s
+2025-09-28 17:43:10,858 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:43:16,194 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 17:43:22,540 - __main__ - INFO - Client 4/40 completed in 6.3s
+2025-09-28 17:43:27,223 - __main__ - INFO - Client 5/40 completed in 4.7s
+2025-09-28 17:43:29,949 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:43:34,447 - __main__ - INFO - Client 7/40 completed in 4.5s
+2025-09-28 17:43:38,147 - __main__ - INFO - Client 8/40 completed in 3.7s
+2025-09-28 17:43:42,353 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 17:43:47,710 - __main__ - INFO - Client 10/40 completed in 5.4s
+2025-09-28 17:43:51,983 - __main__ - INFO - Client 11/40 completed in 4.3s
+2025-09-28 17:43:56,477 - __main__ - INFO - Client 12/40 completed in 4.5s
+2025-09-28 17:44:02,651 - __main__ - INFO - Client 13/40 completed in 6.2s
+2025-09-28 17:44:08,270 - __main__ - INFO - Client 14/40 completed in 5.6s
+2025-09-28 17:44:12,769 - __main__ - INFO - Client 15/40 completed in 4.5s
+2025-09-28 17:44:18,651 - __main__ - INFO - Client 16/40 completed in 5.9s
+2025-09-28 17:44:24,758 - __main__ - INFO - Client 17/40 completed in 6.1s
+2025-09-28 17:44:30,087 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 17:44:38,669 - __main__ - INFO - Client 19/40 completed in 8.6s
+2025-09-28 17:44:51,990 - __main__ - INFO - Client 20/40 completed in 13.3s
+2025-09-28 17:44:56,635 - __main__ - INFO - Client 21/40 completed in 4.6s
+2025-09-28 17:45:00,213 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:45:04,168 - __main__ - INFO - Client 23/40 completed in 4.0s
+2025-09-28 17:45:09,560 - __main__ - INFO - Client 24/40 completed in 5.4s
+2025-09-28 17:45:16,098 - __main__ - INFO - Client 25/40 completed in 6.5s
+2025-09-28 17:45:19,331 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 17:45:23,638 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 17:45:28,703 - __main__ - INFO - Client 28/40 completed in 5.1s
+2025-09-28 17:45:33,100 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 17:45:38,127 - __main__ - INFO - Client 30/40 completed in 5.0s
+2025-09-28 17:45:43,176 - __main__ - INFO - Client 31/40 completed in 5.0s
+2025-09-28 17:45:46,588 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 17:45:56,447 - __main__ - INFO - Client 33/40 completed in 9.9s
+2025-09-28 17:46:01,719 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 17:46:06,115 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 17:46:12,133 - __main__ - INFO - Client 36/40 completed in 6.0s
+2025-09-28 17:46:17,104 - __main__ - INFO - Client 37/40 completed in 5.0s
+2025-09-28 17:46:22,295 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 17:46:25,888 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 17:46:28,368 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:46:28,369 - __main__ - INFO - Aggregating models...
+2025-09-28 17:46:28,573 - __main__ - INFO - Running evaluation...
+2025-09-28 17:46:40,709 - __main__ - INFO - Round 6 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 220.3s
+2025-09-28 17:46:40,710 - __main__ - INFO - Round 7/15
+2025-09-28 17:46:47,299 - __main__ - INFO - Client 1/40 completed in 6.3s
+2025-09-28 17:46:51,122 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:46:56,450 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 17:47:03,205 - __main__ - INFO - Client 4/40 completed in 6.8s
+2025-09-28 17:47:07,771 - __main__ - INFO - Client 5/40 completed in 4.6s
+2025-09-28 17:47:10,470 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:47:14,897 - __main__ - INFO - Client 7/40 completed in 4.4s
+2025-09-28 17:47:18,515 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 17:47:22,652 - __main__ - INFO - Client 9/40 completed in 4.1s
+2025-09-28 17:47:28,302 - __main__ - INFO - Client 10/40 completed in 5.6s
+2025-09-28 17:47:32,431 - __main__ - INFO - Client 11/40 completed in 4.1s
+2025-09-28 17:47:36,792 - __main__ - INFO - Client 12/40 completed in 4.4s
+2025-09-28 17:47:42,518 - __main__ - INFO - Client 13/40 completed in 5.7s
+2025-09-28 17:47:48,228 - __main__ - INFO - Client 14/40 completed in 5.7s
+2025-09-28 17:47:52,726 - __main__ - INFO - Client 15/40 completed in 4.5s
+2025-09-28 17:47:58,464 - __main__ - INFO - Client 16/40 completed in 5.7s
+2025-09-28 17:48:04,447 - __main__ - INFO - Client 17/40 completed in 6.0s
+2025-09-28 17:48:09,727 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 17:48:18,073 - __main__ - INFO - Client 19/40 completed in 8.3s
+2025-09-28 17:48:31,234 - __main__ - INFO - Client 20/40 completed in 13.2s
+2025-09-28 17:48:35,598 - __main__ - INFO - Client 21/40 completed in 4.4s
+2025-09-28 17:48:39,177 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:48:43,067 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:48:48,390 - __main__ - INFO - Client 24/40 completed in 5.3s
+2025-09-28 17:48:55,169 - __main__ - INFO - Client 25/40 completed in 6.8s
+2025-09-28 17:48:58,360 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 17:49:02,626 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 17:49:07,942 - __main__ - INFO - Client 28/40 completed in 5.3s
+2025-09-28 17:49:12,248 - __main__ - INFO - Client 29/40 completed in 4.3s
+2025-09-28 17:49:17,396 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 17:49:22,084 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 17:49:25,453 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 17:49:35,150 - __main__ - INFO - Client 33/40 completed in 9.7s
+2025-09-28 17:49:40,708 - __main__ - INFO - Client 34/40 completed in 5.6s
+2025-09-28 17:49:45,176 - __main__ - INFO - Client 35/40 completed in 4.5s
+2025-09-28 17:49:51,460 - __main__ - INFO - Client 36/40 completed in 6.3s
+2025-09-28 17:49:56,528 - __main__ - INFO - Client 37/40 completed in 5.1s
+2025-09-28 17:50:01,546 - __main__ - INFO - Client 38/40 completed in 5.0s
+2025-09-28 17:50:05,096 - __main__ - INFO - Client 39/40 completed in 3.5s
+2025-09-28 17:50:07,594 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:50:07,594 - __main__ - INFO - Aggregating models...
+2025-09-28 17:50:07,801 - __main__ - INFO - Running evaluation...
+2025-09-28 17:50:20,547 - __main__ - INFO - Round 7 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 219.8s
+2025-09-28 17:50:20,547 - __main__ - INFO - Round 8/15
+2025-09-28 17:50:26,993 - __main__ - INFO - Client 1/40 completed in 6.1s
+2025-09-28 17:50:30,849 - __main__ - INFO - Client 2/40 completed in 3.9s
+2025-09-28 17:50:36,071 - __main__ - INFO - Client 3/40 completed in 5.2s
+2025-09-28 17:50:42,445 - __main__ - INFO - Client 4/40 completed in 6.4s
+2025-09-28 17:50:46,990 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 17:50:49,675 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:50:54,128 - __main__ - INFO - Client 7/40 completed in 4.5s
+2025-09-28 17:50:57,767 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 17:51:01,859 - __main__ - INFO - Client 9/40 completed in 4.1s
+2025-09-28 17:51:06,958 - __main__ - INFO - Client 10/40 completed in 5.1s
+2025-09-28 17:51:11,091 - __main__ - INFO - Client 11/40 completed in 4.1s
+2025-09-28 17:51:15,539 - __main__ - INFO - Client 12/40 completed in 4.4s
+2025-09-28 17:51:21,323 - __main__ - INFO - Client 13/40 completed in 5.8s
+2025-09-28 17:51:27,183 - __main__ - INFO - Client 14/40 completed in 5.9s
+2025-09-28 17:51:31,689 - __main__ - INFO - Client 15/40 completed in 4.5s
+2025-09-28 17:51:37,718 - __main__ - INFO - Client 16/40 completed in 6.0s
+2025-09-28 17:51:43,887 - __main__ - INFO - Client 17/40 completed in 6.2s
+2025-09-28 17:51:49,244 - __main__ - INFO - Client 18/40 completed in 5.4s
+2025-09-28 17:51:57,671 - __main__ - INFO - Client 19/40 completed in 8.4s
+2025-09-28 17:52:11,144 - __main__ - INFO - Client 20/40 completed in 13.5s
+2025-09-28 17:52:15,550 - __main__ - INFO - Client 21/40 completed in 4.4s
+2025-09-28 17:52:19,103 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:52:23,053 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:52:28,422 - __main__ - INFO - Client 24/40 completed in 5.4s
+2025-09-28 17:52:34,833 - __main__ - INFO - Client 25/40 completed in 6.4s
+2025-09-28 17:52:37,991 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 17:52:42,209 - __main__ - INFO - Client 27/40 completed in 4.2s
+2025-09-28 17:52:47,231 - __main__ - INFO - Client 28/40 completed in 5.0s
+2025-09-28 17:52:51,605 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 17:52:56,660 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 17:53:01,270 - __main__ - INFO - Client 31/40 completed in 4.6s
+2025-09-28 17:53:04,864 - __main__ - INFO - Client 32/40 completed in 3.6s
+2025-09-28 17:53:14,942 - __main__ - INFO - Client 33/40 completed in 10.1s
+2025-09-28 17:53:20,203 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 17:53:24,514 - __main__ - INFO - Client 35/40 completed in 4.3s
+2025-09-28 17:53:30,668 - __main__ - INFO - Client 36/40 completed in 6.2s
+2025-09-28 17:53:35,558 - __main__ - INFO - Client 37/40 completed in 4.9s
+2025-09-28 17:53:40,733 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 17:53:44,255 - __main__ - INFO - Client 39/40 completed in 3.5s
+2025-09-28 17:53:46,718 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:53:46,719 - __main__ - INFO - Aggregating models...
+2025-09-28 17:53:46,916 - __main__ - INFO - Running evaluation...
+2025-09-28 17:53:59,113 - __main__ - INFO - Round 8 Clean Acc: 10.12% | Adv Acc: 10.00% | Detection: 0.00% | Time: 218.6s
+2025-09-28 17:53:59,113 - __main__ - INFO - Round 9/15
+2025-09-28 17:54:05,712 - __main__ - INFO - Client 1/40 completed in 6.3s
+2025-09-28 17:54:09,576 - __main__ - INFO - Client 2/40 completed in 3.9s
+2025-09-28 17:54:14,757 - __main__ - INFO - Client 3/40 completed in 5.2s
+2025-09-28 17:54:21,397 - __main__ - INFO - Client 4/40 completed in 6.6s
+2025-09-28 17:54:26,238 - __main__ - INFO - Client 5/40 completed in 4.8s
+2025-09-28 17:54:28,893 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:54:33,286 - __main__ - INFO - Client 7/40 completed in 4.4s
+2025-09-28 17:54:36,791 - __main__ - INFO - Client 8/40 completed in 3.5s
+2025-09-28 17:54:40,875 - __main__ - INFO - Client 9/40 completed in 4.1s
+2025-09-28 17:54:45,947 - __main__ - INFO - Client 10/40 completed in 5.1s
+2025-09-28 17:54:50,021 - __main__ - INFO - Client 11/40 completed in 4.1s
+2025-09-28 17:54:54,385 - __main__ - INFO - Client 12/40 completed in 4.4s
+2025-09-28 17:55:00,224 - __main__ - INFO - Client 13/40 completed in 5.8s
+2025-09-28 17:55:05,938 - __main__ - INFO - Client 14/40 completed in 5.7s
+2025-09-28 17:55:10,393 - __main__ - INFO - Client 15/40 completed in 4.5s
+2025-09-28 17:55:16,247 - __main__ - INFO - Client 16/40 completed in 5.9s
+2025-09-28 17:55:22,229 - __main__ - INFO - Client 17/40 completed in 6.0s
+2025-09-28 17:55:27,626 - __main__ - INFO - Client 18/40 completed in 5.4s
+2025-09-28 17:55:35,840 - __main__ - INFO - Client 19/40 completed in 8.2s
+2025-09-28 17:55:49,511 - __main__ - INFO - Client 20/40 completed in 13.7s
+2025-09-28 17:55:54,026 - __main__ - INFO - Client 21/40 completed in 4.5s
+2025-09-28 17:55:57,659 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 17:56:01,624 - __main__ - INFO - Client 23/40 completed in 4.0s
+2025-09-28 17:56:07,190 - __main__ - INFO - Client 24/40 completed in 5.6s
+2025-09-28 17:56:13,945 - __main__ - INFO - Client 25/40 completed in 6.8s
+2025-09-28 17:56:17,197 - __main__ - INFO - Client 26/40 completed in 3.3s
+2025-09-28 17:56:21,505 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 17:56:26,788 - __main__ - INFO - Client 28/40 completed in 5.3s
+2025-09-28 17:56:31,179 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 17:56:36,333 - __main__ - INFO - Client 30/40 completed in 5.2s
+2025-09-28 17:56:41,132 - __main__ - INFO - Client 31/40 completed in 4.8s
+2025-09-28 17:56:44,516 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 17:56:54,799 - __main__ - INFO - Client 33/40 completed in 10.3s
+2025-09-28 17:57:00,142 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 17:57:04,712 - __main__ - INFO - Client 35/40 completed in 4.6s
+2025-09-28 17:57:11,182 - __main__ - INFO - Client 36/40 completed in 6.5s
+2025-09-28 17:57:16,333 - __main__ - INFO - Client 37/40 completed in 5.1s
+2025-09-28 17:57:21,572 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 17:57:25,209 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 17:57:27,703 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 17:57:27,703 - __main__ - INFO - Aggregating models...
+2025-09-28 17:57:27,904 - __main__ - INFO - Running evaluation...
+2025-09-28 17:57:40,126 - __main__ - INFO - Round 9 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 221.0s
+2025-09-28 17:57:40,126 - __main__ - INFO - Round 10/15
+2025-09-28 17:57:46,525 - __main__ - INFO - Client 1/40 completed in 6.1s
+2025-09-28 17:57:50,353 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 17:57:55,619 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 17:58:02,354 - __main__ - INFO - Client 4/40 completed in 6.7s
+2025-09-28 17:58:06,879 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 17:58:09,585 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 17:58:14,017 - __main__ - INFO - Client 7/40 completed in 4.4s
+2025-09-28 17:58:17,599 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 17:58:21,829 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 17:58:26,981 - __main__ - INFO - Client 10/40 completed in 5.2s
+2025-09-28 17:58:31,123 - __main__ - INFO - Client 11/40 completed in 4.1s
+2025-09-28 17:58:35,496 - __main__ - INFO - Client 12/40 completed in 4.4s
+2025-09-28 17:58:41,514 - __main__ - INFO - Client 13/40 completed in 6.0s
+2025-09-28 17:58:47,028 - __main__ - INFO - Client 14/40 completed in 5.5s
+2025-09-28 17:58:51,603 - __main__ - INFO - Client 15/40 completed in 4.6s
+2025-09-28 17:58:57,321 - __main__ - INFO - Client 16/40 completed in 5.7s
+2025-09-28 17:59:03,302 - __main__ - INFO - Client 17/40 completed in 6.0s
+2025-09-28 17:59:08,644 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 17:59:17,093 - __main__ - INFO - Client 19/40 completed in 8.4s
+2025-09-28 17:59:30,369 - __main__ - INFO - Client 20/40 completed in 13.3s
+2025-09-28 17:59:34,703 - __main__ - INFO - Client 21/40 completed in 4.3s
+2025-09-28 17:59:38,246 - __main__ - INFO - Client 22/40 completed in 3.5s
+2025-09-28 17:59:42,106 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 17:59:47,497 - __main__ - INFO - Client 24/40 completed in 5.4s
+2025-09-28 17:59:53,929 - __main__ - INFO - Client 25/40 completed in 6.4s
+2025-09-28 17:59:57,169 - __main__ - INFO - Client 26/40 completed in 3.2s
+2025-09-28 18:00:01,406 - __main__ - INFO - Client 27/40 completed in 4.2s
+2025-09-28 18:00:06,830 - __main__ - INFO - Client 28/40 completed in 5.4s
+2025-09-28 18:00:11,363 - __main__ - INFO - Client 29/40 completed in 4.5s
+2025-09-28 18:00:16,507 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 18:00:21,278 - __main__ - INFO - Client 31/40 completed in 4.8s
+2025-09-28 18:00:24,678 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 18:00:34,466 - __main__ - INFO - Client 33/40 completed in 9.8s
+2025-09-28 18:00:39,785 - __main__ - INFO - Client 34/40 completed in 5.3s
+2025-09-28 18:00:44,160 - __main__ - INFO - Client 35/40 completed in 4.4s
+2025-09-28 18:00:50,289 - __main__ - INFO - Client 36/40 completed in 6.1s
+2025-09-28 18:00:55,164 - __main__ - INFO - Client 37/40 completed in 4.9s
+2025-09-28 18:01:00,239 - __main__ - INFO - Client 38/40 completed in 5.1s
+2025-09-28 18:01:03,773 - __main__ - INFO - Client 39/40 completed in 3.5s
+2025-09-28 18:01:06,280 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 18:01:06,281 - __main__ - INFO - Aggregating models...
+2025-09-28 18:01:06,493 - __main__ - INFO - Running evaluation...
+2025-09-28 18:01:19,078 - __main__ - INFO - Round 10 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 219.0s
+2025-09-28 18:01:19,079 - __main__ - INFO - Round 11/15
+2025-09-28 18:01:25,610 - __main__ - INFO - Client 1/40 completed in 6.2s
+2025-09-28 18:01:29,499 - __main__ - INFO - Client 2/40 completed in 3.9s
+2025-09-28 18:01:34,822 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 18:01:41,302 - __main__ - INFO - Client 4/40 completed in 6.5s
+2025-09-28 18:01:45,848 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 18:01:48,568 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 18:01:52,998 - __main__ - INFO - Client 7/40 completed in 4.4s
+2025-09-28 18:01:56,582 - __main__ - INFO - Client 8/40 completed in 3.6s
+2025-09-28 18:02:00,786 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 18:02:05,910 - __main__ - INFO - Client 10/40 completed in 5.1s
+2025-09-28 18:02:10,088 - __main__ - INFO - Client 11/40 completed in 4.2s
+2025-09-28 18:02:14,616 - __main__ - INFO - Client 12/40 completed in 4.5s
+2025-09-28 18:02:20,429 - __main__ - INFO - Client 13/40 completed in 5.8s
+2025-09-28 18:02:26,088 - __main__ - INFO - Client 14/40 completed in 5.7s
+2025-09-28 18:02:30,489 - __main__ - INFO - Client 15/40 completed in 4.4s
+2025-09-28 18:02:36,319 - __main__ - INFO - Client 16/40 completed in 5.8s
+2025-09-28 18:02:42,224 - __main__ - INFO - Client 17/40 completed in 5.9s
+2025-09-28 18:02:47,494 - __main__ - INFO - Client 18/40 completed in 5.3s
+2025-09-28 18:02:55,882 - __main__ - INFO - Client 19/40 completed in 8.4s
+2025-09-28 18:03:09,145 - __main__ - INFO - Client 20/40 completed in 13.3s
+2025-09-28 18:03:13,695 - __main__ - INFO - Client 21/40 completed in 4.5s
+2025-09-28 18:03:17,249 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 18:03:21,125 - __main__ - INFO - Client 23/40 completed in 3.9s
+2025-09-28 18:03:26,584 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 18:03:32,918 - __main__ - INFO - Client 25/40 completed in 6.3s
+2025-09-28 18:03:36,203 - __main__ - INFO - Client 26/40 completed in 3.3s
+2025-09-28 18:03:40,458 - __main__ - INFO - Client 27/40 completed in 4.3s
+2025-09-28 18:03:45,486 - __main__ - INFO - Client 28/40 completed in 5.0s
+2025-09-28 18:03:49,915 - __main__ - INFO - Client 29/40 completed in 4.4s
+2025-09-28 18:03:55,019 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 18:03:59,707 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 18:04:03,123 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 18:04:12,947 - __main__ - INFO - Client 33/40 completed in 9.8s
+2025-09-28 18:04:18,179 - __main__ - INFO - Client 34/40 completed in 5.2s
+2025-09-28 18:04:22,651 - __main__ - INFO - Client 35/40 completed in 4.5s
+2025-09-28 18:04:28,739 - __main__ - INFO - Client 36/40 completed in 6.1s
+2025-09-28 18:04:33,745 - __main__ - INFO - Client 37/40 completed in 5.0s
+2025-09-28 18:04:38,965 - __main__ - INFO - Client 38/40 completed in 5.2s
+2025-09-28 18:04:42,574 - __main__ - INFO - Client 39/40 completed in 3.6s
+2025-09-28 18:04:45,086 - __main__ - INFO - Client 40/40 completed in 2.5s
+2025-09-28 18:04:45,087 - __main__ - INFO - Aggregating models...
+2025-09-28 18:04:45,289 - __main__ - INFO - Running evaluation...
+2025-09-28 18:04:57,644 - __main__ - INFO - Round 11 Clean Acc: 10.00% | Adv Acc: 10.00% | Detection: 0.00% | Time: 218.6s
+2025-09-28 18:04:57,645 - __main__ - INFO - Round 12/15
+2025-09-28 18:05:04,146 - __main__ - INFO - Client 1/40 completed in 6.2s
+2025-09-28 18:05:07,919 - __main__ - INFO - Client 2/40 completed in 3.8s
+2025-09-28 18:05:13,186 - __main__ - INFO - Client 3/40 completed in 5.3s
+2025-09-28 18:05:19,719 - __main__ - INFO - Client 4/40 completed in 6.5s
+2025-09-28 18:05:24,269 - __main__ - INFO - Client 5/40 completed in 4.5s
+2025-09-28 18:05:27,016 - __main__ - INFO - Client 6/40 completed in 2.7s
+2025-09-28 18:05:31,495 - __main__ - INFO - Client 7/40 completed in 4.5s
+2025-09-28 18:05:35,036 - __main__ - INFO - Client 8/40 completed in 3.5s
+2025-09-28 18:05:39,243 - __main__ - INFO - Client 9/40 completed in 4.2s
+2025-09-28 18:05:44,678 - __main__ - INFO - Client 10/40 completed in 5.4s
+2025-09-28 18:05:48,845 - __main__ - INFO - Client 11/40 completed in 4.2s
+2025-09-28 18:05:53,264 - __main__ - INFO - Client 12/40 completed in 4.4s
+2025-09-28 18:05:59,375 - __main__ - INFO - Client 13/40 completed in 6.1s
+2025-09-28 18:06:05,139 - __main__ - INFO - Client 14/40 completed in 5.8s
+2025-09-28 18:06:09,569 - __main__ - INFO - Client 15/40 completed in 4.4s
+2025-09-28 18:06:15,396 - __main__ - INFO - Client 16/40 completed in 5.8s
+2025-09-28 18:06:21,623 - __main__ - INFO - Client 17/40 completed in 6.2s
+2025-09-28 18:06:26,989 - __main__ - INFO - Client 18/40 completed in 5.4s
+2025-09-28 18:06:35,309 - __main__ - INFO - Client 19/40 completed in 8.3s
+2025-09-28 18:06:48,753 - __main__ - INFO - Client 20/40 completed in 13.4s
+2025-09-28 18:06:53,154 - __main__ - INFO - Client 21/40 completed in 4.4s
+2025-09-28 18:06:56,729 - __main__ - INFO - Client 22/40 completed in 3.6s
+2025-09-28 18:07:00,577 - __main__ - INFO - Client 23/40 completed in 3.8s
+2025-09-28 18:07:06,032 - __main__ - INFO - Client 24/40 completed in 5.5s
+2025-09-28 18:07:12,523 - __main__ - INFO - Client 25/40 completed in 6.5s
+2025-09-28 18:07:15,844 - __main__ - INFO - Client 26/40 completed in 3.3s
+2025-09-28 18:07:20,081 - __main__ - INFO - Client 27/40 completed in 4.2s
+2025-09-28 18:07:25,229 - __main__ - INFO - Client 28/40 completed in 5.1s
+2025-09-28 18:07:29,767 - __main__ - INFO - Client 29/40 completed in 4.5s
+2025-09-28 18:07:34,904 - __main__ - INFO - Client 30/40 completed in 5.1s
+2025-09-28 18:07:39,625 - __main__ - INFO - Client 31/40 completed in 4.7s
+2025-09-28 18:07:42,981 - __main__ - INFO - Client 32/40 completed in 3.4s
+2025-09-28 18:07:53,380 - __main__ - INFO - Client 33/40 completed in 10.4s
+2025-09-28 18:07:58,861 - __main__ - INFO - Client 34/40 completed in 5.5s
+2025-09-28 18:08:03,371 - __main__ - INFO - Client 35/40 completed in 4.5s
+2025-09-28 18:08:09,473 - __main__ - INFO - Client 36/40 completed in 6.1s
+2025-09-28 18:08:14,368 - __main__ - INFO - Client 37/40 completed in 4.9s
+2025-09-28 18:08:19,513 - __main__ - INFO - Client 38/40 completed in 5.1s
+2025-09-28 18:08:23,209 - __main__ - INFO - Client 39/40 completed in 3.7s
+2025-09-28 18:08:25,785 - __main__ - INFO - Client 40/40 completed in 2.6s
+2025-09-28 18:08:25,786 - __main__ - INFO - Aggregating models...
+2025-09-28 18:08:25,989 - __main__ - INFO - Running evaluation...
+2025-09-28 18:08:38,307 - __main__ - INFO - Round 12 Clean Acc: 9.85% | Adv Acc: 10.18% | Detection: 0.00% | Time: 220.7s
+2025-09-28 18:08:38,308 - __main__ - INFO - Round 13/15

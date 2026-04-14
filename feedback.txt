@@ -1,0 +1,474 @@
+We need to strengthen our paper **“MedFedPure: A Medical Federated Framework with MAE-based Detection and Diffusion Purification for Inference-Time Attacks”** before or during journal submission. The current paper is promising, but to improve acceptance probability in a strong journal such as **Expert Systems with Applications**, we must add several targeted experiments and present them in a way that directly addresses likely reviewer concerns.
+
+Please implement the following experiments and deliverables carefully, with full reproducibility, clear reporting, and publication-quality outputs.
+
+## Overall Goal
+
+We need to improve the paper in three main directions:
+
+1. **Ablation study**
+   Show the contribution of each main component of MedFedPure.
+
+2. **Additional medical dataset validation**
+   Demonstrate that the method generalizes beyond Br35H.
+
+3. **Stronger baseline comparisons**
+   Compare against more relevant test-time defense and/or federated robustness baselines.
+
+The final outputs should be suitable for direct inclusion in the paper as tables, plots, and concise result summaries.
+
+---
+
+## Part 1 — Ablation Study
+
+### Objective
+
+Quantify the contribution of each component in MedFedPure:
+
+* Personalized federated classifier
+* MAE-based detector
+* Diffusion-based purification
+* Adaptive purification policy
+
+### Core full model
+
+The reference model is the full MedFedPure pipeline:
+
+* Personalized federated classifier
+* MAE detection
+* Conditional diffusion purification
+* Adaptive purification strength based on detector confidence
+
+### Required ablation settings
+
+Please implement and evaluate the following variants:
+
+1. **Full MedFedPure**
+
+   * Full pipeline as proposed
+
+2. **Without MAE detector**
+
+   * Remove detection
+   * Either purify all samples or skip purification entirely, but please choose the version that best isolates the detector’s effect and clearly document it
+   * If possible, test both:
+
+     * No detector, purify all inputs
+     * No detector, no purification
+
+3. **Without diffusion purification**
+
+   * Keep personalized FL classifier
+   * Keep MAE detector
+   * Detected adversarial samples are not purified
+   * They either pass directly to classifier or are handled in the simplest possible non-purification way
+   * Document exact behavior
+
+4. **Without personalization**
+
+   * Replace personalized federated classifier with standard federated baseline, ideally FedAvg with same backbone where possible
+   * Keep MAE + diffusion pipeline
+   * Goal: isolate the benefit of personalization
+
+5. **Without adaptive purification**
+
+   * Keep MAE detection
+   * Keep diffusion purification
+   * Use a fixed purification depth / fixed number of denoising steps for all detected samples
+   * Compare this with adaptive strength scheduling
+
+6. **Classifier only baseline**
+
+   * Federated classifier without any defense
+   * This should help show the raw robustness gap
+
+### Metrics to report
+
+For each ablation setting, report at minimum:
+
+* Clean accuracy
+* Adversarial accuracy
+* If possible:
+
+  * Precision / recall / F1 for adversarial detection
+  * Fraction of samples sent to purification
+  * Average purification cost / latency per sample
+  * Runtime overhead compared with classifier-only baseline
+
+### Datasets for ablation
+
+At minimum:
+
+* **Br35H**
+* If feasible, also **CIFAR-10**
+
+### Attack settings
+
+Use the same primary attack setting as the current paper so results remain directly comparable:
+
+* PGD under the main threat model currently used
+* Please clearly specify:
+
+  * norm type
+  * epsilon
+  * alpha / step size
+  * number of steps
+  * white-box or black-box
+* Keep attack settings consistent across ablations
+
+### Expected output
+
+Please provide:
+
+1. One clean summary table for Br35H
+2. One optional second table for CIFAR-10
+3. A short interpretation for each ablation:
+
+   * which component contributes most to robustness
+   * which component preserves clean accuracy
+   * whether adaptive purification is actually useful
+
+---
+
+## Part 2 — Additional Medical Dataset Validation
+
+### Objective
+
+Address the likely reviewer criticism that the method is validated on only one medical imaging dataset.
+
+### Preferred dataset priority
+
+Please try to add **at least one additional medical dataset**, preferably in this order:
+
+#### Priority A: BraTS
+
+Best option if feasible.
+
+* Brain MRI domain
+* Very relevant to current work
+* Strongest extension
+
+Possible task formulations:
+
+* Binary tumor / non-tumor classification if supported by preprocessing
+* Or another clinically reasonable classification setup derived from the data
+* Please choose a setup that is methodologically defensible and easy to explain in the paper
+
+#### Priority B: ADNI
+
+Also very useful.
+
+* Shows generalization to another neurological MRI task
+* Strong if BraTS is difficult
+
+#### Priority C: Another reasonable public medical imaging dataset
+
+Only if A and B are not feasible in time.
+
+* Must be public
+* Must be easy to describe clearly
+* Must support a classification pipeline
+
+### Requirements for the new dataset experiment
+
+For the added medical dataset, report:
+
+* Clean accuracy
+* Adversarial accuracy
+* Detection performance if available
+* Comparison between:
+
+  * classifier-only federated baseline
+  * strongest federated baseline already in the paper
+  * MedFedPure
+
+### Federated partitioning
+
+Please make the federated setup realistic and clearly reproducible.
+For example:
+
+* Split data across 5 or 10 clients
+* Use non-IID partitioning if possible
+* Document exactly how the client partitions are created
+
+### Important note
+
+We do not need an enormous benchmark study right now.
+A single additional medical dataset with clean execution and clear reporting is much more valuable than many weak experiments.
+
+### Expected output
+
+Please provide:
+
+1. A concise dataset description
+2. Preprocessing details
+3. Client partitioning details
+4. Main result table
+5. A short paragraph explaining whether MedFedPure generalizes beyond Br35H
+
+---
+
+## Part 3 — Stronger Baseline Comparisons
+
+### Objective
+
+Broaden comparisons so reviewers cannot say the paper only compares with weak or too few baselines.
+
+### Current situation
+
+We already compare against:
+
+* FedAvg
+* local training / local adversarial variants
+* pFedDef
+* some CIFAR-related baselines in the current table
+
+### We now need stronger and more relevant comparisons
+
+Please add as many of the following as are realistically feasible within time:
+
+#### A. Test-time defense baselines
+
+Prefer baselines that are conceptually relevant to our framework:
+
+* Input transformation / purification defense
+* Detection-based defense
+* Diffusion-based purification defense
+* Reconstruction-based defense
+
+If exact reproduction of a published method is too difficult, use a faithful and clearly described approximation, but note it transparently.
+
+#### B. Federated robustness baselines
+
+If feasible, include one or two stronger federated defense baselines beyond pFedDef.
+
+#### C. Simple practical baselines
+
+These are often useful and cheap:
+
+* Purify all samples without detection
+* MAE detection only, no purification
+* Diffusion only, no detector
+* Standard adversarial training baseline if easy to run
+
+### Minimal required comparison set
+
+If time is limited, I would prioritize:
+
+1. pFedDef
+2. classifier-only federated baseline
+3. diffusion-only defense
+4. MAE-only detection defense
+5. full MedFedPure
+
+That set alone would already make the comparison section much stronger.
+
+### Reporting requirements
+
+For every baseline, report:
+
+* Same backbone where possible
+* Same dataset split
+* Same attack setting
+* Same evaluation protocol
+
+If something differs, document it explicitly.
+
+### Expected output
+
+Please provide:
+
+1. One comparison table for Br35H
+2. Optional second comparison table for CIFAR-10 or the new medical dataset
+3. A short summary of where MedFedPure wins and where trade-offs appear
+
+---
+
+## Part 4 — Efficiency / Overhead Analysis
+
+### Objective
+
+Because diffusion-based purification can be expensive, we should anticipate reviewer concerns about runtime and practicality.
+
+### Please measure if feasible
+
+* Average inference time per sample:
+
+  * classifier only
+  * MAE detection only
+  * purification only
+  * full pipeline
+* Percentage of samples flagged for purification
+* Average extra latency introduced by defense
+* GPU memory usage if easy to obtain
+* Approximate computational overhead relative to baseline
+
+### Why this matters
+
+Even a small table or short paragraph here can significantly improve the paper by showing practicality.
+
+### Expected output
+
+A concise table with:
+
+* method
+* clean inference cost
+* defended inference cost
+* notes on selective purification savings
+
+---
+
+## Part 5 — Experimental Reliability Requirements
+
+### Very important
+
+Please ensure all experiments are done carefully and are publication-ready.
+
+#### Reproducibility
+
+For every experiment, record:
+
+* random seed(s)
+* dataset split procedure
+* client partitioning method
+* model backbone
+* optimizer
+* learning rate
+* batch size
+* number of communication rounds
+* number of local epochs
+* attack parameters
+* detection thresholding or percentile rule
+* purification step count or adaptive schedule
+
+#### Multiple runs
+
+If computationally feasible, run each important experiment with more than one seed.
+Preferred:
+
+* 3 seeds minimum for key Br35H results
+  If not feasible:
+* at least rerun the most important settings to verify stability
+
+#### Result formatting
+
+Please return results in a form that can be directly used in the paper:
+
+* CSV or Excel summary tables
+* publication-ready plots
+* a clean text summary of findings
+* clear naming of each method variant
+
+---
+
+## Part 6 — Suggested Final Table Structure
+
+### Table A — Main ablation on Br35H
+
+Columns:
+
+* Method
+* Personalization
+* MAE detector
+* Diffusion purification
+* Adaptive purification
+* Clean Acc (%)
+* Adv Acc (%)
+* Detection F1 if available
+* Avg latency if available
+
+### Table B — Additional medical dataset results
+
+Columns:
+
+* Method
+* Clean Acc (%)
+* Adv Acc (%)
+* Notes
+
+### Table C — Comparison with baselines
+
+Columns:
+
+* Method
+* Defense type
+* Clean Acc (%)
+* Adv Acc (%)
+* Relative gain over classifier-only baseline
+
+---
+
+## Part 7 — Short scientific questions the experiments should answer
+
+Please make sure the final analysis clearly answers these questions:
+
+1. How much does each component contribute?
+2. Is MAE detection actually necessary?
+3. Does selective purification outperform purifying everything?
+4. Does adaptive purification help more than fixed purification?
+5. Does personalization improve robustness, clean accuracy, or both?
+6. Does MedFedPure generalize to at least one additional medical dataset?
+7. Is the method practical enough in terms of inference-time cost?
+
+---
+
+## Part 8 — Priority Order if time is limited
+
+If the team cannot do everything immediately, prioritize in this order:
+
+### Highest priority
+
+1. Ablation on Br35H
+2. One additional medical dataset
+3. Stronger baseline comparison on Br35H
+
+### Medium priority
+
+4. Efficiency / runtime analysis
+5. CIFAR-10 extension of new comparisons
+
+### Lower priority
+
+6. Multi-seed repetition for all secondary experiments
+
+---
+
+## Part 9 — Final deliverables requested from the team
+
+Please deliver the following:
+
+1. **Ablation result table**
+2. **One additional medical dataset experiment**
+3. **Expanded comparison table**
+4. **Short efficiency table**
+5. **One-page summary of main findings**
+6. **Exact experimental settings for reproducibility**
+7. **Any scripts/configs needed to rerun key results**
+
+---
+
+## Final note
+
+The purpose of these experiments is not just to improve numbers.
+They must directly strengthen the paper against likely reviewer criticisms:
+
+* only one medical dataset
+* not enough ablation
+* not enough strong baselines
+* unclear practical cost
+
+So please optimize for:
+
+* clarity
+* fairness
+* reproducibility
+* direct usefulness for the revised manuscript
+
+If any part is infeasible, do not skip it silently. Instead, report:
+
+* what was attempted
+* what blocked it
+* the best feasible alternative
+* whether the alternative is paper-worthy
+
+Please proceed carefully and keep all results organized so we can quickly incorporate them into the manuscript.

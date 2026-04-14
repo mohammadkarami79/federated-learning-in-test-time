@@ -1,0 +1,1 @@
+I’ll generate a **15-question Q&A bank** (30-second answers) focused on **multimodal conditioning + federated training + evaluation**—exactly what the panel will probe.

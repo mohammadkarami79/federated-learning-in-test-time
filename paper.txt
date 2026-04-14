@@ -1,0 +1,1478 @@
+MedFedPure: A Medical Federated Framework with MAE-based
+Detection and Diffusion Purification for Inference-Time Attacks
+Mohammad Karamia, Mohammad Reza Nematia,1, Aidin Kazemia,1, Ali Mikaeilia,b,
+Hamid Azadeganc and Behzad Moshiria,d,∗
+aSchool of Electrical and Computer Engineering, University of Tehran, Tehran, Iran
+bMax Planck Institute for Brain Research, Frankfurt, Germany
+cSchool of Computer Engineering,University of Science and Technology (IUST), Tehran, Iran
+dDepartment of Electrical and Computer Engineering, University of Waterloo, Ontario, Canada
+ARTICLE INFO
+Keywords:
+cancer
+tumor detection
+federated learning
+masked auto encoder
+diffusion
+privacy
+ABSTRACT
+Artificial Intelligence (AI) has shown great potential in medical imaging, particularly for brain tumor
+detection using Magnetic Resonance Imaging (MRI). However, the models remain vulnerable at
+inference time whentheytrainedcollaborativelythroughFederatedLearning(FL).Adversarialattacks
+can subtly alter medical scans in ways invisible to the human eye yet powerful enough to mislead
+AI models, potentially causing serious misdiagnoses. Existing defenses often assume centralized
+data and struggle to cope with the decentralized and diverse nature of federated medical settings.
+In this work, we present MedFedPure, a Personalized FL defense framework, designed to protect
+diagnostic AI models at inference time without compromising privacy or accuracy. MedFedPure
+combines three key elements: (1) a personalized FL model that adapts to the unique data distribution
+of each institution; (2) a Masked Autoencoder (MAE) that detects suspicious inputs by exposing
+hidden perturbations; and (3) an adaptive, Diffusion-based purification module that cleans only the
+f
+lagged scans before classification. Together, these steps offer robust protection while preserving the
+integrity of normal, benign images. We evaluated MedFedPure on the Br35H brain MRI dataset.
+The results show a significant gain in adversarial robustness, improving performance from 49.50%
+to 87.33% under strong attacks, while maintaining a high clean accuracy of 97.67%. By operating
+locally and in real time during diagnosis, our framework provides a practical path to deploying secure,
+trustworthy, and privacy-preserving AI tools in clinical workflows. Our code is released publicly at
+https://github.com/mohammadkarami79/federated-learning-in-test-time.
+1. Introduction
+Cancer remains one of the most pressing global health
+challenges, claiming millions oflives eachyearOrganization
+(2025). Among these, brain and central nervous system
+tumors, though relatively less common, carry a dispropor
+tionately high risk of morbidity and mortality due to their
+direct impact on neurological function. Early and accurate
+diagnosis is therefore critical to guide therapy and improve
+patient outcomes. Magnetic resonance imaging (MRI) has
+become the clinical standard for non-invasive brain tumor
+detection because of its high-resolution imaging and supe
+rior soft-tissue contrast.
+Yet, the interpretation of MRI scans is time-consuming
+and prone to inter-observer variability, creating an urgent
+need for reliable computer-aided diagnostic (CAD) systems.
+As CAD systems become integrated into clinical decision
+making pipelines, their reliability under all conditions, in
+cluding adversarial settings, becomes critical for ensuring
+∗Corresponding author
+mohammad.karami79@ut.ac.ir (M. Karami);
+mohammad.r.nemati@ut.ac.ir (M.R. Nemati); aidin.kazemi@ut.ac.ir (A.
+Kazemi); mikaeili.ali@ut.ac.ir (A. Mikaeili); Ali.mikaeili@brain.mpg.de
+(A. Mikaeili); H_azadegan@vu.iust.ac.ir (H. Azadegan); moshiri@ut.ac.ir
+(B. Moshiri); bmoshiri@uwaterloo.ca (B. Moshiri)
+1These authors contributed equally to this work.
+patient safety and maintaining trust in automated diagnos
+tics. Deep learning models, particularly convolutional net
+works and encoder-decoder architectures such as ResNet He
+et al. (2016) and U-Net variants Ronneberger et al. (2015),
+have shown remarkable improvements in tumor detection
+and segmentation, bringing consistency and efficiency to
+radiological workflows. However, these models depend on
+access to large, diverse, and well-annotated datasets that are
+challenging to centralize in medical domains due to strict
+privacy regulations and institutional barriers.
+Federated Learning (FL) has emerged as a compelling
+solution to this data challenge, Fig. 1. By enabling insti
+tutions to collaboratively train models without sharing raw
+patient data, FL strikes a balance between building robust
+models and preserving privacy. Successful demonstrations
+show that federated models can approach the accuracy of
+centrally trained ones while respecting institutional bound
+aries. This positions FL as a promising paradigm for cross
+institutional collaboration in healthcare. However, since FL
+has adecentralized nature, it also introduces new challenges,
+including increased attack surfaces at the client level and in
+consistencies arising from heterogeneous data distributions
+across institutions Bhanbhro et al. (2024).
+Despite this promise, two unresolved issues remain.
+First, the statistical heterogeneity of data across clients often
+degrades global modelperformance.Personalized Federated
+Learning (PFL) has been introduced to address this by
+Page 1 of 14
+: Preprint submitted to Elsevier
+strength adjusted according to the detector’s confidence.
+This adaptive strategy ensures that benign inputs are pre
+served, while adversarial perturbations are effectively neu
+tralized. We argue that a robust anddeployablemedicalAIin
+FLsettings should be client-specific, selective, and adaptive
+at inference, rather than relying global and static defensed
+that are applied during training.
+The main contributions of this paper are:
+Figure 1: Federated learning overview: each site trains locally
+and keeps local data on-premise; only model updates 𝜃 are sent
+to the server for aggregation (e.g., FedAvg), and the updated
+model is returned to clients.
+tailoring models to individual data distributions while main
+taining collaborative benefits. Second, and more critically
+for clinical safety, FL models are vulnerable at inference
+time. In the context of federated learning, the notion of an
+attacker refers to a malicious entity that manipulates model
+inputs at inference. Such attacks do not require access to
+patient records or the federated training process; instead,
+they operate by crafting subtle perturbations to medical
+scans that remain imperceptible to clinicians but mislead the
+model. For instance, an attacker could modify a brain MRI
+so that a tumor-bearing image is classified as normal, or con
+versely, cause a healthy scan to be flagged as malignant. We
+consider a test-time evasion setting in which an adversary
+perturbs input MRI scans at inference time to cause misclas
+sification. The attack is assumed to be in white-box mode,
+providing full access to the model and its parameters for the
+attacker. Adversarial examples are crafted under bounded
+𝓁∞ perturbations to ensure that the modifications remain
+visually imperceptible. To simulate a strong and worst
+case adversary, we adopt first-order gradient-based attacks,
+which maximize the model’s prediction error. Most existing
+defenses have been designed for centralized training set
+tings or focus on training-time robustness, incurring heavy
+computational costs and leaving inference-time security
+largely unaddressed. Moreover, personalization complicates
+the defense landscape: a uniform protection mechanism may
+unfairly affect clients with unique data characteristics.
+This work addresses this unmet need by proposing a
+federated, inference-time defense framework that is adap
+tive, efficient, and client-specific. We frame this problem
+as a selective, decision-aware inference pipeline under ad
+versarial uncertainty. Our framework operates exclusively
+on the client side, protecting local inference without al
+tering federated training or sharing sensitive information.
+It integrates three components: (i) a personalized mixture
+of-experts classifier that adapts to each client’s data dis
+tribution, (ii) a Masked Autoencoder (MAE) detector that
+identifies potentially adversarial inputs through reconstruc
+tion error, and (iii) a diffusion-based purification module
+that selectively sanitizes flagged samples, with purification
+1. We introduce a novel client-side defense framework
+that combines personalized federated learning with a
+multi-stage, test-time protection pipeline against ad
+versarial attacks.
+2. We design an adaptive detection-purification mecha
+nism, where an MAE-based detector triggers condi
+tional diffusion-based purification, balancing security
+with efficiency and fidelity on clean inputs.
+3. We provide comprehensive empirical validation on
+standard benchmark (CIFAR-10) and a clinically rel
+evant MRI dataset (BR35H), demonstrating that our
+approach significantly enhances adversarial robust
+ness while maintaining high accuracy on benign data.
+Theremainderofthepaperisorganizedasfollows.Section2
+reviews related work on federated personalization and test
+time defenses. Section 3 details the proposed personalized
+federated learning architecture, the MAE detector, and the
+diffusion-based purifier. Section 4 describes experimental
+setup and evaluation results, and Section 5 concludes with
+discussion and future directions.
+2. Literature Review
+2.1. Brain Tumor Detection and MRI Imaging
+Malignancies of the brain and central nervous system,
+although less commonthanother cancers, account for nearly
+2% of all diagnoses and contribute to over 2.5% of cancer
+related mortality worldwide Ilic and Ilic (2023). Brain tu
+mors, which manifest as abnormal cell proliferation within
+the cranial cavity, exert pressure on surrounding neural
+structures and can significantly impair neurological function
+Raghavendra et al. (2023); Abd-Ellah et al. (2019).
+The potential for rapid tumor progression requires early
+detection to maximize treatment efficacy Wongkasem and
+Cabrera (2024); Raghavendra et al. (2023). Among diagnos
+tic modalities, MRI has established itself as a non-invasive
+technique offering high-resolution imaging of brain struc
+tures, making it invaluable for tumor localization and classi
+f
+ication Firmansyah and Utama (2024).
+ManualinterpretationofMRIscansisbothlabor-intensive
+and subject to inter-observer variability. To address this,
+CADtoolshave gained prominence, aiming to automate and
+enhance the processes of tumor identification, segmentation,
+and classification Abd-Ellah et al. (2019). Recent advances
+have focused on deep learning architectures, including vari
+ants of ResNet Aggarwal et al. (2023), U-Net, such as 2D
+UNET Munir et al. (2021), and Transformer-based models
+Kumar and Jyoti (2026), which have shown significant
+: Preprint submitted to Elsevier
+Page 2 of 14
+improvements in accuracy, computational efficiency, and
+clinical applicability Abd El Kader et al. (2021); Barzili and
+Moshiri (2025). The development of reliable AI models re
+quires access to curated and representative datasets. Among
+the publicly available brain MRI collections, the Br35H
+Brain Tumor Detection dataset has been frequently utilized
+due to its well-labeled samples and practical relevance to
+real-world clinical tasks Hamada (2025). Several studies
+have benchmarked its use in training deep learning frame
+works for tumor identification, demonstrating its efficacy in
+enhancing diagnostic accuracy Naseer et al. (2021); Chhatre
+et al. (2023); Khan and Auvee (2024); Selcuk and Serif
+(2023).
+2.2. Federated Learning in Medical Imaging
+FL addresses the critical privacy and data governance
+challenges inherent in multi-institutional medical data anal
+ysis Dayan et al. (2021); Li et al. (2020). In this framework,
+multiple clients independently train a shared model using
+local data and periodically synchronize with a central server
+via model updates rather than raw data. The widely adopted
+FedAvg algorithm McMahan et al. (2017) facilitates global
+model aggregation through weighted averaging of local pa
+rameters.
+FLcan beclassified based on data distribution into hori
+zontal (HFL), vertical (VFL), and federated transfer learning
+(FTL). HFL assumes shared feature spaces with disjoint
+user sets, while VFL is suitable when clients share samples
+but differ in features. FTL accommodates heterogeneity in
+both samples and features, leveraging transfer learning to
+bridge representational gaps Kumar et al. (2024); Yang et al.
+(2019); Jahani et al. (2024b).
+Overtime,FLhasgainedtractionasaprivacy-preserving
+MLframework, driving a surge of theoretical studies, real
+world deployments, and clinical interest Smith et al. (2017);
+Li et al. (2022). Both industrial and academic sectors have
+pursued its application in sensitive domains such as medical
+imaging, particularly for decentralized analysis of brain
+tumor data Zhou et al. (2023); Albalawi et al. (2024).
+The sensitive nature of medical data has positioned FL
+as a valuable solution for cross-institutional collaboration
+without compromising patient confidentiality Rieke et al.
+(2020).
+Applicationsinneuroimaginghavehighlightedthepromise
+of FL in constructing robust models across decentralized
+medical repositories Pfitzner et al. (2021). A notable exam
+ple is the FeTS Initiative Pati et al. (2022), which showed
+that FL could match the segmentation performance of cen
+tralized models across multiple clinical institutions, without
+ever sharing raw MRI data.
+2.3. Challenges and Personalization in Federated
+Learning
+Despite its advantages, FL faces several key limita
+tions. The vulnerability to inference-time adversarial at
+tacks, where malicious queries are crafted to mislead the
+model or extract sensitive knowledge, poses security threats
+Barreno et al. (2006); Jahani et al. (2024a); Lyu et al. (2024).
+These attacks vary based on the attacker’s knowledge, from
+full-access white-box scenarios to black-box settings where
+only model outputs are observable Ren et al. (2020); Jahani
+et al. (2025).
+Additionally, the inherent data heterogeneity in FL sys
+tems contributes to degraded performance, especially when
+client data distributions differ significantly from the global
+average. The noise introduced through privacy-preserving
+techniques such as differential privacy further exacerbates
+this trade-off between model accuracy and confidentiality,
+often resulting in bias or fairness concerns Bellet et al.
+(2018); Gu et al. (2022); Karami et al. (2025b); Wu et al.
+(2025). To address semantic drift under non-IID condi
+tions caused by label scarcity of the data, MedFedProto
+integrated federated prototypical learning to align global
+semantic spaces, utilizing abundant unlabeled data Zhao
+et al. (2026)
+To mitigate these drawbacks, the field of Personalized
+Federated Learning (PFL) has emerged. PFL tailors models
+to the individual characteristics of each client while main
+taining collaborative training benefits Sabah et al. (2024).
+Approaches to personalization include local fine-tuning,
+multi-task learning Arivazhagan et al. (2019), and meta
+learning frameworks Fallah et al. (2020). Solutions such as
+FedBN Li et al. (2021) and SCAFFOLD Karimireddy et al.
+(2020) address client drift and non-IID issues by decoupling
+shared representations from client-specific layers or by cor
+recting local update bias. FedCA tackled distribution shifts
+in the medical domain by employing cross-client feature
+style transfer to augment latent feature diversity without
+exchanging raw patient data Ren et al. (2026).
+Personalization strategies are broadly categorized into
+three types: model-based (e.g., personalized heads or layers)
+Maetal.(2022), data-based (e.g., client clustering) Mansour
+et al. (2020); Ghosh et al. (2020); Dao et al. (2026), and
+optimization-based techniques (e.g., regularization or meta
+learning) Tan et al. (2022). These strategies collectively aim
+to improve convergence, fairness, and user experience in
+federated systems.
+2.4. Inference-Time Robustness and Security
+Even after model deployment, inference-time vulnera
+bilities remain an open concern. Test-time attacks can sig
+nificantly compromise the integrity of the model Wu et al.
+(2024); Ye et al. (2024); Briguglio et al. (2026). To protect
+deployed models, researchers have proposed a range of post
+training defenses. These methods operate on the input of the
+model or on its output. Input-level strategies aim to detect or
+neutralize malicious inputs before they affect the model. For
+instance, STRIP perturbs incoming samples with noise and
+checks the prediction consistency to expose Trojan triggers
+Gao et al. (2019).
+Similarly, the TeCo approach applies input corruptions
+and monitors the robustness of the model’s predictions,
+f
+lagging inputs that cause abnormal output changes Liu
+: Preprint submitted to Elsevier
+Page 3 of 14
+et al. (2023b). Beyond detection, generative refinement tech
+niques have beenexploredto sanitize inputs: diffusion-based
+purification methods leverage powerful generative models
+to remove adversarial perturbations from images without
+requiring any model modifications, achieving state-of-the
+art resilience against a variety of attacks Nie et al. (2022a).
+In contrast, output-level defenses focus on identifying
+and mitigating attacks by analyzing the model’s prediction
+patterns. The NABtechniqueintroducesabenigndecoytrig
+ger into the modelduringdeployment,whichhelpsnullifyor
+overwrite any malicious backdooractivation at inference Liu
+et al. (2023a). Another line of work integrates external gen
+erative models into the prediction pipeline: ZIP uses a pre
+trained diffusion model to transform a suspect input (e.g.,
+via blurring and subsequent generative reconstruction) such
+that any embedded trigger is erased, thereby restoring the
+model’s correct output without requiring prior knowledge of
+the attack Shi et al. (2023). These diverse approaches illus
+trate the growing toolkit for test-time defense in deep learn
+ing. Such mechanisms are especially crucial in medical AI
+applications, where an undetected adversarial or backdoor
+attack on a diagnostic model could lead to a dangerously
+incorrect decision.
+2.5. Research Gap Analysis
+Despite progress in federated learning and in adversar
+ial defense, significant gaps remain at their intersection.
+Notably, most inference-time defense techniques have been
+developed and evaluated in centralized settings, assuming a
+static model with access to all data. In federated environ
+ments, however, data and model heterogeneity pose unique
+challenges that existing defenses do not fully address.
+Effective countermeasures for inference-stage attacks in
+FL are largely lacking. Current federated defense research
+tends to focus on training-time robustness (e.g., robust ag
+gregation or adversarial training), which can incur high
+communication and computation costs and may degrade
+model accuracy. In contrast, a client-side, test-time defense
+offers the promise of enhancing security on demand without
+altering the federated training process or sharing sensitive
+data Karami et al. (2025a).
+Moreover, personalization in FL complicates the defense
+landscape: a one-size-fits-all adversarial filter could unfairly
+impact certain clients due to their unique data distributions.
+This calls for defense strategies that can adapt to individual
+clients. An approach by Tsai et al. (2023) introduced a
+masked autoencoder-based technique to detect and repair
+adversarial samples at test time on a fixed, centrally trained
+model. However, to our knowledge, no prior work has in
+tegrated such test-time detection and purification into a
+federated, personalized learning context. In summary, there
+is a need for a federated inference-time defense framework
+that preserves privacy, accommodates client-specific model
+variations, and provides robust protection against adversar
+ial and backdoor threats. This gap motivates our proposed
+method, which combines personalized FL with on-device
+adversarial detection and input purification to secure brain
+tumor classification in a distributed setting.
+3. Methodology
+The proposed methodology introduces a layered adver
+sarial defense framework for federated learning, designed to
+operate exclusively at test-time on the client side, Fig. 2. The
+approach is structured as a three-stage pipeline that com
+bines a personalized FL backbone with specialized detection
+and purification modules.
+At its core, the classification component is derived from
+the Personalized Federated Defense (pFedDef) Kim et al.
+(2023) paradigm. In this setting, each client maintains a
+mixture-of-experts model comprising 𝐾 = 3 learners, each
+instantiated as a ResNet-18 He et al. (2016) architecture.
+The outputs of these learners are modulated by an input
+dependent attention mechanism, which enables each client
+to adapt its inference to the unique characteristics of its local
+data distribution. Model updates are aggregated at the server
+using the FedAvg algorithm, ensuring both personalization
+and global knowledge sharing.
+The defense sequence, Fig. 2b, is activated whenever
+a client receives a test input. Initially, an adversarial de
+tection module, implemented as a MAE He et al. (2022)
+with a Vision Transformer (ViT) Dosovitskiy et al. (2020)
+backbone, estimates a reconstruction error for the given
+input. Inputs whose error exceeds a predefined threshold 𝜏
+are flagged as potentially adversarial. These flagged inputs
+are subsequently processed by a diffusion-based purification
+module constructed upon a U-Net Ronneberger et al. (2015)
+architecture. This module executes a partial reverse diffusion
+process, effectively removing adversarial perturbations. The
+number of purification timesteps is adaptively determined
+according to the detection confidence score generated by the
+MAE, yielding a computationally efficient defense mecha
+nism.
+Following detection and, when necessary, purification,
+the resulting input, either original or sanitized, is forwarded
+to the client’s model for final classification. This integrated
+design provides resilience against 𝓁∞-bounded adversarial
+attacks, such as Projected Gradient Descent (PGD) Madry
+et al. (2018), by first identifying high-risk samples and then
+selectively mitigating them.
+3.1. Problem Formulation
+3.1.1. Federated Learning Setup
+𝑗 ,𝑦(𝑖)
+We consider a FL environment consisting of 𝑁 clients,
+where each client 𝑖 maintains a private dataset 𝑖 =
+{(𝑥(𝑖)
+𝑗 )}𝑛𝑖
+𝑗=1 containing 𝑛𝑖 labeled samples.
+The overall optimization problem can be expressed as:
+𝑁
+∑
+min
+𝜃 
+�
+�(𝜃) =
+𝑖=1
+𝑛𝑖
+𝑛 𝐹𝑖(𝜃),
+with 𝐹𝑖(𝜃) = 1
+𝑛𝑖 
+∑𝑛𝑖
+𝑗=1 𝓁(𝑓𝜃(𝑥(𝑖)
+𝑗 ),𝑦(𝑖)
+(1)
+𝑗 ) denoting the local
+empirical risk on client 𝑖. 𝑛 = ∑𝑁
+𝑖=1 𝑛𝑖 is the total number of
+: Preprint submitted to Elsevier
+Page 4 of 14
+(a) Overall system.
+(b) Client view.
+MAEencoder
+Conv3×3→GN(from 𝑒𝑡)→ SiLU
+Detector 𝑠det(𝑥)
+Output ̂𝑦
+Down×2
+Latent tokens
+1×1align ⊕ add
+Decision (>𝜏)
+Cleanpath
+Up×2
+MAEdecoder
+1×1→𝜀𝜙(𝑥𝑡,𝑡)
+Purifier
+Adversarial path
+Federated sync
+Timeembedding 𝑒𝑡 (at GN)
+Input 𝑥
+Classifier
+Skip
+Diffusion stages
+Figure 2: Overview of the proposed MedFedPure: (a) Overall architecture with FedAvg; (b) client workflow integrating MAE
+detection, diffusion purification (if 𝑠det(𝑥) > 𝜏), and classification.
+samplesacross all clients, 𝓁(⋅,⋅) represents the cross-entropy
+loss function, and 𝑓𝜃(⋅) is the model parameterized by 𝜃.
+3.1.2. Adversarial Threat Model
+In this work, we assume the presence of adversaries
+capable of crafting perturbations constrained by an 𝓁∞ norm
+bound. An adversarial example for a benign input 𝑥 can be
+defined as:
+by:
+𝑥
+(𝑡+1)
+adv = Π𝜖(𝑥)
+(
+𝑥
+(𝑡)
+adv + 𝛼 ⋅ sign(∇𝑥𝓁(𝑓𝜃(𝑥(𝑡)
+adv), 𝑦)))
+. (3)
+Π𝜖(𝑥) denotes projection onto the 𝓁∞ ball of radius 𝜖
+centered at 𝑥, 𝛼 is the step size, and 𝑡 indexes the attack
+iterations.
+𝑥adv = 𝑥+𝛿, s.t. ‖𝛿‖∞ ≤ 𝜖,
+(2)
+where 𝛿 is the perturbation vector and 𝜖 controls the maxi
+mumperturbation magnitude.
+Weadoptthe widely-used PGD method to model the ad
+versary’s strategy. The iterative generation process is given
+This formulation captures a worst-case scenario in which
+the adversary has full knowledge of the model parameters
+and can exploit gradient information to maximize prediction
+errors.
+: Preprint submitted to Elsevier
+Page 5 of 14
+3.2. ProposedDefenseFramework
+ThissectionintroducesourPersonalizedFederatedDe
+fensemethod,ahybriddefenseframeworkcombiningper
+sonalizedmulti-expert learning, diffusion-based input pu
+rification,andmaskedautoencoder-basedadversarialdetec
+tion. Theoverall designaims to simultaneouslyenhance
+robustness against adversarial perturbations andmaintain
+highperformanceonbenigndatainFLenvironments.
+3.2.1. PersonalizedFederatedDefense
+ThecoreideaofourPFLmethodisamixture-of-experts
+formulation,where each clientmaintains𝐾 = 3 local
+learnerswithdynamicattentionmechanisms:
+𝜃𝑖={𝜃(1)
+𝑖 ,𝜃(2)
+𝑖 ,𝜃(3)
+𝑖 }, 𝜙𝑖={𝜙(1)
+𝑖 ,𝜙(2)
+𝑖 ,𝜙(3)
+𝑖 } (4)
+where𝜃(𝑘)
+𝑖 representstheparametersofthe𝑘-thlearnerand
+𝜙(𝑘)
+𝑖 representstheattentionnetworkparameters.Thelocal
+predictionisobtainedviaaweightedcombinationoflearner
+outputs:
+̂𝑦𝑖(𝑥)=
+𝐾∑
+𝑘=1
+𝛼(𝑘)
+𝑖 (𝑥)⋅𝑓𝜃(𝑘)
+𝑖
+(𝑥). (5)
+Theattentionweights𝛼𝑖arecomputedthroughasoftmax
+normalizedattentionmechanism:
+𝛼(𝑘)
+𝑖 (𝑥)=
+exp(𝑔𝜙(𝑘)
+𝑖
+(𝜓(𝑥)))
+∑𝐾
+𝑗=1exp(𝑔𝜙(𝑗)
+𝑖
+(𝜓(𝑥)))
+. (6)
+Here,𝜓(𝑥) ∈ℝ𝑑 represents thesharedfeaturerepresen
+tationextractedbytheResNet-18backbone,and𝑔𝜙(𝑘)
+𝑖
+isa
+learner-specificattentionnetwork.
+Theparametersoftheexpertnetworksandtheattention
+networksforeachclientiarejointlyoptimizedbyminimiz
+ingthecross-entropylossonthefinalaggregatedprediction:
+pre-reg=𝓁(̂𝑦𝑖(𝑥),𝑦)=𝓁
+(∑
+𝑘=1𝐾𝛼(𝑘)
+𝑖 (𝑥)⋅𝑓𝜃(𝑘)
+𝑖 (𝑥),𝑦
+)
+.
+(7)
+Thisobjectiveencouragestheattentionmechanismtoassign
+higherweights totheexpertbest suitedforagiveninput,
+therebyspecializingeach learnerwhilecontributing toa
+robustensemble.
+Eachlocallearnercomprises:
+•FeatureExtractor:ResNet-18backbonewithImageNet
+pretrainedweights.
+•ClassifierHead:Two-layerMLPwith256hidden
+unitsandReLUactivation.
+•AttentionNetwork:Two-layerMLPproducingscalar
+attentionscores.
+Themixtureweightsareobtainedfromasoftmaxover
+attentionnetworkoutputs:
+𝑤(𝑘)
+𝑖 (𝑥)= exp(MLP(𝑘)
+𝑖 (𝜓(𝑥)))
+∑𝐾
+𝑗=1exp(MLP(𝑗)
+𝑖 (𝜓(𝑥)))
+. (8)
+Thetrainingobjectiveforclient 𝑖,𝑖,combinesclassifica
+tionlosswithattentionregularization,Eq.9.𝐻(𝛼𝑖(𝑥))isthe
+entropyregularizationtermand𝛽and𝛾arehyperparameters
+controllingregularizationstrength.
+𝑖=
+∑
+(𝑥,𝑦)∈𝑖
+[
+pre-reg+𝛽
+𝐾∑
+𝑘=1
+‖𝜙(𝑘)
+𝑖 ‖2
+2+𝛾𝐻(𝛼𝑖(𝑥))
+]
+, (9)
+𝐻(𝛼𝑖(𝑥))=−
+𝐾∑
+𝑘=1
+𝛼(𝑘)
+𝑖 (𝑥)log𝛼(𝑘)
+𝑖 (𝑥). (10)
+3.2.2. Diffusion-basedInputPurification
+Thepurificationmodulemitigatesadversarialperturba
+tionsbyemulatingaforwardnoisingprocessthatprogres
+sivelycorruptstheinput, followedbyalearnedreversede
+noisingprocessthatreconstructstheunderlyingcleanimage.
+Thismechanismismotivatedbythemanifoldhypothesis,
+whichassertsthathigh-dimensionaldata,suchasnaturalim
+ages,predominantlyresideonalow-dimensionalmanifold.
+Adversarialnoise typicallydisplacesanimageawayfrom
+thismanifold intoa low-density region.Byapplying the
+forwarddiffusionprocess, thestructuredadversarial com
+ponentsaredegraded,andthesubsequent reverseprocess,
+trainedtomapcorruptedinputsbackontothelearneddata
+manifold, restoresacleanrepresentationof theimageNie
+etal.(2022b).
+ThismoduleemploysaU-Netarchitectureoptimizedfor
+memoryefficiency:
+•Encoder:4downsamplingblockswithDoubleConv
+layers.
+•Decoder:4upsamplingblockswithskipconnections.
+•HiddenChannels:256channels.
+•TimeEmbedding:Multi-layerperceptronwithSiLU
+activation,responsibleforinjectingtemporalinforma
+tionintothenetwork.
+Tointegratetemporal information, themodelemploys
+atimeembeddingmechanismthatmapsdiscretetimesteps
+intoacontinuouslatentrepresentation.Thisisachievedby
+firstapplyingsinusoidalpositionalencoding,followedbya
+lineartransformationandnonlinearactivation,Eq.12
+SinCos(𝑡)𝑖=
+{
+sin(𝑡∕100002𝑖∕𝑑) if𝑖iseven
+cos(𝑡∕10000(2𝑖−1)∕𝑑) if𝑖isodd (11)
+TimeEmbed(𝑡)=MLP(SiLU(Linear(SinCos(𝑡)))) (12)
+: PreprintsubmittedtoElsevier Page6of14
+SinCos(𝑡), Eq. 11 denotes the sinusoidal embedding of
+timestep 𝑡. The forward process progressively corrupts the
+input with Gaussian noise according to:
+𝑞(𝑥𝑡|𝑥𝑡−1) = (𝑥𝑡;
+√
+1 −𝛽𝑡𝑥𝑡−1,𝛽𝑡𝐼),
+(13)
+with a linear variance schedule {𝛽𝑡}𝑇
+𝑡=1 where 𝛽1 = 10−4,
+𝛽𝑇 = 2×10−2, and 𝑇 = 1000 timesteps. Eq. 14 defines the
+reverse denoising process as:
+𝑝𝜙(𝑥𝑡−1|𝑥𝑡) = (𝑥𝑡−1;𝜇𝜙(𝑥𝑡,𝑡),Σ𝜙(𝑥𝑡,𝑡)),
+(
+𝜇𝜙(𝑥𝑡,𝑡) = 1
+√
+𝛼𝑡
+𝛼𝑡 = 1−𝛽𝑡, ̄𝛼𝑡 =
+𝑥𝑡 − 𝛽𝑡
+𝑡
+∏
+𝑠=1
+)
+√
+𝛼𝑠.
+1 − ̄𝛼𝑡
+𝜖𝜙(𝑥𝑡, 𝑡)
+(14)
+,
+(15)
+(16)
+Finally, Eq. 17 denotes denoising score matching loss, with
+which the model is trained.
+diff = 𝔼𝑥0,𝜖∼(0,𝐼),𝑡∼𝑈(1,𝑇)
+[‖𝜖 − 𝜖𝜙(𝑥𝑡,𝑡)‖2] . (17)
+𝑥𝑡 is defined as 𝑥𝑡 = √̄𝛼𝑡𝑥0 + √
+1 − ̄𝛼𝑡𝜖.
+3.2.3. Masked Autoencoder Detection
+To detect adversarial perturbations, we employ a MAE
+built on a ViT backbone. The encoder is composed of 12
+transformer layers with an embedding dimension of 512 and
+8 self-attention heads per layer. The decoder consists of 8
+transformer layers with the same embedding dimension and
+attention configuration. For CIFAR-10 dataset which has
+small spatial resolution, we use a patch size of 4 × 4, while
+for the higher-resolution Br35H dataset, a 16×16 patch size
+is adopted.
+An input image 𝑥 ∈ ℝ𝐻×𝑊×𝐶 is first divided into non
+overlapping patches of size 𝑝 × 𝑝, which are then flattened
+and projected into a 𝐷-dimensional embedding space, PE ∶
+ℝ𝐻×𝑊×𝐶 →ℝ𝑁×𝐷,where
+𝑃𝑖,𝑗 = Flatten(𝑥[𝑖⋅𝑝 ∶ (𝑖+1)⋅𝑝, 𝑗⋅𝑝 ∶ (𝑗+1)⋅𝑝,∶]), 𝑁 = 𝐻𝑊
+𝑝2 
+.
+(18)
+During training, a high masking ratio is applied to en
+courage robust feature learning. Specifically, a random bi
+nary mask  is sampled according to Eq. 19:
+∼Bernoulli(1 −𝑟)𝑃, 𝑟 = 0.75.
+(19)
+𝑃 is the total number of image patches and 𝑟 is the masking
+ratio. Only the unmasked patches are visible to the encoder,
+with the decoder reconstructing the masked regions.
+The MAE is optimized using a mean squared error
+(MSE) loss computed solely on the masked patches:
+MAE = 1
+|𝑐|
+∑
+𝑝∈𝑐
+‖𝑥𝑝 − ̂𝑥𝑝‖2,
+(20)
+where 𝑐 denotes the set of masked patches, 𝑥𝑝 is the
+ground truth pixel value for patch 𝑝, and ̂𝑥𝑝 is its reconstruc
+tion. Once trained, the MAE serves as a detection module
+by measuring the average reconstruction error across all
+patches:
+𝑠det(𝑥) = 1
+𝑃 
+�
+�
+∑
+𝑝=1
+‖𝑥𝑝 − ̂𝑥𝑝‖2.
+(21)
+Ratherthanadoptingafixedthresholdforalldatasets,we
+employarank-based adaptive criterion. For each dataset, the
+reconstruction scores {𝑠det(𝑥)} are sorted, and the top-𝜅%
+of samples with the largest reconstruction errors are flagged
+as potentially adversarial and forwarded to the diffusion
+based purification stage. The percentile 𝜅 is selected accord
+ing to the empirical distribution of reconstruction errors to
+capture the heavy-tail region that typically corresponds to
+abnormal or out-of-distribution inputs. This strategy avoids
+manual calibration of a universal threshold 𝜏 and ensures
+that detection sensitivity remains stable across datasets with
+different dimensionalities and noise characteristics. In our
+experiments, 𝜅 = 5% for CIFAR-10 and 𝜅 = 18% for
+Br35H.
+The underlying rationale is that the MAE, trained solely
+on benign samples, captures a compact representation of the
+natural image manifold. Whenpresentedwithadversarial in
+puts, which usually lie outside this manifold, the reconstruc
+tion process operates on latent representations that are out
+of-distribution, producing significantly higher reconstruc
+tion errors. Consequently, the reconstruction score 𝑠det(𝑥)
+serves as a reliable measure of deviation from the learned
+data manifold, and the rank-based selection offers a data
+driven and interpretable detection mechanism.
+3.3. Integrated Defense Pipeline
+At inference time, our framework integrates adversarial
+detection, conditional purification, and personalized predic
+tion into a unified pipeline. An incoming sample is first
+evaluated by the MAE-based detector to produce a confi
+dence score 𝑠det(𝑥). If the score exceeds a threshold 𝜏, the
+sample undergoes diffusion-based purification; otherwise, it
+is passed directly to the predictor. The purification depth
+is adaptively determined from 𝑠det(𝑥), enabling stronger
+denoising for heavily perturbed inputs while minimizing
+distortion to clean samples. Finally, the purified (or unal
+tered) input is classified using the Personalized Federated
+Defense model, ensuring robustness without sacrificing di
+agnostic fidelity. This tight coupling of detection, adaptive
+purification, and personalized learning allows the system to
+respond proportionally to varying attack intensities, balanc
+ing robustness and accuracy in federated medical imaging
+scenarios.
+3.4. Federated Training Algorithm
+Ourtrainingpipelineconsistsofthreecoordinatedphases:
+diffusion model pretraining, adversarial detection training,
+and personalized federated model optimization. This design
+: Preprint submitted to Elsevier
+Page 7 of 14
+ensuresthateachdefensecomponentisindependentlyeffec
+tivewhileremainingseamlesslyintegratedintotheoverall
+framework.
+3.4.1. LocalClientUpdates
+Eachclient 𝑖maintains three local expertsandcorre
+spondingattentionnetworks. Local trainingproceeds for
+𝐸=15epochspercommunicationround.Foreachmini
+batch𝑖 fromthelocaldataset𝑖,theclient:
+1. Updates theparametersof eachexpert networkvia
+stochasticgradientdescentontheclassificationloss.
+2. Updatestheattentionnetworkparameterstorefinethe
+input-dependentmixtureweights.
+Thisprocedureallowsclientstoadapt theirexpertstoboth
+benignandadversariallyperturbedinputs.
+3.4.2. GlobalAggregation
+Following local updates, the server aggregatesmodel
+parametersusingasample-size-weightedaveragingscheme
+(FedAvg). For each expert 𝑘, the global parameters are
+computedas:
+𝜃(𝑘)
+global =
+𝑁∑
+𝑖=1
+𝑛𝑖
+𝑛 𝜃(𝑘)
+𝑖 , (22)
+where𝑛𝑖 isthenumberof trainingsamplesatclient 𝑖,and
+𝑛=∑𝑁
+𝑖=1𝑛𝑖.
+3.4.3. TrainingPhasesandIntegration
+Phase1:DiffusionModelPretraining Foreachdataset
+in theexperimental suite,wepretrainamemory-efficient
+U-Netbaseddiffusionmodelover50epochs.Asdescribed
+inAlgorithm1, this stage employs the denoising score
+matchingobjective(Eq.17),yieldingadataset-specificpu
+rificationmodel.The resultingmodel is able tosuppress
+adversarialperturbationswhilemaintainingessentialimage
+details.
+Algorithm1Phase1:DiffusionModelPretraining
+1: Input:Datasets𝑑 for𝑑∈{CIFAR-10,...,Br35H}.
+2: Output:Trainedpurificationmodels{𝜖𝜙𝑑
+}.
+3: foreachdataset𝑑do
+4: Initializediffusionmodelparameters𝜙𝑑.
+5: forepoch=1to50do
+6: Sampleamini-batchofcleanimages𝑥0 from
+𝑑.
+7: Update𝜙𝑑 bydescendingthegradientofdiff
+(fromEq.17).
+8: endfor
+9: endfor
+Phase2:MAEDetectorTraining In thesecondstage
+(Algorithm2),we initialize theMAEwithanembedding
+dimension of 512 and train it for 30 epochs using the
+reconstruction-baseddetectionloss(Eq.20).Thisdetector
+producesadversariallikelihoodscoresthataresubsequently
+integratedintotheadaptivepurificationprocess.
+Algorithm2Phase2:MAEDetectorTraining
+1: Input:Datasets𝑑 for𝑑∈{CIFAR-10,...,Br35H}.
+2: Output:Traineddetectormodels{MAE𝜓𝑑
+}.
+3: foreachdataset𝑑do
+4: InitializeMAEdetectorparameters𝜓𝑑.
+5: forepoch=1to30do
+6: Sampleamini-batchofcleanimages𝑥from𝑑.
+7: Update𝜓𝑑bydescendingthegradientofMAE
+(fromEq.20).
+8: endfor
+9: endfor
+Phase3:FederatedModelOptimization Thefinalstage
+involvesfederatedtrainingofthepersonalizedclassifier,as
+outlinedinAlgorithm3.Eachfederatedround(𝑇 =20)
+beginswithclientsdownloadingthecurrentglobalmodel.
+Local trainingis thenperformedusingtheattentionregu
+larizedcross-entropylossonthefinalaggregatedprediction
+(Eq.9),withanoptionaldefensestep:wheneverasample’s
+detectionscoreexceeds thethreshold, it ispurifiedbefore
+enteringtheclassifier.Aftercompletinglocalupdates,client
+parametersareuploaded to theserver,whichappliesFe
+dAvgaggregation.Performanceismonitoredateveryround
+throughevaluationonbothcleanandPGD-perturbedtest
+sets.
+Algorithm3Phase3:PersonalizedFederatedLearning
+1: Input:Numberofclients𝑁,communicationrounds𝑇,
+localepochs𝐸.
+2: Output:Trainedglobalmodels{𝜃(𝑘)
+global}𝐾
+𝑘=1 .
+3: Initializeglobalexpertmodels𝜃(𝑘)
+global for𝑘=1,…,𝐾.
+4: forround𝑡=1to𝑇do
+5: foreachclient𝑖=1to𝑁inparalleldo
+6: 𝜃(𝑘)
+𝑖 ←𝜃(𝑘)
+global for𝑘=1,…,𝐾
+7: forlocalepoch𝑒=1to𝐸do
+8: Samplemini-batch𝑖={(𝑥𝑗,𝑦𝑗)}𝐵
+𝑗=1 from
+𝑖.
+9: // Optional: Apply defense during local
+training
+10: foreachsample(𝑥𝑗,𝑦𝑗)∈𝑖do
+11: if𝑠det(𝑥𝑗)>𝜏then
+12: 𝑥𝑗←DiffusionPurify(𝑥𝑗)
+13: endif
+14: endfor
+15: Updatelocalmodels{𝜃(𝑘)
+𝑖 }𝐾
+𝑘=1 bydescend
+ingthegradientofclient.
+16: endfor
+17: Upload{𝜃(𝑘)
+𝑖 }𝐾
+𝑘=1 totheserver.
+18: endfor
+19: ServerAggregation:
+20: for𝑘=1to𝐾do
+21: 𝜃(𝑘)
+global←∑𝑁
+𝑖=1
+𝑛𝑖
+𝑛
+𝜃(𝑘)
+𝑖 ⊳FedAvg
+22: endfor
+23: endfor
+: PreprintsubmittedtoElsevier Page8of14
+4. Experiments and Results
+4.1. Datasets
+We evaluate the proposed framework on two datasets,
+combining standard computer vision benchmarks with a
+specialized medical imaging collection. This selection fa
+cilitates assessment of both generalizability and domain
+specific performance.
+Forbaselinecomparison,weemployCIFAR-10Krizhevsky
+(2009), comprising 60,000 color images of size 32 × 32
+across 10 classes.
+While pFedDef achieves moderate improvements in ro
+bustness comparedtostandardFLmethods,ourresultshigh
+light significant limitations in both scalability and defense
+effectiveness. On CIFAR-10 (Table 1), we replicated the
+exact configuration used in the original pFedDef paper, in
+cluding MobileNetV2astheclientmodeland𝐿2-normPGD
+attacks. Under these conditions, pFedDef achieves a clean
+Our primary focus lies in the medical domain, repre
+sentedbytheBr35H(BrainTumorDetection2020)datasetHamada
+(2020), containing 3,000 brain MRI scans annotated for
+binary classification (tumor vs. healthy). All Br35H images
+were resized to 224 × 224 pixels and normalized to the
+[0, 1] range. To reduce overfitting and improve robustness,
+we applied standard data augmentation, including random
+rotations, flips, and brightness adjustments, during training.
+accuracy of 66.0% and adversarial accuracy of 48.0%. In
+contrast, MedFedPure maintains substantially higher clean
+performance (82.31%) while offering stronger robustness,
+reaching an adversarial accuracy of 69.13%. This indicates
+that our design effectively mitigates the trade-off between
+clean accuracy and robustness that is typically observed in
+adversarially trained federated models.
+4.2. Implementation Details
+All experiments were implemented using PyTorch 2.0+
+with CUDA 11.8+ on an NVIDIA RTX 3090 GPU with
+24GB VRAM. We employed MoblieNetV2 Sandler et al.
+(2018) and ResNet-18 He et al. (2016) for 10 federated
+clients.
+4.3. Evaluation Metrics
+The evaluation framework covers robustness, detection,
+and efficiency metrics. Clean accuracy and adversarial accu
+racy are defined as:
+Accclean = 1
+| |
+Accadv = 1
+| |
+∑
+(𝑥,𝑦)∈
+∑
+(𝑥,𝑦)∈
+𝟏[𝑓(𝑥) = 𝑦],
+𝟏[𝑓(𝑥adv) = 𝑦].
+4.4. Results and Baseline Comparison
+(23a)
+(23b)
+To evaluate our framework, we compare it against a
+comprehensive set of state-of-the-art test-time adversarial
+defenses, as our primarycontribution is an efficient,adaptive
+defense that operates exclusively at inference. we include
+two key federated baselines. The first is FedAvg, which pro
+vides a standard benchmark for federated learning without
+adversarial robustness. The second is pFedDef Kim et al.
+(2023), a personalized federated defense framework that
+combines adversarial training with FL. pFedDef serves as
+our primary comparable baseline in the federated setting,
+offering a direct point of reference for evaluating robustness
+oriented methods. The comparison between our method and
+pFedDef is presented in Fig. 3.
+AspFedDefrepresentsthemostdirectlycomparablefed
+erated defense, we further provide a dedicated comparison
+against it. Specifically, we evaluate pFedDef under different
+PGD attack step sizes (𝛼 = 0.007,0.01) on CIFAR-10, and
+also report results on Br35H,whichisthemaindatasetofour
+study. Both clean and adversarial accuracies are reported for
+the datasets in Table 1 and 2.
+In Table 2, weextend the evaluation to a stronger setting,
+employing 𝐿∞-norm PGD attacks and using ResNet-18
+as the backbone. On CIFAR-10, MedFedPure continues to
+demonstrate large gains in adversarial robustness compared
+to pFedDef. The results on Br35H are even more telling:
+while pFedDef attains a clean accuracy of 98.33% and
+an adversarial accuracy of 49.50%, MedFedPure maintains
+nearly identical cleanperformance(97.67%)whileachieving
+a substantial boost in robustness (87.33%). This large margin
+is particularly significant given that Br35H is the primary
+dataset of our study, directly underscoring the practical
+value of our framework for robust medical image analysis
+in federated environments.
+Taken together, these results show that MedFedPure
+consistently outperforms both centralized test-time defenses
+and federated adversarial training approaches. Importantly,
+the improvements on Br35H, a clinically relevant medical
+imaging dataset, highlight the ability of our framework to
+maintain both accuracy and robustness in sensitive diag
+nostic tasks. This suggests that the proposed defense is not
+only effective in standard benchmarks such as CIFAR-10but
+also directly transferable to medical image analysis settings,
+where resilience against perturbations is critical.
+5. Conclusion and Future Works
+In this work, we introduced MedFedPure, a client-side
+defense frameworkcombiningapersonalizedfederated clas
+sifier, an MAE-based detector, and an adaptive diffusion
+purification module, which addresses the vulnerability of
+federated medical imaging models to inference-time ad
+versarial attacks. MedFedPure establishes robust protec
+tion in decentralized healthcare applications, On the Br35H
+brain MRI dataset, it improved adversarial robustness from
+49.50% to 87.33% while maintaining a clean accuracy of
+97.67%, outperforming existing federated defenses. These
+results confirm that the framework can preserve diagnos
+tic reliability even under strong adversarial interference.
+Such resilience is essential in MRI-based tumor detection
+techniques, since they require not only high baseline ac
+curacy but also protection against subtle perturbations that
+could cause misdiagnosis or treatment delays. Moreover, by
+operating entirely on the client side, MedFedPure ensures
+: Preprint submitted to Elsevier
+Page 9 of 14
+(a)BR35H (b)CIFAR-10
+Figure3:Accuracyplots:ConvergenceofcleanandadversarialaccuracyacrossfederatedroundsforthePfedDefvs.ourmethod.
+(a)BR35H; (b)CIFAR-10.
+Table1
+Performanceofmodels under different federatedadversarial trainingalgorithms onCIFAR-10against internal𝐿2-normPGD
+attacks.
+Theattackwasrunwithstepsize𝛼=0.01,numberofsteps𝐾=10,andperturbationbudget𝜖=0.1.ClientsusedMobileNetV2.
+Method CleanAcc. (%) Adv.Acc. (%)
+ModelswithoutAdversarialTraining
+FedAvg 93.0 0.0
+LocalTraining 38.0 33.0
+FedEMMarfoqetal. (2021) 76.0 13.0
+ModelswithAdversarialTraining
+FAT(FedAvgwithAT) 80.0 30.0
+LocalAdv. 30.0 28.0
+pFedDef 66.0 48.0
+MedFedPure 82.31 69.13
+privacy-preservingcollaborationacrossinstitutionswithout
+sharingrawpatientdata,addressingkeyregulatoryandeth
+icalconstraints.Overall,MedFedPureoffersarobust,accu
+rate,andprivacy-compatiblesolutionforsecuredeployment
+offederatedAIsystemsinbraintumordetectionworkflows.
+WhileMedFedPuredemonstratespromisingrobustness
+andclinical relevance, several directions remainopenfor
+exploration.Expandingtheevaluationtomulti-modal and
+highlyheterogeneousmedicaldatasets(e.g.,CT,PET,histopathol
+ogy,andmulti-sequenceMRI)willhelpassess theframe
+work’sgeneralizabilityacrossdiverseinstitutionaldistribu
+tions.Sinceourcurrentworkprimarilytargets𝓁∞-bounded
+adversarial perturbations, alongside dataset expansion, b
+Table2
+ComparisonofpFedDefandMedFedPureonBr35HandCIFAR-10under𝐿∞-normPGD.Ourapproachdemonstratesstronger
+adversarial robustnesswhilepreservingcleanaccuracy.
+Theattackwasrunwithnumberofsteps𝐾=7andperturbationbudget𝜖=0.015.ClientsusedResNet-18.
+Dataset Step
+Size
+(𝛼)
+Method CleanAcc. (%) Adv.Acc. (%)
+CIFAR-10 0.007 pFedDef 68.64 14.28
+MedFedPure 88.11 77.98
+Br35H 0.003 pFedDef 98.33 49.50
+MedFedPure 97.67 87.33
+: PreprintsubmittedtoElsevier Page10of14
+Data Availabltiy
+roader threat modeling is needed to encompass adaptive at
+tacks, backdoor triggers, model inversion, and membership
+inference in federated environments. Designing defenses
+that can withstand coordinated and adaptive adversaries
+remains an open challenge. Furthermore, personalization
+remains an evolving frontier. Additional strategies such
+as meta-learning, federated clustering, or client-level trust
+modeling could be integrated to handle extreme data hetero
+geneity across hospital networks.
+The successful translation of MedFedPure into real-time
+medical environments hinges on optimizing computational
+efficiency and establishing clinical trust. Future work should
+explore lightweight generative alternatives, such as diffusion
+distillation or score-based denoisers to reduce latency while
+preserving purification strength. Integration with hardware
+aware optimization could further adapt MedFedPure to
+resource-constrained hospital devices. Finally, explainabil
+ity and interpretability should be emphasized in future
+extensions. Incorporating explainable AI modules that can
+visualize or rationalize detection and purification decisions
+would improve clinical trust and facilitate adoption by
+medical practitioners.
+CRediT authorship contribution statement
+Mohammad Karami: Conceptualization, Data cura
+tion, Investigation, Software, Methodology, Writing– orig
+inal draft, Writing– review and editing. Mohammad Reza
+Nemati: Investigation, Software, Visualization, Writing
+original draft, Writing– review and editing. Aidin Kazemi:
+Investigation, Software, Visualization, Writing– original
+draft, Writing– review and editing. Ali Mikaeili: Super
+vision, Writing– review and editing. Hamid Azadegan:
+Resources. Behzad Moshiri: Supervision, Project adminis
+tration, Writing– review and editing.
+Declaration of Competing Interest
+The authors declare that they have no known competing
+f
+inancial interests or personal relationships that could have
+appeared to influence the work reported in this paper.
+Declaration of Generative AI
+During the preparation of this work, the authors used
+ChatGPT and Gemini to improve readability and grammar.
+After using tools, the authors reviewed and edited the con
+tent as needed and take full responsibility for the content of
+the publication.
+Funding
+This research did not receive any specific grant from
+funding agencies in the public, commercial, or not-for-profit
+sectors.
+The datasets used in this study are publicly available.
+The CIFAR-10 dataset is available from the University of
+Toronto (https://www.cs.toronto.edu/ kriz/cifar.html). The
+Br35HdatasetisaccessibleviatheIEEEDataPortrepository
+(https://dx.doi.org/10.21227/tbkk-q937) and Kaggle.
+References
+Abd El Kader, I., Xu, G., Shuai, Z., Saminu, S., Javaid, I., Salim Ahmad,
+I., 2021. Differential deep convolutional neural network model for brain
+tumor classification. URL: https://doi.org/10.3390/brainsci11030352,
+doi:10.3390/brainsci11030352.
+Abd-Ellah, M.K., Awad, A.I., Khalaf, A.A., Hamed, H.F., 2019. A review
+on brain tumor diagnosis from mri images: Practical implications, key
+achievements, and lessons learned. Magnetic Resonance Imaging 61,
+300–318. URL: https://www.sciencedirect.com/science/article/pii/
+S0730725X18304302, doi:https://doi.org/10.1016/j.mri.2019.05.028.
+Aggarwal, M., Tiwari, A.K., Sarathi, M.P., Bijalwan, A., 2023. An early
+detection and segmentation of brain tumor using deep neural network.
+BMCMedicalInformatics and Decision Making 23, 78. URL: https://
+doi.org/10.1186/s12911-023-02174-8, doi:10.1186/s12911-023-02174-8.
+Albalawi, E., T.R., M., Thakur, A., Kumar, V.V., Gupta, M., Khan, S.B.,
+Almusharraf, A., 2024. Integrated approach of federated learning
+with transfer learning for classification and diagnosis of brain tumor.
+BMC Medical Imaging 24, 110. URL: https://doi.org/10.1186/
+s12880-024-01261-0, doi:10.1186/s12880-024-01261-0.
+Arivazhagan, M.G., Aggarwal, V., Singh, A.K., Choudhary, S., 2019.
+Federated learning with personalization layers. URL: https://arxiv.
+org/abs/1912.00818, arXiv:1912.00818.
+Barreno, M.,Nelson,B.,Sears,R.,Joseph,A.D.,Tygar,J.D.,2006. Canma
+chine learning be secure?, in: Proceedings of the 2006 ACMSymposium
+on Information, computer and communications security, pp. 16–25.
+Barzili, A.M., Moshiri, B., 2025. Attention-based segmentation of brain
+tumors using feature level fusion and unet architecture, in: 2025 Fifth
+National and the First International Conference on Applied Research in
+Electrical Engineering (AREE), pp. 1–6. doi:10.1109/AREE63378.2025.
+10880261.
+Bellet, A., Guerraoui, R., Taziki, M., Tommasi, M., 2018. Personalized
+and private peer-to-peer machine learning, in: Storkey, A., Perez-Cruz,
+F. (Eds.), Proceedings of the Twenty-First International Conference on
+Artificial Intelligence and Statistics, PMLR. pp. 473–481. URL: https:
+//proceedings.mlr.press/v84/bellet18a.html.
+Bhanbhro, J., Nisticò, S., Palopoli, L., 2024. Issues in federated learn
+ing: some experiments and preliminary results. Scientific Reports
+14, 29881. URL: https://doi.org/10.1038/s41598-024-81732-0, doi:10.
+1038/s41598-024-81732-0.
+Briguglio, W., Traoré, I., Mamun, M., Yousef, W.A., Saad, S., 2026.
+Preserving data and model privacy during inference and training.
+Expert Systems with Applications 301, 130167.
+URL: https:
+//www.sciencedirect.com/science/article/pii/S0957417425037820,
+doi:https://doi.org/10.1016/j.eswa.2025.130167.
+Chhatre, F., Deshpande, S., Malik, S., Yan, G., Subramaniam, S., 2023.
+Brain tumor detection using convolutional neural network. J. Stud. Res
+12.
+Dao, B.T., Ma, V.D., Vu, T.A., Nguyen, H.T., Tran, K.P., Truong,
+T.H., 2026.
+Hypershield: A personalized hypernetwork-based
+defense against poisoning attacks in federated learning for healthcare.
+Expert Systems with Applications 299, 130237.
+URL: https:
+//www.sciencedirect.com/science/article/pii/S0957417425038527,
+doi:https://doi.org/10.1016/j.eswa.2025.130237.
+Dayan, I., Roth, H.R., Zhong, A., Harouni, A., Gentili, A., Abidin, A.Z.,
+Liu, A., Costa, A.B., Wood, B.J., Tsai, C.S., Wang, C.H., Hsu, C.N.,
+Lee, C.K., Ruan, P., Xu, D., Wu, D., Huang, E., Kitamura, F.C., Lacey,
+G., deAntônioCorradi,G.C.,Nino,G.,Shin,H.H.,Obinata,H.,Ren,H.,
+Crane, J.C., Tetreault, J., Guan, J., Garrett, J.W., Kaggie, J.D., Park, J.G.,
+Dreyer, K., Juluru, K., Kersten, K., Rockenbach, M.A.B.C., Linguraru,
+: Preprint submitted to Elsevier
+Page 11 of 14
+M.G., Haider, M.A., AbdelMaseeh, M., Rieke, N., Damasceno, P.F.,
+e Silva, P.M.C., Wang, P., Xu, S., Kawano, S., Sriswasdi, S., Park, S.Y.,
+Grist, T.M., Buch, V., Jantarabenjakul, W., Wang, W., Tak, W.Y., Li,
+X., Lin, X., Kwon, Y.J., Quraini, A., Feng, A., Priest, A.N., Turkbey,
+B., Glicksberg, B., Bizzo, B., Kim, B.S., Tor-Díez, C., Lee, C.C., Hsu,
+C.J., Lin, C., Lai, C.L., Hess, C.P., Compas, C., Bhatia, D., Oermann,
+E.K., Leibovitz, E., Sasaki, H., Mori, H., Yang, I., Sohn, J.H., Murthy,
+K.N.K., Fu, L.C., de Mendonça, M.R.F., Fralick, M., Kang, M.K., Adil,
+M., Gangai, N., Vateekul, P., Elnajjar, P., Hickman, S., Majumdar, S.,
+McLeod, S.L., Reed, S., Gräf, S., Harmon, S., Kodama, T., Puthanakit,
+T., Mazzulli, T., de Lavor, V.L., Rakvongthai, Y., Lee, Y.R., Wen,
+Y., Gilbert, F.J., Flores, M.G., Li, Q., 2021. Federated learning for
+predicting clinical outcomes in patients with covid-19. Nature Medicine
+27, 1735–1743. URL: https://doi.org/10.1038/s41591-021-01506-3,
+doi:10.1038/s41591-021-01506-3.
+Dosovitskiy, A., Beyer, L., Kolesnikov, A., Weissenborn, D., Zhai, X.,
+Unterthiner, T., Dehghani, M., Minderer, M., Heigold, G., Gelly, S.,
+et al., 2020. An image is worth 16x16 words: Transformers for image
+recognition at scale. arXiv preprint arXiv:2010.11929 .
+Fallah, A., Mokhtari, A., Ozdaglar, A., 2020. Personalized federated
+learning: A meta-learning approach. URL: https://arxiv.org/abs/2002.
+07948, arXiv:2002.07948.
+Firmansyah, A., Utama, A., 2024.
+A comprehensive systematic
+review of mri techniques for the early detection of brain tu
+mors: Clinical implications and diagnostic accuracy.
+The In
+ternational Journal of Medical Science and Health Research 4,
+1–19.
+URL: https://internationalmedicaljournal.org/index.php/
+ijmhsr/article/view/78, doi:10.70070/y3bchb22.
+Gao, Y., Xu, C., Wang, D., Chen, S., Ranasinghe, D.C., Nepal, S., 2019.
+Strip: A defence against trojan attacks on deep neural networks, in: Pro
+ceedings of the 35th annual computer security applications conference,
+pp. 113–125.
+Ghosh, A., Chung, J., Yin, D., Ramchandran, K., 2020. An efficient
+framework for clustered federated learning, in: Larochelle, H., Ran
+zato, M., Hadsell, R., Balcan, M., Lin, H. (Eds.), Advances in Neural
+Information Processing Systems, Curran Associates, Inc.. pp. 19586
+19597. URL: https://proceedings.neurips.cc/paper_files/paper/2020/
+file/e32cc80bf07915058ce90722ee17bb71-Paper.pdf.
+Gu, X., Tianqing, Z., Li, J., Zhang, T., Ren, W., Choo, K.K.R., 2022.
+Privacy, accuracy, and model fairness trade-offs in federated
+learning.
+Computers & Security 122, 102907.
+URL: https:
+//www.sciencedirect.com/science/article/pii/S0167404822003005,
+doi:https://doi.org/10.1016/j.cose.2022.102907.
+Hamada, A., 2020.
+Brain tumor detection 2020 (br35h).
+URL:
+https://www.kaggle.com/datasets/ahmedhamada0/brain-tumor-detection.
+accessed: 2024-08-08.
+Hamada, A., 2025. Br35h :: Brain tumor detection 2020. URL: https:
+//dx.doi.org/10.21227/tbkk-q937, doi:10.21227/tbkk-q937.
+He, K., Chen, X., Xie, S., Li, Y., Dollár, P., Girshick, R., 2022. Masked
+autoencoders are scalable vision learners, in: Proceedings of the
+IEEE/CVF conference on computer vision and pattern recognition, pp.
+16000–16009.
+He, K., Zhang, X., Ren, S., Sun, J., 2016. Deep residual learning for image
+recognition, in: Proceedings of the IEEE conference on computer vision
+and pattern recognition, pp. 770–778.
+Ilic, I., Ilic, M., 2023. International patterns and trends in the brain cancer
+incidence and mortality: An observational study based on the global
+burdenofdisease. Heliyon9. URL:https://doi.org/10.1016/j.heliyon.
+2023.e18222, doi:10.1016/j.heliyon.2023.e18222.
+Jahani, K., Moshiri, B., Hossein Khalaj, B., 2025. Secure pdm: A novel
+byzantine fault tolerant federated learning framework using a robust pca
+based anomaly detection approach. International Journal of Industrial
+Electronics Control and Optimization .
+Jahani, K., Moshiri, B., Khalaj, B.H., 2024a. Ppfl: Privacy-preserving
+techniques in federated learning. Journal of Artificial Intelligence,
+Applications and Innovations 1, 49–67.
+Jahani, K., Moshiri, B., Khalaj, B.H., 2024b. A survey on data distribution
+challenges and solutions in vertical and horizontal federated learning.
+Journal of Artificial Intelligence, Applications and Innovations 1, 55–71.
+Karami, M., Ghassemi, F., Kebriaei, H., Azadegan, H., 2025a. Flguard:
+Robust federated learning using dual attention and gradient reconstruc
+tion, in: 2025 International Conference for Artificial Intelligence, Appli
+cations, Innovation and Ethics (AI2E), pp. 1–6. doi:10.1109/AI2E64943.
+2025.10983777.
+Karami, M., Ghassemi, F., Kebriaei, H., Azadegan, H., 2025b. Opti
+gradtrust: Byzantine-robust federated learning with multi-feature gra
+dient analysis and reinforcement learning-based trust weighting. arXiv
+preprint arXiv:2507.23638 .
+Karimireddy, S.P., Kale, S., Mohri, M., Reddi, S., Stich, S., Suresh, A.T.,
+2020. SCAFFOLD: Stochastic controlled averaging for federated learn
+ing, in: III, H.D., Singh, A. (Eds.), Proceedings of the 37th International
+Conference on Machine Learning, PMLR. pp. 5132–5143. URL: https:
+//proceedings.mlr.press/v119/karimireddy20a.html.
+Khan, M.A., Auvee, R.B.Z., 2024. Comparative analysis of resource
+efficient cnn architectures for brain tumor classification. URL: https:
+//arxiv.org/abs/2411.15596, arXiv:2411.15596.
+Kim,T.,Singh,S.,Madaan,N.,Joe-Wong,C.,2023. Characterizinginternal
+evasion attacks in federated learning, in: International Conference on
+Artificial Intelligence and Statistics, PMLR. pp. 907–921.
+Krizhevsky, A., 2009. Learning Multiple Layers of Features from Tiny
+Images. Technical Report. University of Toronto. Tech Report.
+Kumar, A., Jyoti, 2026. A comprehensive review of transformer mod
+els in brain tumor analysis. Expert Systems with Applications 300,
+130509. URL: https://www.sciencedirect.com/science/article/pii/
+S0957417425041247, doi:https://doi.org/10.1016/j.eswa.2025.130509.
+Kumar, K.N., Mohan, C.K., Cenkeramaddi, L.R., 2024. The impact of
+adversarial attacks on federated learning: A survey. IEEE Transactions
+on Pattern Analysis and Machine Intelligence 46, 2672–2691. doi:10.
+1109/TPAMI.2023.3322785.
+Li, J., Meng, Y., Ma, L., Du, S., Zhu, H., Pei, Q., Shen, X., 2022. A
+federated learning based privacy-preserving smart healthcare system.
+IEEE Transactions on Industrial Informatics 18, 2021–2031. doi:10.
+1109/TII.2021.3098010.
+Li, L., Fan, Y., Tse, M., Lin, K.Y., 2020. A review of applications
+in federated learning.
+Computers & Industrial Engineering 149,
+106854. URL: https://www.sciencedirect.com/science/article/pii/
+S0360835220305532, doi:https://doi.org/10.1016/j.cie.2020.106854.
+Li, X., JIANG, M., Zhang, X., Kamp, M., Dou, Q., 2021. FedBN:
+Federated learning on non-IID features via local batch normalization,
+in: International Conference on Learning Representations. URL: https:
+//openreview.net/forum?id=6YEQUn0QICG.
+Liu, M., Sangiovanni-Vincentelli, A.L., Yue, X., 2023a. Backdoor Defense
+with Non-Adversarial Backdoor. arXiv preprint arXiv:2307.15539 .
+Liu, X., Li, M., Wang, H., Hu, S., Ye, D., Jin, H., Wu, L., Xiao, C., 2023b.
+Detecting Backdoors During the Inference Stage Based on Corruption
+Robustness Consistency, in: Proc. of the IEEE/CVF Conference on
+Computer Vision and Pattern Recognition (CVPR), pp. 16363–16372.
+doi:10.1109/CVPR52729.2023.01570.
+Lyu,L.,Yu,H.,Ma,X.,Chen,C.,Sun,L.,Zhao,J.,Yang,Q.,Yu,P.S.,2024.
+Privacy and robustness in federated learning: Attacks and defenses.
+IEEETransactionsonNeuralNetworksandLearningSystems35,8726
+8746. doi:10.1109/TNNLS.2022.3216981.
+Ma, X., Zhang, J., Guo, S., Xu, W., 2022. Layer-wised model aggregation
+for personalized federated learning, in: Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition (CVPR), pp.
+10092–10101.
+Madry,A.,Makelov,A.,Schmidt,L., Tsipras, D., Vladu, A., 2018. Towards
+deep learning models resistant to adversarial attacks, in: International
+Conference on Learning Representations. URL: https://openreview.
+net/forum?id=rJzIBfZAb.
+Mansour, Y., Mohri, M., Ro, J., Suresh, A.T., 2020. Three approaches for
+personalization with applications to federated learning. URL: https:
+//arxiv.org/abs/2002.10619, arXiv:2002.10619.
+Marfoq, O., Neglia, G., Bellet, A., Kameni, L., Vidal, R., 2021. Federated
+multi-task learning under a mixture of distributions. Advances in neural
+information processing systems 34, 15434–15447.
+: Preprint submitted to Elsevier
+Page 12 of 14
+McMahan, B., Moore, E., Ramage, D., Hampson, S., Arcas, B.A.y., 2017.
+Communication-Efficient Learning of Deep Networks from Decentral
+ized Data, in: Singh, A., Zhu, J. (Eds.), Proceedings of the 20th Inter
+national Conference on Artificial Intelligence and Statistics, PMLR. pp.
+1273–1282. URL:https://proceedings.mlr.press/v54/mcmahan17a.html.
+Munir, K., Frezza, F., Rizzi, A., 2021. Brain Tumor Segmentation Using
+2D-UNET Convolutional Neural Network. Springer Singapore, Singa
+pore. pp. 239–248. URL: https://doi.org/10.1007/978-981-15-6321-8_
+14, doi:10.1007/978-981-15-6321-8_14.
+Naseer, A., Yasir, T., Azhar, A., Shakeel, T., Zafar, K., 2021. Computer
+aided brain tumor diagnosis: Performance evaluation of deep learner
+cnn using augmented brain mri. International Journal of Biomedical
+Imaging 2021, 5513500. URL: https://onlinelibrary.wiley.com/doi/
+abs/10.1155/2021/5513500, doi:https://doi.org/10.1155/2021/5513500,
+arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1155/2021/5513500.
+Nie, W., Guo, B., Huang, Y., Xiao, C., Vahdat, A., Anandkumar, A., 2022a.
+Diffusion Models for Adversarial Purification, in: Proc. of the 39th Int.
+Conf. on Machine Learning (ICML), pp. 16805–16827. URL: https:
+//proceedings.mlr.press/v162/nie22a.html.
+Nie, W., Guo, B., Huang, Y., Xiao, C., Vahdat, A., Anandkumar, A., 2022b.
+Diffusionmodelsforadversarial purification, in: Chaudhuri, K., Jegelka,
+S., Song, L., Szepesvari, C., Niu, G., Sabato, S. (Eds.), Proceedings
+of the 39th International Conference on Machine Learning, PMLR. pp.
+16805–16827. URL: https://proceedings.mlr.press/v162/nie22a.html.
+Organization, W.H., 2025. Cancer. URL: https://www.who.int/news-room/
+fact-sheets/detail/cancer.
+Pati, S., Baid, U., Edwards, B., Sheller, M., Wang, S.H., Reina, G.A., Foley,
+P., Gruzdev, A., Karkada, D., Davatzikos, C., Sako, C., Ghodasara, S.,
+Bilello, M., Mohan, S., Vollmuth, P., Brugnara, G., Preetha, C.J., Sahm,
+F., Maier-Hein, K., Zenk, M., Bendszus, M., Wick, W., Calabrese, E.,
+Rudie, J., Villanueva-Meyer, J., Cha, S., Ingalhalikar, M., Jadhav, M.,
+Pandey, U., Saini, J., Garrett, J., Larson, M., Jeraj, R., Currie, S., Frood,
+R., Fatania, K., Huang, R.Y., Chang, K., Balaña, C., Capellades, J.,
+Puig, J., Trenkler, J., Pichler, J., Necker, G., Haunschmidt, A., Meckel,
+S., Shukla, G., Liem, S., Alexander, G.S., Lombardo, J., Palmer, J.D.,
+Flanders, A.E., Dicker, A.P., Sair, H.I., Jones, C.K., Venkataraman, A.,
+Jiang, M., So, T.Y., Chen, C., Heng, P.A., Dou, Q., Kozubek, M., Lux,
+F., Michálek, J., Matula, P., Keřkovský, M., Kopřivová, T., Dostál, M.,
+Vybíhal, V., Vogelbaum, M.A., Mitchell, J.R., Farinhas, J., Maldjian,
+J.A., Yogananda, C.G.B., Pinho, M.C., Reddy, D., Holcomb, J., Wagner,
+B.C., Ellingson, B.M., Cloughesy, T.F., Raymond, C., Oughourlian, T.,
+Hagiwara, A., Wang, C., To, M.S., Bhardwaj, S., Chong, C., Agzarian,
+M., Falcão, A.X., Martins, S.B., Teixeira, B.C.A., Sprenger, F., Menotti,
+D., Lucio, D.R., LaMontagne, P., Marcus, D., Wiestler, B., Kofler,
+F., Ezhov, I., Metz, M., Jain, R., Lee, M., Lui, Y.W., McKinley, R.,
+Slotboom, J., Radojewski, P., Meier, R., Wiest, R., Murcia, D., Fu,
+E., Haas, R., Thompson, J., Ormond, D.R., Badve, C., Sloan, A.E.,
+Vadmal, V., Waite, K., Colen, R.R., Pei, L., Ak, M., Srinivasan, A.,
+Bapuraj, J.R., Rao, A., Wang, N., Yoshiaki, O., Moritani, T., Turk, S.,
+Lee, J., Prabhudesai, S., Morón, F., Mandel, J., Kamnitsas, K., Glocker,
+B., Dixon, L.V.M., Williams, M., Zampakis, P., Panagiotopoulos, V.,
+Tsiganos, P., Alexiou, S., Haliassos, I., Zacharaki, E.I., Moustakas, K.,
+Kalogeropoulou, C., Kardamakis, D.M., Choi, Y.S., Lee, S.K., Chang,
+J.H., Ahn, S.S., Luo, B., Poisson, L., Wen, N., Tiwari, P., Verma, R.,
+Bareja, R., Yadav, I., Chen, J., Kumar, N., Smits, M., van der Voort, S.R.,
+Alafandi, A., Incekara, F., Wijnenga, M.M.J., Kapsas, G., Gahrmann,R.,
+Schouten, J.W., Dubbink, H.J., Vincent, A.J.P.E., van den Bent, M.J.,
+French, P.J., Klein, S., Yuan, Y., Sharma, S., Tseng, T.C., Adabi, S.,
+Niclou, S.P., Keunen, O., Hau, A.C., Vallières, M., Fortin, D., Lepage,
+M., Landman, B., Ramadass, K., Xu, K., Chotai, S., Chambless, L.B.,
+Mistry, A., Thompson, R.C., Gusev, Y., Bhuvaneshwar, K., Sayah, A.,
+Bencheqroun, C., Belouali, A., Madhavan, S., Booth, T.C., Chelliah, A.,
+Modat, M., Shuaib, H., Dragos, C., Abayazeed, A., Kolodziej, K., Hill,
+M., Abbassy, A., Gamal, S., Mekhaimar, M., Qayati, M., Reyes, M.,
+Park, J.E., Yun, J., Kim, H.S., Mahajan, A., Muzi, M., Benson, S., Beets
+Tan, R.G.H., Teuwen, J., Herrera-Trujillo, A., Trujillo, M., Escobar, W.,
+Abello, A., Bernal, J., Gómez, J., Choi, J., Baek, S., Kim, Y., Ismael,
+H., Allen, B., Buatti, J.M., Kotrotsou, A., Li, H., Weiss, T., Weller, M.,
+Bink, A., Pouymayou, B., Shaykh, H.F., Saltz, J., Prasanna, P., Shrestha,
+S., Mani, K.M., Payne, D., Kurc, T., Pelaez, E., Franco-Maldonado,
+H., Loayza, F., Quevedo, S., Guevara, P., Torche, E., Mendoza, C.,
+Vera, F., Ríos, E., López, E., Velastin, S.A., Ogbole, G., Soneye, M.,
+Oyekunle, D., Odafe-Oyibotha, O., Osobu, B., Shu’aibu, M., Dorcas,
+A., Dako, F., Simpson, A.L., Hamghalam, M., Peoples, J.J., Hu, R.,
+Tran, A., Cutler, D., Moraes, F.Y., Boss, M.A., Gimpel, J., Veettil, D.K.,
+Schmidt, K., Bialecki, B., Marella, S., Price, C., Cimino, L., Apgar,
+C., Shah, P., Menze, B., Barnholtz-Sloan, J.S., Martin, J., Bakas, S.,
+2022. Federated learning enables big data for rare cancer boundary
+detection. Nature Communications 13, 7346. URL: https://doi.org/
+10.1038/s41467-022-33407-5, doi:10.1038/s41467-022-33407-5.
+Pfitzner, B., Steckhan, N., Arnrich, B., 2021. Federated learning in a
+medical context: a systematic literature review. ACM Transactions on
+Internet Technology (TOIT) 21, 1–31.
+Raghavendra, U., Gudigar, A., Paul, A., Goutham, T.S., Inamdar, M.A.,
+Hegde, A., Devi, A., Ooi, C.P., Deo, R.C., Barua, P.D., Molinari, F.,
+Ciaccio, E.J., Acharya, U.R., 2023. Brain tumor detection and screening
+using artificial intelligence techniques: Current trends and future per
+spectives. Comput. Biol. Med. 163, 107063.
+Ren, K., Zheng, T., Qin, Z., Liu, X., 2020. Adversarial attacks and
+defenses in deep learning. Engineering 6, 346–360. URL: https:
+//www.sciencedirect.com/science/article/pii/S209580991930503X,
+doi:https://doi.org/10.1016/j.eng.2019.12.012.
+Ren, Y., Li, Y., Sun, J., Chen, H., Ma, X., Ren, B., 2026. Fedca:
+Federated domain generalization for medical image segmentation
+via cross-client feature style transfer and adaptive style alignment.
+Expert Systems with Applications 311, 131394.
+URL: https:
+//www.sciencedirect.com/science/article/pii/S0957417426003076,
+doi:https://doi.org/10.1016/j.eswa.2026.131394.
+Rieke, N., Hancox, J., Li, W., Milletarì, F., Roth, H.R., Albarqouni, S.,
+Bakas, S., Galtier, M.N., Landman, B.A., Maier-Hein, K., Ourselin, S.,
+Sheller, M., Summers,R.M.,Trask,A.,Xu,D.,Baust,M.,Cardoso,M.J.,
+2020. The future of digital health with federated learning. npj Digital
+Medicine 3, 119. URL: https://doi.org/10.1038/s41746-020-00323-1,
+doi:10.1038/s41746-020-00323-1.
+Ronneberger, O., Fischer, P., Brox, T., 2015. U-net: Convolutional networks
+for biomedical image segmentation, in: International Conference on
+Medical image computing andcomputer-assisted intervention, Springer.
+pp. 234–241.
+Sabah, F., Chen, Y., Yang, Z., Azam, M., Ahmad, N., Sarwar, R., 2024.
+Model optimization techniques in personalized federated learning: A
+survey. Expert Syst. Appl. 243. URL: https://doi.org/10.1016/j.eswa.
+2023.122874, doi:10.1016/j.eswa.2023.122874.
+Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., Chen, L.C., 2018.
+Mobilenetv2: Inverted residuals and linear bottlenecks, in: Proceedings
+of the IEEE conference on computer vision and pattern recognition, pp.
+4510–4520.
+Selcuk, B., Serif, T., 2023. Brain tumor detection and localization with
+yolov8, in: 2023 8th International Conference on Computer Science
+and Engineering (UBMK), pp. 477–481. doi:10.1109/UBMK59864.2023.
+10286729.
+Shi, Y., Du, M., Wu, X., Guan, Z., Sun, J., Liu, N., 2023. Black-box
+Backdoor Defense via Zero-shot Image Purification, in: Advances in
+Neural Information Processing Systems (NeurIPS) 36.
+Smith, V., Chiang, C.K., Sanjabi, M., Talwalkar, A.S., 2017. Feder
+ated multi-task learning, in: Guyon, I., Luxburg, U.V., Bengio, S.,
+Wallach, H., Fergus, R., Vishwanathan, S., Garnett, R. (Eds.), Ad
+vances in Neural Information Processing Systems, Curran Associates,
+Inc.
+URL: https://proceedings.neurips.cc/paper_files/paper/2017/
+file/6211080fa89981f66b1a0c9d55c61d0f-Paper.pdf.
+Tan, Y., Long, G., LIU, L., Zhou, T., Lu, Q., Jiang, J., Zhang, C., 2022.
+Fedproto: Federated prototype learning across heterogeneous clients.
+Proceedings of the AAAI Conference on Artificial Intelligence 36,
+8432–8440. URL: https://ojs.aaai.org/index.php/AAAI/article/view/
+20819, doi:10.1609/aaai.v36i8.20819.
+: Preprint submitted to Elsevier
+Page 13 of 14
+Tsai, Y.Y., Chao, J.C., Wen, A., Yang, Z., Mao, C., Shah, T., Yang, J., 2023.
+Test-time detection and repair of adversarial samples via maskedautoen
+coder. URL: https://arxiv.org/abs/2303.12848, arXiv:2303.12848.
+Wongkasem, N., Cabrera, G., 2024. Multiple-point metamaterial-inspired
+microwave sensors for early-stage brain tumor diagnosis. Sensors
+24.
+URL: https://www.mdpi.com/1424-8220/24/18/5953, doi:10.3390/
+s24185953.
+Wu, B., Zhu, Z., Liu, L., Liu, Q., He, Z., Lyu, S., 2024. Attacks in
+Adversarial MachineLearning:ASystematicSurveyfromtheLife-cycle
+Perspective. arXiv preprint arXiv:2302.09457 .
+Wu, X., Chen, Y., Yu, H., Yang, Z., 2025. Privacy-preserving federated
+learning based onnoiseaddition. ExpertSystemswithApplications267,
+126228. URL: https://www.sciencedirect.com/science/article/pii/
+S0957417424030951, doi:https://doi.org/10.1016/j.eswa.2024.126228.
+Yang, Q., Liu, Y., Chen, T., Tong, Y., 2019. Federated machine learning:
+Concept and applications. ACM Trans. Intell. Syst. Technol. 10. URL:
+https://doi.org/10.1145/3298981, doi:10.1145/3298981.
+Ye, T., Chen, C., Wang, Y., Li, X., Gao, M., 2024. BapFL: You Can Back
+door Personalized Federated Learning. ACM Trans. Knowl. Discov.
+Data 18, 166. doi:10.1145/3649316.
+Zhao, Z., Pang, S., Wang, L., Qiao, S., Zhao, Y., Wang, S., Lyu, Z.,
+2026.
+Medfedproto: A semi-supervised classification framework
+for medical images based on federated prototypical learning.
+Expert Systems with Applications 300, 130332.
+URL: https:
+//www.sciencedirect.com/science/article/pii/S0957417425039478,
+doi:https://doi.org/10.1016/j.eswa.2025.130332.
+Zhou, L., Wang, M., Zhou, N., 2023. Distributed federated learning-based
+deep learning model for privacy mri brain tumor detection. Journal of
+Information, Technology and Policy , 1–12doi:10.62836/jitp.2023.158.
+: Preprint submitted to Elsevier
+Page 14 of 14

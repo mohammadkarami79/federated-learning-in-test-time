@@ -51,10 +51,13 @@ sys.path.insert(0, str(ROOT))
 from experiments.ablation_study import (
     AblationConfig, get_logger, set_seed,
     dirichlet_split,
-    DiffusionUNet, SimpleMAE,
+    DiffusionUNet, SimpleMAE, NormalizedClassifier, create_resnet18,
+    IMAGENET_MEAN, IMAGENET_STD,
     train_diffusion, train_mae,
     pgd_attack, ddpm_purify, adaptive_t,
     evaluate_clean, evaluate_adversarial,
+    evaluate_method_per_client, calibrate_mae_threshold,
+    evaluate_detection_metrics,
     VARIANT_LABELS,
 )
 
@@ -79,19 +82,18 @@ def load_brats_classification(data_root: str, img_size: int = 224
       - Sample equal number of healthy (central) slices (negative)
     """
     brats_dir = Path(data_root) / "brats"
+    # Pixels in [0,1]; classifier normalizes internally (see ablation_study).
     tf_train = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.Grayscale(num_output_channels=3),
         transforms.RandomHorizontalFlip(),
         transforms.RandomRotation(10),
         transforms.ToTensor(),
-        transforms.Normalize([0.5]*3, [0.5]*3),
     ])
     tf_test = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.Grayscale(num_output_channels=3),
         transforms.ToTensor(),
-        transforms.Normalize([0.5]*3, [0.5]*3),
     ])
     if not (brats_dir / "train").exists():
         raise FileNotFoundError(
@@ -128,19 +130,18 @@ def load_medmnist_dataset(name: str, data_root: str, img_size: int = 224
     n_classes  = len(info["label"])
     DataClass  = getattr(medmnist, info["python_class"])
 
-    # MedMNIST images are 28×28; resize to img_size
+    # MedMNIST images are 28×28; resize to img_size. Pixels kept in [0,1];
+    # classifier normalizes internally (see ablation_study).
     tf_train = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.Lambda(lambda x: x.convert("RGB") if x.mode != "RGB" else x),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize([0.5]*3, [0.5]*3),
     ])
     tf_test = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.Lambda(lambda x: x.convert("RGB") if x.mode != "RGB" else x),
         transforms.ToTensor(),
-        transforms.Normalize([0.5]*3, [0.5]*3),
     ])
 
     download_root = str(Path(data_root) / "medmnist")
@@ -174,11 +175,12 @@ class PFedDefModel(nn.Module):
     mixture weights learned globally (not per-input).
     """
 
-    def __init__(self, num_classes: int, k: int = 3):
+    def __init__(self, num_classes: int, k: int = 3, pretrained: bool = True):
         super().__init__()
         self.k = k
-        # Shared feature extractor
-        backbone = torchvision.models.resnet18(weights=None)
+        # Shared feature extractor (ImageNet-pretrained for fair comparison)
+        weights = torchvision.models.ResNet18_Weights.IMAGENET1K_V1 if pretrained else None
+        backbone = torchvision.models.resnet18(weights=weights)
         feat_dim = backbone.fc.in_features
         backbone.fc = nn.Identity()
         self.backbone = backbone
@@ -188,8 +190,12 @@ class PFedDefModel(nn.Module):
         ])
         # Learnable mixture weights
         self.mix_weights = nn.Parameter(torch.ones(k) / k)
+        # Internal [0,1] -> ImageNet normalization
+        self.register_buffer("norm_mean", torch.tensor(IMAGENET_MEAN).view(1, 3, 1, 1))
+        self.register_buffer("norm_std",  torch.tensor(IMAGENET_STD).view(1, 3, 1, 1))
 
     def forward(self, x):
+        x = (x - self.norm_mean) / self.norm_std
         feat = self.backbone(x)
         w = torch.softmax(self.mix_weights, dim=0)
         out = sum(w[i] * self.heads[i](feat) for i in range(self.k))
@@ -248,19 +254,19 @@ def train_pfeddef(cfg, client_subsets, ckpt_path, logger):
 
 def train_fedavg_baseline(cfg, client_subsets, ckpt_path, logger):
     """Train standard FedAvg without any defense (classifier-only baseline)."""
+    # Same ImageNet-pretrained backbone as MedFedPure for a fair comparison.
+    def _build():
+        return create_resnet18(cfg.NUM_CLASSES, pretrained=True).to(cfg.DEVICE)
+
     if ckpt_path.exists():
         logger.info(f"Loading FedAvg baseline from {ckpt_path}")
-        model = torchvision.models.resnet18(weights=None)
-        model.fc = nn.Linear(model.fc.in_features, cfg.NUM_CLASSES)
-        model = model.to(cfg.DEVICE)
+        model = _build()
         model.load_state_dict(torch.load(ckpt_path, map_location=cfg.DEVICE))
         model.eval()
         return model
 
     logger.info("Training FedAvg baseline (classifier-only)...")
-    global_model = torchvision.models.resnet18(weights=None)
-    global_model.fc = nn.Linear(global_model.fc.in_features, cfg.NUM_CLASSES)
-    global_model = global_model.to(cfg.DEVICE)
+    global_model = _build()
 
     for rnd in range(cfg.NUM_ROUNDS):
         local_states = []
@@ -327,10 +333,13 @@ def run_additional_dataset(cfg: AblationConfig, dataset_name: str,
                              num_workers=cfg.NUM_WORKERS,
                              pin_memory=(device == "cuda"))
 
-    # ── Non-IID split ─────────────────────────────────────────────────────────
+    # ── Non-IID split (train + matching test partitions per client) ───────────
     client_indices = dirichlet_split(train_ds, cfg.NUM_CLIENTS,
                                      cfg.DIRICHLET_ALPHA, cfg.SEED)
     client_subsets = [Subset(train_ds, idx) for idx in client_indices]
+    test_client_indices = dirichlet_split(test_ds, cfg.NUM_CLIENTS,
+                                          cfg.DIRICHLET_ALPHA, cfg.SEED)
+    test_client_subsets = [Subset(test_ds, idx) for idx in test_client_indices]
 
     full_loader = DataLoader(train_ds, batch_size=cfg.DIFF_BATCH, shuffle=True,
                              num_workers=cfg.NUM_WORKERS,
@@ -352,35 +361,46 @@ def run_additional_dataset(cfg: AblationConfig, dataset_name: str,
                                    ckpt_dir / "pfeddef.pt", logger)
     moe_clients   = train_personalized_fl(cfg, client_subsets,
                                            ckpt_dir / "moe_clients.pt", logger)
-    moe_model = moe_clients[0]
-    moe_model.eval()
+    for m in moe_clients:
+        m.eval()
 
-    # ── Evaluate three methods ────────────────────────────────────────────────
+    # ── Calibrate detector threshold on clean data + honest detection metrics ─
+    mae_threshold = calibrate_mae_threshold(mae_model, test_loader, cfg)
+    det_metrics = evaluate_detection_metrics(
+        moe_clients[0], test_loader, cfg, mae_model, mae_threshold)
+    logger.info(f"  Detection (clean+adv): F1={det_metrics['detection_f1']:.3f}  "
+                f"FPR={det_metrics['detection_fpr']:.3f}")
+
+    # ── Evaluate three methods (per-client, aggregated) ───────────────────────
     results = []
     methods = [
+        # (label, models, mae, diff, variant)
         ("FedAvg (Classifier-only)", fedavg_model,  None,      None,     "classifier_only"),
         ("pFedDef",                   pfeddef_model, None,      None,     "classifier_only"),
-        ("MedFedPure (ours)",         moe_model,     mae_model, diffuser, "full_medfedpure"),
+        ("MedFedPure (ours)",         moe_clients,   mae_model, diffuser, "full_medfedpure"),
     ]
 
-    for label, model, mae, diff, variant in methods:
+    for label, models, mae, diff, variant in methods:
         logger.info(f"\n[Method] {label}")
-        clean_acc = evaluate_clean(model, test_loader, device)
-        logger.info(f"  Clean Acc: {clean_acc:.2f}%")
-
-        adv = evaluate_adversarial(model, test_loader, cfg, mae, diff, variant, logger)
-        logger.info(f"  Adv Acc: {adv['adv_acc']:.2f}%")
+        m = evaluate_method_per_client(
+            models, test_client_subsets, cfg, mae, diff, variant,
+            mae_threshold, logger)
+        det_f1 = det_metrics["detection_f1"] if mae is not None else 0.0
+        logger.info(f"  Clean Acc: {m['clean_acc']:.2f}±{m['clean_acc_std']:.2f}%  |  "
+                    f"Adv Acc: {m['adv_acc']:.2f}±{m['adv_acc_std']:.2f}%")
 
         results.append({
             "dataset":       dataset_name,
             "seed":          cfg.SEED,
             "method":        label,
-            "clean_acc":     round(clean_acc, 2),
-            "adv_acc":       round(adv["adv_acc"], 2),
-            "detection_f1":  round(adv["detection_f1"], 4),
-            "frac_purified": round(adv["frac_purified"], 4),
-            "latency_ms":    round(adv["avg_latency_ms"], 2),
-            "notes":         f"eps={cfg.PGD_EPS}, steps={cfg.PGD_STEPS}",
+            "clean_acc":     round(m["clean_acc"], 2),
+            "clean_acc_std": round(m["clean_acc_std"], 2),
+            "adv_acc":       round(m["adv_acc"], 2),
+            "adv_acc_std":   round(m["adv_acc_std"], 2),
+            "detection_f1":  round(det_f1, 4),
+            "frac_purified": round(m["frac_purified"], 4),
+            "latency_ms":    round(m["avg_latency_ms"], 2),
+            "notes":         f"eps={cfg.PGD_EPS}, steps={cfg.PGD_STEPS}, clients={cfg.NUM_CLIENTS}",
         })
 
     return results
@@ -394,8 +414,8 @@ def save_additional_results(results, out_dir: Path, tag: str):
     with open(json_path, "w") as f:
         json.dump(results, f, indent=2)
 
-    fields = ["method", "clean_acc", "adv_acc", "detection_f1",
-              "frac_purified", "latency_ms", "notes"]
+    fields = ["method", "clean_acc", "clean_acc_std", "adv_acc", "adv_acc_std",
+              "detection_f1", "frac_purified", "latency_ms", "notes"]
     with open(csv_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()

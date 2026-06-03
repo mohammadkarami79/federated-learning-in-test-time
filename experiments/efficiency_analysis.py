@@ -48,6 +48,7 @@ from experiments.ablation_study import (
     MoEClient, DiffusionUNet, SimpleMAE,
     train_diffusion, train_mae, train_personalized_fl,
     ddpm_purify, adaptive_t, pgd_attack,
+    calibrate_mae_threshold,
     VARIANT_LABELS,
 )
 
@@ -120,7 +121,8 @@ def benchmark_classifier_only(model: nn.Module, loader: DataLoader,
 
 
 def benchmark_mae_only(model: nn.Module, mae: SimpleMAE,
-                       loader: DataLoader, cfg: AblationConfig) -> Dict:
+                       loader: DataLoader, cfg: AblationConfig,
+                       mae_threshold: float) -> Dict:
     """MAE detection + classifier (no purification)."""
     model.eval(); mae.eval()
     device = cfg.DEVICE
@@ -140,8 +142,7 @@ def benchmark_mae_only(model: nn.Module, mae: SimpleMAE,
 
         timer_detect.start()
         errs = mae.reconstruction_error(adv)
-        thresh = float(torch.quantile(errs, 1 - cfg.MAE_KAPPA / 100.0))
-        flags = errs > thresh
+        flags = errs > mae_threshold
         timer_detect.stop()
 
         timer_classify.start()
@@ -207,7 +208,8 @@ def benchmark_diffpure_only(model: nn.Module, diffuser: DiffusionUNet,
 
 def benchmark_full_medfedpure(model: nn.Module, mae: SimpleMAE,
                                diffuser: DiffusionUNet,
-                               loader: DataLoader, cfg: AblationConfig) -> Dict:
+                               loader: DataLoader, cfg: AblationConfig,
+                               mae_threshold: float) -> Dict:
     """Full MedFedPure: MAE detect → adaptive diffusion → classify."""
     model.eval(); mae.eval(); diffuser.eval()
     device = cfg.DEVICE
@@ -226,8 +228,7 @@ def benchmark_full_medfedpure(model: nn.Module, mae: SimpleMAE,
 
         timer_detect.start()
         errs = mae.reconstruction_error(adv)
-        thresh = float(torch.quantile(errs, 1 - cfg.MAE_KAPPA / 100.0))
-        flags = errs > thresh
+        flags = errs > mae_threshold
         timer_detect.stop()
 
         processed = adv.clone()
@@ -308,6 +309,8 @@ def run_efficiency_analysis(cfg: AblationConfig,
                                          ckpt_dir / "moe_clients.pt", logger)
     model = moe_clients[0]; model.eval()
 
+    mae_threshold = calibrate_mae_threshold(mae_model, test_loader, cfg)
+
     logger.info("\nRunning efficiency benchmarks (N_batches on test set)...")
     results = []
 
@@ -320,7 +323,7 @@ def run_efficiency_analysis(cfg: AblationConfig,
 
     # MAE only
     logger.info("[2/4] MAE detect + classifier...")
-    m = benchmark_mae_only(model, mae_model, test_loader, cfg)
+    m = benchmark_mae_only(model, mae_model, test_loader, cfg, mae_threshold)
     results.append({"method": "mae_only", "label": BENCHMARK_LABELS["mae_only"], **m,
                      "overhead_vs_baseline": round(m["ms_per_sample"] / baseline_ms - 1, 3)})
 
@@ -332,7 +335,7 @@ def run_efficiency_analysis(cfg: AblationConfig,
 
     # Full MedFedPure
     logger.info("[4/4] Full MedFedPure...")
-    m = benchmark_full_medfedpure(model, mae_model, diffuser, test_loader, cfg)
+    m = benchmark_full_medfedpure(model, mae_model, diffuser, test_loader, cfg, mae_threshold)
     results.append({"method": "full_medfedpure", "label": BENCHMARK_LABELS["full_medfedpure"], **m,
                      "overhead_vs_baseline": round(m["ms_per_sample"] / baseline_ms - 1, 3)})
 

@@ -57,6 +57,8 @@ from experiments.ablation_study import (
     train_diffusion, train_mae, train_personalized_fl,
     pgd_attack, ddpm_purify, adaptive_t,
     evaluate_clean, VARIANT_LABELS,
+    evaluate_method_per_client, calibrate_mae_threshold,
+    evaluate_detection_metrics,
     make_beta_schedule,
     create_resnet18,
 )
@@ -189,18 +191,37 @@ def evaluate_with_defense(
     }
 
 
-def evaluate_medfedpure(
-        model: nn.Module,
-        loader: DataLoader,
-        cfg: AblationConfig,
-        mae_model: SimpleMAE,
-        diffuser: DiffusionUNet,
-        logger: logging.Logger,
-) -> Dict:
-    """Full MedFedPure evaluation (reuse ablation_study implementation)."""
-    from experiments.ablation_study import evaluate_adversarial
-    return evaluate_adversarial(
-        model, loader, cfg, mae_model, diffuser, "full_medfedpure", logger)
+def eval_baseline_per_client(models, test_client_subsets, cfg, defense_fn, logger):
+    """
+    Per-client evaluation of a baseline defense (clean acc + adversarial acc
+    under ``defense_fn``), aggregated sample-weighted across clients. ``models``
+    is a single shared model (baselines) or a per-client list.
+    """
+    device = cfg.DEVICE
+    clean_accs, adv_accs, sizes, lats = [], [], [], []
+    for cid, subset in enumerate(test_client_subsets):
+        if len(subset) == 0:
+            continue
+        model = models[cid] if isinstance(models, (list, tuple)) else models
+        model.eval()
+        loader = DataLoader(subset, batch_size=cfg.BATCH_SIZE, shuffle=False,
+                            num_workers=cfg.NUM_WORKERS,
+                            pin_memory=(device == "cuda"))
+        clean_accs.append(evaluate_clean(model, loader, device))
+        d = evaluate_with_defense(model, loader, cfg, defense_fn, logger)
+        adv_accs.append(d["adv_acc"])
+        lats.append(d["avg_latency_ms"])
+        sizes.append(len(subset))
+
+    w = np.array(sizes, dtype=float)
+    w = w / w.sum() if w.sum() > 0 else w
+    return {
+        "clean_acc":      float(np.average(clean_accs, weights=w)) if clean_accs else 0.0,
+        "clean_acc_std":  float(np.std(clean_accs)) if clean_accs else 0.0,
+        "adv_acc":        float(np.average(adv_accs, weights=w)) if adv_accs else 0.0,
+        "adv_acc_std":    float(np.std(adv_accs)) if adv_accs else 0.0,
+        "avg_latency_ms": float(np.average(lats, weights=w)) if lats else 0.0,
+    }
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -223,6 +244,9 @@ def run_baseline_comparison(cfg: AblationConfig, logger: logging.Logger) -> List
     client_indices = dirichlet_split(train_ds, cfg.NUM_CLIENTS,
                                      cfg.DIRICHLET_ALPHA, cfg.SEED)
     client_subsets = [Subset(train_ds, idx) for idx in client_indices]
+    test_client_indices = dirichlet_split(test_ds, cfg.NUM_CLIENTS,
+                                          cfg.DIRICHLET_ALPHA, cfg.SEED)
+    test_client_subsets = [Subset(test_ds, idx) for idx in test_client_indices]
 
     full_loader = DataLoader(train_ds, batch_size=cfg.DIFF_BATCH, shuffle=True,
                              num_workers=cfg.NUM_WORKERS,
@@ -245,7 +269,11 @@ def run_baseline_comparison(cfg: AblationConfig, logger: logging.Logger) -> List
                                    ckpt_dir / "pfeddef.pt", logger)
     moe_clients   = train_personalized_fl(cfg, client_subsets,
                                            ckpt_dir / "moe_clients.pt", logger)
-    moe_model = moe_clients[0]; moe_model.eval()
+    for m in moe_clients:
+        m.eval()
+
+    # Detector threshold calibrated on clean data (shared by MedFedPure + MAE-only)
+    mae_threshold = calibrate_mae_threshold(mae_model, test_loader, cfg)
 
     # ── Define defense functions ───────────────────────────────────────────────
     def diffpure_all(adv):
@@ -277,31 +305,32 @@ def run_baseline_comparison(cfg: AblationConfig, logger: logging.Logger) -> List
 
     for label, model, defense_fn, def_type, notes in configs:
         logger.info(f"\n[Baseline] {label}")
-        clean_acc = evaluate_clean(model, test_loader, device)
-        logger.info(f"  Clean Acc: {clean_acc:.2f}%")
 
         if label == "MedFedPure (ours)":
-            adv_metrics = evaluate_medfedpure(
-                model, test_loader, cfg, mae_model, diffuser, logger)
-            adv_acc = adv_metrics["adv_acc"]
-            latency = adv_metrics["avg_latency_ms"]
+            # Full pipeline on per-client partitions with the personalized models
+            m = evaluate_method_per_client(
+                moe_clients, test_client_subsets, cfg, mae_model, diffuser,
+                "full_medfedpure", mae_threshold, logger)
         else:
-            adv_metrics = evaluate_with_defense(
-                model, test_loader, cfg, defense_fn, logger, label)
-            adv_acc = adv_metrics["adv_acc"]
-            latency = adv_metrics["avg_latency_ms"]
+            # Shared model + (optional) input-transform defense, per client
+            m = eval_baseline_per_client(
+                model, test_client_subsets, cfg, defense_fn, logger)
 
-        logger.info(f"  Adv Acc: {adv_acc:.2f}%  Latency: {latency:.1f}ms/batch")
+        logger.info(f"  Clean Acc: {m['clean_acc']:.2f}±{m['clean_acc_std']:.2f}%  |  "
+                    f"Adv Acc: {m['adv_acc']:.2f}±{m['adv_acc_std']:.2f}%  |  "
+                    f"Latency: {m['avg_latency_ms']:.1f}ms/batch")
 
         results.append({
-            "dataset":      cfg.DATASET.upper(),
-            "seed":         cfg.SEED,
-            "method":       label,
-            "defense_type": def_type,
-            "clean_acc":    round(clean_acc, 2),
-            "adv_acc":      round(adv_acc, 2),
-            "latency_ms":   round(latency, 2),
-            "notes":        notes,
+            "dataset":       cfg.DATASET.upper(),
+            "seed":          cfg.SEED,
+            "method":        label,
+            "defense_type":  def_type,
+            "clean_acc":     round(m["clean_acc"], 2),
+            "clean_acc_std": round(m["clean_acc_std"], 2),
+            "adv_acc":       round(m["adv_acc"], 2),
+            "adv_acc_std":   round(m["adv_acc_std"], 2),
+            "latency_ms":    round(m["avg_latency_ms"], 2),
+            "notes":         notes,
         })
 
     # Compute relative gain over FedAvg (no defense)
@@ -321,8 +350,9 @@ def save_baseline_results(results, out_dir: Path, dataset: str, seed: int):
     with open(json_path, "w") as f:
         json.dump(results, f, indent=2)
 
-    fields = ["method", "defense_type", "clean_acc", "adv_acc",
-              "rel_gain_over_fedavg", "latency_ms", "notes"]
+    fields = ["method", "defense_type", "clean_acc", "clean_acc_std",
+              "adv_acc", "adv_acc_std", "rel_gain_over_fedavg",
+              "latency_ms", "notes"]
     with open(csv_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()

@@ -78,6 +78,13 @@ class AblationConfig:
     ENTROPY_REG: float = 0.1
     L2_REG: float = 1e-4
 
+    # Personalization: local fine-tuning epochs after FedAvg (FedAvg+FT).
+    # >0 makes each client model genuinely personalized to its local
+    # (non-IID) distribution; the "no_personalization" variant uses the
+    # shared global model (FT_EPOCHS effectively 0) on the same per-client
+    # test partitions, isolating the benefit of personalization.
+    PERSONALIZE_FT_EPOCHS: int = 5
+
     # ── adversarial attack (L∞ PGD) ──────────────────────────────────────────
     PGD_EPS: float = 0.015            # ε  (matches paper Table 2)
     PGD_ALPHA: float = 0.003          # step size
@@ -182,18 +189,20 @@ def load_br35h(data_root: str, img_size: int) -> Tuple[Dataset, Dataset]:
     """Load Br35H from local folder or Kaggle download."""
     br35h_dir = Path(data_root) / "br35h"
 
+    # NOTE: pixels are kept in [0,1] (ToTensor only). ImageNet normalization
+    # is applied INSIDE the classifier (NormalizedClassifier / MoEClient) so
+    # that the PGD attack, diffusion purification and MAE detector all operate
+    # in a single consistent [0,1] pixel space.
     transform_train = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.RandomHorizontalFlip(),
         transforms.RandomRotation(15),
         transforms.ColorJitter(brightness=0.2, contrast=0.2),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ])
     transform_test = transforms.Compose([
         transforms.Resize((img_size, img_size)),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
     ])
 
     train_dir = br35h_dir / "train"
@@ -211,17 +220,15 @@ def load_br35h(data_root: str, img_size: int) -> Tuple[Dataset, Dataset]:
 
 
 def load_cifar10(data_root: str) -> Tuple[Dataset, Dataset]:
+    # Pixels in [0,1]; normalization happens inside the classifier (see note
+    # in load_br35h). This keeps attack/purification/detection consistent.
     transform_train = transforms.Compose([
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize([0.4914, 0.4822, 0.4465],
-                             [0.2023, 0.1994, 0.2010]),
     ])
     transform_test = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize([0.4914, 0.4822, 0.4465],
-                             [0.2023, 0.1994, 0.2010]),
     ])
     train = torchvision.datasets.CIFAR10(data_root, train=True,  download=True, transform=transform_train)
     test  = torchvision.datasets.CIFAR10(data_root, train=False, download=True, transform=transform_test)
@@ -271,12 +278,36 @@ def dirichlet_split(dataset: Dataset, num_clients: int, alpha: float,
 # Models
 # ══════════════════════════════════════════════════════════════════════════════
 
+# ── Internal input normalization ──────────────────────────────────────────────
+# Data is delivered in [0,1]; every classifier normalizes with ImageNet stats
+# internally (the backbones are ImageNet-pretrained). This is the single source
+# of normalization, so PGD, diffusion purification and the MAE detector can all
+# work in the same [0,1] pixel space and the clean/adversarial accuracies are
+# measured on inputs from an identical distribution.
+IMAGENET_MEAN = (0.485, 0.456, 0.406)
+IMAGENET_STD  = (0.229, 0.224, 0.225)
+
+
+class NormalizedClassifier(nn.Module):
+    """Wrap a backbone so [0,1] inputs are ImageNet-normalized inside forward()."""
+
+    def __init__(self, model: nn.Module):
+        super().__init__()
+        self.model = model
+        self.register_buffer("norm_mean", torch.tensor(IMAGENET_MEAN).view(1, 3, 1, 1))
+        self.register_buffer("norm_std",  torch.tensor(IMAGENET_STD).view(1, 3, 1, 1))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = (x - self.norm_mean) / self.norm_std
+        return self.model(x)
+
+
 def create_resnet18(num_classes: int, pretrained: bool = True) -> nn.Module:
-    """ResNet-18 backbone (paper backbone for Br35H)."""
+    """ResNet-18 backbone (paper backbone for Br35H), with internal [0,1]→ImageNet norm."""
     weights = torchvision.models.ResNet18_Weights.IMAGENET1K_V1 if pretrained else None
     model = torchvision.models.resnet18(weights=weights)
     model.fc = nn.Linear(model.fc.in_features, num_classes)
-    return model
+    return NormalizedClassifier(model)
 
 
 class MoEClient(nn.Module):
@@ -315,8 +346,16 @@ class MoEClient(nn.Module):
             ) for _ in range(k)
         ])
 
+        # Internal [0,1] -> ImageNet normalization (see NormalizedClassifier note)
+        self.register_buffer("norm_mean", torch.tensor(IMAGENET_MEAN).view(1, 3, 1, 1))
+        self.register_buffer("norm_std",  torch.tensor(IMAGENET_STD).view(1, 3, 1, 1))
+
+    def _features(self, x: torch.Tensor) -> torch.Tensor:
+        x = (x - self.norm_mean) / self.norm_std
+        return self.backbone(x)
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        feat = self.backbone(x)                        # [B, feat_dim]
+        feat = self._features(x)                        # [B, feat_dim]
 
         # Attention weights via softmax
         scores = torch.cat(
@@ -332,7 +371,7 @@ class MoEClient(nn.Module):
         return out
 
     def entropy_regularization(self, x: torch.Tensor) -> torch.Tensor:
-        feat = self.backbone(x)
+        feat = self._features(x)
         scores = torch.cat(
             [net(feat) for net in self.attention_nets], dim=1
         )
@@ -638,9 +677,10 @@ def ddpm_purify(diffuser: DiffusionUNet, imgs: torch.Tensor,
             alpha_t = alphas[t_step - 1]
             ab_t = alpha_bar[t_step - 1]
 
-            # DDPM reverse step (mean)
+            # DDPM reverse step (mean). Diffusion is trained on [0,1] images,
+            # so the predicted x0 is clamped to [0,1] (not [-1,1]).
             x0_pred = (x - (1 - ab_t).sqrt() * pred_noise) / ab_t.sqrt()
-            x0_pred = x0_pred.clamp(-1, 1)
+            x0_pred = x0_pred.clamp(0, 1)
 
             if t_step > 1:
                 ab_prev = alpha_bar[t_step - 2]
@@ -739,7 +779,39 @@ def train_personalized_fl(cfg: AblationConfig, client_subsets: List[Subset],
         if (round_num + 1) % 5 == 0:
             logger.info(f"  FL round {round_num+1}/{cfg.NUM_ROUNDS} complete")
 
-    # Save all client models
+    # ── Personalization: local fine-tuning (FedAvg+FT) ───────────────────────
+    # After global aggregation every client currently holds the SAME global
+    # weights. Each client now fine-tunes on its own (non-IID) data for a few
+    # epochs, producing a genuinely personalized model. The "no_personalization"
+    # ablation skips this step and evaluates the shared global model on the same
+    # per-client test partitions, isolating the benefit of personalization.
+    if cfg.PERSONALIZE_FT_EPOCHS > 0:
+        logger.info(f"Personalizing {cfg.NUM_CLIENTS} clients "
+                    f"({cfg.PERSONALIZE_FT_EPOCHS} local FT epochs each)...")
+        for cid, (client_model, subset) in enumerate(zip(client_models, client_subsets)):
+            if len(subset) < 2:
+                continue
+            client_model.train()
+            loader = DataLoader(subset, batch_size=cfg.BATCH_SIZE,
+                                shuffle=True, num_workers=cfg.NUM_WORKERS,
+                                pin_memory=(cfg.DEVICE == "cuda"))
+            optimizer = optim.Adam(client_model.parameters(), lr=cfg.LEARNING_RATE,
+                                   weight_decay=cfg.L2_REG)
+            for _ in range(cfg.PERSONALIZE_FT_EPOCHS):
+                for imgs, labels in loader:
+                    if imgs.size(0) < 2:
+                        continue
+                    imgs, labels = imgs.to(cfg.DEVICE), labels.to(cfg.DEVICE)
+                    logits = client_model(imgs)
+                    ce_loss = F.cross_entropy(logits, labels)
+                    ent_reg = client_model.entropy_regularization(imgs)
+                    l2_reg  = client_model.attention_l2()
+                    loss = ce_loss + cfg.ENTROPY_REG * ent_reg + cfg.L2_REG * l2_reg
+                    optimizer.zero_grad()
+                    loss.backward()
+                    optimizer.step()
+
+    # Save all (now personalized) client models
     ckpt_path.parent.mkdir(parents=True, exist_ok=True)
     torch.save([cm.state_dict() for cm in client_models], ckpt_path)
     logger.info(f"Saved personalized FL models → {ckpt_path}")
@@ -827,19 +899,28 @@ def evaluate_adversarial(
         diffuser: Optional[DiffusionUNet],
         variant: str,
         logger: logging.Logger,
+        mae_threshold: Optional[float] = None,
 ) -> Dict:
     """
     Evaluate adversarial accuracy under the given defense variant.
 
+    Detection uses a FIXED threshold (``mae_threshold``) calibrated once on
+    clean data (see ``calibrate_mae_threshold``) rather than a per-batch
+    quantile, so ``frac_purified`` is an emergent property of the detector
+    rather than forced to κ% of every batch. Full detection precision/recall/F1
+    on a clean+adversarial mix are reported separately by
+    ``evaluate_detection_metrics``.
+
     Returns dict with keys:
-        adv_acc, detection_precision, detection_recall, detection_f1,
-        frac_purified, avg_latency_ms
+        adv_acc, frac_purified, avg_latency_ms
     """
+    if mae_threshold is None and mae_model is not None:
+        # Fallback (e.g. fast debugging): derive a threshold from a single pass.
+        mae_threshold = float("inf")
     model.eval()
     device = cfg.DEVICE
 
     correct = total = 0
-    true_pos = false_pos = false_neg = true_neg = 0
     total_flagged = 0
     total_latency = 0.0
     n_batches = 0
@@ -856,11 +937,9 @@ def evaluate_adversarial(
 
         # ── Apply defense variant ──────────────────────────────────────────
         if variant == "full_medfedpure":
-            # Step 1: MAE detection
+            # Step 1: MAE detection (fixed clean-calibrated threshold)
             errs = mae_model.reconstruction_error(adv_imgs)
-            kappa = cfg.MAE_KAPPA
-            thresh = float(torch.quantile(errs, 1 - kappa / 100.0))
-            flagged = errs > thresh                              # bool [B]
+            flagged = errs > mae_threshold                       # bool [B]
             total_flagged += flagged.sum().item()
 
             # Step 2: Adaptive diffusion purification on flagged samples
@@ -886,18 +965,14 @@ def evaluate_adversarial(
         elif variant == "no_diffusion_mae_only":
             # Detect but do not purify
             errs = mae_model.reconstruction_error(adv_imgs)
-            kappa = cfg.MAE_KAPPA
-            thresh = float(torch.quantile(errs, 1 - kappa / 100.0))
-            flagged = errs > thresh
+            flagged = errs > mae_threshold
             total_flagged += flagged.sum().item()
             processed = adv_imgs   # pass-through without purification
 
         elif variant == "no_personalization":
             # Same defense as full, but model is standard FedAvg (handled outside)
             errs = mae_model.reconstruction_error(adv_imgs)
-            kappa = cfg.MAE_KAPPA
-            thresh = float(torch.quantile(errs, 1 - kappa / 100.0))
-            flagged = errs > thresh
+            flagged = errs > mae_threshold
             total_flagged += flagged.sum().item()
 
             processed = adv_imgs.clone()
@@ -911,9 +986,7 @@ def evaluate_adversarial(
         elif variant == "fixed_purification":
             # MAE detection + fixed steps (no adaptive)
             errs = mae_model.reconstruction_error(adv_imgs)
-            kappa = cfg.MAE_KAPPA
-            thresh = float(torch.quantile(errs, 1 - kappa / 100.0))
-            flagged = errs > thresh
+            flagged = errs > mae_threshold
             total_flagged += flagged.sum().item()
 
             processed = adv_imgs.clone()
@@ -940,27 +1013,145 @@ def evaluate_adversarial(
         correct += (preds == labels).sum().item()
         total += B
 
-        # Detection metrics (ground truth: all adv_imgs are adversarial)
-        gt_adv = torch.ones(B, dtype=torch.bool, device=device)
-        true_pos  += (flagged & gt_adv).sum().item()
-        false_pos += (flagged & ~gt_adv).sum().item()
-        false_neg += (~flagged & gt_adv).sum().item()
-        true_neg  += (~flagged & ~gt_adv).sum().item()
-
     adv_acc = 100.0 * correct / total if total > 0 else 0.0
-    precision = true_pos / (true_pos + false_pos + 1e-9)
-    recall    = true_pos / (true_pos + false_neg + 1e-9)
-    f1        = 2 * precision * recall / (precision + recall + 1e-9)
     frac_pur  = total_flagged / total if total > 0 else 0.0
     avg_lat   = total_latency / n_batches if n_batches > 0 else 0.0
 
     return {
         "adv_acc": adv_acc,
-        "detection_precision": precision,
-        "detection_recall": recall,
-        "detection_f1": f1,
         "frac_purified": frac_pur,
         "avg_latency_ms": avg_lat,
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MAE detection: clean-calibrated threshold + honest clean-vs-adversarial metrics
+# ══════════════════════════════════════════════════════════════════════════════
+
+@torch.no_grad()
+def calibrate_mae_threshold(mae_model: SimpleMAE, clean_loader: DataLoader,
+                            cfg: AblationConfig) -> float:
+    """
+    Calibrate the detector threshold on CLEAN data only.
+
+    The threshold is the (1 - κ/100) quantile of clean reconstruction errors,
+    i.e. it is chosen to flag ≈κ% of clean images (a controlled false-positive
+    rate). This threshold is then fixed for all adversarial evaluation, so the
+    fraction of adversarial inputs that get flagged/purified is a genuine,
+    learned property of the detector rather than an artefact of per-batch
+    quantiles. κ = cfg.MAE_KAPPA.
+    """
+    errs = []
+    for imgs, _ in clean_loader:
+        imgs = imgs.to(cfg.DEVICE)
+        errs.append(mae_model.reconstruction_error(imgs).cpu())
+    errs = torch.cat(errs)
+    thresh = float(torch.quantile(errs, 1.0 - cfg.MAE_KAPPA / 100.0))
+    return thresh
+
+
+def evaluate_detection_metrics(model: nn.Module, clean_loader: DataLoader,
+                               cfg: AblationConfig, mae_model: SimpleMAE,
+                               threshold: float) -> Dict:
+    """
+    Honest adversarial-detection metrics on a balanced CLEAN + ADVERSARIAL set.
+
+    For every clean test image (ground-truth negative) we also build its PGD
+    adversarial counterpart (ground-truth positive) and ask the detector to
+    flag it using the fixed clean-calibrated ``threshold``. This yields real
+    precision / recall / F1 (and TPR / FPR), unlike measuring detection on
+    adversarial-only inputs.
+    """
+    device = cfg.DEVICE
+    tp = fp = fn = tn = 0
+    for imgs, labels in clean_loader:
+        imgs, labels = imgs.to(device), labels.to(device)
+        if imgs.size(0) < 2:
+            continue
+        # adversarial counterpart
+        adv = pgd_attack(model, imgs, labels,
+                         cfg.PGD_EPS, cfg.PGD_ALPHA, cfg.PGD_STEPS, device)
+        clean_err = mae_model.reconstruction_error(imgs)
+        adv_err   = mae_model.reconstruction_error(adv)
+        # negatives = clean, positives = adversarial
+        fp += (clean_err > threshold).sum().item()
+        tn += (clean_err <= threshold).sum().item()
+        tp += (adv_err > threshold).sum().item()
+        fn += (adv_err <= threshold).sum().item()
+
+    precision = tp / (tp + fp + 1e-9)
+    recall    = tp / (tp + fn + 1e-9)          # TPR on adversarial
+    f1        = 2 * precision * recall / (precision + recall + 1e-9)
+    fpr       = fp / (fp + tn + 1e-9)          # FPR on clean
+    return {
+        "detection_precision": precision,
+        "detection_recall":    recall,
+        "detection_f1":        f1,
+        "detection_tpr":       recall,
+        "detection_fpr":       fpr,
+    }
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Per-client (personalized) evaluation
+# ══════════════════════════════════════════════════════════════════════════════
+
+def evaluate_method_per_client(
+        models,                       # nn.Module (shared) OR list[nn.Module] (per-client)
+        client_test_subsets: List[Subset],
+        cfg: AblationConfig,
+        mae_model: Optional[SimpleMAE],
+        diffuser: Optional[DiffusionUNet],
+        variant: str,
+        mae_threshold: Optional[float],
+        logger: logging.Logger,
+) -> Dict:
+    """
+    Evaluate a method on each client's own (non-IID) test partition and
+    aggregate (sample-weighted mean ± unweighted std across clients).
+
+    ``models`` may be a single shared model (non-personalized: the same global
+    model is applied to every client partition) or a list with one personalized
+    model per client. This is the unified protocol used by every table so that
+    personalized and non-personalized methods are compared fairly on identical
+    per-client test data.
+    """
+    device = cfg.DEVICE
+    clean_accs, adv_accs, sizes = [], [], []
+    frac_purs, latencies = [], []
+
+    for cid, subset in enumerate(client_test_subsets):
+        if len(subset) == 0:
+            continue
+        model = models[cid] if isinstance(models, (list, tuple)) else models
+        model.eval()
+        loader = DataLoader(subset, batch_size=cfg.BATCH_SIZE, shuffle=False,
+                            num_workers=cfg.NUM_WORKERS,
+                            pin_memory=(device == "cuda"))
+        clean_acc = evaluate_clean(model, loader, device)
+        adv = evaluate_adversarial(model, loader, cfg, mae_model, diffuser,
+                                   variant, logger, mae_threshold=mae_threshold)
+        clean_accs.append(clean_acc)
+        adv_accs.append(adv["adv_acc"])
+        frac_purs.append(adv["frac_purified"])
+        latencies.append(adv["avg_latency_ms"])
+        sizes.append(len(subset))
+
+    w = np.array(sizes, dtype=float)
+    w = w / w.sum() if w.sum() > 0 else w
+    def wmean(v):
+        return float(np.average(v, weights=w)) if len(v) else 0.0
+    def std(v):
+        return float(np.std(v)) if len(v) else 0.0
+
+    return {
+        "clean_acc":        wmean(clean_accs),
+        "clean_acc_std":    std(clean_accs),
+        "adv_acc":          wmean(adv_accs),
+        "adv_acc_std":      std(adv_accs),
+        "frac_purified":    wmean(frac_purs),
+        "avg_latency_ms":   wmean(latencies),
+        "n_clients":        len(clean_accs),
     }
 
 
@@ -1014,10 +1205,17 @@ def run_ablation(cfg: AblationConfig, logger: logging.Logger) -> List[Dict]:
                              shuffle=False, num_workers=cfg.NUM_WORKERS,
                              pin_memory=(device == "cuda"))
 
-    # ── Non-IID split ─────────────────────────────────────────────────────────
+    # ── Non-IID split (TRAIN and TEST share the same Dirichlet partitioning) ───
+    # Each client gets a train partition and a matching test partition drawn
+    # from the same non-IID distribution, so personalized models can be fairly
+    # evaluated on their own local distribution (and the global model on the
+    # identical partitions).
     client_indices = dirichlet_split(train_dataset, cfg.NUM_CLIENTS,
                                      cfg.DIRICHLET_ALPHA, cfg.SEED)
     client_subsets = [Subset(train_dataset, idx) for idx in client_indices]
+    test_client_indices = dirichlet_split(test_dataset, cfg.NUM_CLIENTS,
+                                          cfg.DIRICHLET_ALPHA, cfg.SEED)
+    test_client_subsets = [Subset(test_dataset, idx) for idx in test_client_indices]
 
     # Full dataset loader for diffusion / MAE training
     full_loader = DataLoader(train_dataset, batch_size=cfg.DIFF_BATCH,
@@ -1039,50 +1237,58 @@ def run_ablation(cfg: AblationConfig, logger: logging.Logger) -> List[Dict]:
     # ── Phase 2: Train MAE detector ──────────────────────────────────────────
     mae_model = train_mae(cfg, full_loader, mae_ckpt, logger)
 
-    # ── Phase 3a: Train personalized FL model (MoE) ──────────────────────────
+    # ── Phase 3a: Train personalized FL models (MoE, one per client) ─────────
     moe_clients = train_personalized_fl(cfg, client_subsets, moe_ckpt, logger)
-    # Use first client model (or global) as representative for evaluation
-    moe_model = moe_clients[0]
-    moe_model.eval()
+    for m in moe_clients:
+        m.eval()
 
-    # ── Phase 3b: Train standard FedAvg model ────────────────────────────────
+    # ── Phase 3b: Train standard (shared) FedAvg model ───────────────────────
     fedavg_model = train_standard_fedavg(cfg, client_subsets, fedavg_ckpt, logger)
 
-    # ── Evaluation loop ───────────────────────────────────────────────────────
+    # ── Calibrate detector threshold on CLEAN data + honest detection metrics ─
+    logger.info("Calibrating MAE detector threshold on clean test data...")
+    mae_threshold = calibrate_mae_threshold(mae_model, test_loader, cfg)
+    logger.info(f"  Threshold (κ={cfg.MAE_KAPPA}% clean FPR target): {mae_threshold:.6f}")
+    det_metrics = evaluate_detection_metrics(
+        moe_clients[0], test_loader, cfg, mae_model, mae_threshold)
+    logger.info(f"  Detection (clean+adv): F1={det_metrics['detection_f1']:.3f}  "
+                f"P={det_metrics['detection_precision']:.3f}  "
+                f"R/TPR={det_metrics['detection_recall']:.3f}  "
+                f"FPR={det_metrics['detection_fpr']:.3f}")
+
+    # ── Evaluation loop (per-client, aggregated) ─────────────────────────────
     results = []
     logger.info("\n" + "=" * 70)
-    logger.info("ABLATION EVALUATION")
+    logger.info("ABLATION EVALUATION (per-client mean ± std)")
     logger.info("=" * 70)
 
     for variant in VARIANTS:
         logger.info(f"\n[Variant] {VARIANT_LABELS[variant]}")
 
-        # Choose which model to use
+        # Personalized variants use per-client models; "no_personalization"
+        # uses the single shared FedAvg model on the same per-client partitions.
         if variant == "no_personalization":
-            eval_model = fedavg_model
+            eval_models = fedavg_model
         else:
-            eval_model = moe_model
+            eval_models = moe_clients
 
-        # Clean accuracy
-        clean_acc = evaluate_clean(eval_model, test_loader, device)
-        logger.info(f"  Clean Acc: {clean_acc:.2f}%")
-
-        # Which defense components to pass
         use_mae  = VARIANT_COMPONENTS[variant]["mae"]
         use_diff = VARIANT_COMPONENTS[variant]["diffusion"]
-
         mae_arg  = mae_model  if use_mae  else None
         diff_arg = diffuser   if use_diff else None
 
-        # Adversarial accuracy + metrics
-        adv_metrics = evaluate_adversarial(
-            eval_model, test_loader, cfg,
-            mae_arg, diff_arg, variant, logger
-        )
-        logger.info(f"  Adv  Acc: {adv_metrics['adv_acc']:.2f}%  |  "
-                    f"Det-F1: {adv_metrics['detection_f1']:.3f}  |  "
-                    f"Purified: {adv_metrics['frac_purified']*100:.1f}%  |  "
-                    f"Latency: {adv_metrics['avg_latency_ms']:.1f}ms/batch")
+        m = evaluate_method_per_client(
+            eval_models, test_client_subsets, cfg,
+            mae_arg, diff_arg, variant, mae_threshold, logger)
+
+        # Detection F1 only applies to variants that actually run the detector.
+        det_f1 = det_metrics["detection_f1"] if use_mae else 0.0
+
+        logger.info(f"  Clean Acc: {m['clean_acc']:.2f}±{m['clean_acc_std']:.2f}%  |  "
+                    f"Adv Acc: {m['adv_acc']:.2f}±{m['adv_acc_std']:.2f}%  |  "
+                    f"Det-F1: {det_f1:.3f}  |  "
+                    f"Purified: {m['frac_purified']*100:.1f}%  |  "
+                    f"Latency: {m['avg_latency_ms']:.1f}ms/batch")
 
         comp = VARIANT_COMPONENTS[variant]
         row = {
@@ -1094,11 +1300,13 @@ def run_ablation(cfg: AblationConfig, logger: logging.Logger) -> List[Dict]:
             "mae_detector":     comp["mae"],
             "diffusion":        comp["diffusion"],
             "adaptive":         comp["adaptive"],
-            "clean_acc":        round(clean_acc, 2),
-            "adv_acc":          round(adv_metrics["adv_acc"], 2),
-            "detection_f1":     round(adv_metrics["detection_f1"], 4),
-            "frac_purified":    round(adv_metrics["frac_purified"], 4),
-            "avg_latency_ms":   round(adv_metrics["avg_latency_ms"], 2),
+            "clean_acc":        round(m["clean_acc"], 2),
+            "clean_acc_std":    round(m["clean_acc_std"], 2),
+            "adv_acc":          round(m["adv_acc"], 2),
+            "adv_acc_std":      round(m["adv_acc_std"], 2),
+            "detection_f1":     round(det_f1, 4),
+            "frac_purified":    round(m["frac_purified"], 4),
+            "avg_latency_ms":   round(m["avg_latency_ms"], 2),
         }
         results.append(row)
 
@@ -1121,7 +1329,8 @@ def save_results(results: List[Dict], out_dir: Path, dataset: str, seed: int):
     csv_path = out_dir / f"ablation_{dataset.lower()}_seed{seed}.csv"
     fieldnames = [
         "label", "personalization", "mae_detector", "diffusion", "adaptive",
-        "clean_acc", "adv_acc", "detection_f1", "frac_purified", "avg_latency_ms"
+        "clean_acc", "clean_acc_std", "adv_acc", "adv_acc_std",
+        "detection_f1", "frac_purified", "avg_latency_ms"
     ]
     with open(csv_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

@@ -1,23 +1,65 @@
-*.pth
-*.pt
-*.pkl
-*.png
-*.jpg
-*.jpeg
-*.gif
-data/*
-archive/*
-checkpoints/*
-logs/*
-results/*
-weights/*
-__pycache__/*
-*.log
-*.log.*
-*.log.*.*
-*.log.*.*.*
-*.log.*.*.*.*
-*.log.*.*.*.*.*
-*.pyc
-pFedDef_v1/data/cifar10/raw_data/cifar-10-python.tar.gz
+# ── Python ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
 
+# ── Datasets (never commit raw data) ────────────────────────────────
+data/
+*.npy
+*.pkl
+
+# ── Model weights / checkpoints (too large for git) ─────────────────
+checkpoints/
+weights/
+archive/
+*.pt
+*.pth
+*.pth.bak
+*.ckpt
+paper_results/**/*.pt
+
+# ── Logs, runs, tensorboard ─────────────────────────────────────────
+logs/
+runs/
+results/
+log*.txt
+*.log
+events.out.tfevents.*
+nohup.out
+
+# ── Experiment outputs (regenerated) ────────────────────────────────
+server_results/
+experiment_results/honest/
+
+# ── Media / binaries ────────────────────────────────────────────────
+*.pdf
+*.gif
+
+# ── OS / editor cruft ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ── Local revision artifacts (kept private, not for publication) ────
+HONEST_RESULTS.md
+MANUSCRIPT_REVISION.md
+REVISION_PLAN.md
+MEDFEDPURE_REVISED_DRAFT.md
+
+# ── Local-only evaluation / figure scripts (kept private) ───────────
+honest_eval.py
+tradeoff_eval.py
+detector_eval.py
+medfedpure_eval.py
+adaptive_eval.py
+strong_adaptive.py
+mae_salvage.py
+eot_purify.py
+train_classifier.py
+train_at.py
+make_figures.py
+poll_out.txt
